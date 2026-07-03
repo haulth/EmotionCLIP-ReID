@@ -1,0 +1,20 @@
+name: emotionclip
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pytorch
+  - pytorch-cuda=12.1
+  - numpy
+  - pillow
+  - pyyaml
+  - tqdm
+  - ipykernel
+  - pip
+  - pip:
+      - datasets
+      - ftfy
+      - regex
+      - pytest

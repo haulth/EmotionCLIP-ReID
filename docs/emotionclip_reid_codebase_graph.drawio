@@ -1,0 +1,106 @@
+<mxfile host="app.diagrams.net" modified="2026-05-01T16:25:00.000Z" agent="Codex" version="24.7.17" type="device">
+  <diagram id="grapuco-codebase-graph" name="Grapuco Codebase Graph">
+    <mxGraphModel dx="1800" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Grapuco codebase graph: EmotionCLIP-ReID" style="text;html=1;fontSize=28;fontStyle=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="360" y="30" width="1080" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="meta" value="Grapuco repository ID: cb7f0ca4-0563-46ec-8c0f-bb08ad5e1e5a&#xa;Remote status: COMPLETED | Parsed files: 51 | Nodes: 286 | Edges: 364 | Source bytes sent: 0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="250" y="95" width="1300" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="entry" value="train_clipreid.py&#xa;training entrypoint&#xa;config + seed + logger + dataloader + model + losses + two stages" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="230" width="360" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="cfg" value="config/defaults.py&#xa;configs/person/vit_clipreid.yml&#xa;MODEL / INPUT / DATALOADER / SOLVER / TEST" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="90" y="230" width="310" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="data" value="datasets/make_dataloader_clipreid.py&#xa;make_dataloader&#xa;train_loader_stage1 / train_loader_stage2 / val_loader" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=15;" vertex="1" parent="1">
+          <mxGeometry x="90" y="430" width="330" height="110" as="geometry"/>
+        </mxCell>
+        <mxCell id="datasetClasses" value="ReID dataset classes&#xa;Market1501 / DukeMTMC / MSMT17 / Occ-Duke / VeRi / VehicleID&#xa;inherit BaseImageDataset and emit image, pid, camid, viewid" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="60" y="610" width="390" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="model" value="model/make_model_clipreid.py&#xa;make_model -> build_transformer&#xa;CLIP image encoder + prompt/text side + classifier heads" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=16;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="720" y="430" width="360" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="prompt" value="PromptLearner&#xa;ID-specific learnable text tokens&#xa;node: Class:model/make_model_clipreid.py:PromptLearner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="560" y="650" width="300" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="text" value="TextEncoder&#xa;CLIP transformer wrapper&#xa;uses tokenized prompts and text_projection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="940" y="650" width="300" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="clip" value="model/clip/*&#xa;CLIP, VisionTransformer, Transformer, tokenizer, build_model&#xa;pretrained CLIP backbone construction" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="750" y="830" width="360" height="115" as="geometry"/>
+        </mxCell>
+        <mxCell id="optim" value="solver/make_optimizer_prompt.py&#xa;make_optimizer_1stage: prompt_learner only&#xa;make_optimizer_2stage: freeze text_encoder + prompt_learner" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="230" width="360" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="stage1" value="processor/processor_clipreid_stage1.py&#xa;do_train_stage1&#xa;collect image features, learn text prompts with SupCon image-to-text and text-to-image" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="430" width="430" height="125" as="geometry"/>
+        </mxCell>
+        <mxCell id="stage2" value="processor/processor_clipreid_stage2.py&#xa;do_train_stage2 / do_inference&#xa;precompute text features, train image side, evaluate CMC/mAP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=15;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="635" width="430" height="125" as="geometry"/>
+        </mxCell>
+        <mxCell id="loss" value="loss package&#xa;make_loss.py: CE/label smoothing + triplet + I2T&#xa;supcontrast.py: SupConLoss&#xa;triplet_loss.py: hard example metric loss" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="850" width="430" height="140" as="geometry"/>
+        </mxCell>
+        <mxCell id="metrics" value="utils/metrics.py&#xa;R1_mAP_eval&#xa;CMC / mAP ReID evaluation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="1040" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="note" value="This graph is a summarized Draw.io rendering of the Grapuco architecture map. Grapuco MCP get_architecture returned the full node/edge set for the repository above." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1040" width="800" height="70" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_cfg" value="configures" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="cfg" target="entry">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_data" value="creates loaders" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="entry" target="data">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_dataset" value="uses" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="data" target="datasetClasses">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_model" value="builds model" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="entry" target="model">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_prompt" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="model" target="prompt">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_text" value="contains" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="model" target="text">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_clip" value="loads CLIP" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="model" target="clip">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_optim" value="creates optimizers" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="entry" target="optim">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_stage1" value="runs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="entry" target="stage1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_stage2" value="then runs" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="stage1" target="stage2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_stage2_entry" value="called by entrypoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="entry" target="stage2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_stage1_prompt" value="optimizes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="stage1" target="prompt">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_stage2_text" value="uses fixed text anchors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="text" target="stage2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_loss1" value="SupCon / CE / triplet / I2T" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="stage1" target="loss">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_loss2" value="loss_fn" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="stage2" target="loss">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e_metrics" value="evaluates" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;endArrow=block;" edge="1" parent="1" source="stage2" target="metrics">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

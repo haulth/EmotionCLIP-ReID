@@ -1,0 +1,47 @@
+<mxfile host="65bd71144e">
+    <diagram id="emotionclip-reid-proposal-pipeline" name="Proposal Pipeline">
+        <mxGraphModel dx="691" dy="779" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1320" pageHeight="640" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="visual" value="&lt;font&gt;&lt;b&gt;Visual branch&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font&gt;Ảnh mặt -&amp;gt; preprocessing&lt;br&gt;an toàn cho FER&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#2563EB;strokeWidth=2.2;fontFamily=Arial;fontColor=#111827;spacing=14;align=center;verticalAlign=middle;fontSize=19;" parent="1" vertex="1">
+                    <mxGeometry x="65" y="173" width="235" height="92" as="geometry"/>
+                </mxCell>
+                <mxCell id="text" value="&lt;font&gt;&lt;b&gt;Text branch&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font&gt;Emotion label +&lt;br&gt;AU/pseudo-AU -&amp;gt; prompt&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;fillColor=#FFFFFF;strokeColor=#00827C;strokeWidth=2.2;fontFamily=Arial;fontColor=#111827;spacing=14;align=center;verticalAlign=middle;fontSize=19;" parent="1" vertex="1">
+                    <mxGeometry x="65" y="363" width="235" height="92" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage1" value="&lt;font style=&quot;color: rgb(37, 99, 235);&quot;&gt;&lt;b&gt;Stage 1: học descriptor&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font&gt;Freeze image/text encoder. Tối ưu prompt tokens để tạo &lt;b&gt;z_t&lt;/b&gt; có khả năng phân biệt emotion và giữ ý nghĩa ngôn ngữ.&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font&gt;&lt;b&gt;L_S1 = SupCon(z_v, z_t)&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#EAF2FF;strokeColor=#2563EB;strokeWidth=2.2;fontFamily=Arial;fontColor=#111827;spacing=18;align=center;verticalAlign=middle;fontSize=19;" parent="1" vertex="1">
+                    <mxGeometry x="405" y="145" width="465" height="148" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage2" value="&lt;font style=&quot;color: rgb(0, 107, 102);&quot;&gt;&lt;b&gt;Stage 2: semantic anchor&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font&gt;Freeze descriptors. Fine-tune adapter/head để kéo visual embedding về đúng vùng semantic descriptor.&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;font&gt;&lt;b&gt;L = L_cls + beta L_i2t + lambda L_unc&lt;/b&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#E8F7F4;strokeColor=#00827C;strokeWidth=2.2;fontFamily=Arial;fontColor=#111827;spacing=18;align=center;verticalAlign=middle;fontSize=19;" parent="1" vertex="1">
+                    <mxGeometry x="405" y="335" width="465" height="148" as="geometry"/>
+                </mxCell>
+                <mxCell id="evidence" value="&lt;span&gt;&lt;b&gt;Cần chứng minh&lt;/b&gt;&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;font&gt;• macro-F1 / balanced accuracy&lt;br&gt;• descriptor ablation&lt;br&gt;• occlusion / pose subset&lt;br&gt;&lt;font&gt;&lt;font style=&quot;color: rgb(153, 0, 0);&quot;&gt;• &lt;/font&gt;&lt;font style=&quot;color: rgb(153, 0, 0);&quot;&gt;uncertainty calibration&lt;br&gt;&lt;/font&gt;&lt;/font&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFFFFF;strokeColor=#C77D00;strokeWidth=2.2;fontFamily=Arial;fontColor=#111827;spacing=18;align=center;verticalAlign=middle;fontSize=19;" parent="1" vertex="1">
+                    <mxGeometry x="960" y="190" width="330" height="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow_visual_stage1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#2563EB;strokeWidth=3;endArrow=block;endFill=1;fontSize=19;align=center;" parent="1" source="visual" target="stage1" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow_text_stage2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#00827C;strokeWidth=3;endArrow=block;endFill=1;fontSize=19;align=center;" parent="1" source="text" target="stage2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="arrow_stage1_evidence" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C77D00;strokeWidth=3;endArrow=block;endFill=1;fontSize=19;align=center;" parent="1" source="stage1" target="evidence" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="965" y="220"/>
+                            <mxPoint x="965" y="275"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="arrow_stage2_evidence" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C77D00;strokeWidth=3;endArrow=block;endFill=1;fontSize=19;align=center;" parent="1" source="stage2" target="evidence" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="965" y="405"/>
+                            <mxPoint x="965" y="395"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

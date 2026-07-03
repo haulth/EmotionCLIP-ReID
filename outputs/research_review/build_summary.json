@@ -1,0 +1,8 @@
+{
+  "xlsx": "E:\\Source\\EmotionCLIP-ReID\\outputs\\research_review\\emotionclip_reid_32_papers.xlsx",
+  "docx": "E:\\Source\\EmotionCLIP-ReID\\outputs\\research_review\\related_work_emotionclip_reid.docx",
+  "drawio": "E:\\Source\\EmotionCLIP-ReID\\outputs\\research_review\\emotionclip_reid_related_work_gap_map.drawio",
+  "docx_render_ok": true,
+  "docx_render_message": "Rendered DOCX to PDF/PNG",
+  "paper_count": 32
+}
