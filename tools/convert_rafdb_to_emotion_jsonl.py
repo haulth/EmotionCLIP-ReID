@@ -1,4 +1,5 @@
 import argparse
+import csv
 import json
 import os
 import shutil
@@ -37,6 +38,9 @@ DEFAULT_LABEL_NAMES = (
 )
 
 IMAGE_DIR_HINTS = (
+    "DATASET/{split}/{label_id}",
+    "dataset/{split}/{label_id}",
+    "{split}/{label_id}",
     "Image/aligned",
     "Image/original",
     "basic/Image/aligned",
@@ -74,16 +78,22 @@ def _extract_archive(archive_path: Path, output_dir: Path) -> Path:
     return output_dir
 
 
-def _find_first_existing(root: Path, relative_names) -> Path:
+def _find_label_files(root: Path, relative_names) -> list[Path]:
+    train_csv = root / "train_labels.csv"
+    test_csv = root / "test_labels.csv"
+    if train_csv.exists() and test_csv.exists():
+        return [train_csv, test_csv]
+
     for relative_name in relative_names:
         candidate = root / relative_name
         if candidate.exists():
-            return candidate
+            return [candidate]
     matches = sorted(root.rglob("list_patition_label.txt")) + sorted(root.rglob("list_partition_label.txt"))
     if matches:
-        return matches[0]
+        return [matches[0]]
     raise FileNotFoundError(
-        "Could not find RAF-DB label file. Expected one of: " + ", ".join(DEFAULT_LABEL_NAMES)
+        "Could not find RAF-DB label file. Expected train_labels.csv/test_labels.csv or one of: "
+        + ", ".join(DEFAULT_LABEL_NAMES)
     )
 
 
@@ -99,11 +109,19 @@ def _image_candidates(image_name: str):
     return names
 
 
-def _resolve_image(root: Path, image_name: str, preferred_aligned: bool) -> Path:
+def _resolve_image(
+    root: Path,
+    image_name: str,
+    preferred_aligned: bool,
+    label_id: int | None = None,
+    official_split: str | None = None,
+) -> Path:
     candidates = []
     names = _image_candidates(image_name) if preferred_aligned else [image_name] + _image_candidates(image_name)
     for hint in IMAGE_DIR_HINTS:
-        base = root / hint
+        if "{split}" in hint and (official_split is None or label_id is None):
+            continue
+        base = root / hint.format(split=official_split, label_id=label_id)
         for name in names:
             candidates.append(base / name)
 
@@ -130,9 +148,34 @@ def _official_split_from_name(image_name: str) -> str:
     raise ValueError(f"RAF-DB image name should start with train/test, got: {image_name}")
 
 
+def _split_from_label_file(label_file: Path) -> str | None:
+    lowered = label_file.name.lower()
+    if lowered.startswith("train"):
+        return "train"
+    if lowered.startswith("test"):
+        return "test"
+    return None
+
+
 def _read_label_file(label_file: Path):
     rows = []
+    file_split = _split_from_label_file(label_file)
     with label_file.open("r", encoding="utf-8-sig") as handle:
+        first = handle.readline()
+        handle.seek(0)
+        if "," in first and {"image", "label"}.issubset({part.strip().lower() for part in first.split(",")}):
+            reader = csv.DictReader(handle)
+            for line_no, row in enumerate(reader, 2):
+                image_name = (row.get("image") or row.get("image_path") or row.get("filename") or "").replace("\\", "/")
+                if not image_name:
+                    raise ValueError(f"{label_file}:{line_no} missing image column")
+                label_id = int(row.get("label") or row.get("emotion_id") or row.get("rafdb_label_id"))
+                if label_id not in RAF_BASIC_LABELS:
+                    raise ValueError(f"{label_file}:{line_no} has unsupported RAF-DB basic label {label_id}")
+                official_split = row.get("official_split") or row.get("split") or file_split or _official_split_from_name(image_name)
+                rows.append((image_name, label_id, official_split))
+            return rows
+
         for line_no, raw_line in enumerate(handle, 1):
             line = raw_line.strip()
             if not line:
@@ -144,7 +187,7 @@ def _read_label_file(label_file: Path):
             label_id = int(parts[1])
             if label_id not in RAF_BASIC_LABELS:
                 raise ValueError(f"{label_file}:{line_no} has unsupported RAF-DB basic label {label_id}")
-            rows.append((image_name, label_id))
+            rows.append((image_name, label_id, file_split or _official_split_from_name(image_name)))
     return rows
 
 
@@ -152,21 +195,28 @@ def convert_rafdb(
     raf_root: Path,
     output: Path,
     root_dir: Path,
-    label_file: Path,
+    label_files: list[Path],
     test_split_name: str,
     preferred_aligned: bool,
     allow_missing: bool,
 ):
-    rows = _read_label_file(label_file)
+    rows = []
+    for label_file in label_files:
+        rows.extend(_read_label_file(label_file))
     records = []
     missing = []
 
-    for image_name, label_id in rows:
-        official_split = _official_split_from_name(image_name)
+    for image_name, label_id, official_split in rows:
         split = "train" if official_split == "train" else test_split_name
         emotion = RAF_BASIC_LABELS[label_id]
         try:
-            image_path = _resolve_image(raf_root, image_name, preferred_aligned)
+            image_path = _resolve_image(
+                raf_root,
+                image_name,
+                preferred_aligned,
+                label_id=label_id,
+                official_split=official_split,
+            )
         except FileNotFoundError:
             if allow_missing:
                 missing.append(image_name)
@@ -200,7 +250,7 @@ def convert_rafdb(
     print(f"Wrote {len(records)} RAF-DB records to {output}")
     print("Split protocol: RAF-DB official train/test split; no random split is created.")
     print(f"ROOT_DIR for training: {root_dir}")
-    print(f"Label file: {label_file}")
+    print("Label files: " + ", ".join(str(path) for path in label_files))
     if missing:
         print(f"Skipped {len(missing)} missing images because --allow-missing was set")
     for split in ("train", test_split_name):
@@ -217,7 +267,11 @@ def main():
     parser.add_argument("--raf-root", help="Path to extracted RAF-DB root.")
     parser.add_argument("--archive", help="Path to official RAF-DB zip/tar archive. Extracted under --extract-dir.")
     parser.add_argument("--extract-dir", default="data/RAF-DB", help="Where --archive should be extracted.")
-    parser.add_argument("--label-file", help="Override path to list_patition_label.txt/list_partition_label.txt.")
+    parser.add_argument(
+        "--label-file",
+        action="append",
+        help="Override label file path. Can be passed multiple times for train_labels.csv and test_labels.csv.",
+    )
     parser.add_argument("--output", default="data/RAF-DB/manifest.jsonl")
     parser.add_argument("--root-dir", help="Root used to make image_path relative. Defaults to RAF root.")
     parser.add_argument(
@@ -239,13 +293,13 @@ def main():
         raf_root = Path(args.raf_root)
     raf_root = raf_root.resolve()
     root_dir = Path(args.root_dir).resolve() if args.root_dir else raf_root
-    label_file = Path(args.label_file).resolve() if args.label_file else _find_first_existing(raf_root, DEFAULT_LABEL_NAMES)
+    label_files = [Path(path).resolve() for path in args.label_file] if args.label_file else _find_label_files(raf_root, DEFAULT_LABEL_NAMES)
 
     convert_rafdb(
         raf_root=raf_root,
         output=Path(args.output),
         root_dir=root_dir,
-        label_file=label_file,
+        label_files=label_files,
         test_split_name=args.test_split_name,
         preferred_aligned=not args.original,
         allow_missing=args.allow_missing,
