@@ -1,0 +1,83 @@
+{
+  "fer2013": {
+    "source_dir": "outputs/fer2013",
+    "best_macro_epoch": 24,
+    "best_accuracy_epoch": 8,
+    "accuracy": 0.7059069378657008,
+    "balanced_accuracy": 0.6832245474662665,
+    "macro_f1": 0.6863696467242667,
+    "ece": 0.3745653839991032,
+    "uncertainty_risk_auc": 0.22545094766939178,
+    "num_samples": 7178,
+    "per_class_f1": {
+      "anger": 0.6445251686559419,
+      "disgust": 0.6511627906976745,
+      "fear": 0.5279034690799397,
+      "happiness": 0.8887624466571835,
+      "neutral": 0.6809505259057265,
+      "sadness": 0.5983246908655765,
+      "surprise": 0.8129584352078238
+    },
+    "best_accuracy": {
+      "ts": "2026-07-02 19:20:03,566",
+      "epoch": 8,
+      "accuracy": 0.7115,
+      "balanced_acc": 0.6741,
+      "macro_f1": 0.6833,
+      "ece": 0.4405
+    },
+    "lowest_ece": {
+      "ts": "2026-07-03 00:40:44,191",
+      "epoch": 29,
+      "accuracy": 0.7034,
+      "balanced_acc": 0.6787,
+      "macro_f1": 0.6828,
+      "ece": 0.3682
+    }
+  },
+  "raf_db": {
+    "source_dir": "outputs/RAF-DB",
+    "best_macro_epoch": 28,
+    "best_accuracy_epoch": 14,
+    "best_balanced_accuracy_epoch": 7,
+    "lowest_ece_epoch": 30,
+    "accuracy": 0.8777705345501956,
+    "balanced_accuracy": 0.8045144056544054,
+    "macro_f1": 0.8115894621744404,
+    "ece": 0.3909837582344104,
+    "uncertainty_risk_auc": 0.05089994369870698,
+    "avg_confidence": 0.486786812543869,
+    "avg_uncertainty": 0.5451756105982885,
+    "num_samples": 3068,
+    "per_class_f1": {
+      "anger": 0.8115015974440895,
+      "disgust": 0.6182965299684542,
+      "fear": 0.7132867132867132,
+      "happiness": 0.9523407844791226,
+      "sadness": 0.8631138975966564,
+      "surprise": 0.8650306748466258,
+      "neutral": 0.8575560375994215
+    },
+    "best_accuracy": {
+      "epoch": 14,
+      "accuracy": 0.8794002607561929,
+      "balanced_accuracy": 0.7999852739179374,
+      "macro_f1": 0.8103676109006077,
+      "ece": 0.43203534103318025
+    },
+    "best_balanced_accuracy": {
+      "epoch": 7,
+      "accuracy": 0.8748370273794003,
+      "balanced_accuracy": 0.8107765956881415,
+      "macro_f1": 0.8066596944779939,
+      "ece": 0.4883700608332901
+    },
+    "lowest_ece": {
+      "epoch": 30,
+      "accuracy": 0.8761408083441982,
+      "balanced_accuracy": 0.8013293829282435,
+      "macro_f1": 0.8087964707848959,
+      "ece": 0.38923167024958866
+    }
+  }
+}

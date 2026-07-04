@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import sys
 import time
 from typing import Any, Dict, Optional
 
@@ -11,7 +12,7 @@ from loss.emotion_losses import emotion_stage2_loss
 from utils.fer_metrics import compute_fer_metrics
 
 try:
-    from tqdm.auto import tqdm
+    from tqdm import tqdm
 except ImportError:  # pragma: no cover - tqdm is optional at runtime
     tqdm = None
 
@@ -23,10 +24,40 @@ def _batch_to_device(batch: Dict[str, Any], device: torch.device) -> Dict[str, A
     return moved
 
 
-def _progress(iterable, **kwargs):
+def _as_bool(value: Any) -> Optional[bool]:
+    if isinstance(value, bool):
+        return value
+    if value is None:
+        return None
+    normalized = str(value).strip().lower()
+    if normalized in {"1", "true", "yes", "y", "on", "enable", "enabled"}:
+        return True
+    if normalized in {"0", "false", "no", "n", "off", "disable", "disabled"}:
+        return False
+    return None
+
+
+def _progress_enabled(cfg: Optional[Dict[str, Any]] = None) -> bool:
+    if _as_bool(os.getenv("TQDM_DISABLE")) is True:
+        return False
+
+    setting = "auto"
+    if cfg is not None:
+        setting = cfg.get("TRAIN", {}).get("PROGRESS_BAR", setting)
+    env_value = os.getenv("EMOTIONCLIP_PROGRESS")
+    if env_value is not None:
+        setting = env_value
+
+    parsed = _as_bool(setting)
+    if parsed is not None:
+        return parsed
+    return sys.stderr.isatty()
+
+
+def _progress(iterable, cfg: Optional[Dict[str, Any]] = None, **kwargs):
     if tqdm is None:
         return iterable
-    return tqdm(iterable, dynamic_ncols=True, leave=False, **kwargs)
+    return tqdm(iterable, dynamic_ncols=True, leave=False, disable=not _progress_enabled(cfg), **kwargs)
 
 
 def _batch_accuracy(logits: torch.Tensor, labels: torch.Tensor) -> float:
@@ -39,6 +70,68 @@ def _batch_confidence(probabilities: torch.Tensor) -> float:
 
 def _batch_uncertainty(uncertainty: torch.Tensor) -> float:
     return float(uncertainty.mean().detach().cpu())
+
+
+def _format_log_value(value: Any) -> str:
+    if isinstance(value, float):
+        return f"{value:.4f}"
+    return str(value)
+
+
+def log_training_event(logger: logging.Logger, event: str, **fields: Any) -> None:
+    details = " ".join(f"{key}={_format_log_value(value)}" for key, value in fields.items())
+    logger.info("%s%s", event, f" {details}" if details else "")
+
+
+def log_run_config(logger: logging.Logger, cfg: Dict[str, Any], config_file: str = "", opts: Optional[list] = None) -> None:
+    model_cfg = cfg["MODEL"]
+    emotion_cfg = model_cfg["EMOTION"]
+    solver_cfg = cfg["SOLVER"]
+    stage1_cfg = solver_cfg["STAGE1"]
+    stage2_cfg = solver_cfg["STAGE2"]
+    log_training_event(
+        logger,
+        "Run config",
+        config_file=config_file or "<default>",
+        device=model_cfg["DEVICE"],
+        model=model_cfg["NAME"],
+        manifest=cfg["DATASETS"]["MANIFEST"],
+        root_dir=cfg["DATASETS"].get("ROOT_DIR") or "<none>",
+        output_dir=cfg["OUTPUT_DIR"],
+        size_train=cfg["INPUT"]["SIZE_TRAIN"],
+        size_test=cfg["INPUT"]["SIZE_TEST"],
+        run_stage1=cfg["TRAIN"].get("RUN_STAGE1", True),
+        run_stage2=cfg["TRAIN"].get("RUN_STAGE2", True),
+        progress_bar=cfg["TRAIN"].get("PROGRESS_BAR", "auto"),
+    )
+    log_training_event(
+        logger,
+        "Model config",
+        n_ctx=emotion_cfg["N_CTX"],
+        adapter_dim=emotion_cfg["ADAPTER_DIM"],
+        topk_patches=emotion_cfg["TOPK_PATCHES"],
+        train_last_blocks=emotion_cfg["TRAIN_LAST_BLOCKS"],
+        classifier_weight=emotion_cfg["CLASSIFIER_WEIGHT"],
+        global_weight=emotion_cfg["GLOBAL_WEIGHT"],
+        local_weight=emotion_cfg["LOCAL_WEIGHT"],
+    )
+    log_training_event(
+        logger,
+        "Solver config",
+        seed=solver_cfg.get("SEED", 1234),
+        stage1_epochs=stage1_cfg["MAX_EPOCHS"],
+        stage1_batch=stage1_cfg["IMS_PER_BATCH"],
+        stage1_lr=stage1_cfg["BASE_LR"],
+        stage1_log_period=stage1_cfg.get("LOG_PERIOD", 20),
+        stage2_epochs=stage2_cfg["MAX_EPOCHS"],
+        stage2_batch=stage2_cfg["IMS_PER_BATCH"],
+        stage2_lr=stage2_cfg["BASE_LR"],
+        stage2_log_period=stage2_cfg.get("LOG_PERIOD", 20),
+        beta_align=stage2_cfg.get("BETA_ALIGN", 0.5),
+        lambda_unc=stage2_cfg.get("LAMBDA_UNC", 0.05),
+    )
+    if opts:
+        log_training_event(logger, "CLI opts", opts=" ".join(str(item) for item in opts))
 
 
 def _checkpoint_payload(model, epoch: int, stage: int, metrics: Optional[Dict[str, Any]] = None):
@@ -93,13 +186,14 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
     features = cached["features"].to(device)
     labels = cached["labels"].to(device)
     batch_size = int(stage_cfg.get("IMS_PER_BATCH", 64))
-    logger.info(
-        "Stage1 start epochs=%s samples=%s batch_size=%s steps_per_epoch=%s lr=%.6g",
-        max_epochs,
-        labels.numel(),
-        batch_size,
-        max(1, (labels.shape[0] + batch_size - 1) // batch_size),
-        optimizer.param_groups[0]["lr"],
+    log_training_event(
+        logger,
+        "Stage1 start",
+        epoch_total=max_epochs,
+        samples=labels.numel(),
+        batch_size=batch_size,
+        steps_per_epoch=max(1, (labels.shape[0] + batch_size - 1) // batch_size),
+        lr=optimizer.param_groups[0]["lr"],
     )
 
     for epoch in range(1, max_epochs + 1):
@@ -111,7 +205,7 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
         steps = 0
         permutation = torch.randperm(labels.shape[0], device=device)
         epoch_starts = range(0, labels.shape[0], batch_size)
-        progress = _progress(epoch_starts, desc=f"Stage1 {epoch}/{max_epochs}", total=len(epoch_starts))
+        progress = _progress(epoch_starts, cfg=cfg, desc=f"Stage1 {epoch}/{max_epochs}", total=len(epoch_starts))
         for start in progress:
             indices = permutation[start : start + batch_size]
             batch_features = features[indices]
@@ -138,30 +232,29 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
                     lr=f"{optimizer.param_groups[0]['lr']:.2e}",
                 )
             if steps % log_period == 0:
-                logger.info(
-                    "Stage1 epoch=%s/%s step=%s/%s loss=%.4f acc=%.4f conf=%.4f lr=%.6g",
-                    epoch,
-                    max_epochs,
-                    steps,
-                    max(1, (labels.shape[0] + batch_size - 1) // batch_size),
-                    total_loss / max(steps, 1),
-                    total_acc / max(steps, 1),
-                    total_conf / max(steps, 1),
-                    optimizer.param_groups[0]["lr"],
+                log_training_event(
+                    logger,
+                    "Stage1 train",
+                    epoch=f"{epoch}/{max_epochs}",
+                    step=f"{steps}/{max(1, (labels.shape[0] + batch_size - 1) // batch_size)}",
+                    loss=total_loss / max(steps, 1),
+                    acc=total_acc / max(steps, 1),
+                    conf=total_conf / max(steps, 1),
+                    lr=optimizer.param_groups[0]["lr"],
                 )
 
         if scheduler is not None:
             scheduler.step()
         avg_loss = total_loss / max(steps, 1)
-        logger.info(
-            "Stage1 epoch=%s/%s done loss=%.4f acc=%.4f conf=%.4f lr=%.6g time=%.1fs",
-            epoch,
-            max_epochs,
-            avg_loss,
-            total_acc / max(steps, 1),
-            total_conf / max(steps, 1),
-            optimizer.param_groups[0]["lr"],
-            time.time() - start_time,
+        log_training_event(
+            logger,
+            "Stage1 done",
+            epoch=f"{epoch}/{max_epochs}",
+            loss=avg_loss,
+            acc=total_acc / max(steps, 1),
+            conf=total_conf / max(steps, 1),
+            lr=optimizer.param_groups[0]["lr"],
+            time_sec=time.time() - start_time,
         )
 
         if epoch % checkpoint_period == 0 or epoch == max_epochs:
@@ -215,15 +308,16 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
     model.set_train_stage(2)
     best_macro_f1 = -1.0
     best_metrics = None
-    logger.info(
-        "Stage2 start epochs=%s samples=%s batch_size=%s steps_per_epoch=%s lr=%.6g beta_align=%.3f lambda_unc=%.3f",
-        max_epochs,
-        len(train_loader.dataset) if hasattr(train_loader, "dataset") else "unknown",
-        stage_cfg.get("IMS_PER_BATCH", "unknown"),
-        len(train_loader),
-        optimizer.param_groups[0]["lr"],
-        beta_align,
-        lambda_unc,
+    log_training_event(
+        logger,
+        "Stage2 start",
+        epoch_total=max_epochs,
+        samples=len(train_loader.dataset) if hasattr(train_loader, "dataset") else "unknown",
+        batch_size=stage_cfg.get("IMS_PER_BATCH", "unknown"),
+        steps_per_epoch=len(train_loader),
+        lr=optimizer.param_groups[0]["lr"],
+        beta_align=beta_align,
+        lambda_unc=lambda_unc,
     )
     for epoch in range(1, max_epochs + 1):
         start_time = time.time()
@@ -238,7 +332,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         total_acc = 0.0
         steps = 0
         anneal = min(1.0, epoch / anneal_epochs)
-        progress = _progress(train_loader, desc=f"Stage2 {epoch}/{max_epochs}", total=len(train_loader))
+        progress = _progress(train_loader, cfg=cfg, desc=f"Stage2 {epoch}/{max_epochs}", total=len(train_loader))
         for batch in progress:
             batch = _batch_to_device(batch, device)
             optimizer.zero_grad()
@@ -276,39 +370,38 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     lr=f"{optimizer.param_groups[0]['lr']:.2e}",
                 )
             if steps % log_period == 0:
-                logger.info(
-                    "Stage2 epoch=%s/%s step=%s/%s loss=%.4f cls=%.4f align=%.4f unc_loss=%.4f pred_unc=%.4f conf=%.4f acc=%.4f anneal=%.3f lr=%.6g",
-                    epoch,
-                    max_epochs,
-                    steps,
-                    len(train_loader),
-                    total_loss / max(steps, 1),
-                    total_cls / max(steps, 1),
-                    total_align / max(steps, 1),
-                    total_unc / max(steps, 1),
-                    total_pred_unc / max(steps, 1),
-                    total_conf / max(steps, 1),
-                    total_acc / max(steps, 1),
-                    anneal,
-                    optimizer.param_groups[0]["lr"],
+                log_training_event(
+                    logger,
+                    "Stage2 train",
+                    epoch=f"{epoch}/{max_epochs}",
+                    step=f"{steps}/{len(train_loader)}",
+                    loss=total_loss / max(steps, 1),
+                    cls=total_cls / max(steps, 1),
+                    align=total_align / max(steps, 1),
+                    unc_loss=total_unc / max(steps, 1),
+                    pred_unc=total_pred_unc / max(steps, 1),
+                    conf=total_conf / max(steps, 1),
+                    acc=total_acc / max(steps, 1),
+                    anneal=anneal,
+                    lr=optimizer.param_groups[0]["lr"],
                 )
 
         if scheduler is not None:
             scheduler.step()
         avg_loss = total_loss / max(steps, 1)
-        logger.info(
-            "Stage2 epoch=%s/%s done loss=%.4f cls=%.4f align=%.4f unc_loss=%.4f pred_unc=%.4f conf=%.4f acc=%.4f lr=%.6g time=%.1fs",
-            epoch,
-            max_epochs,
-            avg_loss,
-            total_cls / max(steps, 1),
-            total_align / max(steps, 1),
-            total_unc / max(steps, 1),
-            total_pred_unc / max(steps, 1),
-            total_conf / max(steps, 1),
-            total_acc / max(steps, 1),
-            optimizer.param_groups[0]["lr"],
-            time.time() - start_time,
+        log_training_event(
+            logger,
+            "Stage2 done",
+            epoch=f"{epoch}/{max_epochs}",
+            loss=avg_loss,
+            cls=total_cls / max(steps, 1),
+            align=total_align / max(steps, 1),
+            unc_loss=total_unc / max(steps, 1),
+            pred_unc=total_pred_unc / max(steps, 1),
+            conf=total_conf / max(steps, 1),
+            acc=total_acc / max(steps, 1),
+            lr=optimizer.param_groups[0]["lr"],
+            time_sec=time.time() - start_time,
         )
 
         metrics = None
@@ -318,18 +411,18 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             os.makedirs(output_dir, exist_ok=True)
             with open(metrics_path, "w", encoding="utf-8") as handle:
                 json.dump(metrics, handle, indent=2)
-            logger.info(
-                "Validation epoch=%s/%s accuracy=%.4f balanced_acc=%.4f macro_f1=%.4f avg_unc=%.4f avg_conf=%.4f ece=%.4f uncertainty_risk_auc=%.4f samples=%s",
-                epoch,
-                max_epochs,
-                metrics["accuracy"],
-                metrics["balanced_accuracy"],
-                metrics["macro_f1"],
-                metrics["avg_uncertainty"],
-                metrics["avg_confidence"],
-                metrics["ece"],
-                metrics["uncertainty_risk_auc"],
-                metrics["num_samples"],
+            log_training_event(
+                logger,
+                "Validation",
+                epoch=f"{epoch}/{max_epochs}",
+                accuracy=metrics["accuracy"],
+                balanced_acc=metrics["balanced_accuracy"],
+                macro_f1=metrics["macro_f1"],
+                avg_unc=metrics["avg_uncertainty"],
+                avg_conf=metrics["avg_confidence"],
+                ece=metrics["ece"],
+                uncertainty_risk_auc=metrics["uncertainty_risk_auc"],
+                samples=metrics["num_samples"],
             )
             if metrics["macro_f1"] > best_macro_f1:
                 best_macro_f1 = metrics["macro_f1"]

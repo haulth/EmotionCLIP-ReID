@@ -1,0 +1,44 @@
+{
+  "source": "outputs/fer2013/validation_metrics.csv",
+  "metric_note": "Notebook logs contain ECE, not UCE. Field uce is an alias copied from ece for requested naming.",
+  "best_accuracy": {
+    "ts": "2026-07-02 19:20:03,566",
+    "epoch": 8,
+    "accuracy": 0.7115,
+    "balanced_acc": 0.6741,
+    "macro_f1": 0.6833,
+    "ece": 0.4405
+  },
+  "best_balanced_acc": {
+    "ts": "2026-07-02 23:24:19,329",
+    "epoch": 24,
+    "accuracy": 0.7059,
+    "balanced_acc": 0.6832,
+    "macro_f1": 0.6864,
+    "ece": 0.3746
+  },
+  "best_macro_f1": {
+    "ts": "2026-07-02 23:24:19,329",
+    "epoch": 24,
+    "accuracy": 0.7059,
+    "balanced_acc": 0.6832,
+    "macro_f1": 0.6864,
+    "ece": 0.3746
+  },
+  "lowest_ece": {
+    "ts": "2026-07-03 00:40:44,191",
+    "epoch": 29,
+    "accuracy": 0.7034,
+    "balanced_acc": 0.6787,
+    "macro_f1": 0.6828,
+    "ece": 0.3682
+  },
+  "lowest_uce": {
+    "ts": "2026-07-03 00:40:44,191",
+    "epoch": 29,
+    "accuracy": 0.7034,
+    "balanced_acc": 0.6787,
+    "macro_f1": 0.6828,
+    "ece": 0.3682
+  }
+}

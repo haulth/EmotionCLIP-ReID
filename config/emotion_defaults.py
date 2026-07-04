@@ -69,6 +69,7 @@ _DEFAULT = {
     "TRAIN": {
         "RUN_STAGE1": True,
         "RUN_STAGE2": True,
+        "PROGRESS_BAR": "auto",
     },
     "OUTPUT_DIR": "outputs/emotionclip",
 }

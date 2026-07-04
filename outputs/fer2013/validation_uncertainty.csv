@@ -1,0 +1,2 @@
+ts,epoch,uncertainty_risk_auc,accuracy,balanced_acc,macro_f1,ece,note
+"2026-07-02 23:24:19,329",24,0.22545094766939178,0.7059069378657008,0.6832245474662665,0.6863696467242667,0.3745653839991032,Only best-metrics uncertainty_risk_auc is present in notebook output; per-epoch avg_uncertainty is not logged.

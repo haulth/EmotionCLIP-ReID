@@ -1,0 +1,114 @@
+===== notebook cell 11 exec=48 =====
+source: RUN_FULL = True  
+
+KERNEL_WORKSPACE: /home/jupyter-hault/EmotionCLIP-ReID
+DATA_ROOT: /home/jupyter-hault/EmotionCLIP-ReID/data/hf_fer2013
+MANIFEST: /home/jupyter-hault/EmotionCLIP-ReID/data/hf_fer2013/manifest.jsonl
+IMAGES_ROOT: /home/jupyter-hault/EmotionCLIP-ReID/data/hf_fer2013/images
+MAX_SAMPLES per HF split: -1
+
+===== notebook cell 12 exec=49 =====
+source: import json
+
+Kernel cwd before download: /home/jupyter-hault/EmotionCLIP-ReID
+DATA_ROOT absolute: /home/jupyter-hault/EmotionCLIP-ReID/data/hf_fer2013
+MANIFEST absolute: /home/jupyter-hault/EmotionCLIP-ReID/data/hf_fer2013/manifest.jsonl
+IMAGES_ROOT absolute: /home/jupyter-hault/EmotionCLIP-ReID/data/hf_fer2013/images
+Data đã tồn tại, bỏ qua tải lại.
+num records: 35887
+splits: Counter({'train': 28709, 'val': 7178})
+classes: Counter({'happiness': 8989, 'neutral': 6198, 'sadness': 6077, 'fear': 5121, 'anger': 4953, 'surprise': 4002, 'disgust': 547})
+
+===== notebook cell 13 exec=50 =====
+source: import json
+
+num records: 35887
+splits: Counter({'train': 28709, 'val': 7178})
+classes: Counter({'happiness': 8989, 'neutral': 6198, 'sadness': 6077, 'fear': 5121, 'anger': 4953, 'surprise': 4002, 'disgust': 547})
+first record: {'image_path': 'train/neutral/train_000000.jpg', 'emotion': 'neutral', 'emotion_id': 6, 'split': 'train', 'source': 'Aaryan333/fer2013_train_publicTest_privateTest', 'hf_split': 'train', 'hf_index': 0}
+
+===== notebook cell 15 exec=51 =====
+source: from collections import Counter, defaultdict
+
+Total records: 35887
+Splits: Counter({'train': 28709, 'val': 7178})
+Classes: Counter({'happiness': 8989, 'neutral': 6198, 'sadness': 6077, 'fear': 5121, 'anger': 4953, 'surprise': 4002, 'disgust': 547})
+<Figure size 1400x400 with 2 Axes><Figure size 1100x1540 with 35 Axes>
+
+===== notebook cell 19 exec=None =====
+source: from pathlib import Path
+
+TRAIN_PRESET: full
+config: configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml
+manifest: /home/jupyter-hault/EmotionCLIP-ReID/data/hf_fer2013/manifest.jsonl
+images: /home/jupyter-hault/EmotionCLIP-ReID/data/hf_fer2013/images
+output: /home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full
+stage1 epochs/batch: 20 64
+stage2 epochs/batch: 30 32
+cwd: /home/jupyter-hault/EmotionCLIP-ReID
+
+===== notebook cell 21 exec=57 =====
+source: from pathlib import Path
+
+OUTPUT_DIR: /home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full
+best checkpoint exists: True
+checkpoints:
+  ViT-B-16_emotion_stage1_1.pth 480.0 MB
+  ViT-B-16_emotion_stage1_10.pth 480.0 MB
+  ViT-B-16_emotion_stage1_11.pth 480.0 MB
+  ViT-B-16_emotion_stage1_12.pth 480.0 MB
+  ViT-B-16_emotion_stage1_13.pth 480.0 MB
+  ViT-B-16_emotion_stage1_14.pth 480.0 MB
+  ViT-B-16_emotion_stage1_15.pth 480.0 MB
+  ViT-B-16_emotion_stage1_16.pth 480.0 MB
+  ViT-B-16_emotion_stage1_17.pth 480.0 MB
+  ViT-B-16_emotion_stage1_18.pth 480.0 MB
+  ViT-B-16_emotion_stage1_19.pth 480.0 MB
+  ViT-B-16_emotion_stage1_2.pth 480.0 MB
+  ViT-B-16_emotion_stage1_20.pth 480.0 MB
+  ViT-B-16_emotion_stage1_3.pth 480.0 MB
+  ViT-B-16_emotion_stage1_4.pth 480.0 MB
+  ViT-B-16_emotion_stage1_5.pth 480.0 MB
+  ViT-B-16_emotion_stage1_6.pth 480.0 MB
+  ViT-B-16_emotion_stage1_7.pth 480.0 MB
+  ViT-B-16_emotion_stage1_8.pth 480.0 MB
+  ViT-B-16_emotion_stage1_9.pth 480.0 MB
+  ViT-B-16_emotion_stage2_1.pth 480.7 MB
+  ViT-B-16_emotion_stage2_10.pth 480.7 MB
+  ViT-B-16_emotion_stage2_11.pth 480.7 MB
+  ViT-B-16_emotion_stage2_12.pth 480.7 MB
+  ViT-B-16_emotion_stage2_13.pth 480.7 MB
+  ViT-B-16_emotion_stage2_14.pth 480.7 MB
+  ViT-B-16_emotion_stage2_15.pth 480.7 MB
+  ViT-B-16_emotion_stage2_16.pth 480.7 MB
+  ViT-B-16_emotion_stage2_17.pth 480.7 MB
+  ViT-B-16_emotion_stage2_18.pth 480.7 MB
+  ViT-B-16_emotion_stage2_19.pth 480.7 MB
+  ViT-B-16_emotion_stage2_2.pth 480.7 MB
+  ViT-B-16_emotion_stage2_20.pth 480.7 MB
+  ViT-B-16_emotion_stage2_21.pth 480.7 MB
+  ViT-B-16_emotion_stage2_22.pth 480.7 MB
+  ViT-B-16_emotion_stage2_23.pth 480.7 MB
+  ViT-B-16_emotion_stage2_24.pth 480.7 MB
+  ViT-B-16_emotion_stage2_25.pth 480.7 MB
+  ViT-B-16_emotion_stage2_26.pth 480.7 MB
+  ViT-B-16_emotion_stage2_27.pth 480.7 MB
+  ViT-B-16_emotion_stage2_28.pth 480.7 MB
+  ViT-B-16_emotion_stage2_29.pth 480.7 MB
+  ViT-B-16_emotion_stage2_3.pth 480.7 MB
+  ViT-B-16_emotion_stage2_30.pth 480.7 MB
+  ViT-B-16_emotion_stage2_4.pth 480.7 MB
+  ViT-B-16_emotion_stage2_5.pth 480.7 MB
+  ViT-B-16_emotion_stage2_6.pth 480.7 MB
+  ViT-B-16_emotion_stage2_7.pth 480.7 MB
+  ViT-B-16_emotion_stage2_8.pth 480.7 MB
+  ViT-B-16_emotion_stage2_9.pth 480.7 MB
+  best_emotionclip.pth 480.7 MB
+metric files: ['metrics_epoch_1.json', 'metrics_epoch_10.json', 'metrics_epoch_11.json', 'metrics_epoch_12.json', 'metrics_epoch_13.json', 'metrics_epoch_14.json', 'metrics_epoch_15.json', 'metrics_epoch_16.json', 'metrics_epoch_17.json', 'metrics_epoch_18.json', 'metrics_epoch_19.json', 'metrics_epoch_2.json', 'metrics_epoch_20.json', 'metrics_epoch_21.json', 'metrics_epoch_22.json', 'metrics_epoch_23.json', 'metrics_epoch_24.json', 'metrics_epoch_25.json', 'metrics_epoch_26.json', 'metrics_epoch_27.json', 'metrics_epoch_28.json', 'metrics_epoch_29.json', 'metrics_epoch_3.json', 'metrics_epoch_30.json', 'metrics_epoch_4.json', 'metrics_epoch_5.json', 'metrics_epoch_6.json', 'metrics_epoch_7.json', 'metrics_epoch_8.json', 'metrics_epoch_9.json']
+{'accuracy': 0.7068821398718306, 'balanced_accuracy': 0.6629725624564239, 'macro_f1': 0.6740637079580755, 'ece': 0.4263335110774842, 'num_samples': 7178}
+
+===== notebook cell 27 exec=58 =====
+source: from pathlib import Path
+
+[PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_1.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_10.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_11.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_12.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_13.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_14.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_15.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_16.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_17.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_18.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_19.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_2.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_20.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_21.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_22.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_23.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_24.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_25.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_26.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_27.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_28.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_29.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_3.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_30.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_4.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_5.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_6.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_7.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_8.json'), PosixPath('/home/jupyter-hault/EmotionCLIP-ReID/outputs/emotionclip_hf_fer2013_full/metrics_epoch_9.json')]
+{'accuracy': 0.7068821398718306, 'balanced_accuracy': 0.6629725624564239, 'macro_f1': 0.6740637079580755, 'ece': 0.4263335110774842, 'num_samples': 7178}

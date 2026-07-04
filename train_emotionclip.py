@@ -13,6 +13,8 @@ from processor.processor_emotionclip import (
     do_train_emotion_stage1,
     do_train_emotion_stage2,
     load_emotion_checkpoint,
+    log_run_config,
+    log_training_event,
 )
 
 
@@ -40,24 +42,86 @@ def trainable_parameters(model):
     return [parameter for parameter in model.parameters() if parameter.requires_grad]
 
 
+def configure_device(cfg, gpu_id=None):
+    requested_device = str(cfg["MODEL"].get("DEVICE", "cpu")).strip()
+    if gpu_id is not None:
+        if gpu_id < 0:
+            raise ValueError(f"CUDA device index must be >= 0, got {gpu_id}")
+        requested_device = f"cuda:{gpu_id}"
+        cfg["MODEL"]["DEVICE"] = requested_device
+
+    if requested_device.startswith("cuda"):
+        if not torch.cuda.is_available():
+            cfg["MODEL"]["DEVICE"] = "cpu"
+            return torch.device("cpu"), "CUDA requested but current PyTorch is CPU-only; falling back to CPU"
+
+        device = torch.device(requested_device)
+        if device.index is not None and device.index >= torch.cuda.device_count():
+            raise ValueError(
+                f"CUDA device index {device.index} was requested, but only "
+                f"{torch.cuda.device_count()} CUDA device(s) are visible"
+            )
+
+        if device.index is None:
+            device = torch.device(f"cuda:{torch.cuda.current_device()}")
+            cfg["MODEL"]["DEVICE"] = str(device)
+        torch.cuda.set_device(device.index)
+        return device, None
+
+    device = torch.device(requested_device)
+    cfg["MODEL"]["DEVICE"] = str(device)
+    return device, None
+
+
 def main():
     parser = argparse.ArgumentParser(description="EmotionCLIP-ReID FER training")
     parser.add_argument("--config_file", default="configs/emotion/vit_b16_emotionclip.yml", type=str)
+    parser.add_argument("--gpu", type=int, default=None, help="CUDA GPU index to use, for example --gpu 1")
+    parser.add_argument(
+        "--no_progress",
+        "--no-progress",
+        action="store_true",
+        help="Disable tqdm progress bars in console output",
+    )
     parser.add_argument("opts", nargs=argparse.REMAINDER)
     args = parser.parse_args()
 
     cfg = load_emotion_cfg(args.config_file, args.opts)
+    if args.no_progress:
+        cfg["TRAIN"]["PROGRESS_BAR"] = False
     setup_logging(cfg["OUTPUT_DIR"])
     logger = logging.getLogger("emotionclip.train")
-    logger.info("Loaded config: %s", cfg)
 
-    if cfg["MODEL"]["DEVICE"] == "cuda" and not torch.cuda.is_available():
-        logger.warning("CUDA requested but current PyTorch is CPU-only; falling back to CPU")
-        cfg["MODEL"]["DEVICE"] = "cpu"
+    device, device_warning = configure_device(cfg, gpu_id=args.gpu)
+    if device_warning:
+        logger.warning(device_warning)
+    if device.type == "cuda":
+        log_training_event(
+            logger,
+            "CUDA device selected",
+            device=device,
+            name=torch.cuda.get_device_name(device),
+            visible_devices=torch.cuda.device_count(),
+        )
+
+    log_run_config(logger, cfg, config_file=args.config_file, opts=args.opts)
     set_seed(int(cfg["SOLVER"].get("SEED", 1234)))
+    log_training_event(logger, "Seed set", seed=cfg["SOLVER"].get("SEED", 1234))
 
+    log_training_event(logger, "Building dataloaders")
     train_loader, train_loader_stage1, val_loader, class_names = make_emotion_dataloaders(cfg)
+    log_training_event(
+        logger,
+        "Dataloaders ready",
+        train_samples=len(train_loader.dataset) if hasattr(train_loader, "dataset") else "unknown",
+        val_samples=len(val_loader.dataset) if hasattr(val_loader, "dataset") else "unknown",
+        stage1_batches=len(train_loader_stage1),
+        stage2_batches=len(train_loader),
+        val_batches=len(val_loader),
+        classes=",".join(class_names),
+    )
     model_cfg = cfg["MODEL"]["EMOTION"]
+    log_training_event(logger, "Building model", model=cfg["MODEL"]["NAME"])
     model = EmotionCLIPModel(
         class_names=class_names,
         backbone_name=cfg["MODEL"]["NAME"],
@@ -73,8 +137,14 @@ def main():
         train_last_blocks=int(model_cfg["TRAIN_LAST_BLOCKS"]),
     )
 
-    device = torch.device(cfg["MODEL"]["DEVICE"])
     model.to(device)
+    log_training_event(
+        logger,
+        "Model ready",
+        device=device,
+        adapter_count=getattr(model, "adapter_count", "unknown"),
+        num_classes=len(class_names),
+    )
 
     stage1_weight = model_cfg.get("STAGE1_WEIGHT") or ""
     if stage1_weight:

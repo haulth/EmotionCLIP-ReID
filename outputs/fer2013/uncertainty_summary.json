@@ -1,0 +1,14 @@
+{
+  "source_notebook": "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+  "note": "Notebook output contains uncertainty_risk_auc only for the best validation metrics and uncertainty for one inference sample. It does not contain per-epoch avg_uncertainty values.",
+  "best_checkpoint_epoch": 24,
+  "best_checkpoint_ts": "2026-07-02 23:24:19,329",
+  "validation_accuracy": 0.7059069378657008,
+  "validation_balanced_accuracy": 0.6832245474662665,
+  "validation_macro_f1": 0.6863696467242667,
+  "validation_ece": 0.3745653839991032,
+  "uncertainty_risk_auc": 0.22545094766939178,
+  "inference_sample_uncertainty": 0.5080087184906006,
+  "inference_sample_emotion": "neutral",
+  "inference_sample_emotion_id": 6
+}
