@@ -231,7 +231,7 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
                     conf=f"{total_conf / max(steps, 1):.3f}",
                     lr=f"{optimizer.param_groups[0]['lr']:.2e}",
                 )
-            if steps % log_period == 0:
+            if log_period > 0 and steps % log_period == 0:
                 log_training_event(
                     logger,
                     "Stage1 train",
@@ -369,7 +369,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     conf=f"{total_conf / max(steps, 1):.3f}",
                     lr=f"{optimizer.param_groups[0]['lr']:.2e}",
                 )
-            if steps % log_period == 0:
+            if log_period > 0 and steps % log_period == 0:
                 log_training_event(
                     logger,
                     "Stage2 train",
