@@ -59,4 +59,4 @@ TRAIN:
   RUN_STAGE1: true
   RUN_STAGE2: true
 
-OUTPUT_DIR: outputs/emotionclip_hf_fer2013_quick
+OUTPUT_DIR: outputs/emotionclip_hf_fer2013_200epoch
