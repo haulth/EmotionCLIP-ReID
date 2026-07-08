@@ -1,7 +1,11 @@
 import argparse
+import csv
+import json
 import logging
 import os
 import random
+from datetime import datetime
+from typing import Any, Iterable
 
 import numpy as np
 import torch
@@ -36,6 +40,42 @@ def setup_logging(output_dir: str):
             logging.FileHandler(os.path.join(output_dir, "train.log"), encoding="utf-8"),
         ],
     )
+
+
+def _flatten_config(prefix: str, value: Any):
+    if isinstance(value, dict):
+        for key, child in value.items():
+            child_prefix = f"{prefix}.{key}" if prefix else str(key)
+            yield from _flatten_config(child_prefix, child)
+    else:
+        yield prefix, value
+
+
+def _csv_value(value: Any) -> str:
+    if value is None:
+        return ""
+    if isinstance(value, (dict, list, tuple)):
+        return json.dumps(value, ensure_ascii=False)
+    return str(value)
+
+
+def save_train_config_csv(cfg, config_file: str = "", opts: Iterable[str] = ()):
+    os.makedirs(cfg["OUTPUT_DIR"], exist_ok=True)
+    saved_at = datetime.now().astimezone()
+    suffix = saved_at.strftime("%Y%m%d_%H%M%S")
+    path = os.path.join(cfg["OUTPUT_DIR"], f"train_config_{suffix}.csv")
+    rows = [
+        ("RUN.saved_at", saved_at.isoformat(timespec="seconds")),
+        ("RUN.config_file", config_file),
+        ("RUN.opts", list(opts or [])),
+    ]
+    rows.extend(_flatten_config("", cfg))
+    with open(path, "w", encoding="utf-8", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(["key", "value", "type"])
+        for key, value in rows:
+            writer.writerow([key, _csv_value(value), type(value).__name__])
+    return path
 
 
 def trainable_parameters(model):
@@ -104,6 +144,8 @@ def main():
             visible_devices=torch.cuda.device_count(),
         )
 
+    train_config_csv = save_train_config_csv(cfg, config_file=args.config_file, opts=args.opts)
+    log_training_event(logger, "Train config saved", path=train_config_csv)
     log_run_config(logger, cfg, config_file=args.config_file, opts=args.opts)
     set_seed(int(cfg["SOLVER"].get("SEED", 1234)))
     log_training_event(logger, "Seed set", seed=cfg["SOLVER"].get("SEED", 1234))

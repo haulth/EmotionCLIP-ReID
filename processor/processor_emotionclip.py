@@ -178,7 +178,6 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
     stage_cfg = cfg["SOLVER"]["STAGE1"]
     max_epochs = int(stage_cfg["MAX_EPOCHS"])
     log_period = int(stage_cfg.get("LOG_PERIOD", 20))
-    checkpoint_period = int(stage_cfg.get("CHECKPOINT_PERIOD", max_epochs))
 
     model.to(device)
     model.set_train_stage(1)
@@ -257,8 +256,7 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
             time_sec=time.time() - start_time,
         )
 
-        if epoch % checkpoint_period == 0 or epoch == max_epochs:
-            save_checkpoint(model, output_dir, f"{model.backbone_name}_emotion_stage1_{epoch}.pth", epoch, stage=1)
+        save_checkpoint(model, output_dir, "last_emotionclip_stage1.pth", epoch, stage=1)
 
 
 def evaluate_emotion_model(cfg, model, val_loader, text_features: Optional[torch.Tensor] = None) -> Dict[str, Any]:
@@ -298,7 +296,6 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
     stage_cfg = cfg["SOLVER"]["STAGE2"]
     max_epochs = int(stage_cfg["MAX_EPOCHS"])
     log_period = int(stage_cfg.get("LOG_PERIOD", 20))
-    checkpoint_period = int(stage_cfg.get("CHECKPOINT_PERIOD", max_epochs))
     eval_period = int(stage_cfg.get("EVAL_PERIOD", 1))
     beta_align = float(stage_cfg.get("BETA_ALIGN", 0.5))
     lambda_unc = float(stage_cfg.get("LAMBDA_UNC", 0.05))
@@ -308,6 +305,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
     model.set_train_stage(2)
     best_macro_f1 = -1.0
     best_metrics = None
+    last_metrics = None
     log_training_event(
         logger,
         "Stage2 start",
@@ -428,15 +426,8 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                 best_macro_f1 = metrics["macro_f1"]
                 best_metrics = metrics
                 save_checkpoint(model, output_dir, "best_emotionclip.pth", epoch, stage=2, metrics=metrics)
+            last_metrics = metrics
 
-        if epoch % checkpoint_period == 0 or epoch == max_epochs:
-            save_checkpoint(
-                model,
-                output_dir,
-                f"{model.backbone_name}_emotion_stage2_{epoch}.pth",
-                epoch,
-                stage=2,
-                metrics=metrics,
-            )
+        save_checkpoint(model, output_dir, "last_emotionclip.pth", epoch, stage=2, metrics=last_metrics)
 
     return best_metrics
