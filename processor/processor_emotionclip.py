@@ -1,8 +1,10 @@
+import csv
 import json
 import logging
 import os
 import sys
 import time
+from datetime import datetime
 from typing import Any, Dict, Optional
 
 import torch
@@ -81,6 +83,119 @@ def _format_log_value(value: Any) -> str:
 def log_training_event(logger: logging.Logger, event: str, **fields: Any) -> None:
     details = " ".join(f"{key}={_format_log_value(value)}" for key, value in fields.items())
     logger.info("%s%s", event, f" {details}" if details else "")
+
+
+_RUN_HISTORY_COLUMNS = [
+    "timestamp",
+    "run_id",
+    "event",
+    "stage",
+    "epoch",
+    "epoch_total",
+    "split",
+    "loss",
+    "cls",
+    "align",
+    "unc_loss",
+    "pred_unc",
+    "conf",
+    "acc",
+    "lr",
+    "time_sec",
+    "accuracy",
+    "balanced_acc",
+    "macro_f1",
+    "avg_unc",
+    "avg_conf",
+    "avg_uncertainty",
+    "avg_confidence",
+    "ece",
+    "uncertainty_risk_auc",
+    "samples",
+    "num_samples",
+]
+
+_TRAIN_EPOCH_COLUMNS = [
+    "run_id",
+    "stage",
+    "epoch",
+    "epoch_total",
+    "loss",
+    "cls",
+    "align",
+    "unc_loss",
+    "pred_unc",
+    "conf",
+    "acc",
+    "lr",
+    "time_sec",
+]
+
+_VALIDATION_COLUMNS = [
+    "run_id",
+    "epoch",
+    "epoch_total",
+    "accuracy",
+    "balanced_acc",
+    "balanced_accuracy",
+    "macro_f1",
+    "avg_unc",
+    "avg_conf",
+    "avg_uncertainty",
+    "avg_confidence",
+    "ece",
+    "uncertainty_risk_auc",
+    "samples",
+    "num_samples",
+]
+
+
+def _csv_value(value: Any) -> Any:
+    if value is None:
+        return ""
+    if isinstance(value, float):
+        return f"{value:.10g}"
+    return value
+
+
+def _append_csv_row(path: Optional[str], columns: list, row: Dict[str, Any]) -> None:
+    if not path:
+        return
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    exists = os.path.exists(path) and os.path.getsize(path) > 0
+    with open(path, "a", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=columns, extrasaction="ignore")
+        if not exists:
+            writer.writeheader()
+        writer.writerow({column: _csv_value(row.get(column)) for column in columns})
+
+
+def _artifact_path(cfg: Dict[str, Any], key: str, default_name: str) -> str:
+    return cfg.get("TRAIN", {}).get(key) or os.path.join(cfg["OUTPUT_DIR"], default_name)
+
+
+def _record_training_epoch(cfg: Dict[str, Any], row: Dict[str, Any]) -> None:
+    row = dict(row)
+    row.setdefault("timestamp", datetime.now().astimezone().isoformat(timespec="seconds"))
+    row.setdefault("run_id", cfg.get("TRAIN", {}).get("RUN_ID", ""))
+    row.setdefault("split", "train")
+    _append_csv_row(_artifact_path(cfg, "RUN_HISTORY_CSV", "train_history.csv"), _RUN_HISTORY_COLUMNS, row)
+    _append_csv_row(
+        _artifact_path(cfg, "TRAINING_EPOCH_CSV", "training_epoch_losses.csv"),
+        _TRAIN_EPOCH_COLUMNS,
+        row,
+    )
+
+
+def _record_validation_epoch(cfg: Dict[str, Any], row: Dict[str, Any]) -> None:
+    row = dict(row)
+    row.setdefault("timestamp", datetime.now().astimezone().isoformat(timespec="seconds"))
+    row.setdefault("run_id", cfg.get("TRAIN", {}).get("RUN_ID", ""))
+    row.setdefault("event", "Validation")
+    row.setdefault("stage", 2)
+    row.setdefault("split", "val")
+    _append_csv_row(_artifact_path(cfg, "RUN_HISTORY_CSV", "train_history.csv"), _RUN_HISTORY_COLUMNS, row)
+    _append_csv_row(_artifact_path(cfg, "VALIDATION_CSV", "validation_metrics.csv"), _VALIDATION_COLUMNS, row)
 
 
 def log_run_config(logger: logging.Logger, cfg: Dict[str, Any], config_file: str = "", opts: Optional[list] = None) -> None:
@@ -245,16 +360,28 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
         if scheduler is not None:
             scheduler.step()
         avg_loss = total_loss / max(steps, 1)
+        epoch_metrics = {
+            "event": "Stage1 done",
+            "stage": 1,
+            "epoch": epoch,
+            "epoch_total": max_epochs,
+            "loss": avg_loss,
+            "acc": total_acc / max(steps, 1),
+            "conf": total_conf / max(steps, 1),
+            "lr": optimizer.param_groups[0]["lr"],
+            "time_sec": time.time() - start_time,
+        }
         log_training_event(
             logger,
             "Stage1 done",
             epoch=f"{epoch}/{max_epochs}",
-            loss=avg_loss,
-            acc=total_acc / max(steps, 1),
-            conf=total_conf / max(steps, 1),
-            lr=optimizer.param_groups[0]["lr"],
-            time_sec=time.time() - start_time,
+            loss=epoch_metrics["loss"],
+            acc=epoch_metrics["acc"],
+            conf=epoch_metrics["conf"],
+            lr=epoch_metrics["lr"],
+            time_sec=epoch_metrics["time_sec"],
         )
+        _record_training_epoch(cfg, epoch_metrics)
 
         save_checkpoint(model, output_dir, "last_emotionclip_stage1.pth", epoch, stage=1)
 
@@ -387,20 +514,36 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         if scheduler is not None:
             scheduler.step()
         avg_loss = total_loss / max(steps, 1)
+        epoch_metrics = {
+            "event": "Stage2 done",
+            "stage": 2,
+            "epoch": epoch,
+            "epoch_total": max_epochs,
+            "loss": avg_loss,
+            "cls": total_cls / max(steps, 1),
+            "align": total_align / max(steps, 1),
+            "unc_loss": total_unc / max(steps, 1),
+            "pred_unc": total_pred_unc / max(steps, 1),
+            "conf": total_conf / max(steps, 1),
+            "acc": total_acc / max(steps, 1),
+            "lr": optimizer.param_groups[0]["lr"],
+            "time_sec": time.time() - start_time,
+        }
         log_training_event(
             logger,
             "Stage2 done",
             epoch=f"{epoch}/{max_epochs}",
-            loss=avg_loss,
-            cls=total_cls / max(steps, 1),
-            align=total_align / max(steps, 1),
-            unc_loss=total_unc / max(steps, 1),
-            pred_unc=total_pred_unc / max(steps, 1),
-            conf=total_conf / max(steps, 1),
-            acc=total_acc / max(steps, 1),
-            lr=optimizer.param_groups[0]["lr"],
-            time_sec=time.time() - start_time,
+            loss=epoch_metrics["loss"],
+            cls=epoch_metrics["cls"],
+            align=epoch_metrics["align"],
+            unc_loss=epoch_metrics["unc_loss"],
+            pred_unc=epoch_metrics["pred_unc"],
+            conf=epoch_metrics["conf"],
+            acc=epoch_metrics["acc"],
+            lr=epoch_metrics["lr"],
+            time_sec=epoch_metrics["time_sec"],
         )
+        _record_training_epoch(cfg, epoch_metrics)
 
         metrics = None
         if epoch % eval_period == 0 or epoch == max_epochs:
@@ -421,6 +564,25 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                 ece=metrics["ece"],
                 uncertainty_risk_auc=metrics["uncertainty_risk_auc"],
                 samples=metrics["num_samples"],
+            )
+            _record_validation_epoch(
+                cfg,
+                {
+                    "epoch": epoch,
+                    "epoch_total": max_epochs,
+                    "accuracy": metrics["accuracy"],
+                    "balanced_acc": metrics["balanced_accuracy"],
+                    "balanced_accuracy": metrics["balanced_accuracy"],
+                    "macro_f1": metrics["macro_f1"],
+                    "avg_unc": metrics["avg_uncertainty"],
+                    "avg_conf": metrics["avg_confidence"],
+                    "avg_uncertainty": metrics["avg_uncertainty"],
+                    "avg_confidence": metrics["avg_confidence"],
+                    "ece": metrics["ece"],
+                    "uncertainty_risk_auc": metrics["uncertainty_risk_auc"],
+                    "samples": metrics["num_samples"],
+                    "num_samples": metrics["num_samples"],
+                },
             )
             if metrics["macro_f1"] > best_macro_f1:
                 best_macro_f1 = metrics["macro_f1"]

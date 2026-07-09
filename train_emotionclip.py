@@ -63,11 +63,28 @@ def save_train_config_csv(cfg, config_file: str = "", opts: Iterable[str] = ()):
     os.makedirs(cfg["OUTPUT_DIR"], exist_ok=True)
     saved_at = datetime.now().astimezone()
     suffix = saved_at.strftime("%Y%m%d_%H%M%S")
+    cfg.setdefault("TRAIN", {})
+    cfg["TRAIN"]["RUN_ID"] = suffix
+    cfg["TRAIN"]["RUN_SAVED_AT"] = saved_at.isoformat(timespec="seconds")
+    cfg["TRAIN"]["RUN_HISTORY_CSV"] = os.path.join(cfg["OUTPUT_DIR"], f"train_history_{suffix}.csv")
+    cfg["TRAIN"]["TRAINING_EPOCH_CSV"] = os.path.join(cfg["OUTPUT_DIR"], "training_epoch_losses.csv")
+    cfg["TRAIN"]["VALIDATION_CSV"] = os.path.join(cfg["OUTPUT_DIR"], "validation_metrics.csv")
+    for csv_path in [
+        cfg["TRAIN"]["RUN_HISTORY_CSV"],
+        cfg["TRAIN"]["TRAINING_EPOCH_CSV"],
+        cfg["TRAIN"]["VALIDATION_CSV"],
+    ]:
+        if os.path.exists(csv_path):
+            os.remove(csv_path)
     path = os.path.join(cfg["OUTPUT_DIR"], f"train_config_{suffix}.csv")
+    cfg["TRAIN"]["CONFIG_CSV"] = path
     rows = [
         ("RUN.saved_at", saved_at.isoformat(timespec="seconds")),
         ("RUN.config_file", config_file),
         ("RUN.opts", list(opts or [])),
+        ("RUN.history_csv", cfg["TRAIN"]["RUN_HISTORY_CSV"]),
+        ("RUN.training_epoch_csv", cfg["TRAIN"]["TRAINING_EPOCH_CSV"]),
+        ("RUN.validation_csv", cfg["TRAIN"]["VALIDATION_CSV"]),
     ]
     rows.extend(_flatten_config("", cfg))
     with open(path, "w", encoding="utf-8", newline="") as handle:
