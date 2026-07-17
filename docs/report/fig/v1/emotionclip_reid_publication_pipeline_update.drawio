@@ -1,0 +1,331 @@
+<mxfile host="65bd71144e">
+    <diagram id="emotionclip-reid-v1-pipeline" name="EmotionCLIP-ReID v1 pipeline">
+        <mxGraphModel dx="1232" dy="964" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="1040" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=28;fontStyle=1;fontColor=#111827;align=left;verticalAlign=middle;whiteSpace=wrap;" value="EmotionCLIP-ReID v1: practical two-stage FER pipeline" vertex="1">
+                    <mxGeometry height="40" width="900" x="40" y="15" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage1_panel" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#FF4D4F;strokeWidth=2;" value="" vertex="1">
+                    <mxGeometry height="515" width="980" x="40" y="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage1_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=22;fontStyle=1;fontColor=#111827;align=left;verticalAlign=middle;whiteSpace=wrap;" value="Stage 1: Prompt / Emotion Anchor Learning" vertex="1">
+                    <mxGeometry height="32" width="470" x="58" y="98" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111827;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="image input x" vertex="1">
+                    <mxGeometry height="60" width="100" x="70" y="190" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_img_encoder" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#FCA5A5;strokeColor=#DC2626;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="CLIP Image&lt;br&gt;Encoder" vertex="1">
+                    <mxGeometry height="80" width="135" x="220" y="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_frozen_tag_visual" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontFamily=Arial;fontSize=10;fontStyle=1;fontColor=#1D4ED8;align=center;verticalAlign=middle;" value="FROZEN" vertex="1">
+                    <mxGeometry height="22" width="70" x="245" y="155" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_cached_zv" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="cached global&lt;br&gt;image features&lt;br&gt;z_v" vertex="1">
+                    <mxGeometry height="70" width="135" x="405" y="185" as="geometry"/>
+                </mxCell>
+                <mxCell id="prompt_panel" parent="1" style="rounded=1;arcSize=8;dashed=1;dashPattern=8 6;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#334155;strokeWidth=1.5;" value="" vertex="1">
+                    <mxGeometry height="205" width="380" x="220" y="345" as="geometry"/>
+                </mxCell>
+                <mxCell id="prompt_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=15;fontStyle=1;fontColor=#111827;align=center;verticalAlign=middle;whiteSpace=wrap;" value="Emotion Prompt Learner" vertex="1">
+                    <mxGeometry height="24" width="300" x="270" y="355" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_text_source" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4F46E5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="text input&lt;br&gt;emotion class set C&lt;br&gt;c = 1..7" vertex="1">
+                    <mxGeometry height="66" width="130" x="55" y="390" as="geometry"/>
+                </mxCell>
+                <mxCell id="prompt_template" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="generated prompt p_c&lt;br&gt;A photo of a face showing [X1] [X2] ... [XM]&lt;br&gt;expression of [emotion c]." vertex="1">
+                    <mxGeometry height="74" width="330" x="255" y="386" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_tokens" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="class-specific learnable&lt;br&gt;context tokens [X1]...[XM]" vertex="1">
+                    <mxGeometry height="45" width="210" x="260" y="488" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_train_tag" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;fontFamily=Arial;fontSize=10;fontStyle=1;fontColor=#C2410C;align=center;verticalAlign=middle;" value="TRAINABLE" vertex="1">
+                    <mxGeometry height="22" width="78" x="486" y="499.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="ctx_note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEFCE8;strokeColor=#CA8A04;fontFamily=Arial;fontSize=12;fontColor=#713F12;align=center;verticalAlign=middle;" value="[X] tokens are latent vectors;&lt;br&gt;they are not eye/mouth/AU descriptors." vertex="1">
+                    <mxGeometry height="58" width="162" x="42" y="481.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_text_input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF2FF;strokeColor=#4F46E5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="Text Encoder input&lt;br&gt;p_c, c = 1..7" vertex="1">
+                    <mxGeometry height="54" width="105" x="630" y="396" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_text_encoder" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;direction=east;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="CLIP Text&lt;br&gt;Encoder" vertex="1">
+                    <mxGeometry height="78" width="135" x="770" y="390" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_frozen_tag_text" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontFamily=Arial;fontSize=10;fontStyle=1;fontColor=#1D4ED8;align=center;verticalAlign=middle;" value="FROZEN" vertex="1">
+                    <mxGeometry height="22" width="70" x="800" y="365" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_text_features" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="text features&lt;br&gt;T" vertex="1">
+                    <mxGeometry height="58" width="90" x="905" y="276" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_similarity" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="S1 = scale(z_v T^T)&lt;br&gt;emotion similarity" vertex="1">
+                    <mxGeometry height="70" width="150" x="620" y="185" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_similarity_note" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#94A3B8;fontFamily=Arial;fontSize=12;fontColor=#334155;align=center;verticalAlign=middle;" value="Image and text are encoded separately;&lt;br&gt;they meet only in dot-product similarity." vertex="1">
+                    <mxGeometry height="44" width="240" x="630" y="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_image_branch_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=11;fontColor=#DC2626;align=center;verticalAlign=middle;whiteSpace=wrap;" value="image branch: z_v" vertex="1">
+                    <mxGeometry height="22" width="115" x="515" y="155" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_text_branch_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=11;fontColor=#2563EB;align=center;verticalAlign=middle;whiteSpace=wrap;" value="text branch: T" vertex="1">
+                    <mxGeometry height="22" width="105" x="795" y="335" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_loss" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#FCE7F3;strokeColor=#DB2777;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="L1 = CE(S1, y)&lt;br&gt;update [X] only" vertex="1">
+                    <mxGeometry height="78" width="130" x="835" y="181" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_anchor_bank" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="Optimized text anchors&lt;br&gt;T* = get_text().detach()&lt;br&gt;7 emotion prototypes" vertex="1">
+                    <mxGeometry height="62" width="230" x="692.5" y="510" as="geometry"/>
+                </mxCell>
+                <mxCell id="s1_anchor_tag" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontFamily=Arial;fontSize=10;fontStyle=1;fontColor=#1D4ED8;align=center;verticalAlign=middle;" value="FIXED FOR STAGE 2" vertex="1">
+                    <mxGeometry height="22" width="125" x="760" y="482" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage2_panel" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#2563EB;strokeWidth=2;" value="" vertex="1">
+                    <mxGeometry height="365" width="1340" x="40" y="620" as="geometry"/>
+                </mxCell>
+                <mxCell id="stage2_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=22;fontStyle=1;fontColor=#111827;align=left;verticalAlign=middle;whiteSpace=wrap;" value="Stage 2: Visual Adaptation and FER Training" vertex="1">
+                    <mxGeometry height="32" width="520" x="58" y="633" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2_input" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111827;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="FER image x" vertex="1">
+                    <mxGeometry height="60" width="100" x="70" y="742" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2_visual_encoder" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="CLIP ViT visual encoder&lt;br&gt;+ expression adapters&lt;br&gt;(train adapters + last blocks)" vertex="1">
+                    <mxGeometry height="95" width="210" x="220" y="720" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2_train_tag_visual" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#EA580C;fontFamily=Arial;fontSize=10;fontStyle=1;fontColor=#C2410C;align=center;verticalAlign=middle;" value="TRAINABLE PARTS" vertex="1">
+                    <mxGeometry height="22" width="125" x="260" y="694" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2_global_feature" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="global feature&lt;br&gt;z_g = CLS image token" vertex="1">
+                    <mxGeometry height="58" width="160" x="485" y="705" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2_patch_features" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="patch features&lt;br&gt;P = visual patch tokens" vertex="1">
+                    <mxGeometry height="58" width="160" x="485" y="790" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2_fixed_anchors" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="fixed text anchors&lt;br&gt;T*" vertex="1">
+                    <mxGeometry height="58" width="160" x="727.5" y="650" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2_fixed_tag" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;fontFamily=Arial;fontSize=10;fontStyle=1;fontColor=#1D4ED8;align=center;verticalAlign=middle;" value="DETACHED" vertex="1">
+                    <mxGeometry height="22" width="75" x="485" y="853" as="geometry"/>
+                </mxCell>
+                <mxCell id="head_classifier" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111827;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="classifier head&lt;br&gt;S_cls = classifier(z_g)" vertex="1">
+                    <mxGeometry height="58" width="185" x="972.5" y="684" as="geometry"/>
+                </mxCell>
+                <mxCell id="head_global" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="global text alignment&lt;br&gt;S_g = scale(z_g T*^T)" vertex="1">
+                    <mxGeometry height="58" width="185" x="715" y="780" as="geometry"/>
+                </mxCell>
+                <mxCell id="head_local" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2FE;strokeColor=#0284C7;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="local alignment&lt;br&gt;S_l = mean_topk(scale(P T*^T))" vertex="1">
+                    <mxGeometry height="58" width="185" x="715" y="875" as="geometry"/>
+                </mxCell>
+                <mxCell id="fusion" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="learned fusion&lt;br&gt;S = w_cls S_cls + w_g S_g + w_l S_l" vertex="1">
+                    <mxGeometry height="78" width="200" x="965" y="763.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="evidence" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#16A34A;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="EDL outputs&lt;br&gt;evidence = softplus(S)&lt;br&gt;alpha = evidence + 1" vertex="1">
+                    <mxGeometry height="76" width="145" x="1210" y="705" as="geometry"/>
+                </mxCell>
+                <mxCell id="eval_outputs" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#16A34A;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="prediction + uncertainty&lt;br&gt;accuracy, balanced acc,&lt;br&gt;macro-F1, ECE, risk-AUC" vertex="1">
+                    <mxGeometry height="85" width="145" x="1210" y="805" as="geometry"/>
+                </mxCell>
+                <mxCell id="s2_loss" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#FCE7F3;strokeColor=#DB2777;strokeWidth=1.5;fontFamily=Arial;fontSize=13;align=center;verticalAlign=middle;" value="L2 = CE(S,y) + beta CE(S_g+S_l,y)&lt;br&gt;+ lambda L_EDL(S,y)" vertex="1">
+                    <mxGeometry height="70" width="170" x="980" y="875" as="geometry"/>
+                </mxCell>
+                <mxCell id="transfer_arrow_label" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=12;fontStyle=1;fontColor=#2563EB;align=center;verticalAlign=middle;whiteSpace=wrap;" value="T* fixed anchors transfer to Stage 2" vertex="1">
+                    <mxGeometry height="22" width="265" x="670" y="595" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_panel" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#111827;strokeWidth=1;" value="" vertex="1">
+                    <mxGeometry height="245" width="350" x="1030" y="85" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=18;fontStyle=1;fontColor=#111827;align=left;verticalAlign=middle;whiteSpace=wrap;" value="Legend and scope guardrails" vertex="1">
+                    <mxGeometry height="26" width="290" x="1050" y="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_frozen_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DBEAFE;strokeColor=#2563EB;" value="" vertex="1">
+                    <mxGeometry height="22" width="32" x="1060" y="145" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_frozen_text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#111827;align=left;verticalAlign=middle;whiteSpace=wrap;" value="Frozen / fixed features or encoders" vertex="1">
+                    <mxGeometry height="28" width="235" x="1105" y="142" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_train_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEDD5;strokeColor=#EA580C;" value="" vertex="1">
+                    <mxGeometry height="22" width="32" x="1060" y="180" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_train_text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#111827;align=left;verticalAlign=middle;whiteSpace=wrap;" value="Trainable parameters" vertex="1">
+                    <mxGeometry height="28" width="235" x="1105" y="177" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_visual_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEE2E2;strokeColor=#DC2626;" value="" vertex="1">
+                    <mxGeometry height="22" width="32" x="1060" y="215" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_visual_text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#111827;align=left;verticalAlign=middle;whiteSpace=wrap;" value="Visual branch / visual features" vertex="1">
+                    <mxGeometry height="28" width="235" x="1105" y="212" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_loss_box" parent="1" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;fillColor=#FCE7F3;strokeColor=#DB2777;" value="" vertex="1">
+                    <mxGeometry height="28" width="38" x="1060" y="250" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_loss_text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#111827;align=left;verticalAlign=middle;whiteSpace=wrap;" value="Training objective / loss" vertex="1">
+                    <mxGeometry height="28" width="235" x="1105" y="248" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_eval_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#16A34A;" value="" vertex="1">
+                    <mxGeometry height="22" width="32" x="1060" y="290" as="geometry"/>
+                </mxCell>
+                <mxCell id="legend_eval_text" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontFamily=Arial;fontSize=13;fontColor=#111827;align=left;verticalAlign=middle;whiteSpace=wrap;" value="Evaluation / uncertainty outputs" vertex="1">
+                    <mxGeometry height="28" width="235" x="1105" y="287" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s1_1" edge="1" parent="1" source="s1_input" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#111827;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s1_img_encoder" value="(1)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s1_2" edge="1" parent="1" source="s1_img_encoder" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#111827;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s1_cached_zv" value="(2)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s1_text_source" edge="1" parent="1" source="s1_text_source" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#4F46E5;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="prompt_template" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s1_3" edge="1" parent="1" source="prompt_template" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#2563EB;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s1_text_input" value="(3)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s1_3b" edge="1" parent="1" source="s1_text_input" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#2563EB;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s1_text_encoder" value="p_c">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="760" y="423"/>
+                            <mxPoint x="760" y="423"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s1_4" edge="1" parent="1" source="ctx_tokens" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#EA580C;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="prompt_template" value="(4)">
+                    <mxGeometry relative="1" x="-0.0226" as="geometry">
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="360" y="480"/>
+                            <mxPoint x="360" y="480"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s1_5" edge="1" parent="1" source="s1_text_encoder" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#2563EB;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s1_text_features" value="(5)">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="950" y="429"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s1_6" edge="1" parent="1" source="s1_cached_zv" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#0284C7;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s1_similarity" value="(6)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s1_7" edge="1" parent="1" source="s1_text_features" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#0284C7;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s1_similarity" value="(7)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s1_8" edge="1" parent="1" source="s1_similarity" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#DB2777;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s1_loss" value="(8)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s1_9" edge="1" parent="1" source="s1_loss" style="endArrow=block;html=1;rounded=0;dashed=1;dashPattern=6 6;strokeWidth=1.5;strokeColor=#EA580C;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="ctx_tokens" value="backprop: update [X]">
+                    <mxGeometry relative="1" x="0.7674" y="-10" as="geometry">
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="1000" y="220"/>
+                            <mxPoint x="1000" y="590"/>
+                            <mxPoint x="360" y="590"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s1_10" edge="1" parent="1" source="s1_text_features" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#2563EB;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s1_anchor_bank" value="optimized">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="980" y="541"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_transfer" edge="1" parent="1" source="s1_anchor_bank" style="endArrow=block;html=1;rounded=0;dashed=1;dashPattern=8 6;strokeWidth=2;strokeColor=#2563EB;edgeStyle=orthogonalEdgeStyle;" target="s2_fixed_anchors" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="810" y="607"/>
+                            <mxPoint x="808" y="607"/>
+                        </Array>
+                        <mxPoint x="800" y="562" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s2_1" edge="1" parent="1" source="s2_input" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#111827;fontFamily=Arial;fontSize=12;" target="s2_visual_encoder" value="(1)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s2_2" edge="1" parent="1" source="s2_visual_encoder" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#DC2626;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s2_global_feature" value="(2)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s2_3" edge="1" parent="1" source="s2_visual_encoder" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#DC2626;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s2_patch_features" value="(3)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s2_4" edge="1" parent="1" source="s2_global_feature" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#111827;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="head_classifier" value="(4)">
+                    <mxGeometry relative="1" x="-0.2977" as="geometry">
+                        <mxPoint as="offset"/>
+                        <Array as="points">
+                            <mxPoint x="830" y="720"/>
+                            <mxPoint x="830" y="720"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s2_5" edge="1" parent="1" source="s2_global_feature" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#0284C7;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="head_global" value="(5)">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="750" y="750"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s2_6" edge="1" parent="1" source="s2_patch_features" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#0284C7;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="head_local" value="(6)">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="600" y="904"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s2_7" edge="1" parent="1" source="s2_fixed_anchors" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#2563EB;edgeStyle=orthogonalEdgeStyle;" target="head_global" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s2_8" edge="1" parent="1" source="s2_fixed_anchors" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#2563EB;edgeStyle=orthogonalEdgeStyle;" target="head_local" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="920" y="680"/>
+                            <mxPoint x="920" y="904"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s2_9" edge="1" parent="1" source="head_classifier" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#111827;edgeStyle=orthogonalEdgeStyle;" target="fusion" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s2_10" edge="1" parent="1" source="head_global" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#0284C7;edgeStyle=orthogonalEdgeStyle;" target="fusion" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="910" y="794"/>
+                            <mxPoint x="910" y="794"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s2_11" edge="1" parent="1" source="head_local" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#0284C7;edgeStyle=orthogonalEdgeStyle;" target="fusion" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="808" y="960"/>
+                            <mxPoint x="1190" y="960"/>
+                            <mxPoint x="1190" y="820"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s2_12" edge="1" parent="1" source="fusion" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#16A34A;edgeStyle=orthogonalEdgeStyle;" target="evidence" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s2_13" edge="1" parent="1" source="evidence" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#16A34A;edgeStyle=orthogonalEdgeStyle;" target="eval_outputs" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s2_14" edge="1" parent="1" source="fusion" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#DB2777;edgeStyle=orthogonalEdgeStyle;" target="s2_loss" value="">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge_s2_15" edge="1" parent="1" source="head_global" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#DB2777;fontFamily=Arial;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="s2_loss" value="alignment loss">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="950" y="820"/>
+                            <mxPoint x="950" y="890"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge_s2_16" edge="1" parent="1" source="head_local" style="endArrow=block;html=1;rounded=0;strokeWidth=1.5;strokeColor=#DB2777;edgeStyle=orthogonalEdgeStyle;" target="s2_loss" value="">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="920"/>
+                            <mxPoint x="960" y="920"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

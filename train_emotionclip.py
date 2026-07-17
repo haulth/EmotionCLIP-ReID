@@ -16,10 +16,12 @@ from model.emotionclip_model import EmotionCLIPModel
 from processor.processor_emotionclip import (
     do_train_emotion_stage1,
     do_train_emotion_stage2,
+    evaluate_sealed_test,
     load_emotion_checkpoint,
     log_run_config,
     log_training_event,
 )
+from utils.run_artifacts import initialize_immutable_run
 
 
 def set_seed(seed: int):
@@ -62,20 +64,12 @@ def _csv_value(value: Any) -> str:
 def save_train_config_csv(cfg, config_file: str = "", opts: Iterable[str] = ()):
     os.makedirs(cfg["OUTPUT_DIR"], exist_ok=True)
     saved_at = datetime.now().astimezone()
-    suffix = saved_at.strftime("%Y%m%d_%H%M%S")
+    suffix = cfg["TRAIN"]["RUN_ID"]
     cfg.setdefault("TRAIN", {})
-    cfg["TRAIN"]["RUN_ID"] = suffix
     cfg["TRAIN"]["RUN_SAVED_AT"] = saved_at.isoformat(timespec="seconds")
     cfg["TRAIN"]["RUN_HISTORY_CSV"] = os.path.join(cfg["OUTPUT_DIR"], f"train_history_{suffix}.csv")
     cfg["TRAIN"]["TRAINING_EPOCH_CSV"] = os.path.join(cfg["OUTPUT_DIR"], "training_epoch_losses.csv")
     cfg["TRAIN"]["VALIDATION_CSV"] = os.path.join(cfg["OUTPUT_DIR"], "validation_metrics.csv")
-    for csv_path in [
-        cfg["TRAIN"]["RUN_HISTORY_CSV"],
-        cfg["TRAIN"]["TRAINING_EPOCH_CSV"],
-        cfg["TRAIN"]["VALIDATION_CSV"],
-    ]:
-        if os.path.exists(csv_path):
-            os.remove(csv_path)
     path = os.path.join(cfg["OUTPUT_DIR"], f"train_config_{suffix}.csv")
     cfg["TRAIN"]["CONFIG_CSV"] = path
     rows = [
@@ -134,6 +128,7 @@ def main():
     parser = argparse.ArgumentParser(description="EmotionCLIP-ReID FER training")
     parser.add_argument("--config_file", default="configs/emotion/vit_b16_emotionclip.yml", type=str)
     parser.add_argument("--gpu", type=int, default=None, help="CUDA GPU index to use, for example --gpu 1")
+    parser.add_argument("--run-id", default="", help="Unique immutable artifact run id")
     parser.add_argument(
         "--no_progress",
         "--no-progress",
@@ -146,10 +141,11 @@ def main():
     cfg = load_emotion_cfg(args.config_file, args.opts)
     if args.no_progress:
         cfg["TRAIN"]["PROGRESS_BAR"] = False
+    device, device_warning = configure_device(cfg, gpu_id=args.gpu)
+    initialize_immutable_run(cfg, run_id=args.run_id)
     setup_logging(cfg["OUTPUT_DIR"])
     logger = logging.getLogger("emotionclip.train")
 
-    device, device_warning = configure_device(cfg, gpu_id=args.gpu)
     if device_warning:
         logger.warning(device_warning)
     if device.type == "cuda":
@@ -168,18 +164,24 @@ def main():
     log_training_event(logger, "Seed set", seed=cfg["SOLVER"].get("SEED", 1234))
 
     log_training_event(logger, "Building dataloaders")
-    train_loader, train_loader_stage1, val_loader, class_names = make_emotion_dataloaders(cfg)
+    train_loader, train_loader_stage1, val_loader, test_loader, class_names = make_emotion_dataloaders(cfg)
     log_training_event(
         logger,
         "Dataloaders ready",
         train_samples=len(train_loader.dataset) if hasattr(train_loader, "dataset") else "unknown",
-        val_samples=len(val_loader.dataset) if hasattr(val_loader, "dataset") else "unknown",
+        val_samples=len(val_loader.dataset) if val_loader is not None else 0,
+        test_samples=len(test_loader.dataset) if test_loader is not None else 0,
         stage1_batches=len(train_loader_stage1),
         stage2_batches=len(train_loader),
-        val_batches=len(val_loader),
+        val_batches=len(val_loader) if val_loader is not None else 0,
+        test_batches=len(test_loader) if test_loader is not None else 0,
         classes=",".join(class_names),
     )
     model_cfg = cfg["MODEL"]["EMOTION"]
+    uncertainty_cfg = cfg["MODEL"].get("UNCERTAINTY", {})
+    fusion_cfg = cfg["MODEL"].get("FUSION", {})
+    if uncertainty_cfg.get("MODE", "decoupled") != "decoupled":
+        raise ValueError("MODEL.UNCERTAINTY.MODE currently supports only 'decoupled'")
     log_training_event(logger, "Building model", model=cfg["MODEL"]["NAME"])
     model = EmotionCLIPModel(
         class_names=class_names,
@@ -194,6 +196,18 @@ def main():
         local_weight=float(model_cfg["LOCAL_WEIGHT"]),
         classifier_weight=float(model_cfg["CLASSIFIER_WEIGHT"]),
         train_last_blocks=int(model_cfg["TRAIN_LAST_BLOCKS"]),
+        fusion_gate_mode=str(fusion_cfg.get("GATE_MODE", "fixed")),
+        fusion_scale_mode=str(fusion_cfg.get("SCALE_MODE", "temperature")),
+        fusion_gate_hidden_dim=int(fusion_cfg.get("GATE_HIDDEN_DIM", 128)),
+        fusion_gate_dropout=float(fusion_cfg.get("GATE_DROPOUT", 0.1)),
+        min_branch_temperature=float(fusion_cfg.get("MIN_TEMPERATURE", 0.05)),
+        max_branch_temperature=float(fusion_cfg.get("MAX_TEMPERATURE", 20.0)),
+        initial_branch_temperatures=fusion_cfg.get("INITIAL_TEMPERATURES", [0.1, 1.0, 1.0]),
+        learn_branch_temperatures=bool(fusion_cfg.get("LEARN_TEMPERATURES", True)),
+        reliability_hidden_dim=int(uncertainty_cfg.get("HIDDEN_DIM", 128)),
+        reliability_dropout=float(uncertainty_cfg.get("DROPOUT", 0.1)),
+        detach_class_prob=bool(uncertainty_cfg.get("DETACH_CLASS_PROB", True)),
+        max_strength=uncertainty_cfg.get("MAX_STRENGTH", 100.0),
     )
 
     model.to(device)
@@ -234,6 +248,40 @@ def main():
         )
         best_metrics = do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, scheduler)
         logger.info("Best metrics: %s", best_metrics)
+
+    if cfg.get("TEST", {}).get("EVALUATE_AFTER_TRAIN", False):
+        test_weight = str(cfg["TEST"].get("WEIGHT") or "")
+        if not test_weight:
+            checkpoint_name = "best_emotionclip.pth" if val_loader is not None else "last_emotionclip.pth"
+            test_weight = os.path.join(cfg["OUTPUT_DIR"], checkpoint_name)
+        if not os.path.exists(test_weight):
+            raise FileNotFoundError(
+                f"Cannot run sealed test evaluation: checkpoint not found at {test_weight!r}. "
+                "Run Stage 2 or set TEST.WEIGHT explicitly."
+            )
+        selection_split = "val" if val_loader is not None else "fixed_epoch_no_validation"
+        log_training_event(
+            logger,
+            "Sealed test evaluation",
+            checkpoint=test_weight,
+            selection_split=selection_split,
+        )
+        test_metrics = evaluate_sealed_test(
+            cfg,
+            model,
+            test_loader,
+            checkpoint_path=test_weight,
+            selection_split=selection_split,
+        )
+        log_training_event(
+            logger,
+            "Test result",
+            accuracy=test_metrics["accuracy"],
+            balanced_acc=test_metrics["balanced_accuracy"],
+            macro_f1=test_metrics["macro_f1"],
+            ece=test_metrics["ece"],
+            samples=test_metrics["num_samples"],
+        )
 
 
 if __name__ == "__main__":

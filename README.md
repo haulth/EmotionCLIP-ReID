@@ -58,8 +58,16 @@ python tools/convert_raf_au_to_emotion_jsonl.py --csv path/to/raf_au.csv --outpu
 If Aff-Wild2, RAF-AU, or RAF-CE access is blocked, use FER2013 as a no-permission baseline. Its label order matches this repo's canonical 7-emotion order:
 
 ```
-python tools/download_hf_emotion_dataset.py --output-root data/hf_fer2013 --max-samples-per-split -1 --test-as val
+python tools/download_hf_emotion_dataset.py --output-root data/hf_fer2013 --max-samples-per-split -1
 python train_emotionclip.py --config_file configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml
+```
+
+The FER2013 mapping is fixed to the challenge protocol: `Training -> train`, `PublicTest -> val`, and
+`PrivateTest -> test`. The test split is not evaluated during training. After the configuration and checkpoint
+selection rule are locked, run the sealed test explicitly:
+
+```
+python train_emotionclip.py --config_file configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml TEST.EVALUATE_AFTER_TRAIN true
 ```
 
 For JupyterHub, open:
@@ -82,12 +90,44 @@ python tools/convert_fer2013_to_emotion_jsonl.py --image-dir path/to/fer2013 --o
 python train_emotionclip.py --config_file configs/emotion/vit_b16_emotionclip_fer2013_quick.yml DATASETS.ROOT_DIR path/to/fer2013
 ```
 
+For RAF-DB, use the development protocol while choosing hyperparameters. It creates a deterministic,
+class-stratified validation subset from official train and keeps all 3,068 official-test images sealed:
+
+```
+python tools/convert_rafdb_to_emotion_jsonl.py --raf-root path/to/RAF-DB --output data/RAF-DB/manifest.jsonl --val-ratio 0.2 --split-seed 1234
+python train_emotionclip.py --config_file configs/emotion/vit_b16_emotionclip_rafdb_quick.yml
+```
+
+For the final SOTA-comparison run, first lock the epoch count and all hyperparameters found above. Then rebuild
+the manifest with the full 12,271-image official train split, train for that fixed schedule, and evaluate official
+test exactly once:
+
+```
+python tools/convert_rafdb_to_emotion_jsonl.py --raf-root path/to/RAF-DB --output data/RAF-DB/manifest_official.jsonl --val-ratio 0 --split-seed 1234
+python train_emotionclip.py --config_file configs/emotion/vit_b16_emotionclip_rafdb_quick.yml DATASETS.MANIFEST data/RAF-DB/manifest_official.jsonl DATASETS.REQUIRE_VAL false TEST.EVALUATE_AFTER_TRAIN true
+```
+
+This two-phase protocol follows recent FER practice that reserves part of RAF-DB official train for development
+while preserving the official test split, and still permits final training-sample parity with papers trained on
+the full official train set. See [Dual-EmoNet (2026)](https://ietresearch.onlinelibrary.wiley.com/doi/10.1049/ipr2.70301)
+and the official RAF-DB benchmark sizes reported in [DUAL (2025)](https://onlinelibrary.wiley.com/doi/10.1155/int/7401168).
+
 Train and run inference:
 
 ```
-python train_emotionclip.py --config_file configs/emotion/vit_b16_emotionclip.yml DATASETS.MANIFEST data/emotion_manifest.jsonl DATASETS.ROOT_DIR path/to/images OUTPUT_DIR outputs/emotionclip
-python infer_emotionclip.py --config_file configs/emotion/vit_b16_emotionclip.yml --weight outputs/emotionclip/best_emotionclip.pth --image path/to/image.jpg
+python train_emotionclip.py --config_file configs/emotion/vit_b16_emotionclip.yml --run-id experiment-seed1234 DATASETS.MANIFEST data/emotion_manifest.jsonl DATASETS.ROOT_DIR path/to/images OUTPUT_DIR outputs/emotionclip
+python infer_emotionclip.py --config_file configs/emotion/vit_b16_emotionclip.yml --weight outputs/emotionclip/experiment-seed1234/best_emotionclip.pth --image path/to/image.jpg
 ```
+
+Every training command creates one immutable directory at `OUTPUT_DIR/<run_id>/`; reusing a `run_id` fails
+instead of overwriting artifacts. Each run records `resolved_config.yml` and `provenance.json` containing the
+Git SHA, dirty/diff hashes, manifest and per-split hashes, dependency versions, seed, and hardware. Notebooks
+must resolve artifacts using `utils.run_artifacts.artifact_dir(OUTPUT_ROOT, RUN_ID)` and must not guess the
+latest run or fall back to shared output files.
+
+Checkpoint selection uses only `val`. The current pipeline does not fit a temperature or decision threshold.
+Any future calibration must use an explicit `calibration` split or a predeclared nested-validation protocol,
+never `test`; the sealed `test` split is reachable only through the explicit opt-in evaluation step.
 
 For example, if you want to run CNN-based CLIP-ReID-baseline for the Market-1501, you need to modify the bottom of configs/person/cnn_base.yml to
 

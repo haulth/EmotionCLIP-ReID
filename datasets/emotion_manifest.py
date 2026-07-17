@@ -169,7 +169,10 @@ def load_emotion_manifest(
     return samples
 
 
-def validate_split_leakage(samples: Sequence[EmotionSample], group_keys: Sequence[str] = ("video_id", "subject_id")) -> Dict[str, List[str]]:
+def validate_split_leakage(
+    samples: Sequence[EmotionSample],
+    group_keys: Sequence[str] = ("image_path", "video_id", "subject_id"),
+) -> Dict[str, List[str]]:
     leaks: Dict[str, List[str]] = {}
     for key in group_keys:
         groups: Dict[str, set] = {}
@@ -230,8 +233,15 @@ class EmotionManifestDataset(Dataset):
         split: str = "train",
         transform: Optional[Any] = None,
         logger: Optional[logging.Logger] = None,
+        samples: Optional[Sequence[EmotionSample]] = None,
     ):
-        self.samples = load_emotion_manifest(manifest_path, root_dir=root_dir, split=split, logger=logger)
+        self.samples = (
+            list(samples)
+            if samples is not None
+            else load_emotion_manifest(manifest_path, root_dir=root_dir, split=split, logger=logger)
+        )
+        if not self.samples:
+            raise ValueError(f"No samples supplied for split={split!r}")
         self.transform = transform
 
     def __len__(self) -> int:
@@ -307,14 +317,43 @@ def make_emotion_dataloaders(cfg: Any):
         std=std,
     )
 
-    train_set = EmotionManifestDataset(manifest, root_dir=root_dir, split="train", transform=train_transform)
-    val_set = EmotionManifestDataset(manifest, root_dir=root_dir, split="val", transform=val_transform)
-
     all_samples = load_emotion_manifest(manifest, root_dir=root_dir, split=None)
     leaks = validate_split_leakage(all_samples)
     if leaks and data_cfg.get("STRICT_SPLIT_LEAKAGE", True):
         summary = {key: values[:10] for key, values in leaks.items()}
         raise ValueError(f"Detected group leakage across splits: {summary}")
+
+    samples_by_split = {
+        split: [sample for sample in all_samples if sample.split == split]
+        for split in ("train", "val", "test")
+    }
+    if not samples_by_split["train"]:
+        raise ValueError(f"Manifest {manifest!r} has no train samples")
+    if data_cfg.get("REQUIRE_VAL", True) and not samples_by_split["val"]:
+        raise ValueError(
+            f"Manifest {manifest!r} has no validation samples. Use a development manifest, "
+            "or set DATASETS.REQUIRE_VAL false only for a locked fixed-epoch final run."
+        )
+    require_test = bool(data_cfg.get("REQUIRE_TEST", False) or test_cfg.get("EVALUATE_AFTER_TRAIN", False))
+    if require_test and not samples_by_split["test"]:
+        raise ValueError(f"Manifest {manifest!r} has no sealed test samples")
+
+    train_set = EmotionManifestDataset(
+        manifest,
+        split="train",
+        transform=train_transform,
+        samples=samples_by_split["train"],
+    )
+    val_set = (
+        EmotionManifestDataset(manifest, split="val", transform=val_transform, samples=samples_by_split["val"])
+        if samples_by_split["val"]
+        else None
+    )
+    test_set = (
+        EmotionManifestDataset(manifest, split="test", transform=val_transform, samples=samples_by_split["test"])
+        if samples_by_split["test"]
+        else None
+    )
 
     train_loader = DataLoader(
         train_set,
@@ -332,12 +371,18 @@ def make_emotion_dataloaders(cfg: Any):
         collate_fn=emotion_collate_fn,
         pin_memory=bool(loader_cfg.get("PIN_MEMORY", False)),
     )
-    val_loader = DataLoader(
-        val_set,
-        batch_size=int(test_cfg.get("IMS_PER_BATCH", 64)),
-        shuffle=False,
-        num_workers=int(loader_cfg.get("NUM_WORKERS", 0)),
-        collate_fn=emotion_collate_fn,
-        pin_memory=bool(loader_cfg.get("PIN_MEMORY", False)),
-    )
-    return train_loader, stage1_loader, val_loader, CANONICAL_EMOTIONS
+    def make_eval_loader(dataset):
+        if dataset is None:
+            return None
+        return DataLoader(
+            dataset,
+            batch_size=int(test_cfg.get("IMS_PER_BATCH", 64)),
+            shuffle=False,
+            num_workers=int(loader_cfg.get("NUM_WORKERS", 0)),
+            collate_fn=emotion_collate_fn,
+            pin_memory=bool(loader_cfg.get("PIN_MEMORY", False)),
+        )
+
+    val_loader = make_eval_loader(val_set)
+    test_loader = make_eval_loader(test_set)
+    return train_loader, stage1_loader, val_loader, test_loader, CANONICAL_EMOTIONS

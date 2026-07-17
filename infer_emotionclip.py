@@ -22,6 +22,8 @@ def main():
     if cfg["MODEL"]["DEVICE"] == "cuda" and not torch.cuda.is_available():
         cfg["MODEL"]["DEVICE"] = "cpu"
     model_cfg = cfg["MODEL"]["EMOTION"]
+    uncertainty_cfg = cfg["MODEL"].get("UNCERTAINTY", {})
+    fusion_cfg = cfg["MODEL"].get("FUSION", {})
     model = EmotionCLIPModel(
         class_names=CANONICAL_EMOTIONS,
         backbone_name=cfg["MODEL"]["NAME"],
@@ -35,6 +37,18 @@ def main():
         local_weight=float(model_cfg["LOCAL_WEIGHT"]),
         classifier_weight=float(model_cfg["CLASSIFIER_WEIGHT"]),
         train_last_blocks=int(model_cfg["TRAIN_LAST_BLOCKS"]),
+        fusion_gate_mode=str(fusion_cfg.get("GATE_MODE", "fixed")),
+        fusion_scale_mode=str(fusion_cfg.get("SCALE_MODE", "temperature")),
+        fusion_gate_hidden_dim=int(fusion_cfg.get("GATE_HIDDEN_DIM", 128)),
+        fusion_gate_dropout=float(fusion_cfg.get("GATE_DROPOUT", 0.1)),
+        min_branch_temperature=float(fusion_cfg.get("MIN_TEMPERATURE", 0.05)),
+        max_branch_temperature=float(fusion_cfg.get("MAX_TEMPERATURE", 20.0)),
+        initial_branch_temperatures=fusion_cfg.get("INITIAL_TEMPERATURES", [0.1, 1.0, 1.0]),
+        learn_branch_temperatures=bool(fusion_cfg.get("LEARN_TEMPERATURES", True)),
+        reliability_hidden_dim=int(uncertainty_cfg.get("HIDDEN_DIM", 128)),
+        reliability_dropout=float(uncertainty_cfg.get("DROPOUT", 0.1)),
+        detach_class_prob=bool(uncertainty_cfg.get("DETACH_CLASS_PROB", True)),
+        max_strength=uncertainty_cfg.get("MAX_STRENGTH", 100.0),
     )
     load_emotion_checkpoint(model, args.weight, strict=False)
     device = torch.device(cfg["MODEL"]["DEVICE"])
@@ -59,6 +73,13 @@ def main():
         "emotion_id": prediction,
         "probabilities": {name: float(probabilities[idx]) for idx, name in enumerate(CANONICAL_EMOTIONS)},
         "uncertainty": float(outputs["uncertainty"][0].detach().cpu()),
+        "strength": float(outputs["strength"][0].detach().cpu()),
+        "fusion_gate": outputs["fusion_gate"][0].detach().cpu().tolist(),
+        "branch_temperatures": outputs["branch_temperatures"].detach().cpu().tolist(),
+        "dirichlet_mean": {
+            name: float(outputs["dirichlet_mean"][0, idx].detach().cpu())
+            for idx, name in enumerate(CANONICAL_EMOTIONS)
+        },
         "descriptor_similarity": {
             name: float(outputs["alignment_logits"][0, idx].detach().cpu())
             for idx, name in enumerate(CANONICAL_EMOTIONS)

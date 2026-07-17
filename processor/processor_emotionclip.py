@@ -97,9 +97,40 @@ _RUN_HISTORY_COLUMNS = [
     "cls",
     "align",
     "unc_loss",
+    "gate_loss",
+    "temperature_loss",
     "pred_unc",
     "conf",
     "acc",
+    "fusion_gate_classifier",
+    "fusion_gate_global",
+    "fusion_gate_local",
+    "fusion_gate_classifier_std",
+    "fusion_gate_global_std",
+    "fusion_gate_local_std",
+    "gate_dominant_classifier_rate",
+    "gate_dominant_global_rate",
+    "gate_dominant_local_rate",
+    "temperature_classifier",
+    "temperature_global",
+    "temperature_local",
+    "classifier_logit_abs_mean",
+    "global_logit_abs_mean",
+    "local_logit_abs_mean",
+    "classifier_logit_mean",
+    "global_logit_mean",
+    "local_logit_mean",
+    "classifier_logit_std",
+    "global_logit_std",
+    "local_logit_std",
+    "scaled_classifier_logit_abs_mean",
+    "scaled_global_logit_abs_mean",
+    "scaled_local_logit_abs_mean",
+    "gate_entropy",
+    "gate_collapse_rate",
+    "images_per_second",
+    "peak_vram_allocated_mb",
+    "peak_vram_reserved_mb",
     "lr",
     "time_sec",
     "accuracy",
@@ -109,7 +140,17 @@ _RUN_HISTORY_COLUMNS = [
     "avg_conf",
     "avg_uncertainty",
     "avg_confidence",
+    "avg_strength",
+    "avg_entropy",
     "ece",
+    "adaptive_ece",
+    "classwise_ece",
+    "nll",
+    "brier",
+    "aurc",
+    "eaurc",
+    "error_auroc",
+    "error_aupr",
     "uncertainty_risk_auc",
     "samples",
     "num_samples",
@@ -124,9 +165,40 @@ _TRAIN_EPOCH_COLUMNS = [
     "cls",
     "align",
     "unc_loss",
+    "gate_loss",
+    "temperature_loss",
     "pred_unc",
     "conf",
     "acc",
+    "fusion_gate_classifier",
+    "fusion_gate_global",
+    "fusion_gate_local",
+    "fusion_gate_classifier_std",
+    "fusion_gate_global_std",
+    "fusion_gate_local_std",
+    "gate_dominant_classifier_rate",
+    "gate_dominant_global_rate",
+    "gate_dominant_local_rate",
+    "temperature_classifier",
+    "temperature_global",
+    "temperature_local",
+    "classifier_logit_abs_mean",
+    "global_logit_abs_mean",
+    "local_logit_abs_mean",
+    "classifier_logit_mean",
+    "global_logit_mean",
+    "local_logit_mean",
+    "classifier_logit_std",
+    "global_logit_std",
+    "local_logit_std",
+    "scaled_classifier_logit_abs_mean",
+    "scaled_global_logit_abs_mean",
+    "scaled_local_logit_abs_mean",
+    "gate_entropy",
+    "gate_collapse_rate",
+    "images_per_second",
+    "peak_vram_allocated_mb",
+    "peak_vram_reserved_mb",
     "lr",
     "time_sec",
 ]
@@ -143,7 +215,17 @@ _VALIDATION_COLUMNS = [
     "avg_conf",
     "avg_uncertainty",
     "avg_confidence",
+    "avg_strength",
+    "avg_entropy",
     "ece",
+    "adaptive_ece",
+    "classwise_ece",
+    "nll",
+    "brier",
+    "aurc",
+    "eaurc",
+    "error_auroc",
+    "error_aupr",
     "uncertainty_risk_auc",
     "samples",
     "num_samples",
@@ -201,6 +283,7 @@ def _record_validation_epoch(cfg: Dict[str, Any], row: Dict[str, Any]) -> None:
 def log_run_config(logger: logging.Logger, cfg: Dict[str, Any], config_file: str = "", opts: Optional[list] = None) -> None:
     model_cfg = cfg["MODEL"]
     emotion_cfg = model_cfg["EMOTION"]
+    fusion_cfg = model_cfg.get("FUSION", {})
     solver_cfg = cfg["SOLVER"]
     stage1_cfg = solver_cfg["STAGE1"]
     stage2_cfg = solver_cfg["STAGE2"]
@@ -229,6 +312,10 @@ def log_run_config(logger: logging.Logger, cfg: Dict[str, Any], config_file: str
         classifier_weight=emotion_cfg["CLASSIFIER_WEIGHT"],
         global_weight=emotion_cfg["GLOBAL_WEIGHT"],
         local_weight=emotion_cfg["LOCAL_WEIGHT"],
+        fusion_gate_mode=fusion_cfg.get("GATE_MODE", "fixed"),
+        fusion_scale_mode=fusion_cfg.get("SCALE_MODE", "temperature"),
+        learn_temperatures=fusion_cfg.get("LEARN_TEMPERATURES", True),
+        initial_temperatures=fusion_cfg.get("INITIAL_TEMPERATURES", [0.1, 1.0, 1.0]),
     )
     log_training_event(
         logger,
@@ -259,6 +346,36 @@ def _checkpoint_payload(model, epoch: int, stage: int, metrics: Optional[Dict[st
     }
 
 
+def parameter_report(model) -> Dict[str, Any]:
+    total = sum(parameter.numel() for parameter in model.parameters())
+    trainable = sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad)
+    groups: Dict[str, int] = {}
+    for name, parameter in model.named_parameters():
+        if not parameter.requires_grad:
+            continue
+        if ".emotion_adapter." in name:
+            group = "adapters"
+        elif name.startswith("classifier."):
+            group = "classifier"
+        elif name.startswith("reliability_head."):
+            group = "reliability"
+        elif "temperature" in name:
+            group = "temperatures"
+        elif "fusion" in name:
+            group = "fusion"
+        elif "image_encoder" in name:
+            group = "unfrozen_backbone"
+        else:
+            group = "other"
+        groups[group] = groups.get(group, 0) + parameter.numel()
+    return {
+        "total_params": total,
+        "trainable_params": trainable,
+        "trainable_percent": 100.0 * trainable / max(total, 1),
+        "groups": groups,
+    }
+
+
 def save_checkpoint(model, output_dir: str, name: str, epoch: int, stage: int, metrics: Optional[Dict[str, Any]] = None):
     os.makedirs(output_dir, exist_ok=True)
     path = os.path.join(output_dir, name)
@@ -269,7 +386,19 @@ def save_checkpoint(model, output_dir: str, name: str, epoch: int, stage: int, m
 def load_emotion_checkpoint(model, checkpoint_path: str, strict: bool = True):
     checkpoint = torch.load(checkpoint_path, map_location="cpu")
     state_dict = checkpoint.get("model", checkpoint)
-    model.load_state_dict(state_dict, strict=strict)
+    incompatible = model.load_state_dict(state_dict, strict=strict)
+    if not strict and any(key.startswith("reliability_head.") for key in incompatible.missing_keys):
+        logging.getLogger("emotionclip.checkpoint").warning(
+            "Checkpoint %s predates the decoupled reliability head; classification remains usable, "
+            "but strength/uncertainty is untrained until Stage 2 is retrained.",
+            checkpoint_path,
+        )
+    if not strict and "fusion_weights" in incompatible.unexpected_keys:
+        logging.getLogger("emotionclip.checkpoint").warning(
+            "Checkpoint %s uses unconstrained fusion_weights; they were replaced by the configured simplex "
+            "fusion prior and must be retrained for calibrated branch temperatures.",
+            checkpoint_path,
+        )
     return checkpoint
 
 
@@ -386,23 +515,25 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
         save_checkpoint(model, output_dir, "last_emotionclip_stage1.pth", epoch, stage=1)
 
 
-def evaluate_emotion_model(cfg, model, val_loader, text_features: Optional[torch.Tensor] = None) -> Dict[str, Any]:
+def evaluate_emotion_model(cfg, model, data_loader, text_features: Optional[torch.Tensor] = None) -> Dict[str, Any]:
     device = torch.device(cfg["MODEL"]["DEVICE"])
     labels = []
     probabilities = []
     uncertainties = []
+    strengths = []
     image_paths = []
     model.eval()
     with torch.no_grad():
         if text_features is None:
             text_features = model(get_text=True)
         text_features = text_features.to(device)
-        for batch in val_loader:
+        for batch in data_loader:
             batch = _batch_to_device(batch, device)
             outputs = model(images=batch["images"], text_features=text_features)
             labels.extend(batch["labels"].detach().cpu().tolist())
             probabilities.extend(outputs["probabilities"].detach().cpu().tolist())
             uncertainties.extend(outputs["uncertainty"].detach().cpu().tolist())
+            strengths.extend(outputs["strength"].detach().cpu().tolist())
             image_paths.extend(batch["image_paths"])
     metrics = compute_fer_metrics(labels, probabilities, uncertainties, model.class_names)
     metrics["num_samples"] = len(labels)
@@ -413,6 +544,35 @@ def evaluate_emotion_model(cfg, model, val_loader, text_features: Optional[torch
     else:
         metrics["avg_confidence"] = 0.0
     metrics["avg_uncertainty"] = float(sum(uncertainties) / max(len(uncertainties), 1))
+    metrics["avg_strength"] = float(sum(strengths) / max(len(strengths), 1))
+    return metrics
+
+
+def evaluate_sealed_test(
+    cfg,
+    model,
+    test_loader,
+    checkpoint_path: str = "",
+    selection_split: str = "val",
+) -> Dict[str, Any]:
+    """Evaluate the held-out test split once and write a test-specific artifact."""
+    if test_loader is None:
+        raise ValueError("Sealed test evaluation requested, but the manifest has no split='test'")
+    if checkpoint_path:
+        load_emotion_checkpoint(model, checkpoint_path, strict=True)
+    metrics = evaluate_emotion_model(cfg, model, test_loader)
+    metrics.update(
+        {
+            "evaluation_split": "test",
+            "selection_split": selection_split,
+            "checkpoint": checkpoint_path or "in_memory_model",
+        }
+    )
+    output_name = cfg.get("TEST", {}).get("OUTPUT_FILE", "test_metrics.json")
+    output_path = os.path.join(cfg["OUTPUT_DIR"], output_name)
+    os.makedirs(cfg["OUTPUT_DIR"], exist_ok=True)
+    with open(output_path, "w", encoding="utf-8") as handle:
+        json.dump(metrics, handle, indent=2)
     return metrics
 
 
@@ -423,13 +583,28 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
     stage_cfg = cfg["SOLVER"]["STAGE2"]
     max_epochs = int(stage_cfg["MAX_EPOCHS"])
     log_period = int(stage_cfg.get("LOG_PERIOD", 20))
-    eval_period = int(stage_cfg.get("EVAL_PERIOD", 1))
+    eval_period = max(1, int(stage_cfg.get("EVAL_PERIOD", 1)))
     beta_align = float(stage_cfg.get("BETA_ALIGN", 0.5))
-    lambda_unc = float(stage_cfg.get("LAMBDA_UNC", 0.05))
-    anneal_epochs = max(1, int(stage_cfg.get("EDL_ANNEALING_EPOCHS", 10)))
+    configured_reliability_weight = stage_cfg.get("LAMBDA_RELIABILITY")
+    lambda_unc = float(
+        stage_cfg.get("LAMBDA_UNC", 0.05)
+        if configured_reliability_weight is None
+        else configured_reliability_weight
+    )
+    reliability_target = str(stage_cfg.get("RELIABILITY_TARGET", "correctness")).lower()
+    lambda_gate = float(stage_cfg.get("LAMBDA_GATE", 0.0))
+    lambda_temperature = float(stage_cfg.get("LAMBDA_TEMPERATURE", 0.0))
+    anneal_epochs = max(
+        1,
+        int(stage_cfg.get("RELIABILITY_WARMUP_EPOCHS", stage_cfg.get("EDL_ANNEALING_EPOCHS", 10))),
+    )
 
     model.to(device)
     model.set_train_stage(2)
+    params = parameter_report(model)
+    os.makedirs(output_dir, exist_ok=True)
+    with open(os.path.join(output_dir, "trainable_parameters.json"), "w", encoding="utf-8") as handle:
+        json.dump(params, handle, indent=2)
     best_macro_f1 = -1.0
     best_metrics = None
     last_metrics = None
@@ -443,23 +618,45 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         lr=optimizer.param_groups[0]["lr"],
         beta_align=beta_align,
         lambda_unc=lambda_unc,
+        reliability_target=reliability_target,
+        trainable_params=params["trainable_params"],
+        trainable_percent=params["trainable_percent"],
+        parameter_groups=params["groups"],
+        selection_split="val" if val_loader is not None else "fixed_epoch_no_validation",
     )
     for epoch in range(1, max_epochs + 1):
         start_time = time.time()
         model.train()
+        if device.type == "cuda":
+            torch.cuda.synchronize(device)
+            torch.cuda.reset_peak_memory_stats(device)
         text_features = model(get_text=True).detach()
         total_loss = 0.0
         total_cls = 0.0
         total_align = 0.0
         total_unc = 0.0
+        total_gate_loss = 0.0
+        total_temperature_loss = 0.0
         total_pred_unc = 0.0
         total_conf = 0.0
         total_acc = 0.0
+        total_gate = torch.zeros(3, dtype=torch.float64)
+        total_gate_std = torch.zeros(3, dtype=torch.float64)
+        total_gate_dominant = torch.zeros(3, dtype=torch.float64)
+        total_temperatures = torch.zeros(3, dtype=torch.float64)
+        total_raw_abs = torch.zeros(3, dtype=torch.float64)
+        total_raw_mean = torch.zeros(3, dtype=torch.float64)
+        total_raw_std = torch.zeros(3, dtype=torch.float64)
+        total_scaled_abs = torch.zeros(3, dtype=torch.float64)
+        total_gate_entropy = 0.0
+        total_gate_collapse = 0.0
+        samples_seen = 0
         steps = 0
         anneal = min(1.0, epoch / anneal_epochs)
         progress = _progress(train_loader, cfg=cfg, desc=f"Stage2 {epoch}/{max_epochs}", total=len(train_loader))
         for batch in progress:
             batch = _batch_to_device(batch, device)
+            samples_seen += int(batch["labels"].shape[0])
             optimizer.zero_grad()
             outputs = model(images=batch["images"], text_features=text_features)
             losses = emotion_stage2_loss(
@@ -468,6 +665,9 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                 beta_align=beta_align,
                 lambda_unc=lambda_unc,
                 edl_annealing=anneal,
+                reliability_target=reliability_target,
+                lambda_gate=lambda_gate,
+                lambda_temperature=lambda_temperature,
             )
             losses["loss"].backward()
             optimizer.step()
@@ -475,6 +675,8 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             batch_cls = float(losses["classification"].detach().cpu())
             batch_align = float(losses["alignment"].detach().cpu())
             batch_unc = float(losses["uncertainty"].detach().cpu())
+            batch_gate_loss = float(losses["gate"].detach().cpu())
+            batch_temperature_loss = float(losses["temperature"].detach().cpu())
             batch_pred_unc = _batch_uncertainty(outputs["uncertainty"])
             batch_conf = _batch_confidence(outputs["probabilities"])
             batch_acc = _batch_accuracy(outputs["logits"], batch["labels"])
@@ -482,9 +684,28 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             total_cls += batch_cls
             total_align += batch_align
             total_unc += batch_unc
+            total_gate_loss += batch_gate_loss
+            total_temperature_loss += batch_temperature_loss
             total_pred_unc += batch_pred_unc
             total_conf += batch_conf
             total_acc += batch_acc
+            if "fusion_gate" in outputs:
+                gate = outputs["fusion_gate"].detach().float().cpu()
+                total_gate += gate.mean(dim=0).double()
+                total_gate_std += gate.std(dim=0, unbiased=False).double()
+                total_gate_dominant += F.one_hot(gate.argmax(dim=-1), num_classes=3).float().mean(dim=0).double()
+                total_gate_entropy += float(outputs["gate_entropy"].detach().mean().cpu())
+                total_gate_collapse += float((gate.max(dim=-1).values > 0.95).float().mean())
+                total_temperatures += outputs["branch_temperatures"].detach().float().cpu().double()
+                raw_branches = torch.stack(
+                    (outputs["classifier_logits"], outputs["global_logits"], outputs["local_logits"]), dim=1
+                )
+                total_raw_abs += raw_branches.detach().abs().mean(dim=(0, 2)).cpu().double()
+                total_raw_mean += raw_branches.detach().mean(dim=(0, 2)).cpu().double()
+                total_raw_std += raw_branches.detach().std(dim=(0, 2), unbiased=False).cpu().double()
+                total_scaled_abs += (
+                    outputs["scaled_branch_logits"].detach().abs().mean(dim=(0, 2)).cpu().double()
+                )
             steps += 1
             if tqdm is not None:
                 progress.set_postfix(
@@ -513,7 +734,24 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
 
         if scheduler is not None:
             scheduler.step()
+        if device.type == "cuda":
+            torch.cuda.synchronize(device)
+        epoch_time = time.time() - start_time
+        peak_vram_allocated_mb = (
+            torch.cuda.max_memory_allocated(device) / 1024**2 if device.type == "cuda" else 0.0
+        )
+        peak_vram_reserved_mb = (
+            torch.cuda.max_memory_reserved(device) / 1024**2 if device.type == "cuda" else 0.0
+        )
         avg_loss = total_loss / max(steps, 1)
+        fusion_gate_mean = (total_gate / max(steps, 1)).tolist()
+        fusion_gate_std = (total_gate_std / max(steps, 1)).tolist()
+        fusion_gate_dominant = (total_gate_dominant / max(steps, 1)).tolist()
+        branch_temperature_mean = (total_temperatures / max(steps, 1)).tolist()
+        branch_raw_abs_mean = (total_raw_abs / max(steps, 1)).tolist()
+        branch_raw_mean = (total_raw_mean / max(steps, 1)).tolist()
+        branch_raw_std = (total_raw_std / max(steps, 1)).tolist()
+        branch_scaled_abs_mean = (total_scaled_abs / max(steps, 1)).tolist()
         epoch_metrics = {
             "event": "Stage2 done",
             "stage": 2,
@@ -523,11 +761,42 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             "cls": total_cls / max(steps, 1),
             "align": total_align / max(steps, 1),
             "unc_loss": total_unc / max(steps, 1),
+            "gate_loss": total_gate_loss / max(steps, 1),
+            "temperature_loss": total_temperature_loss / max(steps, 1),
             "pred_unc": total_pred_unc / max(steps, 1),
             "conf": total_conf / max(steps, 1),
             "acc": total_acc / max(steps, 1),
+            "fusion_gate_classifier": fusion_gate_mean[0],
+            "fusion_gate_global": fusion_gate_mean[1],
+            "fusion_gate_local": fusion_gate_mean[2],
+            "fusion_gate_classifier_std": fusion_gate_std[0],
+            "fusion_gate_global_std": fusion_gate_std[1],
+            "fusion_gate_local_std": fusion_gate_std[2],
+            "gate_dominant_classifier_rate": fusion_gate_dominant[0],
+            "gate_dominant_global_rate": fusion_gate_dominant[1],
+            "gate_dominant_local_rate": fusion_gate_dominant[2],
+            "temperature_classifier": branch_temperature_mean[0],
+            "temperature_global": branch_temperature_mean[1],
+            "temperature_local": branch_temperature_mean[2],
+            "classifier_logit_abs_mean": branch_raw_abs_mean[0],
+            "global_logit_abs_mean": branch_raw_abs_mean[1],
+            "local_logit_abs_mean": branch_raw_abs_mean[2],
+            "classifier_logit_mean": branch_raw_mean[0],
+            "global_logit_mean": branch_raw_mean[1],
+            "local_logit_mean": branch_raw_mean[2],
+            "classifier_logit_std": branch_raw_std[0],
+            "global_logit_std": branch_raw_std[1],
+            "local_logit_std": branch_raw_std[2],
+            "scaled_classifier_logit_abs_mean": branch_scaled_abs_mean[0],
+            "scaled_global_logit_abs_mean": branch_scaled_abs_mean[1],
+            "scaled_local_logit_abs_mean": branch_scaled_abs_mean[2],
+            "gate_entropy": total_gate_entropy / max(steps, 1),
+            "gate_collapse_rate": total_gate_collapse / max(steps, 1),
+            "images_per_second": samples_seen / max(epoch_time, 1e-12),
+            "peak_vram_allocated_mb": peak_vram_allocated_mb,
+            "peak_vram_reserved_mb": peak_vram_reserved_mb,
             "lr": optimizer.param_groups[0]["lr"],
-            "time_sec": time.time() - start_time,
+            "time_sec": epoch_time,
         }
         log_training_event(
             logger,
@@ -540,14 +809,28 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             pred_unc=epoch_metrics["pred_unc"],
             conf=epoch_metrics["conf"],
             acc=epoch_metrics["acc"],
+            fusion_gate=fusion_gate_mean,
+            fusion_gate_std=fusion_gate_std,
+            gate_dominant_rate=fusion_gate_dominant,
+            branch_temperatures=branch_temperature_mean,
+            raw_branch_abs_mean=branch_raw_abs_mean,
+            raw_branch_mean=branch_raw_mean,
+            raw_branch_std=branch_raw_std,
+            scaled_branch_abs_mean=branch_scaled_abs_mean,
+            gate_entropy=epoch_metrics["gate_entropy"],
+            gate_collapse_rate=epoch_metrics["gate_collapse_rate"],
+            images_per_second=epoch_metrics["images_per_second"],
+            peak_vram_allocated_mb=epoch_metrics["peak_vram_allocated_mb"],
             lr=epoch_metrics["lr"],
             time_sec=epoch_metrics["time_sec"],
         )
         _record_training_epoch(cfg, epoch_metrics)
 
         metrics = None
-        if epoch % eval_period == 0 or epoch == max_epochs:
+        if val_loader is not None and (epoch % eval_period == 0 or epoch == max_epochs):
             metrics = evaluate_emotion_model(cfg, model, val_loader)
+            metrics["evaluation_split"] = "val"
+            metrics["selection_split"] = "val"
             metrics_path = os.path.join(output_dir, f"metrics_epoch_{epoch}.json")
             os.makedirs(output_dir, exist_ok=True)
             with open(metrics_path, "w", encoding="utf-8") as handle:
@@ -561,7 +844,13 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                 macro_f1=metrics["macro_f1"],
                 avg_unc=metrics["avg_uncertainty"],
                 avg_conf=metrics["avg_confidence"],
+                avg_strength=metrics["avg_strength"],
+                avg_entropy=metrics["avg_entropy"],
                 ece=metrics["ece"],
+                nll=metrics["nll"],
+                brier=metrics["brier"],
+                aurc=metrics["aurc"],
+                eaurc=metrics["eaurc"],
                 uncertainty_risk_auc=metrics["uncertainty_risk_auc"],
                 samples=metrics["num_samples"],
             )
@@ -578,7 +867,17 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     "avg_conf": metrics["avg_confidence"],
                     "avg_uncertainty": metrics["avg_uncertainty"],
                     "avg_confidence": metrics["avg_confidence"],
+                    "avg_strength": metrics["avg_strength"],
+                    "avg_entropy": metrics["avg_entropy"],
                     "ece": metrics["ece"],
+                    "adaptive_ece": metrics["adaptive_ece"],
+                    "classwise_ece": metrics["classwise_ece"],
+                    "nll": metrics["nll"],
+                    "brier": metrics["brier"],
+                    "aurc": metrics["aurc"],
+                    "eaurc": metrics["eaurc"],
+                    "error_auroc": metrics["error_auroc"],
+                    "error_aupr": metrics["error_aupr"],
                     "uncertainty_risk_auc": metrics["uncertainty_risk_auc"],
                     "samples": metrics["num_samples"],
                     "num_samples": metrics["num_samples"],

@@ -2,6 +2,7 @@ import argparse
 import csv
 import json
 import os
+import random
 import shutil
 import tarfile
 import zipfile
@@ -191,23 +192,57 @@ def _read_label_file(label_file: Path):
     return rows
 
 
+def select_stratified_validation_images(rows, val_ratio: float, seed: int) -> set[str]:
+    """Select a deterministic, class-stratified dev set from RAF-DB official train."""
+    if not 0.0 <= val_ratio < 1.0:
+        raise ValueError(f"val_ratio must be in [0, 1), got {val_ratio}")
+    if val_ratio == 0.0:
+        return set()
+
+    by_label = {}
+    for image_name, label_id, official_split in rows:
+        if str(official_split).strip().lower() == "train":
+            by_label.setdefault(label_id, []).append(image_name)
+
+    selected = set()
+    for label_id, image_names in sorted(by_label.items()):
+        if len(image_names) < 2:
+            raise ValueError(
+                f"Cannot create validation data for RAF-DB label {label_id}: "
+                f"only {len(image_names)} official-train sample(s)"
+            )
+        shuffled = sorted(image_names)
+        random.Random(seed + label_id).shuffle(shuffled)
+        count = min(len(shuffled) - 1, max(1, round(len(shuffled) * val_ratio)))
+        selected.update(shuffled[:count])
+    return selected
+
+
 def convert_rafdb(
     raf_root: Path,
     output: Path,
     root_dir: Path,
     label_files: list[Path],
-    test_split_name: str,
+    val_ratio: float,
+    split_seed: int,
     preferred_aligned: bool,
     allow_missing: bool,
 ):
     rows = []
     for label_file in label_files:
         rows.extend(_read_label_file(label_file))
+    validation_images = select_stratified_validation_images(rows, val_ratio=val_ratio, seed=split_seed)
     records = []
     missing = []
 
     for image_name, label_id, official_split in rows:
-        split = "train" if official_split == "train" else test_split_name
+        official_split = str(official_split).strip().lower()
+        if official_split not in {"train", "test"}:
+            raise ValueError(f"Unsupported RAF-DB official split {official_split!r} for {image_name}")
+        if official_split == "test":
+            split = "test"
+        else:
+            split = "val" if image_name in validation_images else "train"
         emotion = RAF_BASIC_LABELS[label_id]
         try:
             image_path = _resolve_image(
@@ -230,7 +265,13 @@ def convert_rafdb(
                 "emotion_id": EMOTION_TO_ID[emotion],
                 "split": split,
                 "source": "RAF-DB",
-                "split_protocol": "rafdb_official_train_test_no_random_split",
+                "split_protocol": (
+                    "rafdb_official_test_sealed_stratified_dev_from_train"
+                    if val_ratio > 0
+                    else "rafdb_official_train_test_fixed_epoch"
+                ),
+                "validation_ratio": val_ratio,
+                "split_seed": split_seed,
                 "rafdb_label_id": label_id,
                 "official_split": official_split,
                 "official_image_name": image_name,
@@ -248,12 +289,19 @@ def convert_rafdb(
         counts[key] = counts.get(key, 0) + 1
 
     print(f"Wrote {len(records)} RAF-DB records to {output}")
-    print("Split protocol: RAF-DB official train/test split; no random split is created.")
+    if val_ratio > 0:
+        print(
+            "Split protocol: deterministic class-stratified validation from official train; "
+            "official test remains sealed."
+        )
+        print(f"Validation ratio: {val_ratio}; split seed: {split_seed}")
+    else:
+        print("Split protocol: full official train; official test remains sealed for fixed-epoch final evaluation.")
     print(f"ROOT_DIR for training: {root_dir}")
     print("Label files: " + ", ".join(str(path) for path in label_files))
     if missing:
         print(f"Skipped {len(missing)} missing images because --allow-missing was set")
-    for split in ("train", test_split_name):
+    for split in ("train", "val", "test"):
         split_total = sum(count for (record_split, _), count in counts.items() if record_split == split)
         print(f"{split}: {split_total}")
         for emotion in ("anger", "disgust", "fear", "happiness", "sadness", "surprise", "neutral"):
@@ -275,11 +323,15 @@ def main():
     parser.add_argument("--output", default="data/RAF-DB/manifest.jsonl")
     parser.add_argument("--root-dir", help="Root used to make image_path relative. Defaults to RAF root.")
     parser.add_argument(
-        "--test-split-name",
-        default="val",
-        choices=["val", "test"],
-        help="The repo trains against split='val'; keep 'val' for normal training/eval, use 'test' for export only.",
+        "--val-ratio",
+        type=float,
+        default=0.2,
+        help=(
+            "Class-stratified validation fraction taken only from official train (default: 0.2). "
+            "Use 0 after hyperparameters/epoch count are locked to retrain on all 12,271 official-train images."
+        ),
     )
+    parser.add_argument("--split-seed", type=int, default=1234)
     parser.add_argument("--original", action="store_true", help="Prefer original images over aligned images.")
     parser.add_argument("--allow-missing", action="store_true", help="Skip label rows whose images are missing.")
     args = parser.parse_args()
@@ -300,7 +352,8 @@ def main():
         output=Path(args.output),
         root_dir=root_dir,
         label_files=label_files,
-        test_split_name=args.test_split_name,
+        val_ratio=args.val_ratio,
+        split_seed=args.split_seed,
         preferred_aligned=not args.original,
         allow_missing=args.allow_missing,
     )

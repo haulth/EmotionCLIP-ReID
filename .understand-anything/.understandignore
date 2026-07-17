@@ -1,0 +1,45 @@
+# .understandignore — patterns for files/dirs to exclude from analysis
+# Syntax: same as .gitignore (globs, # comments, ! negation, trailing / for dirs)
+# Lines below are suggestions — uncomment to activate.
+# Use ! prefix to force-include something excluded by defaults.
+#
+# Built-in defaults (always excluded unless negated):
+#   node_modules/, .git/, dist/, build/, obj/, *.lock, *.min.js, etc.
+#
+# Local credential material (intentionally excluded from analysis):
+.kaggle/
+
+# Generated analysis/cache artifacts and incomplete downloads:
+.understand-anything/
+.codebase-memory/
+*.crdownload
+
+# --- From .gitignore (uncomment to exclude) ---
+
+# /config/__pycache__
+# /datasets/__pycache__
+# /loss/__pycache__
+# /model/__pycache__
+# /processor/__pycache__
+# /solver/__pycache__
+# /utils/__pycache__
+# /model/backbones/__pycache__
+# /model/clip/__pycache__
+# __pycache__/
+# .pytest_cache/
+# tests/
+
+# --- Detected directories (uncomment to exclude) ---
+
+# tests/
+# docs/
+
+# --- Test file patterns (uncomment to exclude) ---
+
+# *.test.*
+# *.spec.*
+# *.snap
+docs/
+data/
+fig/
+models/

@@ -133,6 +133,8 @@ def convert_csv(csv_path, images_root, output_path, default_split):
 
 
 def iter_split_dirs(image_dir, directory_test_split):
+    if directory_test_split != "test":
+        raise ValueError("FER2013 test directories must remain sealed as split='test'")
     split_names = {"train", "training", "val", "valid", "validation", "test"}
     for split_dir in sorted(path for path in image_dir.iterdir() if path.is_dir()):
         if split_dir.name.lower() not in split_names:
@@ -198,9 +200,9 @@ def main():
     parser.add_argument("--default-split", default="train", choices=["train", "val", "test"])
     parser.add_argument(
         "--directory-test-split",
-        default="val",
-        choices=["val", "test"],
-        help="Class-folder FER2013 often has only train/test. Map test to val by default so training runs.",
+        default="test",
+        choices=["test"],
+        help="Keep a class-folder test directory sealed as split='test'.",
     )
     parser.add_argument(
         "--copy-images-root",

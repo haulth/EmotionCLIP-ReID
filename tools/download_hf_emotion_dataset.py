@@ -62,7 +62,9 @@ def normalize_emotion(value, label_feature=None):
     return EMOTION_ALIASES[text]
 
 
-def split_name(source_split, test_as):
+def split_name(source_split, test_as="test"):
+    if test_as != "test":
+        raise ValueError("FER2013 PrivateTest must remain sealed as split='test'")
     source_split = str(source_split).lower()
     if source_split in {"train", "training"}:
         return "train"
@@ -103,7 +105,12 @@ def main():
     parser.add_argument("--manifest", type=Path, default=None)
     parser.add_argument("--image-column", default="image")
     parser.add_argument("--label-column", default="label")
-    parser.add_argument("--test-as", default="val", choices=["val", "test"])
+    parser.add_argument(
+        "--test-as",
+        default="test",
+        choices=["test"],
+        help="Keep FER2013 PrivateTest sealed as split='test'. The unsafe val mapping is no longer supported.",
+    )
     parser.add_argument(
         "--max-samples-per-split",
         type=int,
