@@ -9,6 +9,11 @@
 /model/clip/__pycache__
 __pycache__/
 .pytest_cache/
+/outputs/
+/data/models/
+/data/**/anatomy_v3/
+/data/**/manifest_anatomy.jsonl
+/data/**/manifest_anatomy.jsonl.landmark_cache.json
 tests/
 !tests/
 !tests/test_run_artifacts.py

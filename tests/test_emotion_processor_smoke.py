@@ -12,7 +12,7 @@ from processor.processor_emotionclip import (
     load_emotion_checkpoint,
     save_checkpoint,
 )
-from datasets.anatomy import empty_anatomy_inputs
+from datasets.anatomy import ANATOMY_DESCRIPTOR_VERSION, empty_anatomy_inputs
 
 
 class TinyEmotionModel(torch.nn.Module):
@@ -196,7 +196,7 @@ def test_checkpoint_schema_preserves_current_derived_prompt_buffers(tmp_path):
     path = save_checkpoint(source, str(tmp_path), "stage2.pth", epoch=3, stage=2)
     payload = torch.load(path, map_location="cpu")
     assert payload["schema_version"] == EMOTION_CHECKPOINT_SCHEMA_VERSION
-    assert payload["model_signature"]["anatomy_descriptor_version"] == 2
+    assert payload["model_signature"]["anatomy_descriptor_version"] == ANATOMY_DESCRIPTOR_VERSION
     assert payload["model_signature"]["routing_mode"] == "hybrid"
 
     target = _CheckpointModel(token_value=2)

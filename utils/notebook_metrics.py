@@ -447,6 +447,7 @@ def load_training_history(
     candidate_dirs: Sequence[object],
     log_names: Sequence[str] = (
         "train.log",
+        "notebook_console.log",
         "training_notebook_raw.log",
         "training_events.log",
         "training_notebook_clean.log",

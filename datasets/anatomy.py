@@ -453,7 +453,9 @@ def anatomy_to_model_inputs(
     pose_valid = bool(
         pose.get(
             "valid",
-            pose.get("transformation_matrix") is not None or pose_values_present,
+            pose.get("transformation_matrix") is not None
+            or pose_values_present
+            or pose.get("quality") is not None,
         )
     )
     pose_quality = (

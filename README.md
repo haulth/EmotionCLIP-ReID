@@ -46,11 +46,11 @@ Generate offline face-landmark artifacts before anatomy-conditioned training. Th
 detector-agnostic JSON files, so MediaPipe is not imported by the model:
 
 ```
-python tools/build_face_landmark_artifacts.py --manifest data/RAF-DB/manifest.jsonl --output-manifest data/RAF-DB/manifest_anatomy.jsonl --artifact-root data/RAF-DB/anatomy --model-path path/to/face_landmarker.task --root-dir path/to/RAF-DB
+python tools/build_face_landmark_artifacts.py --manifest data/RAF-DB/manifest.jsonl --output-manifest data/RAF-DB/manifest_anatomy.jsonl --artifact-root data/RAF-DB/anatomy_v3 --model-path path/to/face_landmarker.task --root-dir path/to/RAF-DB
 python tools/audit_anatomy_geometry.py --manifest data/RAF-DB/manifest_anatomy.jsonl --split train --output data/RAF-DB/anatomy_audit_train.json
 ```
 
-Artifacts generated before schema v2 must be regenerated with `--overwrite`. Schema v2 records detector/model
+Artifacts generated before schema v3 must be regenerated with `--overwrite`. Schema v3 records detector/model
 provenance and repeated-detection jitter propagated into the same units as each geometry feature; the audit will not
 substitute coordinate uncertainty when feature-level jitter is unavailable.
 
@@ -59,6 +59,22 @@ Each updated manifest record contains `landmark_path`. An artifact stores normal
 and jitter diagnostics. Missing points remain invalid and are never filled with synthetic coordinates. Horizontal
 flip and center-crop are applied consistently to image, landmarks, left/right geometry semantics, and feature
 uncertainty by `FaceSafeTransform`.
+
+The FER2013 and RAF-DB JupyterHub runbooks use the same reproducibility contract. Clone or update the source with
+`git clone -b old_branch --single-branch`, run the cached landmark preparation cell once, and keep the generated
+`manifest_anatomy.jsonl` plus `anatomy_v3/` outside individual training runs. Landmark cache hits are keyed by the
+input manifest hash, detector model hash, schema, root directory, and jitter settings; repeated training runs do
+not rerun face detection. Each notebook training invocation creates a local-time, microsecond-precision `RUN_ID`
+under `OUTPUT_DIR/<run_id>/` and stores `train.log`, `notebook_console.log`, provenance, CSV histories, checkpoints,
+and notebook PNGs under that same run. Pre-training previews are staged with the same ID and published only after
+the immutable training directory has been initialized. Notebook output cells always resolve the explicit `RUN_ID`
+and never select a latest/shared output directory.
+
+For JupyterHub, run `notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb` as the dedicated preprocessing
+notebook before opening either training notebook. It builds both dataset manifests by default, writes audit JSON and
+preview PNGs under `outputs/landmark_build/<landmark_run_id>/`, and leaves reusable artifacts beside each dataset.
+The FER2013 and RAF-DB training notebooks now fail early with a clear message if their corresponding
+`manifest_anatomy.jsonl` has not been built yet.
 
 The main ablations are selected without code changes: `MODEL.ROUTING.MODE` accepts `topk`, `free`, `anatomy`, or
 `hybrid`; `MODEL.GEOMETRY.ENABLED` isolates S3 versus S4; and
