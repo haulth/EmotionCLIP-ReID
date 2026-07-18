@@ -9,6 +9,13 @@ import torch
 from PIL import Image, ImageEnhance, ImageOps
 from torch.utils.data import DataLoader, Dataset
 
+from .anatomy import (
+    ANATOMY_ARTIFACT_SCHEMA_VERSION,
+    anatomy_to_model_inputs,
+    empty_anatomy_inputs,
+    load_anatomy_artifact,
+)
+
 
 CANONICAL_EMOTIONS = (
     "anger",
@@ -53,6 +60,8 @@ class EmotionSample:
     frame_id: Optional[str] = None
     au_labels: Optional[Dict[str, Any]] = None
     au_text: Optional[List[str]] = None
+    landmark_path: Optional[str] = None
+    anatomy: Optional[Dict[str, Any]] = None
     metadata: Optional[Dict[str, Any]] = None
 
 
@@ -125,8 +134,14 @@ def _sample_from_record(
             "frame_id",
             "au_labels",
             "au_text",
+            "landmark_path",
+            "anatomy",
         }
     }
+
+    landmark_path = record.get("landmark_path")
+    if landmark_path:
+        landmark_path = _resolve_image_path(str(landmark_path), os.path.dirname(manifest_path))
 
     return EmotionSample(
         image_path=_resolve_image_path(str(record["image_path"]), root_dir),
@@ -138,6 +153,8 @@ def _sample_from_record(
         frame_id=None if record.get("frame_id") is None else str(record.get("frame_id")),
         au_labels=record.get("au_labels"),
         au_text=record.get("au_text"),
+        landmark_path=landmark_path,
+        anatomy=record.get("anatomy"),
         metadata=metadata,
     )
 
@@ -186,6 +203,134 @@ def validate_split_leakage(
     return leaks
 
 
+def summarize_anatomy_coverage(
+    samples: Sequence[EmotionSample],
+    output_size: Tuple[int, int] = (224, 224),
+) -> Dict[str, Any]:
+    """Inspect artifact compatibility and usable evidence without opening images."""
+    report: Dict[str, Any] = {
+        "artifact_schema_version": ANATOMY_ARTIFACT_SCHEMA_VERSION,
+        "splits": {},
+    }
+    for split in ("train", "val", "test"):
+        split_samples = [sample for sample in samples if sample.split == split]
+        if not split_samples:
+            continue
+        counts = {
+            "total": len(split_samples),
+            "referenced": 0,
+            "compatible": 0,
+            "detected": 0,
+            "usable": 0,
+            "geometry_usable": 0,
+            "load_errors": 0,
+        }
+        class_counts = {
+            emotion: {"total": 0, "usable": 0, "geometry_usable": 0}
+            for emotion in CANONICAL_EMOTIONS
+        }
+        for sample in split_samples:
+            class_report = class_counts[sample.emotion]
+            class_report["total"] += 1
+            source = sample.anatomy if sample.anatomy is not None else sample.landmark_path
+            if source is None or source == "":
+                continue
+            counts["referenced"] += 1
+            try:
+                artifact = load_anatomy_artifact(source)
+            except (OSError, ValueError, json.JSONDecodeError):
+                counts["load_errors"] += 1
+                continue
+            if not artifact:
+                continue
+            try:
+                schema_version = int(artifact.get("schema_version", 0) or 0)
+            except (TypeError, ValueError):
+                schema_version = 0
+            if schema_version != ANATOMY_ARTIFACT_SCHEMA_VERSION:
+                continue
+            counts["compatible"] += 1
+            detector = artifact.get("detector") or {}
+            detected = bool(detector.get("detected", artifact.get("landmarks")))
+            counts["detected"] += int(detected)
+            image_size = artifact.get("image_size") or [output_size[1], output_size[0]]
+            try:
+                anatomy = anatomy_to_model_inputs(
+                    artifact,
+                    original_size=(int(image_size[0]), int(image_size[1])),
+                    output_size=output_size,
+                )
+            except (TypeError, ValueError, IndexError):
+                counts["load_errors"] += 1
+                continue
+            usable_regions = int((anatomy["region_quality"] > 0).sum())
+            usable = bool(anatomy["anatomy_available"]) and usable_regions >= 2
+            geometry_usable = usable and bool(anatomy["geometry_validity"].any())
+            counts["usable"] += int(usable)
+            counts["geometry_usable"] += int(geometry_usable)
+            class_report["usable"] += int(usable)
+            class_report["geometry_usable"] += int(geometry_usable)
+
+        total = max(counts["total"], 1)
+        report["splits"][split] = {
+            **counts,
+            "reference_coverage": counts["referenced"] / total,
+            "compatible_coverage": counts["compatible"] / total,
+            "detection_coverage": counts["detected"] / total,
+            "usable_coverage": counts["usable"] / total,
+            "geometry_usable_coverage": counts["geometry_usable"] / total,
+            "classes": class_counts,
+        }
+    return report
+
+
+def validate_anatomy_coverage(cfg: Any, report: Dict[str, Any]) -> List[str]:
+    """Fail closed for anatomy-dependent experiments unless fallback is explicit."""
+    from config.emotion_defaults import anatomy_requirement_reasons
+
+    reasons = anatomy_requirement_reasons(cfg)
+    if not reasons:
+        return []
+    data_cfg = cfg["DATASETS"]
+    minimum_coverage = float(data_cfg.get("MIN_ANATOMY_COVERAGE", 0.8))
+    minimum_geometry_samples = int(cfg["SOLVER"]["STAGE1"].get("MIN_GEOMETRY_SAMPLES", 8))
+    prompt_mode = str(cfg["MODEL"].get("ANATOMY_PROMPT", {}).get("MODE", "legacy")).lower()
+    stage1_mode = str(cfg["SOLVER"]["STAGE1"].get("MODE", "base")).lower()
+    require_class_geometry = (
+        bool(cfg.get("TRAIN", {}).get("RUN_STAGE1", True))
+        and stage1_mode in {"geometry", "both"}
+        and prompt_mode in {"median", "median_mad", "quality", "shuffled"}
+    )
+    failures: List[str] = []
+    for split, split_report in report.get("splits", {}).items():
+        if split_report["compatible_coverage"] < 1.0:
+            failures.append(
+                f"{split}: compatible artifact coverage "
+                f"{split_report['compatible_coverage']:.3f} < 1.000"
+            )
+        if split_report["usable_coverage"] < minimum_coverage:
+            failures.append(
+                f"{split}: usable anatomy coverage {split_report['usable_coverage']:.3f} "
+                f"< {minimum_coverage:.3f}"
+            )
+        if split == "train" and require_class_geometry:
+            for emotion, class_report in split_report["classes"].items():
+                if class_report["geometry_usable"] < minimum_geometry_samples:
+                    failures.append(
+                        f"train/{emotion}: geometry-usable samples "
+                        f"{class_report['geometry_usable']} < {minimum_geometry_samples}"
+                    )
+    if failures and not bool(data_cfg.get("ALLOW_ANATOMY_FALLBACK", False)):
+        raise RuntimeError(
+            "Anatomy data gate failed for "
+            + ", ".join(reasons)
+            + ": "
+            + "; ".join(failures)
+            + ". Generate compatible artifacts or use an explicit anatomy-free baseline."
+        )
+    return failures
+
+
 class FaceSafeTransform:
     def __init__(
         self,
@@ -212,17 +357,28 @@ class FaceSafeTransform:
         image = ImageEnhance.Contrast(image).enhance(amount)
         return image
 
-    def __call__(self, image: Image.Image) -> torch.Tensor:
+    def __call__(self, image: Image.Image, anatomy: Optional[Dict[str, Any]] = None):
         image = image.convert("RGB")
+        original_size = image.size
         image = ImageOps.fit(image, self.size[::-1], method=Image.BICUBIC, centering=(0.5, 0.5))
-        if self.train and self.hflip_prob > 0 and float(np.random.rand()) < self.hflip_prob:
+        horizontal_flip = self.train and self.hflip_prob > 0 and float(np.random.rand()) < self.hflip_prob
+        if horizontal_flip:
             image = ImageOps.mirror(image)
         if self.train:
             image = self._jitter(image)
 
         array = np.asarray(image, dtype=np.float32) / 255.0
         tensor = torch.from_numpy(array).permute(2, 0, 1)
-        return (tensor - self.mean) / self.std
+        tensor = (tensor - self.mean) / self.std
+        if anatomy is None:
+            return tensor
+        transformed_anatomy = anatomy_to_model_inputs(
+            anatomy,
+            original_size=original_size,
+            output_size=self.size,
+            horizontal_flip=horizontal_flip,
+        )
+        return tensor, transformed_anatomy
 
 
 class EmotionManifestDataset(Dataset):
@@ -249,9 +405,20 @@ class EmotionManifestDataset(Dataset):
 
     def __getitem__(self, index: int) -> Dict[str, Any]:
         sample = self.samples[index]
+        anatomy_artifact = sample.anatomy
+        if anatomy_artifact is None and sample.landmark_path:
+            anatomy_artifact = load_anatomy_artifact(sample.landmark_path)
         with Image.open(sample.image_path) as image:
             image = image.convert("RGB")
-            tensor = self.transform(image) if self.transform is not None else FaceSafeTransform()(image)
+            if isinstance(self.transform, FaceSafeTransform):
+                transformed = self.transform(image, anatomy=anatomy_artifact)
+            else:
+                transformed = self.transform(image) if self.transform is not None else FaceSafeTransform()(image)
+            if isinstance(transformed, tuple):
+                tensor, anatomy_inputs = transformed
+            else:
+                tensor = transformed
+                anatomy_inputs = empty_anatomy_inputs()
 
         return {
             "image": tensor,
@@ -263,14 +430,21 @@ class EmotionManifestDataset(Dataset):
             "frame_id": sample.frame_id,
             "au_labels": sample.au_labels,
             "au_text": sample.au_text,
+            "landmark_path": sample.landmark_path,
+            "anatomy": anatomy_inputs,
             "metadata": sample.metadata or {},
         }
 
 
 def emotion_collate_fn(batch: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
+    anatomy = {
+        key: torch.stack([item["anatomy"][key] for item in batch], dim=0)
+        for key in batch[0]["anatomy"]
+    }
     return {
         "images": torch.stack([item["image"] for item in batch], dim=0),
         "labels": torch.stack([item["label"] for item in batch], dim=0),
+        "anatomy": anatomy,
         "emotions": [item["emotion"] for item in batch],
         "image_paths": [item["image_path"] for item in batch],
         "metadata": [
@@ -280,6 +454,7 @@ def emotion_collate_fn(batch: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
                 "frame_id": item["frame_id"],
                 "au_labels": item["au_labels"],
                 "au_text": item["au_text"],
+                "landmark_path": item["landmark_path"],
                 **item["metadata"],
             }
             for item in batch
@@ -305,6 +480,16 @@ def make_emotion_dataloaders(cfg: Any):
         train=True,
         hflip_prob=float(input_cfg.get("PROB", 0.5)),
         color_jitter=float(input_cfg.get("COLOR_JITTER", 0.05)),
+        mean=mean,
+        std=std,
+    )
+    # Stage 1 statistics and cached image features must describe the original
+    # train split, not one stochastic augmentation draw per sample.
+    stage1_transform = FaceSafeTransform(
+        size=image_size,
+        train=False,
+        hflip_prob=0.0,
+        color_jitter=0.0,
         mean=mean,
         std=std,
     )
@@ -338,10 +523,36 @@ def make_emotion_dataloaders(cfg: Any):
     if require_test and not samples_by_split["test"]:
         raise ValueError(f"Manifest {manifest!r} has no sealed test samples")
 
+    anatomy_report = summarize_anatomy_coverage(all_samples, output_size=image_size)
+    anatomy_failures = validate_anatomy_coverage(cfg, anatomy_report)
+    anatomy_report["fallback_allowed"] = bool(data_cfg.get("ALLOW_ANATOMY_FALLBACK", False))
+    anatomy_report["validation_failures"] = anatomy_failures
+    data_cfg["ANATOMY_COVERAGE_REPORT"] = anatomy_report
+    output_dir = str(cfg.get("OUTPUT_DIR") or "")
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
+        with open(
+            os.path.join(output_dir, "anatomy_coverage.json"),
+            "w",
+            encoding="utf-8",
+        ) as handle:
+            json.dump(anatomy_report, handle, indent=2)
+    if anatomy_failures:
+        logging.getLogger("emotionclip.data").warning(
+            "Anatomy fallback explicitly allowed despite failed data gate: %s",
+            "; ".join(anatomy_failures),
+        )
+
     train_set = EmotionManifestDataset(
         manifest,
         split="train",
         transform=train_transform,
+        samples=samples_by_split["train"],
+    )
+    stage1_set = EmotionManifestDataset(
+        manifest,
+        split="train",
+        transform=stage1_transform,
         samples=samples_by_split["train"],
     )
     val_set = (
@@ -364,7 +575,7 @@ def make_emotion_dataloaders(cfg: Any):
         pin_memory=bool(loader_cfg.get("PIN_MEMORY", False)),
     )
     stage1_loader = DataLoader(
-        train_set,
+        stage1_set,
         batch_size=int(solver_cfg["STAGE1"].get("IMS_PER_BATCH", 64)),
         shuffle=False,
         num_workers=int(loader_cfg.get("NUM_WORKERS", 0)),

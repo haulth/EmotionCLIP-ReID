@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 import torch
 import torch.nn.functional as F
@@ -72,6 +72,10 @@ def emotion_stage2_loss(
     reliability_target: str = "correctness",
     lambda_gate: float = 0.0,
     lambda_temperature: float = 0.0,
+    lambda_routing: float = 0.0,
+    corrupted_outputs: Optional[Dict[str, torch.Tensor]] = None,
+    lambda_reliability_ranking: float = 0.0,
+    reliability_ranking_margin: float = 1.0,
 ) -> Dict[str, torch.Tensor]:
     cls_loss = F.cross_entropy(outputs["logits"], targets)
     align_loss = F.cross_entropy(outputs["alignment_logits"], targets)
@@ -85,12 +89,23 @@ def emotion_stage2_loss(
         raise ValueError(f"Unknown reliability_target {reliability_target!r}; expected 'correctness' or 'edl'")
     gate_loss = outputs.get("gate_regularization", cls_loss.new_zeros(()))
     temperature_loss = outputs.get("temperature_regularization", cls_loss.new_zeros(()))
+    routing_loss = outputs.get("routing_loss", cls_loss.new_zeros(()))
+    if corrupted_outputs is not None and float(lambda_reliability_ranking) > 0:
+        ranking_loss = reliability_ranking_loss(
+            outputs["raw_strength"],
+            corrupted_outputs["raw_strength"],
+            margin=reliability_ranking_margin,
+        )
+    else:
+        ranking_loss = cls_loss.new_zeros(())
     total = (
         cls_loss
         + float(beta_align) * align_loss
         + reliability_weight * unc_loss
         + float(lambda_gate) * gate_loss
         + float(lambda_temperature) * temperature_loss
+        + float(lambda_routing) * routing_loss
+        + float(lambda_reliability_ranking) * ranking_loss
     )
     return {
         "loss": total,
@@ -100,4 +115,6 @@ def emotion_stage2_loss(
         "reliability": unc_loss.detach(),
         "gate": gate_loss.detach(),
         "temperature": temperature_loss.detach(),
+        "routing": routing_loss.detach(),
+        "reliability_ranking": ranking_loss.detach(),
     }

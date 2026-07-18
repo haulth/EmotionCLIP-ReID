@@ -180,6 +180,10 @@ def main():
     model_cfg = cfg["MODEL"]["EMOTION"]
     uncertainty_cfg = cfg["MODEL"].get("UNCERTAINTY", {})
     fusion_cfg = cfg["MODEL"].get("FUSION", {})
+    prompt_geometry_cfg = cfg["MODEL"].get("ANATOMY_PROMPT", {})
+    routing_cfg = cfg["MODEL"].get("ROUTING", {})
+    geometry_cfg = cfg["MODEL"].get("GEOMETRY", {})
+    disagreement_cfg = cfg["MODEL"].get("REGION_DISAGREEMENT", {})
     if uncertainty_cfg.get("MODE", "decoupled") != "decoupled":
         raise ValueError("MODEL.UNCERTAINTY.MODE currently supports only 'decoupled'")
     log_training_event(logger, "Building model", model=cfg["MODEL"]["NAME"])
@@ -189,6 +193,9 @@ def main():
         image_size=cfg["INPUT"]["SIZE_TRAIN"],
         stride_size=cfg["MODEL"]["STRIDE_SIZE"],
         n_ctx=int(model_cfg["N_CTX"]),
+        prompt_geometry_mode=str(prompt_geometry_cfg.get("MODE", "quality")),
+        prompt_geometry_hidden_dim=int(prompt_geometry_cfg.get("HIDDEN_DIM", 32)),
+        prompt_geometry_gate_init=float(prompt_geometry_cfg.get("GATE_INIT", -4.0)),
         adapter_dim=int(model_cfg["ADAPTER_DIM"]),
         adapter_dropout=float(model_cfg["ADAPTER_DROPOUT"]),
         topk_patches=int(model_cfg["TOPK_PATCHES"]),
@@ -204,10 +211,23 @@ def main():
         max_branch_temperature=float(fusion_cfg.get("MAX_TEMPERATURE", 20.0)),
         initial_branch_temperatures=fusion_cfg.get("INITIAL_TEMPERATURES", [0.1, 1.0, 1.0]),
         learn_branch_temperatures=bool(fusion_cfg.get("LEARN_TEMPERATURES", True)),
+        routing_mode=str(routing_cfg.get("MODE", "hybrid")),
+        routing_sigma=float(routing_cfg.get("SIGMA", 0.08)),
+        geometry_hidden_dim=int(geometry_cfg.get("HIDDEN_DIM", 64)),
+        region_importance_hidden_dim=int(geometry_cfg.get("IMPORTANCE_HIDDEN_DIM", 128)),
+        geometry_gate_init=float(geometry_cfg.get("GATE_INIT", -4.0)),
+        geometry_enabled=bool(geometry_cfg.get("ENABLED", True)),
+        geometry_fusion_mode=str(geometry_cfg.get("FUSION_MODE", "gated_residual")),
+        disagreement_quality_threshold=float(disagreement_cfg.get("QUALITY_THRESHOLD", 0.5)),
+        disagreement_min_regions=int(disagreement_cfg.get("MIN_REGIONS", 2)),
         reliability_hidden_dim=int(uncertainty_cfg.get("HIDDEN_DIM", 128)),
         reliability_dropout=float(uncertainty_cfg.get("DROPOUT", 0.1)),
         detach_class_prob=bool(uncertainty_cfg.get("DETACH_CLASS_PROB", True)),
+        reliability_detach_visual_feature=bool(
+            uncertainty_cfg.get("DETACH_VISUAL_FEATURE", True)
+        ),
         max_strength=uncertainty_cfg.get("MAX_STRENGTH", 100.0),
+        reliability_use_anatomy_quality=bool(uncertainty_cfg.get("USE_ANATOMY_QUALITY", True)),
     )
 
     model.to(device)
@@ -222,7 +242,13 @@ def main():
     stage1_weight = model_cfg.get("STAGE1_WEIGHT") or ""
     if stage1_weight:
         logger.info("Loading Stage 1 prompt checkpoint: %s", stage1_weight)
-        load_emotion_checkpoint(model, stage1_weight, strict=False)
+        load_emotion_checkpoint(
+            model,
+            stage1_weight,
+            strict=False,
+            allow_config_mismatch=True,
+            allow_untrained_stage2=True,
+        )
 
     if cfg["TRAIN"].get("RUN_STAGE1", True):
         model.set_train_stage(1)
@@ -231,9 +257,16 @@ def main():
             lr=float(cfg["SOLVER"]["STAGE1"]["BASE_LR"]),
             weight_decay=float(cfg["SOLVER"]["STAGE1"]["WEIGHT_DECAY"]),
         )
-        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
-            optimizer, T_max=max(1, int(cfg["SOLVER"]["STAGE1"]["MAX_EPOCHS"]))
-        )
+        stage1_cfg = cfg["SOLVER"]["STAGE1"]
+        stage1_mode = str(stage1_cfg.get("MODE", "base")).lower()
+        stage1_epochs = int(stage1_cfg.get("MAX_EPOCHS", 20))
+        if stage1_mode == "both":
+            stage1_epochs = int(stage1_cfg.get("BASE_EPOCHS", stage1_epochs)) + int(
+                stage1_cfg.get("GEOMETRY_EPOCHS", 0)
+            )
+        elif stage1_mode == "geometry":
+            stage1_epochs = int(stage1_cfg.get("GEOMETRY_EPOCHS", stage1_epochs))
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=max(1, stage1_epochs))
         do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, scheduler)
 
     if cfg["TRAIN"].get("RUN_STAGE2", True):

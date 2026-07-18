@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "5ceb8c0a9edd66f35726ff1702ec0d329c4911f0",
-  "generatedAt": "2026-07-14T13:02:01.201Z",
+  "gitCommitHash": "0ff83a0a2b2d05a61b5671c0fc4b2223c83ec7c0",
+  "generatedAt": "2026-07-17T14:32:14.262Z",
   "files": {
     "config/__init__.py": {
       "filePath": "config/__init__.py",
@@ -49,7 +49,7 @@
     },
     "config/emotion_defaults.py": {
       "filePath": "config/emotion_defaults.py",
-      "contentHash": "bdc4a69cff536fadc96b4a03ddcdb6900db9d7c9ea7679764952d239884ef60f",
+      "contentHash": "0208114bef1f7a531ad1d7b34f887950984c111aaf75685c2ae6d90491878a80",
       "functions": [
         {
           "name": "get_default_emotion_cfg",
@@ -137,47 +137,47 @@
         "_set_by_dotted_key",
         "load_emotion_cfg"
       ],
-      "totalLines": 132,
+      "totalLines": 196,
       "hasStructuralAnalysis": true
     },
     "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml": {
       "filePath": "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
-      "contentHash": "f8e7cd8cd4ece8763c746365fdfd98bff477ab98ecd7eb8192ba429ca5905073",
+      "contentHash": "88a2b5cdb40318f3b9d0a7d34a4083ffd0bc374834b9f936ee8960b8fef3536d",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 63,
+      "totalLines": 67,
       "hasStructuralAnalysis": true
     },
     "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml": {
       "filePath": "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
-      "contentHash": "b81766105e4e164972b40524c48b5aa4bba517606498c82ee653680a1b098f6e",
+      "contentHash": "a30bd102fd13643b72116e5e07544deb601cb2ae8f5077b6c627c3582b56732c",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 63,
+      "totalLines": 67,
       "hasStructuralAnalysis": true
     },
     "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml": {
       "filePath": "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
-      "contentHash": "48b97e91d22635db9454d5e07bbd8d1f3e1b6b360b0ec8c1430e1298d7680f95",
+      "contentHash": "94c41481f985b7746bb993f505104738ce07fe1533fbbc51da67b39cca3835dc",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 63,
+      "totalLines": 67,
       "hasStructuralAnalysis": true
     },
     "configs/emotion/vit_b16_emotionclip.yml": {
       "filePath": "configs/emotion/vit_b16_emotionclip.yml",
-      "contentHash": "8d735f89da645c931104f4fbb68451d483336d56662a96351665bf11bc1317b4",
+      "contentHash": "dcb6ce4be2896bfb04e0932fdfdf0618ac597d2535bcde4199c0d6add5bf0151",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 63,
+      "totalLines": 119,
       "hasStructuralAnalysis": true
     },
     "configs/person/cnn_base.yml": {
@@ -308,6 +308,264 @@
       "imports": [],
       "exports": [],
       "totalLines": 1,
+      "hasStructuralAnalysis": true
+    },
+    "datasets/anatomy.py": {
+      "filePath": "datasets/anatomy.py",
+      "contentHash": "9f6924d2969531b696b5baf12189ffad895d7fa976df468f13fc6ef828f16ca0",
+      "functions": [
+        {
+          "name": "geometry_feature_definition_mask",
+          "params": [],
+          "returnType": "torch.Tensor",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "apply_horizontal_flip_to_geometry",
+          "params": [
+            "values",
+            "validity",
+            "uncertainty"
+          ],
+          "returnType": "Tuple[np.ndarray, np.ndarray, np.ndarray]",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "_load_anatomy_artifact_path",
+          "params": [
+            "resolved_path",
+            "modified_time_ns",
+            "file_size"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "load_anatomy_artifact",
+          "params": [
+            "value"
+          ],
+          "returnType": "Optional[Dict[str, Any]]",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "_coerce_score",
+          "params": [
+            "value",
+            "default"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "_artifact_arrays",
+          "params": [
+            "artifact"
+          ],
+          "returnType": "Dict[str, np.ndarray]",
+          "exported": true,
+          "lineCount": 54
+        },
+        {
+          "name": "transform_normalized_landmarks",
+          "params": [
+            "coords",
+            "valid",
+            "original_size",
+            "output_size",
+            "horizontal_flip"
+          ],
+          "returnType": "Tuple[np.ndarray, np.ndarray]",
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "_distance",
+          "params": [
+            "coords",
+            "first",
+            "second"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "_region_indices",
+          "params": [
+            "region",
+            "landmark_count"
+          ],
+          "returnType": "Tuple[int, ...]",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "_feature",
+          "params": [
+            "coords",
+            "valid",
+            "uncertainty",
+            "indices",
+            "fn"
+          ],
+          "returnType": "Tuple[float, bool, float]",
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "_polyline_curvature",
+          "params": [
+            "coords",
+            "indices",
+            "scale"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "_geometry_features",
+          "params": [
+            "coords",
+            "valid",
+            "uncertainty"
+          ],
+          "returnType": "Tuple[np.ndarray, np.ndarray, np.ndarray]",
+          "exported": true,
+          "lineCount": 58
+        },
+        {
+          "name": "_post_transform_crop_quality",
+          "params": [
+            "coords",
+            "valid"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "_artifact_feature_uncertainty",
+          "params": [
+            "artifact"
+          ],
+          "returnType": "Optional[Tuple[np.ndarray, np.ndarray]]",
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "empty_anatomy_inputs",
+          "params": [],
+          "returnType": "Dict[str, torch.Tensor]",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "anatomy_to_model_inputs",
+          "params": [
+            "artifact",
+            "original_size",
+            "output_size",
+            "horizontal_flip",
+            "uncertainty_tau"
+          ],
+          "returnType": "Dict[str, torch.Tensor]",
+          "exported": true,
+          "lineCount": 84
+        },
+        {
+          "name": "fit_class_geometry_statistics",
+          "params": [
+            "geometry_features",
+            "geometry_validity",
+            "geometry_uncertainty",
+            "region_quality",
+            "labels",
+            "num_classes",
+            "minimum_samples"
+          ],
+          "returnType": "Dict[str, torch.Tensor]",
+          "exported": true,
+          "lineCount": 66
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "math",
+          "specifiers": [
+            "math"
+          ]
+        },
+        {
+          "source": "functools",
+          "specifiers": [
+            "lru_cache"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Dict",
+            "Iterable",
+            "Mapping",
+            "Optional",
+            "Sequence",
+            "Tuple"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "torch",
+          "specifiers": [
+            "torch"
+          ]
+        }
+      ],
+      "exports": [
+        "geometry_feature_definition_mask",
+        "apply_horizontal_flip_to_geometry",
+        "_load_anatomy_artifact_path",
+        "load_anatomy_artifact",
+        "_coerce_score",
+        "_artifact_arrays",
+        "transform_normalized_landmarks",
+        "_distance",
+        "_region_indices",
+        "_feature",
+        "_polyline_curvature",
+        "_geometry_features",
+        "_post_transform_crop_quality",
+        "_artifact_feature_uncertainty",
+        "empty_anatomy_inputs",
+        "anatomy_to_model_inputs",
+        "fit_class_geometry_statistics"
+      ],
+      "totalLines": 549,
       "hasStructuralAnalysis": true
     },
     "datasets/bases.py": {
@@ -467,7 +725,7 @@
     },
     "datasets/emotion_manifest.py": {
       "filePath": "datasets/emotion_manifest.py",
-      "contentHash": "7df6218135bb632438aff9f647301c974cee8604d6513994df5e1b0adb854dbe",
+      "contentHash": "2eca0657849cc9f45586f3baf052a1495f2d49217934b90fd11393fbc55162d0",
       "functions": [
         {
           "name": "normalize_emotion",
@@ -499,7 +757,7 @@
           ],
           "returnType": "EmotionSample",
           "exported": true,
-          "lineCount": 62
+          "lineCount": 70
         },
         {
           "name": "load_emotion_manifest",
@@ -521,7 +779,7 @@
           ],
           "returnType": "Dict[str, List[str]]",
           "exported": true,
-          "lineCount": 12
+          "lineCount": 15
         },
         {
           "name": "emotion_collate_fn",
@@ -530,7 +788,7 @@
           ],
           "returnType": "Dict[str, Any]",
           "exported": true,
-          "lineCount": 18
+          "lineCount": 24
         },
         {
           "name": "make_emotion_dataloaders",
@@ -538,7 +796,7 @@
             "cfg"
           ],
           "exported": true,
-          "lineCount": 64
+          "lineCount": 115
         }
       ],
       "classes": [
@@ -555,10 +813,12 @@
             "frame_id",
             "au_labels",
             "au_text",
+            "landmark_path",
+            "anatomy",
             "metadata"
           ],
           "exported": true,
-          "lineCount": 11
+          "lineCount": 13
         },
         {
           "name": "FaceSafeTransform",
@@ -569,7 +829,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 37
+          "lineCount": 48
         },
         {
           "name": "EmotionManifestDataset",
@@ -580,7 +840,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 33
+          "lineCount": 53
         }
       ],
       "imports": [
@@ -646,6 +906,14 @@
             "DataLoader",
             "Dataset"
           ]
+        },
+        {
+          "source": ".anatomy",
+          "specifiers": [
+            "anatomy_to_model_inputs",
+            "empty_anatomy_inputs",
+            "load_anatomy_artifact"
+          ]
         }
       ],
       "exports": [
@@ -660,7 +928,7 @@
         "emotion_collate_fn",
         "make_emotion_dataloaders"
       ],
-      "totalLines": 344,
+      "totalLines": 447,
       "hasStructuralAnalysis": true
     },
     "datasets/keypoint_test.txt": {
@@ -1434,23 +1702,23 @@
     },
     "environment_emotionclip_cuda.yml": {
       "filePath": "environment_emotionclip_cuda.yml",
-      "contentHash": "2a4e0dbb59f98f5407835243ef73f499778dae8bd37dcd06ec21282ef48f070f",
+      "contentHash": "7d0fabaa183cde790b1e00fb761b6640802cc0a12b349a0920a55742f0878fd6",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 21,
+      "totalLines": 22,
       "hasStructuralAnalysis": true
     },
     "infer_emotionclip.py": {
       "filePath": "infer_emotionclip.py",
-      "contentHash": "d78aca841e98b9877e90db4289dfa70a4242a9552ce41630996f950a7c6b3796",
+      "contentHash": "ab82dcad0abdfb122c5c207e7e0f4a7643821e82fd1645850dcfeddfb4b6fe94",
       "functions": [
         {
           "name": "main",
           "params": [],
           "exported": true,
-          "lineCount": 55
+          "lineCount": 107
         }
       ],
       "classes": [],
@@ -1486,6 +1754,12 @@
           ]
         },
         {
+          "source": "datasets.anatomy",
+          "specifiers": [
+            "load_anatomy_artifact"
+          ]
+        },
+        {
           "source": "datasets.emotion_manifest",
           "specifiers": [
             "CANONICAL_EMOTIONS",
@@ -1508,7 +1782,7 @@
       "exports": [
         "main"
       ],
-      "totalLines": 72,
+      "totalLines": 125,
       "hasStructuralAnalysis": true
     },
     "loss/__init__.py": {
@@ -1633,7 +1907,7 @@
     },
     "loss/emotion_losses.py": {
       "filePath": "loss/emotion_losses.py",
-      "contentHash": "08d948d993269b1c787549a5224cae2683a5a35c83abab7611b5fd0176b331a3",
+      "contentHash": "60eaaf37645bca87cd42d8defd69e68711e1f34abeaac061eef382121fbbfa5c",
       "functions": [
         {
           "name": "dirichlet_kl_to_uniform",
@@ -1647,20 +1921,42 @@
         {
           "name": "evidential_ce_loss",
           "params": [
-            "logits",
+            "alpha",
             "targets",
             "annealing_coef"
           ],
           "returnType": "torch.Tensor",
           "exported": true,
-          "lineCount": 10
+          "lineCount": 13
         },
         {
-          "name": "dirichlet_probabilities",
+          "name": "dirichlet_statistics",
           "params": [
-            "logits"
+            "alpha"
           ],
           "returnType": "Dict[str, torch.Tensor]",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "reliability_correctness_loss",
+          "params": [
+            "raw_strength",
+            "logits",
+            "targets"
+          ],
+          "returnType": "torch.Tensor",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "reliability_ranking_loss",
+          "params": [
+            "clean_strength",
+            "shifted_strength",
+            "margin"
+          ],
+          "returnType": "torch.Tensor",
           "exported": true,
           "lineCount": 7
         },
@@ -1671,11 +1967,18 @@
             "targets",
             "beta_align",
             "lambda_unc",
-            "edl_annealing"
+            "edl_annealing",
+            "reliability_target",
+            "lambda_gate",
+            "lambda_temperature",
+            "lambda_routing",
+            "corrupted_outputs",
+            "lambda_reliability_ranking",
+            "reliability_ranking_margin"
           ],
           "returnType": "Dict[str, torch.Tensor]",
           "exported": true,
-          "lineCount": 17
+          "lineCount": 55
         }
       ],
       "classes": [],
@@ -1683,7 +1986,8 @@
         {
           "source": "typing",
           "specifiers": [
-            "Dict"
+            "Dict",
+            "Optional"
           ]
         },
         {
@@ -1702,10 +2006,12 @@
       "exports": [
         "dirichlet_kl_to_uniform",
         "evidential_ce_loss",
-        "dirichlet_probabilities",
+        "dirichlet_statistics",
+        "reliability_correctness_loss",
+        "reliability_ranking_loss",
         "emotion_stage2_loss"
       ],
-      "totalLines": 55,
+      "totalLines": 121,
       "hasStructuralAnalysis": true
     },
     "loss/make_loss.py": {
@@ -2464,8 +2770,19 @@
     },
     "model/emotionclip_model.py": {
       "filePath": "model/emotionclip_model.py",
-      "contentHash": "92a13cd061a2d08c7797ef0063bd4aa408ccb5279bf31bb0cb13ea2e2e58e13c",
+      "contentHash": "764d29743e57bcda413721ddc38c0a9e9585d642517b4ae7a682be89b12bb8e9",
       "functions": [
+        {
+          "name": "decoupled_dirichlet",
+          "params": [
+            "logits",
+            "strength",
+            "detach_class_prob"
+          ],
+          "returnType": "Dict[str, torch.Tensor]",
+          "exported": true,
+          "lineCount": 30
+        },
         {
           "name": "load_clip_to_cpu",
           "params": [
@@ -2497,6 +2814,25 @@
           "returnType": "None",
           "exported": true,
           "lineCount": 3
+        },
+        {
+          "name": "normalized_fusion_prior",
+          "params": [
+            "weights"
+          ],
+          "returnType": "torch.Tensor",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "validate_train_last_blocks",
+          "params": [
+            "train_last_blocks",
+            "num_blocks"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 5
         }
       ],
       "classes": [
@@ -2530,14 +2866,64 @@
           "lineCount": 17
         },
         {
+          "name": "AnatomyPromptResidual",
+          "methods": [
+            "__init__",
+            "set_mode",
+            "set_statistics",
+            "_condition",
+            "forward",
+            "regularization"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 98
+        },
+        {
           "name": "EmotionPromptLearner",
           "methods": [
             "__init__",
+            "set_geometry_statistics",
             "forward"
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 60
+          "lineCount": 89
+        },
+        {
+          "name": "BranchFusion",
+          "methods": [
+            "__init__",
+            "temperatures",
+            "gate",
+            "_scale",
+            "forward"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 116
+        },
+        {
+          "name": "RegionPatchRouter",
+          "methods": [
+            "__init__",
+            "_anatomical_attention",
+            "forward"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 84
+        },
+        {
+          "name": "AnatomyRegionFusion",
+          "methods": [
+            "__init__",
+            "_weighted_jsd",
+            "forward"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 178
         },
         {
           "name": "EmotionCLIPModel",
@@ -2545,6 +2931,8 @@
             "__init__",
             "device",
             "set_train_stage",
+            "set_stage1_phase",
+            "set_class_geometry_statistics",
             "get_text_features",
             "encode_image",
             "local_alignment_logits",
@@ -2553,7 +2941,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 162
+          "lineCount": 388
         }
       ],
       "imports": [
@@ -2561,6 +2949,12 @@
           "source": "os",
           "specifiers": [
             "os"
+          ]
+        },
+        {
+          "source": "math",
+          "specifiers": [
+            "math"
           ]
         },
         {
@@ -2598,6 +2992,15 @@
           ]
         },
         {
+          "source": "datasets.anatomy",
+          "specifiers": [
+            "ANATOMY_REGIONS",
+            "MAX_GEOMETRY_FEATURES",
+            "MAX_REGION_LANDMARKS",
+            "NUM_ANATOMY_REGIONS"
+          ]
+        },
+        {
           "source": "datasets.emotion_manifest",
           "specifiers": [
             "CANONICAL_EMOTIONS"
@@ -2617,16 +3020,23 @@
         }
       ],
       "exports": [
+        "decoupled_dirichlet",
         "QuickGELU",
         "ExpressionAdapter",
         "EmotionTextEncoder",
+        "AnatomyPromptResidual",
         "EmotionPromptLearner",
         "load_clip_to_cpu",
         "install_expression_adapters",
         "_set_requires_grad",
+        "normalized_fusion_prior",
+        "validate_train_last_blocks",
+        "BranchFusion",
+        "RegionPatchRouter",
+        "AnatomyRegionFusion",
         "EmotionCLIPModel"
       ],
-      "totalLines": 312,
+      "totalLines": 1106,
       "hasStructuralAnalysis": true
     },
     "model/make_model_clipreid.py": {
@@ -2867,22 +3277,32 @@
     },
     "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb": {
       "filePath": "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
-      "contentHash": "4fad61722e6757c515b599bd1dfd034de9a3af46411022099495e8a182639817",
+      "contentHash": "976c75f07b164742378744ba0315f4ad1497bd4a46b0b66111812fb57e0ae5cd",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 2058,
+      "totalLines": 1881,
       "hasStructuralAnalysis": false
     },
     "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb": {
       "filePath": "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
-      "contentHash": "c98ce35fb61620c20958c7f199df532e612e264396e49c12a68c7948fd391156",
+      "contentHash": "1676eee8945e6778fccaedb61f2caf017f6cd198c92571b16a5a4c5256a4058a",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 1951,
+      "totalLines": 1965,
+      "hasStructuralAnalysis": false
+    },
+    "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx": {
+      "filePath": "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx",
+      "contentHash": "1927c2eb5fc10e23148bb0ca3c198ee3bee62743c017cdd20389ae12b7c4ec3c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 205,
       "hasStructuralAnalysis": false
     },
     "outputs/fer2013/accuracy_uce_summary.json": {
@@ -3574,7 +3994,7 @@
     },
     "processor/processor_emotionclip.py": {
       "filePath": "processor/processor_emotionclip.py",
-      "contentHash": "56e659fc9da8e2b36e4ef1ff275351280b25c26e63518e5d9d15624ad2d3d35c",
+      "contentHash": "59ffd646548dc117682015df6394b760a0a83375a6cdac7e38a57126c1b18f31",
       "functions": [
         {
           "name": "_batch_to_device",
@@ -3584,7 +4004,7 @@
           ],
           "returnType": "Dict[str, Any]",
           "exported": true,
-          "lineCount": 5
+          "lineCount": 10
         },
         {
           "name": "_as_bool",
@@ -3641,6 +4061,37 @@
           "returnType": "float",
           "exported": true,
           "lineCount": 2
+        },
+        {
+          "name": "_forward_batch",
+          "params": [
+            "model",
+            "batch",
+            "text_features"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "corrupt_images_for_reliability",
+          "params": [
+            "images",
+            "noise_std",
+            "occlusion_ratio",
+            "return_occlusion_mask"
+          ],
+          "exported": true,
+          "lineCount": 30
+        },
+        {
+          "name": "corrupt_anatomy_for_reliability",
+          "params": [
+            "anatomy",
+            "occlusion_mask"
+          ],
+          "returnType": "Optional[Dict[str, Any]]",
+          "exported": true,
+          "lineCount": 46
         },
         {
           "name": "_format_log_value",
@@ -3722,7 +4173,16 @@
           ],
           "returnType": "None",
           "exported": true,
-          "lineCount": 49
+          "lineCount": 59
+        },
+        {
+          "name": "_model_signature",
+          "params": [
+            "model"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 24
         },
         {
           "name": "_checkpoint_payload",
@@ -3733,7 +4193,16 @@
             "metrics"
           ],
           "exported": true,
-          "lineCount": 8
+          "lineCount": 10
+        },
+        {
+          "name": "parameter_report",
+          "params": [
+            "model"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 32
         },
         {
           "name": "save_checkpoint",
@@ -3753,10 +4222,12 @@
           "params": [
             "model",
             "checkpoint_path",
-            "strict"
+            "strict",
+            "allow_config_mismatch",
+            "allow_untrained_stage2"
           ],
           "exported": true,
-          "lineCount": 5
+          "lineCount": 121
         },
         {
           "name": "precompute_stage1_features",
@@ -3767,7 +4238,7 @@
           ],
           "returnType": "Dict[str, torch.Tensor]",
           "exported": true,
-          "lineCount": 11
+          "lineCount": 18
         },
         {
           "name": "do_train_emotion_stage1",
@@ -3779,19 +4250,33 @@
             "scheduler"
           ],
           "exported": true,
-          "lineCount": 98
+          "lineCount": 166
         },
         {
           "name": "evaluate_emotion_model",
           "params": [
             "cfg",
             "model",
-            "val_loader",
-            "text_features"
+            "data_loader",
+            "text_features",
+            "include_analysis_outputs"
           ],
           "returnType": "Dict[str, Any]",
           "exported": true,
-          "lineCount": 28
+          "lineCount": 89
+        },
+        {
+          "name": "evaluate_sealed_test",
+          "params": [
+            "cfg",
+            "model",
+            "test_loader",
+            "checkpoint_path",
+            "selection_split"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 31
         },
         {
           "name": "do_train_emotion_stage2",
@@ -3804,7 +4289,7 @@
             "scheduler"
           ],
           "exported": true,
-          "lineCount": 177
+          "lineCount": 362
         }
       ],
       "classes": [],
@@ -3872,6 +4357,13 @@
           ]
         },
         {
+          "source": "datasets.anatomy",
+          "specifiers": [
+            "ANATOMY_DESCRIPTOR_VERSION",
+            "fit_class_geometry_statistics"
+          ]
+        },
+        {
           "source": "loss.emotion_losses",
           "specifiers": [
             "emotion_stage2_loss"
@@ -3892,6 +4384,9 @@
         "_batch_accuracy",
         "_batch_confidence",
         "_batch_uncertainty",
+        "_forward_batch",
+        "corrupt_images_for_reliability",
+        "corrupt_anatomy_for_reliability",
         "_format_log_value",
         "log_training_event",
         "_csv_value",
@@ -3900,15 +4395,18 @@
         "_record_training_epoch",
         "_record_validation_epoch",
         "log_run_config",
+        "_model_signature",
         "_checkpoint_payload",
+        "parameter_report",
         "save_checkpoint",
         "load_emotion_checkpoint",
         "precompute_stage1_features",
         "do_train_emotion_stage1",
         "evaluate_emotion_model",
+        "evaluate_sealed_test",
         "do_train_emotion_stage2"
       ],
-      "totalLines": 596,
+      "totalLines": 1323,
       "hasStructuralAnalysis": true
     },
     "processor/processor.py": {
@@ -4021,12 +4519,12 @@
     },
     "README.md": {
       "filePath": "README.md",
-      "contentHash": "2cb261b7fa25f03d5277e146f1bb9fd9e70288ca479a60857c452b412df598a5",
+      "contentHash": "7c18db1cebe19541ddb670f426df9baa1f64327bd81d4be1d14aa837cb6b561e",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 168,
+      "totalLines": 255,
       "hasStructuralAnalysis": true
     },
     "solver/__init__.py": {
@@ -4379,18 +4877,89 @@
       "totalLines": 71,
       "hasStructuralAnalysis": true
     },
-    "tests/test_emotion_losses_metrics.py": {
-      "filePath": "tests/test_emotion_losses_metrics.py",
-      "contentHash": "ac0995aa830cd312c9d9f725cd4f99db7982e2ee296c696d1c127748976023ee",
+    "tests/test_anatomy_audit.py": {
+      "filePath": "tests/test_anatomy_audit.py",
+      "contentHash": "3cf09bf3e70926873f180ffbad054fe4d80d1622d608e91e95bd57712b006287",
       "functions": [
         {
-          "name": "test_evidential_probabilities_sum_to_one_and_uncertainty_shape",
+          "name": "_landmarks",
           "params": [],
           "exported": true,
-          "lineCount": 6
+          "lineCount": 20
+        },
+        {
+          "name": "test_artifact_builder_propagates_jitter_into_feature_units",
+          "params": [],
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "test_signal_to_jitter_compares_quantities_in_geometry_feature_units",
+          "params": [],
+          "exported": true,
+          "lineCount": 22
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "datasets.anatomy",
+          "specifiers": [
+            "MAX_GEOMETRY_FEATURES",
+            "NUM_ANATOMY_REGIONS"
+          ]
+        },
+        {
+          "source": "tools.audit_anatomy_geometry",
+          "specifiers": [
+            "_signal_to_jitter"
+          ]
+        },
+        {
+          "source": "tools.build_face_landmark_artifacts",
+          "specifiers": [
+            "_feature_jitter_from_observations"
+          ]
+        }
+      ],
+      "exports": [
+        "_landmarks",
+        "test_artifact_builder_propagates_jitter_into_feature_units",
+        "test_signal_to_jitter_compares_quantities_in_geometry_feature_units"
+      ],
+      "totalLines": 70,
+      "hasStructuralAnalysis": true
+    },
+    "tests/test_emotion_losses_metrics.py": {
+      "filePath": "tests/test_emotion_losses_metrics.py",
+      "contentHash": "88f273bfab1da2d6cb69d37352b1d078b271ec0db85a996a5a85143fbd251d02",
+      "functions": [
+        {
+          "name": "test_decoupled_dirichlet_is_offset_invariant_and_consistent",
+          "params": [],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
         },
         {
           "name": "test_emotion_stage2_loss_has_gradients",
+          "params": [],
+          "exported": true,
+          "lineCount": 18
+        },
+        {
+          "name": "test_reliability_loss_does_not_backpropagate_to_classifier_logits",
           "params": [],
           "exported": true,
           "lineCount": 8
@@ -4399,7 +4968,19 @@
           "name": "test_fer_metrics_basic_values",
           "params": [],
           "exported": true,
-          "lineCount": 14
+          "lineCount": 18
+        },
+        {
+          "name": "test_ood_metrics_reward_separated_uncertainty_scores",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients",
+          "params": [],
+          "exported": true,
+          "lineCount": 25
         }
       ],
       "classes": [],
@@ -4425,29 +5006,41 @@
         {
           "source": "loss.emotion_losses",
           "specifiers": [
-            "dirichlet_probabilities",
+            "dirichlet_statistics",
             "evidential_ce_loss",
-            "emotion_stage2_loss"
+            "emotion_stage2_loss",
+            "reliability_correctness_loss"
+          ]
+        },
+        {
+          "source": "model.emotionclip_model",
+          "specifiers": [
+            "decoupled_dirichlet"
           ]
         },
         {
           "source": "utils.fer_metrics",
           "specifiers": [
-            "compute_fer_metrics"
+            "compute_fer_metrics",
+            "ood_detection_metrics"
           ]
         }
       ],
       "exports": [
-        "test_evidential_probabilities_sum_to_one_and_uncertainty_shape",
+        "test_decoupled_dirichlet_is_offset_invariant_and_consistent",
+        "test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax",
         "test_emotion_stage2_loss_has_gradients",
-        "test_fer_metrics_basic_values"
+        "test_reliability_loss_does_not_backpropagate_to_classifier_logits",
+        "test_fer_metrics_basic_values",
+        "test_ood_metrics_reward_separated_uncertainty_scores",
+        "test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients"
       ],
-      "totalLines": 41,
+      "totalLines": 123,
       "hasStructuralAnalysis": true
     },
     "tests/test_emotion_manifest.py": {
       "filePath": "tests/test_emotion_manifest.py",
-      "contentHash": "9cfc8e274570ab68289f1941d4f4945653116929f4b6123232b781f3c4f10a4d",
+      "contentHash": "14cdcd627fe7012aad75e64911ad757e428dd70693918c61f616de967c8555bf",
       "functions": [
         {
           "name": "_write_image",
@@ -4478,6 +5071,64 @@
           ],
           "exported": true,
           "lineCount": 19
+        },
+        {
+          "name": "test_dataloaders_keep_validation_and_test_separate",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "test_fer2013_official_splits_are_not_merged",
+          "params": [],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "test_rafdb_dev_split_is_deterministic_stratified_and_train_only",
+          "params": [],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "test_rafdb_full_official_train_mode_has_no_validation_selection",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "_face_mesh_artifact",
+          "params": [],
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "test_landmarks_follow_center_crop_and_horizontal_flip",
+          "params": [],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "test_horizontal_flip_swaps_left_right_geometry_semantics",
+          "params": [],
+          "exported": true,
+          "lineCount": 41
+        },
+        {
+          "name": "test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing",
+          "params": [],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 17
         }
       ],
       "classes": [],
@@ -4489,9 +5140,33 @@
           ]
         },
         {
+          "source": "torch",
+          "specifiers": [
+            "torch"
+          ]
+        },
+        {
           "source": "PIL",
           "specifiers": [
             "Image"
+          ]
+        },
+        {
+          "source": "tools.convert_fer2013_to_emotion_jsonl",
+          "specifiers": [
+            "split_from_usage"
+          ]
+        },
+        {
+          "source": "tools.convert_rafdb_to_emotion_jsonl",
+          "specifiers": [
+            "select_stratified_validation_images"
+          ]
+        },
+        {
+          "source": "tools.download_hf_emotion_dataset",
+          "specifiers": [
+            "split_name"
           ]
         },
         {
@@ -4502,6 +5177,7 @@
             "EmotionManifestDataset",
             "FaceSafeTransform",
             "load_emotion_manifest",
+            "make_emotion_dataloaders",
             "normalize_emotion",
             "validate_split_leakage"
           ]
@@ -4511,14 +5187,23 @@
         "_write_image",
         "test_normalize_emotion_aliases",
         "test_manifest_uses_string_label_when_id_mismatches",
-        "test_split_leakage_detects_video_overlap"
+        "test_split_leakage_detects_video_overlap",
+        "test_dataloaders_keep_validation_and_test_separate",
+        "test_fer2013_official_splits_are_not_merged",
+        "test_rafdb_dev_split_is_deterministic_stratified_and_train_only",
+        "test_rafdb_full_official_train_mode_has_no_validation_selection",
+        "_face_mesh_artifact",
+        "test_landmarks_follow_center_crop_and_horizontal_flip",
+        "test_horizontal_flip_swaps_left_right_geometry_semantics",
+        "test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing",
+        "test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback"
       ],
-      "totalLines": 81,
+      "totalLines": 282,
       "hasStructuralAnalysis": true
     },
     "tests/test_emotion_model_units.py": {
       "filePath": "tests/test_emotion_model_units.py",
-      "contentHash": "aec72b45e83efd526e04c4c08175c759dcb150043e65dcdc658075152fdd959c",
+      "contentHash": "acd018642b0b8fce205863071e069173ff873723b60982f4e7a1bc05341a9ab6",
       "functions": [
         {
           "name": "test_emotion_prompt_learner_shapes",
@@ -4531,14 +5216,156 @@
           "params": [],
           "exported": true,
           "lineCount": 5
+        },
+        {
+          "name": "test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients",
+          "params": [],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes",
+          "params": [],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "test_train_last_blocks_validation",
+          "params": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "_stage_test_model",
+          "params": [
+            "last_blocks"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "test_adapter_only_stage2_trainable_parameter_whitelist",
+          "params": [],
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "_router_anatomy",
+          "params": [
+            "quality"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_routing_supervision_is_only_active_for_hybrid_ablation",
+          "params": [],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "test_geometry_fusion_zero_init_does_not_change_visual_regions",
+          "params": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "test_unconditional_cross_attention_has_missing_region_visual_fallback",
+          "params": [],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "test_reliable_region_disagreement_requires_two_quality_regions",
+          "params": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "test_prompt_geometry_and_class_statistics_are_zero_init_and_robust",
+          "params": [],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "test_class_quality_ignores_reserved_padding_slots",
+          "params": [],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "test_full_emotionclip_constructor_and_anatomy_forward_integration",
+          "params": [
+            "monkeypatch"
+          ],
+          "exported": true,
+          "lineCount": 29
         }
       ],
-      "classes": [],
+      "classes": [
+        {
+          "name": "_DummyBlock",
+          "methods": [
+            "__init__"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "_TinyResidualBlock",
+          "methods": [
+            "__init__"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "_TinyVisual",
+          "methods": [
+            "__init__",
+            "forward"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "_TinyClip",
+          "methods": [
+            "__init__"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
       "imports": [
         {
           "source": "torch",
           "specifiers": [
             "torch"
+          ]
+        },
+        {
+          "source": "model.emotionclip_model",
+          "specifiers": [
+            "emotionclip_model_module"
+          ]
+        },
+        {
+          "source": "datasets.anatomy",
+          "specifiers": [
+            "empty_anatomy_inputs",
+            "fit_class_geometry_statistics",
+            "geometry_feature_definition_mask"
           ]
         },
         {
@@ -4550,21 +5377,45 @@
         {
           "source": "model.emotionclip_model",
           "specifiers": [
+            "AnatomyPromptResidual",
+            "AnatomyRegionFusion",
+            "BranchFusion",
+            "EmotionCLIPModel",
             "EmotionPromptLearner",
-            "ExpressionAdapter"
+            "ExpressionAdapter",
+            "RegionPatchRouter",
+            "validate_train_last_blocks"
           ]
         }
       ],
       "exports": [
         "test_emotion_prompt_learner_shapes",
-        "test_expression_adapter_zero_initialized_residual"
+        "test_expression_adapter_zero_initialized_residual",
+        "test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients",
+        "test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes",
+        "test_train_last_blocks_validation",
+        "_DummyBlock",
+        "_stage_test_model",
+        "test_adapter_only_stage2_trainable_parameter_whitelist",
+        "_router_anatomy",
+        "test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality",
+        "test_routing_supervision_is_only_active_for_hybrid_ablation",
+        "test_geometry_fusion_zero_init_does_not_change_visual_regions",
+        "test_unconditional_cross_attention_has_missing_region_visual_fallback",
+        "test_reliable_region_disagreement_requires_two_quality_regions",
+        "test_prompt_geometry_and_class_statistics_are_zero_init_and_robust",
+        "test_class_quality_ignores_reserved_padding_slots",
+        "_TinyResidualBlock",
+        "_TinyVisual",
+        "_TinyClip",
+        "test_full_emotionclip_constructor_and_anatomy_forward_integration"
       ],
-      "totalLines": 30,
+      "totalLines": 323,
       "hasStructuralAnalysis": true
     },
     "tests/test_emotion_processor_smoke.py": {
       "filePath": "tests/test_emotion_processor_smoke.py",
-      "contentHash": "e3f8aaa7f9b423aaab92351da48d9ba33d5383a789aa8cb791ceb74f53e11945",
+      "contentHash": "64c53f0ba7a6449d2bb05e863088b62742fb9b9841c3e31d289d284262c11adf",
       "functions": [
         {
           "name": "_loader",
@@ -4578,7 +5429,37 @@
             "tmp_path"
           ],
           "exported": true,
-          "lineCount": 27
+          "lineCount": 28
+        },
+        {
+          "name": "test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 42
+        },
+        {
+          "name": "test_checkpoint_schema_preserves_current_derived_prompt_buffers",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 32
+        },
+        {
+          "name": "test_corruption_invalidates_occluded_anatomy_evidence",
+          "params": [],
+          "exported": true,
+          "lineCount": 19
         }
       ],
       "classes": [
@@ -4592,7 +5473,25 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 44
+          "lineCount": 58
+        },
+        {
+          "name": "_CheckpointPrompt",
+          "methods": [
+            "__init__"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "_CheckpointModel",
+          "methods": [
+            "__init__"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 14
         }
       ],
       "imports": [
@@ -4600,6 +5499,12 @@
           "source": "os",
           "specifiers": [
             "os"
+          ]
+        },
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
           ]
         },
         {
@@ -4611,17 +5516,454 @@
         {
           "source": "processor.processor_emotionclip",
           "specifiers": [
+            "EMOTION_CHECKPOINT_SCHEMA_VERSION",
+            "corrupt_anatomy_for_reliability",
             "do_train_emotion_stage1",
-            "do_train_emotion_stage2"
+            "do_train_emotion_stage2",
+            "evaluate_sealed_test",
+            "load_emotion_checkpoint",
+            "save_checkpoint"
+          ]
+        },
+        {
+          "source": "datasets.anatomy",
+          "specifiers": [
+            "empty_anatomy_inputs"
           ]
         }
       ],
       "exports": [
         "TinyEmotionModel",
         "_loader",
-        "test_processor_stage1_stage2_cpu_smoke"
+        "test_processor_stage1_stage2_cpu_smoke",
+        "test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
+        "_CheckpointPrompt",
+        "_CheckpointModel",
+        "test_checkpoint_schema_preserves_current_derived_prompt_buffers",
+        "test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference",
+        "test_corruption_invalidates_occluded_anatomy_evidence"
       ],
-      "totalLines": 95,
+      "totalLines": 270,
+      "hasStructuralAnalysis": true
+    },
+    "tests/test_run_artifacts.py": {
+      "filePath": "tests/test_run_artifacts.py",
+      "contentHash": "ed50e6cac22f4ab1c864113cd8783a4f2bac86e8d381c8a708fd17badcc8a3a2",
+      "functions": [
+        {
+          "name": "test_run_directory_is_immutable_and_records_provenance",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "test_artifact_lookup_requires_explicit_run_id",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "utils.run_artifacts",
+          "specifiers": [
+            "artifact_dir",
+            "initialize_immutable_run"
+          ]
+        }
+      ],
+      "exports": [
+        "test_run_directory_is_immutable_and_records_provenance",
+        "test_artifact_lookup_requires_explicit_run_id"
+      ],
+      "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "tools/audit_anatomy_geometry.py": {
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "contentHash": "8bb7b7ba4c13deb50a245fda918df9e7c4b514fc9c9089278d9ea52318dfd932",
+      "functions": [
+        {
+          "name": "_parse_args",
+          "params": [],
+          "returnType": "argparse.Namespace",
+          "exported": true,
+          "lineCount": 10
+        },
+        {
+          "name": "_summary",
+          "params": [
+            "values"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
+          "name": "_landmark_valid",
+          "params": [
+            "landmark"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "_signal_to_jitter",
+          "params": [
+            "values",
+            "validity",
+            "labels",
+            "feature_jitter",
+            "feature_jitter_validity"
+          ],
+          "returnType": "Dict[str, Dict[str, Any]]",
+          "exported": true,
+          "lineCount": 57
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 141
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "argparse",
+          "specifiers": [
+            "argparse"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "math",
+          "specifiers": [
+            "math"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "collections",
+          "specifiers": [
+            "Counter"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Dict",
+            "List",
+            "Optional",
+            "Sequence"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "datasets.anatomy",
+          "specifiers": [
+            "ANATOMY_REGIONS",
+            "MAX_GEOMETRY_FEATURES",
+            "MEDIAPIPE_GROUPS",
+            "REGION_FEATURE_NAMES",
+            "anatomy_to_model_inputs",
+            "load_anatomy_artifact"
+          ]
+        },
+        {
+          "source": "datasets.emotion_manifest",
+          "specifiers": [
+            "load_emotion_manifest"
+          ]
+        }
+      ],
+      "exports": [
+        "_parse_args",
+        "_summary",
+        "_landmark_valid",
+        "_signal_to_jitter",
+        "main"
+      ],
+      "totalLines": 269,
+      "hasStructuralAnalysis": true
+    },
+    "tools/build_face_landmark_artifacts.py": {
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "contentHash": "300c0630e821385f177675ae01dff43f9a0e721c79fc1dffa88c0a2856de53df",
+      "functions": [
+        {
+          "name": "_parse_args",
+          "params": [],
+          "returnType": "argparse.Namespace",
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "_load_mediapipe",
+          "params": [],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "_resolve_image_path",
+          "params": [
+            "record",
+            "manifest",
+            "root_dir"
+          ],
+          "returnType": "Path",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "_artifact_path",
+          "params": [
+            "image_path",
+            "artifact_root"
+          ],
+          "returnType": "Path",
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "_shift_image",
+          "params": [
+            "image",
+            "dx",
+            "dy"
+          ],
+          "returnType": "Image.Image",
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "_detect",
+          "params": [
+            "landmarker",
+            "mp",
+            "image"
+          ],
+          "returnType": "Tuple[Optional[List[Any]], Optional[np.ndarray]]",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "_pose_from_matrix",
+          "params": [
+            "matrix"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "_score",
+          "params": [
+            "landmark",
+            "name",
+            "default"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "_jitter_offsets",
+          "params": [
+            "repeats",
+            "pixels",
+            "rng"
+          ],
+          "returnType": "Iterable[Tuple[int, int]]",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "_feature_jitter_from_observations",
+          "params": [
+            "observations",
+            "landmarks",
+            "image_size"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 55
+        },
+        {
+          "name": "_build_artifact",
+          "params": [
+            "image",
+            "image_path",
+            "landmarker",
+            "mp",
+            "jitter_repeats",
+            "jitter_pixels",
+            "rng"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 106
+        },
+        {
+          "name": "_file_sha256",
+          "params": [
+            "path"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "_portable_artifact_reference",
+          "params": [
+            "target",
+            "manifest"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "main",
+          "params": [],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 72
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "argparse",
+          "specifiers": [
+            "argparse"
+          ]
+        },
+        {
+          "source": "hashlib",
+          "specifiers": [
+            "hashlib"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "math",
+          "specifiers": [
+            "math"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Dict",
+            "Iterable",
+            "List",
+            "Optional",
+            "Sequence",
+            "Tuple"
+          ]
+        },
+        {
+          "source": "numpy",
+          "specifiers": [
+            "np"
+          ]
+        },
+        {
+          "source": "PIL",
+          "specifiers": [
+            "Image"
+          ]
+        },
+        {
+          "source": "datasets.anatomy",
+          "specifiers": [
+            "anatomy_to_model_inputs"
+          ]
+        }
+      ],
+      "exports": [
+        "_parse_args",
+        "_load_mediapipe",
+        "_resolve_image_path",
+        "_artifact_path",
+        "_shift_image",
+        "_detect",
+        "_pose_from_matrix",
+        "_score",
+        "_jitter_offsets",
+        "_feature_jitter_from_observations",
+        "_build_artifact",
+        "_file_sha256",
+        "_portable_artifact_reference",
+        "main"
+      ],
+      "totalLines": 401,
       "hasStructuralAnalysis": true
     },
     "tools/convert_affwild2_to_emotion_jsonl.py": {
@@ -4692,7 +6034,7 @@
     },
     "tools/convert_fer2013_to_emotion_jsonl.py": {
       "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
-      "contentHash": "dc40ae68b39eb38e2f220694f4b37926bb4b02e56c588ec509454e3de226cad8",
+      "contentHash": "1879cd77ae7439112d0e85a936ea7e8cc608162083d0d0f85316773ae0db8076",
       "functions": [
         {
           "name": "row_value",
@@ -4747,7 +6089,7 @@
             "directory_test_split"
           ],
           "exported": true,
-          "lineCount": 8
+          "lineCount": 10
         },
         {
           "name": "convert_image_dir",
@@ -4820,7 +6162,7 @@
         "write_records",
         "main"
       ],
-      "totalLines": 230,
+      "totalLines": 232,
       "hasStructuralAnalysis": true
     },
     "tools/convert_raf_au_to_emotion_jsonl.py": {
@@ -4897,7 +6239,7 @@
     },
     "tools/convert_rafdb_to_emotion_jsonl.py": {
       "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
-      "contentHash": "4842f75b60f1e277688f6680e3e6de6574844c30207715ba93e96174fef00650",
+      "contentHash": "6e2c3132a447a4d6c2b8f89d03f2bf67da4465159b37cabb1237d2489a1b50e4",
       "functions": [
         {
           "name": "_extract_archive",
@@ -4967,24 +6309,36 @@
           "lineCount": 32
         },
         {
+          "name": "select_stratified_validation_images",
+          "params": [
+            "rows",
+            "val_ratio",
+            "seed"
+          ],
+          "returnType": "set[str]",
+          "exported": true,
+          "lineCount": 24
+        },
+        {
           "name": "convert_rafdb",
           "params": [
             "raf_root",
             "output",
             "root_dir",
             "label_files",
-            "test_split_name",
+            "val_ratio",
+            "split_seed",
             "preferred_aligned",
             "allow_missing"
           ],
           "exported": true,
-          "lineCount": 67
+          "lineCount": 88
         },
         {
           "name": "main",
           "params": [],
           "exported": true,
-          "lineCount": 44
+          "lineCount": 49
         }
       ],
       "classes": [],
@@ -5011,6 +6365,12 @@
           "source": "os",
           "specifiers": [
             "os"
+          ]
+        },
+        {
+          "source": "random",
+          "specifiers": [
+            "random"
           ]
         },
         {
@@ -5046,15 +6406,16 @@
         "_official_split_from_name",
         "_split_from_label_file",
         "_read_label_file",
+        "select_stratified_validation_images",
         "convert_rafdb",
         "main"
       ],
-      "totalLines": 311,
+      "totalLines": 364,
       "hasStructuralAnalysis": true
     },
     "tools/download_hf_emotion_dataset.py": {
       "filePath": "tools/download_hf_emotion_dataset.py",
-      "contentHash": "4c8a379c1eb0a11466d62ac9165e132e65d5d47d5dba8478908e10e626f7bef5",
+      "contentHash": "d2bea04bb77cf09fef551d6600fc4beecc1aa23e720024fcdac71399ee0ec8d6",
       "functions": [
         {
           "name": "normalize_emotion",
@@ -5072,7 +6433,7 @@
             "test_as"
           ],
           "exported": true,
-          "lineCount": 11
+          "lineCount": 13
         },
         {
           "name": "save_image",
@@ -5096,7 +6457,7 @@
           "name": "main",
           "params": [],
           "exported": true,
-          "lineCount": 69
+          "lineCount": 74
         }
       ],
       "classes": [],
@@ -5133,7 +6494,7 @@
         "iter_limited",
         "main"
       ],
-      "totalLines": 170,
+      "totalLines": 177,
       "hasStructuralAnalysis": true
     },
     "train_clipreid.py": {
@@ -5251,7 +6612,7 @@
     },
     "train_emotionclip.py": {
       "filePath": "train_emotionclip.py",
-      "contentHash": "2fc2fe038ddf1ee1fb53a22fab40cc32dd3207eab908738b2d3210e274434da9",
+      "contentHash": "20db006c4b1ff0b221e074a6390bd8527d04419854b860e33f21fb05aa90b359",
       "functions": [
         {
           "name": "set_seed",
@@ -5295,7 +6656,7 @@
             "opts"
           ],
           "exported": true,
-          "lineCount": 34
+          "lineCount": 26
         },
         {
           "name": "trainable_parameters",
@@ -5318,7 +6679,7 @@
           "name": "main",
           "params": [],
           "exported": true,
-          "lineCount": 104
+          "lineCount": 191
         }
       ],
       "classes": [],
@@ -5407,9 +6768,16 @@
           "specifiers": [
             "do_train_emotion_stage1",
             "do_train_emotion_stage2",
+            "evaluate_sealed_test",
             "load_emotion_checkpoint",
             "log_run_config",
             "log_training_event"
+          ]
+        },
+        {
+          "source": "utils.run_artifacts",
+          "specifiers": [
+            "initialize_immutable_run"
           ]
         }
       ],
@@ -5423,7 +6791,7 @@
         "configure_device",
         "main"
       ],
-      "totalLines": 241,
+      "totalLines": 322,
       "hasStructuralAnalysis": true
     },
     "train.py": {
@@ -5538,7 +6906,7 @@
     },
     "utils/fer_metrics.py": {
       "filePath": "utils/fer_metrics.py",
-      "contentHash": "ac17bc529df08d2bc45c6105584d7635061e093e97e2721c4e5790d57b87737b",
+      "contentHash": "a3ef8e5691f85ae9cc7059fa26d6bbf122efd76d3e936e1ae5717f4fafa1f812",
       "functions": [
         {
           "name": "_safe_div",
@@ -5590,6 +6958,48 @@
           "lineCount": 18
         },
         {
+          "name": "adaptive_calibration_error",
+          "params": [
+            "labels",
+            "probabilities",
+            "n_bins"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "classwise_calibration_error",
+          "params": [
+            "labels",
+            "probabilities",
+            "n_bins"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "negative_log_likelihood",
+          "params": [
+            "labels",
+            "probabilities"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "brier_score",
+          "params": [
+            "labels",
+            "probabilities"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
           "name": "uncertainty_risk_auc",
           "params": [
             "labels",
@@ -5601,6 +7011,49 @@
           "lineCount": 8
         },
         {
+          "name": "excess_aurc",
+          "params": [
+            "labels",
+            "probabilities",
+            "uncertainty"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "risk_at_coverage",
+          "params": [
+            "labels",
+            "probabilities",
+            "uncertainty",
+            "coverage"
+          ],
+          "returnType": "float",
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "_binary_ranking_metrics",
+          "params": [
+            "targets",
+            "scores"
+          ],
+          "returnType": "tuple[float, float]",
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "ood_detection_metrics",
+          "params": [
+            "in_distribution_uncertainty",
+            "ood_uncertainty"
+          ],
+          "returnType": "Dict[str, float]",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
           "name": "compute_fer_metrics",
           "params": [
             "labels",
@@ -5610,7 +7063,7 @@
           ],
           "returnType": "Dict[str, object]",
           "exported": true,
-          "lineCount": 23
+          "lineCount": 45
         }
       ],
       "classes": [],
@@ -5637,10 +7090,18 @@
         "per_class_f1",
         "balanced_accuracy",
         "expected_calibration_error",
+        "adaptive_calibration_error",
+        "classwise_calibration_error",
+        "negative_log_likelihood",
+        "brier_score",
         "uncertainty_risk_auc",
+        "excess_aurc",
+        "risk_at_coverage",
+        "_binary_ranking_metrics",
+        "ood_detection_metrics",
         "compute_fer_metrics"
       ],
-      "totalLines": 90,
+      "totalLines": 228,
       "hasStructuralAnalysis": true
     },
     "utils/iotools.py": {
@@ -6273,6 +7734,168 @@
         "re_ranking"
       ],
       "totalLines": 102,
+      "hasStructuralAnalysis": true
+    },
+    "utils/run_artifacts.py": {
+      "filePath": "utils/run_artifacts.py",
+      "contentHash": "aa558eab36fca9709357b4adb2debe1de0692c39ef10a26f6c10fdd4b96e0ed0",
+      "functions": [
+        {
+          "name": "_sha256_bytes",
+          "params": [
+            "value"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "_git",
+          "params": [
+            "args"
+          ],
+          "returnType": "bytes",
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "_manifest_hashes",
+          "params": [
+            "path"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "_dependency_versions",
+          "params": [],
+          "returnType": "Dict[str, str | None]",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "_hardware",
+          "params": [],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 15
+        },
+        {
+          "name": "initialize_immutable_run",
+          "params": [
+            "cfg",
+            "run_id"
+          ],
+          "returnType": "Path",
+          "exported": true,
+          "lineCount": 40
+        },
+        {
+          "name": "artifact_dir",
+          "params": [
+            "output_root",
+            "run_id"
+          ],
+          "returnType": "Path",
+          "exported": true,
+          "lineCount": 8
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "hashlib",
+          "specifiers": [
+            "hashlib"
+          ]
+        },
+        {
+          "source": "importlib.metadata",
+          "specifiers": [
+            "importlib.metadata"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "platform",
+          "specifiers": [
+            "platform"
+          ]
+        },
+        {
+          "source": "subprocess",
+          "specifiers": [
+            "subprocess"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "collections",
+          "specifiers": [
+            "defaultdict"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Dict",
+            "Iterable"
+          ]
+        },
+        {
+          "source": "torch",
+          "specifiers": [
+            "torch"
+          ]
+        },
+        {
+          "source": "yaml",
+          "specifiers": [
+            "yaml"
+          ]
+        }
+      ],
+      "exports": [
+        "_sha256_bytes",
+        "_git",
+        "_manifest_hashes",
+        "_dependency_versions",
+        "_hardware",
+        "initialize_immutable_run",
+        "artifact_dir"
+      ],
+      "totalLines": 134,
       "hasStructuralAnalysis": true
     }
   }

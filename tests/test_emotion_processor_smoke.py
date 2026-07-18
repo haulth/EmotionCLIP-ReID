@@ -1,12 +1,18 @@
 import os
 
+import pytest
 import torch
 
 from processor.processor_emotionclip import (
+    EMOTION_CHECKPOINT_SCHEMA_VERSION,
+    corrupt_anatomy_for_reliability,
     do_train_emotion_stage1,
     do_train_emotion_stage2,
     evaluate_sealed_test,
+    load_emotion_checkpoint,
+    save_checkpoint,
 )
+from datasets.anatomy import empty_anatomy_inputs
 
 
 class TinyEmotionModel(torch.nn.Module):
@@ -52,6 +58,7 @@ class TinyEmotionModel(torch.nn.Module):
         raw_strength = self.reliability_head(features).squeeze(-1)
         strength = self.num_classes + torch.nn.functional.softplus(raw_strength)
         alpha = 1 + probabilities.detach() * (strength.unsqueeze(-1) - self.num_classes)
+        uncertainty = self.num_classes / strength
         return {
             "logits": logits,
             "alignment_logits": alignment_logits,
@@ -60,7 +67,11 @@ class TinyEmotionModel(torch.nn.Module):
             "alpha": alpha,
             "strength": strength,
             "raw_strength": raw_strength,
-            "uncertainty": self.num_classes / strength,
+            "uncertainty": uncertainty,
+            "class_ambiguity": -(probabilities * probabilities.clamp_min(1e-8).log()).sum(dim=-1),
+            "region_disagreement": torch.zeros(images.shape[0]),
+            "region_disagreement_valid": torch.ones(images.shape[0], dtype=torch.bool),
+            "region_quality": torch.ones(images.shape[0], 3),
         }
 
 
@@ -143,4 +154,116 @@ def test_fixed_epoch_training_skips_model_selection_and_test_is_explicit(tmp_pat
     )
     assert test_metrics["evaluation_split"] == "test"
     assert test_metrics["selection_split"] == "fixed_epoch_no_validation"
+    assert len(test_metrics["analysis_outputs"]) == 8
+    assert set(test_metrics["analysis_outputs"][0]) >= {
+        "class_ambiguity",
+        "region_disagreement",
+        "extrinsic_unreliability",
+    }
     assert os.path.exists(tmp_path / "test_metrics.json")
+
+
+class _CheckpointPrompt(torch.nn.Module):
+    def __init__(self, token_value):
+        super().__init__()
+        self.n_ctx = 4
+        self.prompt_prefix = "A photo of a face with"
+        self.prompt_suffix_template = "showing a {emotion} expression."
+        self.ctx = torch.nn.Parameter(torch.ones(1, 4, 2))
+        self.register_buffer("token_prefix", torch.full((1, 1, 2), float(token_value)))
+        self.register_buffer("token_suffix", torch.full((1, 1, 2), float(token_value)))
+        self.register_buffer("tokenized_prompts", torch.full((1, 2), int(token_value), dtype=torch.long))
+
+
+class _CheckpointModel(torch.nn.Module):
+    def __init__(self, token_value=0):
+        super().__init__()
+        self.class_names = ("a", "b")
+        self.backbone_name = "Tiny"
+        self.routing_mode = "hybrid"
+        self.reliability_use_anatomy_quality = True
+        self.prompt_learner = _CheckpointPrompt(token_value)
+        self.anatomy_fusion = torch.nn.Linear(2, 2)
+        self.anatomy_fusion.geometry_enabled = True
+        self.anatomy_fusion.fusion_mode = "gated_residual"
+        self.classifier = torch.nn.Linear(2, 2)
+        self.fusion = torch.nn.Linear(2, 2)
+        self.reliability_head = torch.nn.Linear(2, 1)
+
+
+def test_checkpoint_schema_preserves_current_derived_prompt_buffers(tmp_path):
+    source = _CheckpointModel(token_value=9)
+    path = save_checkpoint(source, str(tmp_path), "stage2.pth", epoch=3, stage=2)
+    payload = torch.load(path, map_location="cpu")
+    assert payload["schema_version"] == EMOTION_CHECKPOINT_SCHEMA_VERSION
+    assert payload["model_signature"]["anatomy_descriptor_version"] == 2
+    assert payload["model_signature"]["routing_mode"] == "hybrid"
+
+    target = _CheckpointModel(token_value=2)
+    target.prompt_learner.ctx.data.zero_()
+    load_emotion_checkpoint(target, path, strict=False)
+
+    torch.testing.assert_close(target.prompt_learner.ctx, source.prompt_learner.ctx)
+    torch.testing.assert_close(
+        target.prompt_learner.token_prefix,
+        torch.full_like(target.prompt_learner.token_prefix, 2.0),
+    )
+    torch.testing.assert_close(
+        target.prompt_learner.tokenized_prompts,
+        torch.full_like(target.prompt_learner.tokenized_prompts, 2),
+    )
+
+
+def test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference(tmp_path):
+    source = _CheckpointModel()
+    stage1_path = save_checkpoint(source, str(tmp_path), "stage1.pth", epoch=1, stage=1)
+    with pytest.raises(RuntimeError, match="Stage 1 only"):
+        load_emotion_checkpoint(_CheckpointModel(), stage1_path, strict=False)
+
+    complete_path = save_checkpoint(source, str(tmp_path), "complete.pth", epoch=1, stage=2)
+    payload = torch.load(complete_path, map_location="cpu")
+    payload["model"] = {
+        key: value
+        for key, value in payload["model"].items()
+        if not key.startswith("anatomy_fusion.")
+    }
+    incomplete_path = tmp_path / "incomplete.pth"
+    torch.save(payload, incomplete_path)
+    with pytest.raises(RuntimeError, match="complete trained anatomy_fusion"):
+        load_emotion_checkpoint(_CheckpointModel(), str(incomplete_path), strict=False)
+
+    payload = torch.load(complete_path, map_location="cpu")
+    payload["model"] = {
+        key: value
+        for key, value in payload["model"].items()
+        if not key.startswith("reliability_head.")
+    }
+    incomplete_runtime_path = tmp_path / "incomplete_runtime.pth"
+    torch.save(payload, incomplete_runtime_path)
+    with pytest.raises(RuntimeError, match="missing trained Stage 2 runtime modules"):
+        load_emotion_checkpoint(
+            _CheckpointModel(),
+            str(incomplete_runtime_path),
+            strict=False,
+        )
+
+
+def test_corruption_invalidates_occluded_anatomy_evidence():
+    single = empty_anatomy_inputs()
+    anatomy = {
+        key: torch.stack((value, value), dim=0)
+        for key, value in single.items()
+    }
+    anatomy["region_landmarks"][:, :, 0] = 0.5
+    anatomy["region_landmark_mask"][:, :, 0] = True
+    anatomy["region_landmark_weights"][:, :, 0] = 1.0
+    anatomy["region_quality"].fill_(1.0)
+    anatomy["geometry_validity"].fill_(True)
+    occlusion_mask = torch.ones(2, 8, 8, dtype=torch.bool)
+
+    corrupted = corrupt_anatomy_for_reliability(anatomy, occlusion_mask)
+
+    assert not corrupted["region_landmark_mask"].any()
+    torch.testing.assert_close(corrupted["region_quality"], torch.zeros(2, 3))
+    assert not corrupted["geometry_validity"].any()
+    assert not corrupted["anatomy_available"].any()

@@ -93,3 +93,30 @@ def test_fer_metrics_basic_values():
 def test_ood_metrics_reward_separated_uncertainty_scores():
     metrics = ood_detection_metrics([0.05, 0.1, 0.2], [0.8, 0.9, 0.95])
     assert metrics == {"ood_auroc": 1.0, "ood_aupr": 1.0, "ood_fpr95": 0.0}
+
+
+def test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients():
+    logits = torch.randn(3, 7, requires_grad=True)
+    raw_strength = torch.zeros(3, requires_grad=True)
+    routing = torch.tensor(2.0, requires_grad=True)
+    outputs = {
+        "logits": logits,
+        "alignment_logits": logits,
+        "raw_strength": raw_strength,
+        "alpha": torch.ones(3, 7),
+        "routing_loss": routing,
+    }
+    corrupted_strength = torch.full((3,), 2.0, requires_grad=True)
+    losses = emotion_stage2_loss(
+        outputs,
+        torch.tensor([0, 1, 2]),
+        lambda_routing=0.5,
+        corrupted_outputs={"raw_strength": corrupted_strength},
+        lambda_reliability_ranking=0.25,
+        reliability_ranking_margin=1.0,
+    )
+    losses["loss"].backward()
+    assert routing.grad is not None
+    assert raw_strength.grad is not None
+    assert corrupted_strength.grad is not None
+    torch.testing.assert_close(losses["reliability_ranking"], torch.tensor(3.0))

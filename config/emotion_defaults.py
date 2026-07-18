@@ -21,11 +21,36 @@ _DEFAULT = {
             "TRAIN_LAST_BLOCKS": 0,
             "STAGE1_WEIGHT": "",
         },
+        "ANATOMY_PROMPT": {
+            # Conservative defaults keep legacy/quick configs anatomy-free.
+            # Research presets must opt into every anatomy-dependent module.
+            "MODE": "legacy",
+            "HIDDEN_DIM": 32,
+            "GATE_INIT": -4.0,
+        },
+        "ROUTING": {
+            "MODE": "topk",
+            "SIGMA": 0.08,
+        },
+        "GEOMETRY": {
+            "ENABLED": False,
+            "FUSION_MODE": "gated_residual",
+            "HIDDEN_DIM": 64,
+            "IMPORTANCE_HIDDEN_DIM": 128,
+            "GATE_INIT": -4.0,
+        },
+        "REGION_DISAGREEMENT": {
+            "MIN_REGION_QUALITY": 0.2,
+            "MIN_REGIONS": 2,
+            "MIN_EFFECTIVE_REGIONS": 1.5,
+        },
         "UNCERTAINTY": {
             "MODE": "decoupled",
+            "USE_ANATOMY_QUALITY": False,
             "HIDDEN_DIM": 128,
             "DROPOUT": 0.1,
             "DETACH_CLASS_PROB": True,
+            "DETACH_VISUAL_FEATURE": True,
             "MAX_STRENGTH": 100.0,
         },
         "FUSION": {
@@ -53,6 +78,9 @@ _DEFAULT = {
         "STRICT_SPLIT_LEAKAGE": True,
         "REQUIRE_VAL": True,
         "REQUIRE_TEST": False,
+        "REQUIRE_ANATOMY": False,
+        "MIN_ANATOMY_COVERAGE": 0.8,
+        "ALLOW_ANATOMY_FALLBACK": False,
     },
     "DATALOADER": {
         "NUM_WORKERS": 0,
@@ -63,6 +91,12 @@ _DEFAULT = {
         "STAGE1": {
             "IMS_PER_BATCH": 64,
             "MAX_EPOCHS": 20,
+            "MODE": "base",
+            "BASE_EPOCHS": 20,
+            "GEOMETRY_EPOCHS": 0,
+            "MIN_GEOMETRY_SAMPLES": 8,
+            "LAMBDA_SHIFT": 0.01,
+            "LAMBDA_SEMANTIC": 0.1,
             "BASE_LR": 3.5e-4,
             "WEIGHT_DECAY": 1.0e-4,
             "CHECKPOINT_PERIOD": 10,
@@ -84,6 +118,14 @@ _DEFAULT = {
             "RELIABILITY_TARGET": "correctness",
             "LAMBDA_GATE": 0.01,
             "LAMBDA_TEMPERATURE": 0.001,
+            "LAMBDA_ROUTING": 0.0,
+            "CORRUPTION": {
+                "LAMBDA_RANKING": 0.05,
+                "RANKING_MARGIN": 1.0,
+                "PROBABILITY": 0.5,
+                "NOISE_STD": 0.08,
+                "OCCLUSION_RATIO": 0.2,
+            },
         },
     },
     "TEST": {
@@ -91,6 +133,7 @@ _DEFAULT = {
         "WEIGHT": "",
         "EVALUATE_AFTER_TRAIN": False,
         "OUTPUT_FILE": "test_metrics.json",
+        "SAVE_ANALYSIS_OUTPUTS": True,
     },
     "TRAIN": {
         "RUN_ID": "",
@@ -100,6 +143,38 @@ _DEFAULT = {
     },
     "OUTPUT_DIR": "outputs/emotionclip",
 }
+
+
+_CLASS_GEOMETRY_PROMPT_MODES = {"median", "median_mad", "quality", "shuffled"}
+
+
+def anatomy_requirement_reasons(cfg: MutableMapping[str, Any]) -> List[str]:
+    """Return the configured features that require usable anatomy evidence."""
+    reasons: List[str] = []
+    model_cfg = cfg.get("MODEL", {})
+    data_cfg = cfg.get("DATASETS", {})
+    train_cfg = cfg.get("TRAIN", {})
+    stage1_cfg = cfg.get("SOLVER", {}).get("STAGE1", {})
+    routing_mode = str(model_cfg.get("ROUTING", {}).get("MODE", "topk")).lower()
+    prompt_mode = str(model_cfg.get("ANATOMY_PROMPT", {}).get("MODE", "legacy")).lower()
+
+    if bool(data_cfg.get("REQUIRE_ANATOMY", False)):
+        reasons.append("DATASETS.REQUIRE_ANATOMY")
+    if routing_mode in {"anatomy", "hybrid"}:
+        reasons.append(f"MODEL.ROUTING.MODE={routing_mode}")
+    if routing_mode != "topk" and bool(model_cfg.get("GEOMETRY", {}).get("ENABLED", False)):
+        reasons.append("MODEL.GEOMETRY.ENABLED")
+    if bool(model_cfg.get("UNCERTAINTY", {}).get("USE_ANATOMY_QUALITY", False)):
+        reasons.append("MODEL.UNCERTAINTY.USE_ANATOMY_QUALITY")
+
+    stage1_mode = str(stage1_cfg.get("MODE", "base")).lower()
+    if (
+        bool(train_cfg.get("RUN_STAGE1", True))
+        and stage1_mode in {"geometry", "both"}
+        and prompt_mode in _CLASS_GEOMETRY_PROMPT_MODES
+    ):
+        reasons.append(f"Stage1 {prompt_mode} class geometry statistics")
+    return list(dict.fromkeys(reasons))
 
 
 def get_default_emotion_cfg() -> Dict[str, Any]:
@@ -143,6 +218,24 @@ def _set_by_dotted_key(cfg: MutableMapping[str, Any], dotted_key: str, value: An
     node[parts[-1]] = value
 
 
+def validate_emotion_cfg(cfg: MutableMapping[str, Any]) -> None:
+    data_cfg = cfg.get("DATASETS", {})
+    minimum_coverage = float(data_cfg.get("MIN_ANATOMY_COVERAGE", 0.8))
+    if not 0.0 <= minimum_coverage <= 1.0:
+        raise ValueError("DATASETS.MIN_ANATOMY_COVERAGE must be between 0 and 1")
+    stage1_mode = str(cfg.get("SOLVER", {}).get("STAGE1", {}).get("MODE", "base")).lower()
+    if stage1_mode not in {"base", "geometry", "both"}:
+        raise ValueError("SOLVER.STAGE1.MODE must be 'base', 'geometry', or 'both'")
+    disagreement = cfg.get("MODEL", {}).get("REGION_DISAGREEMENT", {})
+    min_region_quality = float(disagreement.get("MIN_REGION_QUALITY", 0.2))
+    if not 0.0 <= min_region_quality <= 1.0:
+        raise ValueError("MODEL.REGION_DISAGREEMENT.MIN_REGION_QUALITY must be between 0 and 1")
+    if int(disagreement.get("MIN_REGIONS", 2)) < 2:
+        raise ValueError("MODEL.REGION_DISAGREEMENT.MIN_REGIONS must be at least 2")
+    if float(disagreement.get("MIN_EFFECTIVE_REGIONS", 1.5)) < 1.0:
+        raise ValueError("MODEL.REGION_DISAGREEMENT.MIN_EFFECTIVE_REGIONS must be at least 1")
+
+
 def load_emotion_cfg(config_file: str = "", opts: Iterable[str] = ()) -> Dict[str, Any]:
     cfg = get_default_emotion_cfg()
     if config_file:
@@ -155,4 +248,5 @@ def load_emotion_cfg(config_file: str = "", opts: Iterable[str] = ()) -> Dict[st
         raise ValueError("Command-line opts must be KEY VALUE pairs")
     for key, value in zip(opts[0::2], opts[1::2]):
         _set_by_dotted_key(cfg, key, _coerce_value(value))
+    validate_emotion_cfg(cfg)
     return cfg

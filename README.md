@@ -42,6 +42,53 @@ Prepare a JSONL manifest with one record per image:
 {"image_path":"train/000001.jpg","emotion":"happiness","emotion_id":3,"split":"train","au_labels":{"AU6":1,"AU12":1},"au_text":["raises the cheeks","pulls the lip corners upward"]}
 ```
 
+Generate offline face-landmark artifacts before anatomy-conditioned training. The runtime dataloader reads the
+detector-agnostic JSON files, so MediaPipe is not imported by the model:
+
+```
+python tools/build_face_landmark_artifacts.py --manifest data/RAF-DB/manifest.jsonl --output-manifest data/RAF-DB/manifest_anatomy.jsonl --artifact-root data/RAF-DB/anatomy --model-path path/to/face_landmarker.task --root-dir path/to/RAF-DB
+python tools/audit_anatomy_geometry.py --manifest data/RAF-DB/manifest_anatomy.jsonl --split train --output data/RAF-DB/anatomy_audit_train.json
+```
+
+Artifacts generated before schema v2 must be regenerated with `--overwrite`. Schema v2 records detector/model
+provenance and repeated-detection jitter propagated into the same units as each geometry feature; the audit will not
+substitute coordinate uncertainty when feature-level jitter is unavailable.
+
+Each updated manifest record contains `landmark_path`. An artifact stores normalized `(x,y,z)`, explicit
+`visibility`, `confidence`, `uncertainty`, and `valid` for every point, plus pose, crop quality, detector metadata,
+and jitter diagnostics. Missing points remain invalid and are never filled with synthetic coordinates. Horizontal
+flip and center-crop are applied consistently to image, landmarks, left/right geometry semantics, and feature
+uncertainty by `FaceSafeTransform`.
+
+The main ablations are selected without code changes: `MODEL.ROUTING.MODE` accepts `topk`, `free`, `anatomy`, or
+`hybrid`; `MODEL.GEOMETRY.ENABLED` isolates S3 versus S4; and
+`MODEL.UNCERTAINTY.USE_ANATOMY_QUALITY` isolates the region-quality reliability input. Stage-1 prompt modes are
+`legacy` (P0), `role_only`, `median`, `median_mad`, `quality`, `random`, and `shuffled`. Class median/MAD statistics are fitted only
+from a deterministic, non-augmented view of the train split and saved with the run.
+
+Stage-2 matrix (each row lists CLI overrides after the config path):
+
+```
+S0  MODEL.ROUTING.MODE topk    MODEL.GEOMETRY.ENABLED false MODEL.UNCERTAINTY.USE_ANATOMY_QUALITY false SOLVER.STAGE2.LAMBDA_ROUTING 0
+S1  MODEL.ROUTING.MODE free    MODEL.GEOMETRY.ENABLED false MODEL.UNCERTAINTY.USE_ANATOMY_QUALITY false SOLVER.STAGE2.LAMBDA_ROUTING 0
+S2  MODEL.ROUTING.MODE anatomy MODEL.GEOMETRY.ENABLED false MODEL.UNCERTAINTY.USE_ANATOMY_QUALITY false SOLVER.STAGE2.LAMBDA_ROUTING 0
+S3  MODEL.ROUTING.MODE hybrid  MODEL.GEOMETRY.ENABLED false MODEL.UNCERTAINTY.USE_ANATOMY_QUALITY false SOLVER.STAGE2.LAMBDA_ROUTING 0.05
+S4  MODEL.ROUTING.MODE hybrid  MODEL.GEOMETRY.ENABLED true  MODEL.UNCERTAINTY.USE_ANATOMY_QUALITY false SOLVER.STAGE2.LAMBDA_ROUTING 0.05
+S5  MODEL.ROUTING.MODE hybrid  MODEL.GEOMETRY.ENABLED true  MODEL.UNCERTAINTY.USE_ANATOMY_QUALITY true SOLVER.STAGE2.LAMBDA_ROUTING 0.05
+SF  MODEL.ROUTING.MODE free    MODEL.GEOMETRY.ENABLED true  MODEL.GEOMETRY.FUSION_MODE cross_attention MODEL.UNCERTAINTY.USE_ANATOMY_QUALITY false SOLVER.STAGE2.LAMBDA_ROUTING 0
+```
+
+S6 uses the S5 checkpoint and analyzes `class_ambiguity`, `region_disagreement` (only where
+`region_disagreement_valid` is true), and `extrinsic_unreliability`; disagreement is never an optimization target.
+Sealed-test `test_metrics.json` includes per-image `analysis_outputs` for joining FERPlus annotator entropy or
+corruption metadata by `image_path` (`TEST.SAVE_ANALYSIS_OUTPUTS` can disable this payload).
+
+Checkpoints include a versioned experiment signature. Inference rejects Stage-1-only checkpoints, incompatible
+class/config signatures, or incomplete anatomy fusion weights; non-strict migrations regenerate prompt token buffers
+from the current prompt template instead of silently restoring derived buffers from an older template.
+Reliability supervision updates the reliability head without back-propagating into the visual encoder by default;
+synthetic occlusion also invalidates covered landmark and geometry evidence before clean-corrupted ranking.
+
 AU fields are parsed and preserved as metadata in this implementation pass; they are not used for AU detection or fusion yet. The canonical emotion order is:
 
 ```
