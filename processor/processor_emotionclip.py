@@ -444,7 +444,92 @@ def log_run_config(logger: logging.Logger, cfg: Dict[str, Any], config_file: str
         log_training_event(logger, "CLI opts", opts=" ".join(str(item) for item in opts))
 
 
+def unwrap_model(model):
+    """Return the underlying EmotionCLIP model for parallel wrappers."""
+    return model.module if isinstance(model, torch.nn.DataParallel) else model
+
+
+class EmotionDataParallel(torch.nn.DataParallel):
+    """DataParallel adapter for EmotionCLIP's batch and shared output tensors.
+
+    The default DataParallel scatter would split ``text_features`` by class and
+    the default gather would concatenate shared tensors such as the three branch
+    temperatures. Both operations are incorrect for this model: image-shaped
+    tensors are batch-parallel, while text descriptors and regularizers are
+    shared across every replica.
+    """
+
+    _SHARED_MEAN_KEYS = {
+        "branch_temperatures",
+        "gate_regularization",
+        "temperature_regularization",
+        "routing_loss",
+    }
+
+    def scatter(self, inputs, kwargs, device_ids):
+        shared_text_features = kwargs.get("text_features")
+        scatter_kwargs = dict(kwargs)
+        if torch.is_tensor(shared_text_features):
+            scatter_kwargs.pop("text_features", None)
+        scattered_inputs, scattered_kwargs = super().scatter(inputs, scatter_kwargs, device_ids)
+        if torch.is_tensor(shared_text_features):
+            for index, replica_kwargs in enumerate(scattered_kwargs):
+                target = torch.device("cuda", device_ids[index])
+                replica_kwargs["text_features"] = shared_text_features.to(
+                    target,
+                    non_blocking=True,
+                )
+        return scattered_inputs, scattered_kwargs
+
+    @staticmethod
+    def _output_device(output_device, values):
+        if isinstance(output_device, int):
+            if torch.cuda.is_available():
+                return torch.device("cuda", output_device)
+            return values[0].device
+        return torch.device(output_device)
+
+    def gather(self, outputs, output_device):
+        if not outputs or not isinstance(outputs[0], dict):
+            return super().gather(outputs, output_device)
+
+        batch_sizes = []
+        for output in outputs:
+            logits = output.get("logits")
+            batch_sizes.append(
+                int(logits.shape[0])
+                if torch.is_tensor(logits) and logits.ndim > 0
+                else None
+            )
+
+        def merge(key, values):
+            if not values or not all(torch.is_tensor(value) for value in values):
+                return values[0]
+            target = self._output_device(output_device, values)
+            moved = [value.to(target, non_blocking=True) for value in values]
+            is_batch_tensor = all(
+                batch_size is not None
+                and value.ndim > 0
+                and value.shape[0] == batch_size
+                for value, batch_size in zip(values, batch_sizes)
+            )
+            if is_batch_tensor:
+                return torch.cat(moved, dim=0)
+            if key in self._SHARED_MEAN_KEYS:
+                return torch.stack(moved, dim=0).mean(dim=0)
+            if key == "text_features":
+                return moved[0]
+            # Keep a conservative fallback for future shared metadata tensors.
+            if all(value.shape == moved[0].shape for value in moved):
+                return moved[0]
+            return torch.cat(moved, dim=0)
+
+        keys = outputs[0].keys()
+        return {key: merge(key, [output[key] for output in outputs]) for key in keys}
+
+
 def _model_signature(model) -> Dict[str, Any]:
+    model = unwrap_model(model)
     prompt_learner = getattr(model, "prompt_learner", None)
     anatomy_fusion = getattr(model, "anatomy_fusion", None)
     return {
@@ -471,6 +556,7 @@ def _model_signature(model) -> Dict[str, Any]:
 
 
 def _checkpoint_payload(model, epoch: int, stage: int, metrics: Optional[Dict[str, Any]] = None):
+    model = unwrap_model(model)
     return {
         "schema_version": EMOTION_CHECKPOINT_SCHEMA_VERSION,
         "stage": stage,
@@ -483,6 +569,7 @@ def _checkpoint_payload(model, epoch: int, stage: int, metrics: Optional[Dict[st
 
 
 def parameter_report(model) -> Dict[str, Any]:
+    model = unwrap_model(model)
     total = sum(parameter.numel() for parameter in model.parameters())
     trainable = sum(parameter.numel() for parameter in model.parameters() if parameter.requires_grad)
     groups: Dict[str, int] = {}
@@ -531,6 +618,7 @@ def load_emotion_checkpoint(
     allow_config_mismatch: bool = False,
     allow_untrained_stage2: bool = False,
 ):
+    model = unwrap_model(model)
     checkpoint = torch.load(checkpoint_path, map_location="cpu")
     if not isinstance(checkpoint, dict):
         raise ValueError(f"Checkpoint {checkpoint_path} must contain a state-dict mapping")
@@ -674,22 +762,23 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
     log_period = int(stage_cfg.get("LOG_PERIOD", 20))
 
     model.to(device)
-    model.set_train_stage(1)
+    core_model = unwrap_model(model)
+    core_model.set_train_stage(1)
     cached = precompute_stage1_features(model, train_loader_stage1, device)
     features = cached["features"].to(device)
     labels = cached["labels"].to(device)
     statistics_available = False
-    if "geometry_features" in cached and hasattr(model, "set_class_geometry_statistics"):
+    if "geometry_features" in cached and hasattr(core_model, "set_class_geometry_statistics"):
         statistics = fit_class_geometry_statistics(
             cached["geometry_features"],
             cached["geometry_validity"],
             cached["geometry_uncertainty"],
             cached["region_quality"],
             cached["labels"],
-            num_classes=model.num_classes,
+            num_classes=core_model.num_classes,
             minimum_samples=int(stage_cfg.get("MIN_GEOMETRY_SAMPLES", 8)),
         )
-        model.set_class_geometry_statistics(statistics)
+        core_model.set_class_geometry_statistics(statistics)
         statistics_available = bool(statistics["quality"].sum() > 0)
         os.makedirs(output_dir, exist_ok=True)
         torch.save(statistics, os.path.join(output_dir, "stage1_geometry_statistics.pt"))
@@ -725,12 +814,12 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
 
     global_epoch = 0
     for phase, phase_epochs in phases:
-        if hasattr(model, "set_stage1_phase"):
-            model.set_stage1_phase(phase)
+        if hasattr(core_model, "set_stage1_phase"):
+            core_model.set_stage1_phase(phase)
         base_text_features = None
-        if phase == "geometry" and hasattr(model, "get_text_features"):
+        if phase == "geometry" and hasattr(core_model, "get_text_features"):
             with torch.no_grad():
-                base_text_features = model.get_text_features(use_geometry=False).detach()
+                base_text_features = core_model.get_text_features(use_geometry=False).detach()
         for phase_epoch in range(1, phase_epochs + 1):
             global_epoch += 1
             start_time = time.time()
@@ -754,16 +843,16 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
                 batch_features = features[indices]
                 batch_labels = labels[indices]
                 optimizer.zero_grad()
-                if hasattr(model, "prompt_learner") and hasattr(model.prompt_learner, "geometry_residual"):
-                    text_features = model.get_text_features(use_geometry=phase == "geometry")
+                if hasattr(core_model, "prompt_learner") and hasattr(core_model.prompt_learner, "geometry_residual"):
+                    text_features = core_model.get_text_features(use_geometry=phase == "geometry")
                 else:
                     text_features = model(get_text=True)
-                logits = model.logit_scale.exp().float() * batch_features @ text_features.t()
+                logits = core_model.logit_scale.exp().float() * batch_features @ text_features.t()
                 classification_loss = F.cross_entropy(logits, batch_labels)
                 shift_loss = classification_loss.new_zeros(())
                 semantic_loss = classification_loss.new_zeros(())
                 if phase == "geometry":
-                    shift_loss = model.prompt_learner.geometry_residual.regularization()
+                    shift_loss = core_model.prompt_learner.geometry_residual.regularization()
                     semantic_loss = 1.0 - F.cosine_similarity(
                         text_features, base_text_features, dim=-1
                     ).mean()
@@ -830,8 +919,8 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
             _record_training_epoch(cfg, epoch_metrics)
             save_checkpoint(model, output_dir, "last_emotionclip_stage1.pth", global_epoch, stage=1)
 
-    if hasattr(model, "save_stage1_descriptors"):
-        model.save_stage1_descriptors(os.path.join(output_dir, "stage1_text_descriptors.pth"))
+    if hasattr(core_model, "save_stage1_descriptors"):
+        core_model.save_stage1_descriptors(os.path.join(output_dir, "stage1_text_descriptors.pth"))
 
 
 def evaluate_emotion_model(
@@ -872,7 +961,7 @@ def evaluate_emotion_model(
                 )
                 region_qualities.extend(outputs["region_quality"].detach().cpu().tolist())
             image_paths.extend(batch["image_paths"])
-    metrics = compute_fer_metrics(labels, probabilities, uncertainties, model.class_names)
+    metrics = compute_fer_metrics(labels, probabilities, uncertainties, unwrap_model(model).class_names)
     metrics["num_samples"] = len(labels)
     metrics["image_paths"] = image_paths
     if probabilities:
@@ -977,7 +1066,8 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
     lambda_gate = float(stage_cfg.get("LAMBDA_GATE", 0.0))
     lambda_temperature = float(stage_cfg.get("LAMBDA_TEMPERATURE", 0.0))
     lambda_routing = float(stage_cfg.get("LAMBDA_ROUTING", 0.0))
-    routing_mode = str(getattr(model, "routing_mode", "topk")).lower()
+    core_model = unwrap_model(model)
+    routing_mode = str(getattr(core_model, "routing_mode", "topk")).lower()
     if routing_mode != "hybrid" and lambda_routing != 0.0:
         logger.info(
             "Disabling routing loss for pure %s routing ablation; "
@@ -993,7 +1083,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
     )
 
     model.to(device)
-    model.set_train_stage(2)
+    core_model.set_train_stage(2)
     params = parameter_report(model)
     os.makedirs(output_dir, exist_ok=True)
     with open(os.path.join(output_dir, "trainable_parameters.json"), "w", encoding="utf-8") as handle:

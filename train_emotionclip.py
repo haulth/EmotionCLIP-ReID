@@ -16,10 +16,12 @@ from model.emotionclip_model import EmotionCLIPModel
 from processor.processor_emotionclip import (
     do_train_emotion_stage1,
     do_train_emotion_stage2,
+    EmotionDataParallel,
     evaluate_sealed_test,
     load_emotion_checkpoint,
     log_run_config,
     log_training_event,
+    unwrap_model,
 )
 from utils.run_artifacts import initialize_immutable_run
 
@@ -93,6 +95,20 @@ def trainable_parameters(model):
     return [parameter for parameter in model.parameters() if parameter.requires_grad]
 
 
+def parse_gpu_ids(gpus: str):
+    if not str(gpus or "").strip():
+        return []
+    try:
+        gpu_ids = [int(item.strip()) for item in str(gpus).split(",")]
+    except ValueError as exc:
+        raise ValueError(f"--gpus must be a comma-separated list of CUDA indices, got {gpus!r}") from exc
+    if any(gpu_id < 0 for gpu_id in gpu_ids):
+        raise ValueError(f"CUDA device indices must be >= 0, got {gpu_ids}")
+    if len(set(gpu_ids)) != len(gpu_ids):
+        raise ValueError(f"CUDA device indices must be unique, got {gpu_ids}")
+    return gpu_ids
+
+
 def configure_device(cfg, gpu_id=None):
     requested_device = str(cfg["MODEL"].get("DEVICE", "cpu")).strip()
     if gpu_id is not None:
@@ -128,6 +144,11 @@ def main():
     parser = argparse.ArgumentParser(description="EmotionCLIP-ReID FER training")
     parser.add_argument("--config_file", default="configs/emotion/vit_b16_emotionclip.yml", type=str)
     parser.add_argument("--gpu", type=int, default=None, help="CUDA GPU index to use, for example --gpu 1")
+    parser.add_argument(
+        "--gpus",
+        default="",
+        help="Comma-separated CUDA indices for single-process DataParallel, for example --gpus 0,1",
+    )
     parser.add_argument("--run-id", default="", help="Unique immutable artifact run id")
     parser.add_argument(
         "--no_progress",
@@ -141,7 +162,21 @@ def main():
     cfg = load_emotion_cfg(args.config_file, args.opts)
     if args.no_progress:
         cfg["TRAIN"]["PROGRESS_BAR"] = False
-    device, device_warning = configure_device(cfg, gpu_id=args.gpu)
+    gpu_ids = parse_gpu_ids(args.gpus)
+    if args.gpu is not None and gpu_ids:
+        raise ValueError("Use either --gpu or --gpus, not both")
+    device, device_warning = configure_device(cfg, gpu_id=gpu_ids[0] if gpu_ids else args.gpu)
+    if gpu_ids and device.type != "cuda":
+        gpu_ids = []
+    if gpu_ids:
+        unavailable = [gpu_id for gpu_id in gpu_ids if gpu_id >= torch.cuda.device_count()]
+        if unavailable:
+            raise ValueError(
+                f"CUDA device(s) {unavailable} were requested, but only "
+                f"{torch.cuda.device_count()} CUDA device(s) are visible"
+            )
+    cfg["TRAIN"]["GPU_IDS"] = gpu_ids or ([device.index] if device.type == "cuda" else [])
+    cfg["TRAIN"]["PARALLEL_MODE"] = "data_parallel" if len(gpu_ids) > 1 else "single_device"
     initialize_immutable_run(cfg, run_id=args.run_id)
     setup_logging(cfg["OUTPUT_DIR"])
     logger = logging.getLogger("emotionclip.train")
@@ -231,6 +266,15 @@ def main():
     )
 
     model.to(device)
+    if len(gpu_ids) > 1:
+        model = EmotionDataParallel(model, device_ids=gpu_ids, output_device=gpu_ids[0])
+        log_training_event(
+            logger,
+            "DataParallel enabled",
+            gpu_ids=",".join(str(gpu_id) for gpu_id in gpu_ids),
+            primary_device=device,
+            global_batch_size=cfg["SOLVER"]["STAGE2"].get("IMS_PER_BATCH", "unknown"),
+        )
     log_training_event(
         logger,
         "Model ready",
@@ -251,7 +295,7 @@ def main():
         )
 
     if cfg["TRAIN"].get("RUN_STAGE1", True):
-        model.set_train_stage(1)
+        unwrap_model(model).set_train_stage(1)
         optimizer = torch.optim.AdamW(
             trainable_parameters(model),
             lr=float(cfg["SOLVER"]["STAGE1"]["BASE_LR"]),
@@ -270,7 +314,7 @@ def main():
         do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, scheduler)
 
     if cfg["TRAIN"].get("RUN_STAGE2", True):
-        model.set_train_stage(2)
+        unwrap_model(model).set_train_stage(2)
         optimizer = torch.optim.AdamW(
             trainable_parameters(model),
             lr=float(cfg["SOLVER"]["STAGE2"]["BASE_LR"]),

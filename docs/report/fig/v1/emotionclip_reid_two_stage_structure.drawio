@@ -1,137 +1,179 @@
 <mxfile host="65bd71144e">
     <diagram id="emotionclip-reid-two-stage-structure" name="EmotionCLIP-ReID Two-Stage Structure">
-        <mxGraphModel dx="2200" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1200" math="0" shadow="0">
+        <mxGraphModel dx="2872" dy="1298" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1750" pageHeight="900" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-
-                <mxCell id="title" value="&lt;b&gt;EmotionCLIP-ReID&lt;/b&gt; — Minimal two-stage method overview for facial expression recognition&lt;br&gt;&lt;font style=&quot;font-size:14px;font-weight:normal&quot;&gt;semantic prototype learning → anatomy-aware visual adaptation → reliability-aware prediction&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=22;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="48" y="18" width="1800" height="62" as="geometry"/>
+                <mxCell id="intro" value="Phương án &lt;b&gt;EmotionCLIP-ReID&lt;/b&gt; đề xuất kế thừa khung huấn luyện 2 giai đoạn của CLIP-ReID&lt;br&gt;và chuyển trọng tâm từ định danh ID sang descriptor ngữ nghĩa cho nhận dạng cảm xúc bền bỉ." style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=22;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="45" y="25" width="1600" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="contract" value="&lt;b&gt;Shared experimental contract&lt;/b&gt;  ·  transform-consistent anatomy artifacts  ·  coverage validation  ·  sealed train / validation / test provenance" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=2;arcSize=8;fontSize=14;fontColor=#064E3B;fontFamily=Helvetica;align=center;verticalAlign=middle;" parent="1" vertex="1">
-                    <mxGeometry x="60" y="92" width="1780" height="42" as="geometry"/>
+                <mxCell id="split" value="" style="line;html=1;strokeWidth=2.2;strokeColor=#111827;" parent="1" vertex="1">
+                    <mxGeometry x="850" y="105" width="1" height="745" as="geometry"/>
                 </mxCell>
-                <mxCell id="legend" value="&lt;b&gt;Legend:&lt;/b&gt; gray = frozen CLIP baseline  ·  orange = trainable adaptation  ·  green = anatomy / quality evidence  ·  pink = reliability outputs" style="text;html=1;strokeColor=none;fillColor=none;align=right;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#475569;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="65" y="140" width="1770" height="24" as="geometry"/>
+                <mxCell id="topline" value="" style="line;html=1;strokeWidth=2.2;strokeColor=#111827;" parent="1" vertex="1">
+                    <mxGeometry x="30" y="105" width="1640" height="1" as="geometry"/>
                 </mxCell>
-
-                <mxCell id="stage1_panel" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FBFF;strokeColor=#2563EB;strokeWidth=2.4;arcSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="50" y="175" width="840" height="905" as="geometry"/>
+                <mxCell id="stage1_title" value="&lt;b&gt;Giai đoạn 1: Học Descriptor Cảm xúc&lt;/b&gt;&lt;br&gt;(Emotion Descriptor / Token Learning)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=22;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="115" y="115" width="650" height="62" as="geometry"/>
                 </mxCell>
-                <mxCell id="stage2_panel" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FBFEFD;strokeColor=#0F766E;strokeWidth=2.4;arcSize=10;" parent="1" vertex="1">
-                    <mxGeometry x="910" y="175" width="940" height="905" as="geometry"/>
+                <mxCell id="stage2_title" value="&lt;b&gt;Giai đoạn 2: Tinh chỉnh với Bộ chuyển đổi&lt;/b&gt;&lt;br&gt;(Adapter-based Fine-tuning)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=22;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="1267.5" y="115" width="650" height="62" as="geometry"/>
                 </mxCell>
-                <mxCell id="stage1_title" value="&lt;b&gt;Stage 1 — Class-Conditional Semantic Prototype Learning&lt;/b&gt;&lt;br&gt;prompt adaptation with frozen CLIP encoders" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=19;fontColor=#1E3A8A;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="75" y="195" width="790" height="56" as="geometry"/>
+                <mxCell id="s1_face" value="face&lt;br&gt;image x" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#64748B;strokeWidth=2;arcSize=8;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="207" width="75" height="88" as="geometry"/>
                 </mxCell>
-                <mxCell id="stage2_title" value="&lt;b&gt;Stage 2 — Anatomy-Guided Parameter-Efficient FER Adaptation&lt;/b&gt;&lt;br&gt;regional evidence fusion with decoupled reliability" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=19;fontColor=#065F46;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="935" y="195" width="890" height="56" as="geometry"/>
+                <mxCell id="s1_label" value="emotion label&lt;br&gt;c&lt;br&gt;optional AU a" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#64748B;strokeWidth=2;arcSize=8;fontSize=20;fontColor=#111827;fontFamily=Helvetica;dashed=1;dashPattern=6 5;" vertex="1" parent="1">
+                    <mxGeometry x="786" y="388" width="174" height="82" as="geometry"/>
                 </mxCell>
-
-                <!-- Stage 1: minimal semantic prototype path -->
-                <mxCell id="s1_input" value="face image&lt;br&gt;x" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#64748B;strokeWidth=1.8;arcSize=8;fontSize=16;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="82" y="300" width="112" height="64" as="geometry"/>
+                <mxCell id="s1_img_encoder" value="🔒&lt;br&gt;&lt;b&gt;Image&lt;br&gt;Encoder&lt;/b&gt;&lt;br&gt;(Cố định)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;size=0.12;fillColor=#64748B;strokeColor=#334155;strokeWidth=2;fontSize=20;fontColor=#FFFFFF;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="185" y="183.5" width="185" height="135" as="geometry"/>
                 </mxCell>
-                <mxCell id="s1_clip" value="&lt;b&gt;[Frozen]&lt;br&gt;CLIP image encoder&lt;/b&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;size=0.12;fillColor=#64748B;strokeColor=#334155;strokeWidth=2;fontSize=16;fontColor=#FFFFFF;fontFamily=Helvetica;verticalAlign=middle;" parent="1" vertex="1">
-                    <mxGeometry x="235" y="286" width="200" height="92" as="geometry"/>
+                <mxCell id="s1_img_feat" value="Image features&lt;br&gt;z&lt;sub&gt;v&lt;/sub&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#94A3B8;strokeWidth=1.8;arcSize=8;fontSize=20;fontColor=#334155;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="210" width="140" height="72" as="geometry"/>
                 </mxCell>
-                <mxCell id="s1_cache" value="&lt;b&gt;Cached visual feature&lt;/b&gt;&lt;br&gt;global representation g" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF4FF;strokeColor=#5B8DEF;strokeWidth=1.8;arcSize=8;fontSize=14;fontColor=#1E3A8A;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="480" y="300" width="172" height="64" as="geometry"/>
+                <mxCell id="s1_text_feat" value="Text features&lt;br&gt;z&lt;sub&gt;t&lt;/sub&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#94A3B8;strokeWidth=1.8;arcSize=8;fontSize=20;fontColor=#334155;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="580" y="220" width="130" height="62" as="geometry"/>
                 </mxCell>
-                <mxCell id="s1_label" value="emotion class&lt;br&gt;y" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#64748B;strokeWidth=1.8;arcSize=8;fontSize=15;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="82" y="425" width="132" height="62" as="geometry"/>
+                <mxCell id="s1_text_encoder" value="🔒&lt;br&gt;&lt;b&gt;Text&lt;br&gt;Encoder&lt;/b&gt;&lt;br&gt;(Cố định)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;size=0.12;fillColor=#64748B;strokeColor=#334155;strokeWidth=2;fontSize=20;fontColor=#FFFFFF;fontFamily=Helvetica;direction=west;" parent="1" vertex="1">
+                    <mxGeometry x="750" y="183.5" width="135" height="135" as="geometry"/>
                 </mxCell>
-                <mxCell id="s1_stats" value="&lt;b&gt;Train-only class geometry statistics&lt;/b&gt;&lt;br&gt;median / MAD · validity · uncertainty · region quality&lt;br&gt;&lt;i&gt;optional, when anatomy artifacts are available&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=1.8;arcSize=8;fontSize=13;fontColor=#065F46;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="82" y="525" width="224" height="82" as="geometry"/>
+                <mxCell id="s1_contrastive" value="&lt;b&gt;Contrastive Loss&lt;/b&gt;&lt;br&gt;L&lt;sub&gt;S1&lt;/sub&gt; = SupCon(z&lt;sub&gt;v&lt;/sub&gt;, z&lt;sub&gt;t&lt;/sub&gt;)&lt;br&gt;align image ↔ emotion text" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F2937;strokeWidth=2;arcSize=8;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="380" y="340" width="250" height="75" as="geometry"/>
                 </mxCell>
-                <mxCell id="s1_prompt" value="&lt;b&gt;Trainable class-conditional prompt learner&lt;/b&gt;&lt;br&gt;base context tokens + optional geometry residual&lt;br&gt;one semantic prompt per emotion class" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#D97706;strokeWidth=2;arcSize=8;fontSize=14;fontColor=#7C2D12;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="340" y="435" width="300" height="92" as="geometry"/>
+                <mxCell id="s1_mer" value="&lt;b&gt;MER-CLIP prior&lt;/b&gt;&lt;br&gt;AU → mô tả chuyển động cơ mặt&lt;br&gt;(chỉ dùng khi có AU / pseudo-AU tin cậy)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;arcSize=8;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="-80" y="357" width="315" height="103" as="geometry"/>
                 </mxCell>
-                <mxCell id="s1_text" value="&lt;b&gt;[Frozen]&lt;br&gt;CLIP text encoder&lt;/b&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;size=0.12;fillColor=#64748B;strokeColor=#334155;strokeWidth=2;fontSize=15;fontColor=#FFFFFF;fontFamily=Helvetica;verticalAlign=middle;" parent="1" vertex="1">
-                    <mxGeometry x="682" y="435" width="150" height="82" as="geometry"/>
+                <mxCell id="s1_prompt" value="&lt;b&gt;Learnable structured prompt&lt;/b&gt;&lt;br&gt;A photo of a person expressing &lt;font color=&quot;#CA8A04&quot;&gt;[Emotion c]&lt;/font&gt;,&lt;br&gt;characterized by &lt;font color=&quot;#CA8A04&quot;&gt;[X]&lt;sub&gt;1:M&lt;/sub&gt; / optional AU tokens&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0F3A5C;strokeColor=#0B2545;strokeWidth=2.2;arcSize=8;fontSize=20;fontColor=#FFFFFF;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="225" y="470" width="540" height="88" as="geometry"/>
                 </mxCell>
-                <mxCell id="s1_proto" value="&lt;b&gt;Semantic prototypes&lt;/b&gt;&lt;br&gt;t₁:C, fixed for Stage 2" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=1.8;arcSize=8;fontSize=13;fontColor=#92400E;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="670" y="555" width="164" height="70" as="geometry"/>
+                <mxCell id="s1_opt" value="⇩ Tối ưu hóa token, không cập nhật CLIP encoder" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="330" y="600" width="300" height="35" as="geometry"/>
                 </mxCell>
-                <mxCell id="s1_loss" value="&lt;b&gt;Stage 1 objective&lt;/b&gt;&lt;br&gt;prototype classification CE&lt;br&gt;+ geometry shift / semantic regularization" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#1F2937;strokeWidth=1.8;arcSize=8;fontSize=13;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="335" y="590" width="300" height="78" as="geometry"/>
+                <mxCell id="s1_goal" value="&lt;b&gt;Mục tiêu:&lt;/b&gt; tạo bộ &lt;b&gt;emotion descriptors&lt;/b&gt; phân biệt được giữa các cảm xúc,&lt;br&gt;giữ ý nghĩa ngữ nghĩa và có thể làm anchor cho Stage 2." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#2563EB;strokeWidth=2.2;arcSize=8;fontSize=18;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="659" width="710" height="82" as="geometry"/>
                 </mxCell>
-                <mxCell id="s1_artifact" value="&lt;b&gt;Stage 1 artifact → Stage 2&lt;/b&gt;&lt;br&gt;frozen descriptors + prompt checkpoint + class geometry statistics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;arcSize=8;fontSize=14;fontColor=#1E3A8A;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="245" y="760" width="470" height="78" as="geometry"/>
+                <mxCell id="s2_face" value="face&lt;br&gt;image x" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#64748B;strokeWidth=2;arcSize=8;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="1070" y="252.5" width="115" height="88" as="geometry"/>
                 </mxCell>
-                <mxCell id="s1_role" value="&lt;b&gt;Role of Stage 1:&lt;/b&gt; establish class-level semantic anchors before visual FER adaptation." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#94A3B8;strokeWidth=1.4;arcSize=8;fontSize=13;fontColor=#334155;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="82" y="965" width="752" height="54" as="geometry"/>
+                <mxCell id="s2_encoder" value="&lt;b&gt;CLIP Image Encoder&lt;/b&gt;&lt;br&gt;frozen backbone + trainable adapters&lt;br&gt;&lt;div&gt;&lt;br/&gt;&lt;/div&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;size=0.12;fillColor=#0F3A5C;strokeColor=#0B2545;strokeWidth=2;fontSize=20;fontColor=#FFFFFF;fontFamily=Helvetica;verticalAlign=top;" parent="1" vertex="1">
+                    <mxGeometry x="1225" y="220" width="380" height="155" as="geometry"/>
                 </mxCell>
-
-                <!-- Stage 2: minimal anatomy-aware visual path -->
-                <mxCell id="s2_input" value="FER image&lt;br&gt;x" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#64748B;strokeWidth=1.8;arcSize=8;fontSize=16;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="940" y="300" width="112" height="64" as="geometry"/>
+                <mxCell id="s2_adapter1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D97706;strokeColor=#92400E;strokeWidth=1.5;arcSize=10;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="1403" y="308" width="18" height="62" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_clip" value="&lt;b&gt;Frozen CLIP ViT-B/16 backbone&lt;/b&gt;&lt;br&gt;trainable expression adapters&lt;br&gt;last blocks frozen by default" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;size=0.12;fillColor=#0F3A5C;strokeColor=#0B2545;strokeWidth=2;fontSize=14;fontColor=#FFFFFF;fontFamily=Helvetica;verticalAlign=middle;" parent="1" vertex="1">
-                    <mxGeometry x="1090" y="282" width="250" height="100" as="geometry"/>
+                <mxCell id="s2_adapter2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D97706;strokeColor=#92400E;strokeWidth=1.5;arcSize=10;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="1373" y="308" width="18" height="62" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_features" value="&lt;b&gt;Visual representation&lt;/b&gt;&lt;br&gt;global g + patch tokens P" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF4FF;strokeColor=#5B8DEF;strokeWidth=1.8;arcSize=8;fontSize=14;fontColor=#1E3A8A;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="1380" y="300" width="172" height="64" as="geometry"/>
+                <mxCell id="s2_adapter3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D97706;strokeColor=#92400E;strokeWidth=1.5;arcSize=10;fontSize=20;" parent="1" vertex="1">
+                    <mxGeometry x="1433" y="308" width="18" height="62" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_proto" value="&lt;b&gt;Frozen semantic prototypes&lt;/b&gt;&lt;br&gt;t₁:C from Stage 1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=1.8;arcSize=8;fontSize=13;fontColor=#92400E;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="1635" y="300" width="170" height="64" as="geometry"/>
+                <mxCell id="s2_eaclip" value="&lt;b&gt;Expression-aware&lt;br&gt;Adapter&lt;/b&gt; (EA-CLIP prior)&lt;br&gt;giảm số tham số train,&lt;br&gt;hạn chế overfit." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#2563EB;strokeWidth=2.2;arcSize=8;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="1740" y="232.5" width="240" height="130" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_anatomy" value="&lt;b&gt;Anatomical evidence&lt;/b&gt;&lt;br&gt;three facial regions · masks · confidence / uncertainty&lt;br&gt;pose and crop quality" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=1.8;arcSize=8;fontSize=13;fontColor=#065F46;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="940" y="455" width="220" height="92" as="geometry"/>
+                <mxCell id="s2_finetune" value="Fine-tuning" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="1630" y="316" width="120" height="25" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_router" value="&lt;b&gt;Reliability-gated anatomical routing&lt;/b&gt;&lt;br&gt;landmark-guided attention + learned visual attention&lt;br&gt;low-quality regions revert to visual fallback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FDFA;strokeColor=#0F766E;strokeWidth=2;arcSize=8;fontSize=13;fontColor=#134E4A;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="1195" y="445" width="300" height="104" as="geometry"/>
+                <mxCell id="s2_imgfeat" value="Image features&lt;br&gt;z&lt;sub&gt;v&lt;/sub&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="1320" y="402.5" width="170" height="42" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_region" value="&lt;b&gt;Regional visual evidence&lt;/b&gt;&lt;br&gt;region features + quality weights" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEF4FF;strokeColor=#2563EB;strokeWidth=1.8;arcSize=8;fontSize=13;fontColor=#1E3A8A;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="1530" y="455" width="240" height="78" as="geometry"/>
+                <mxCell id="s2_loss" value="&lt;b&gt;Objective cho FER&lt;/b&gt;&lt;br&gt;L&lt;sub&gt;total&lt;/sub&gt; = L&lt;sub&gt;cls&lt;/sub&gt; + βL&lt;sub&gt;i2t&lt;/sub&gt; + λL&lt;sub&gt;unc&lt;/sub&gt;&lt;br&gt;(+ optional metric loss nếu cần phân tách embedding)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0F3A5C;strokeWidth=2.2;arcSize=8;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="1180" y="457.5" width="472.5" height="112.5" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_evidence" value="&lt;b&gt;Complementary evidence branches&lt;/b&gt;&lt;br&gt;classifier · global image–text alignment · local regional alignment&lt;br&gt;regional disagreement from valid region posteriors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#0F3A5C;strokeWidth=2;arcSize=8;fontSize=14;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="1080" y="625" width="510" height="92" as="geometry"/>
+                <mxCell id="s2_uafer" value="&lt;b&gt;UA-FER prior&lt;/b&gt;&lt;br&gt;EDL uncertainty:&lt;br&gt;phạt dự đoán sai nhưng quá tự tin" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EFF6FF;strokeColor=#2563EB;strokeWidth=2;arcSize=8;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="1750" y="461" width="180" height="106" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_fusion" value="&lt;b&gt;Temperature-normalized branch fusion&lt;/b&gt;&lt;br&gt;convex combination of classifier, global and local logits" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF7ED;strokeColor=#D97706;strokeWidth=2;arcSize=8;fontSize=14;fontColor=#7C2D12;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="1080" y="775" width="300" height="74" as="geometry"/>
+                <mxCell id="s2_text_encoder" value="🔒&lt;br&gt;&lt;b&gt;Text&lt;br&gt;Encoder&lt;/b&gt;&lt;br&gt;(Cố định)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;size=0.12;fillColor=#64748B;strokeColor=#334155;strokeWidth=2;fontSize=20;fontColor=#FFFFFF;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="1342.5" y="615" width="145" height="135" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_reliability" value="&lt;b&gt;Decoupled Dirichlet reliability&lt;/b&gt;&lt;br&gt;classifier probability p(y|x) separated from extrinsic unreliability uext&lt;br&gt;quality context → strength and Dirichlet statistics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2F8;strokeColor=#DB2777;strokeWidth=2;arcSize=8;fontSize=13;fontColor=#831843;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="1420" y="760" width="365" height="98" as="geometry"/>
+                <mxCell id="s2_anchor" value="Fixed emotion descriptors as semantic anchors" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="1050" y="770" width="217.5" height="110" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_output" value="&lt;b&gt;Prediction and reliability outputs&lt;/b&gt;&lt;br&gt;p(y|x) · Dirichlet mean · strength · uext&lt;br&gt;class ambiguity · regional disagreement · diagnostics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECFDF5;strokeColor=#059669;strokeWidth=1.8;arcSize=8;fontSize=13;fontColor=#065F46;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="1080" y="900" width="300" height="84" as="geometry"/>
+                <mxCell id="s2_tokens" value="[X]1  [X]2  ...  [X]M&lt;br&gt;(Emotion-specific Tokens, Fixed)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF3C7;strokeColor=#D97706;strokeWidth=2;arcSize=8;fontSize=20;fontColor=#92400E;fontFamily=Helvetica;" parent="1" vertex="1">
+                    <mxGeometry x="1010" y="647.5" width="300" height="70" as="geometry"/>
                 </mxCell>
-                <mxCell id="s2_eval" value="&lt;b&gt;Protocol-compliant evaluation&lt;/b&gt;&lt;br&gt;validation-only selection · sealed test&lt;br&gt;macro-F1 / balanced accuracy · NLL / ECE / AURC · occlusion / pose / OOD slices" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#64748B;strokeWidth=1.6;arcSize=8;dashed=1;dashPattern=6 5;fontSize=13;fontColor=#334155;fontFamily=Helvetica;" parent="1" vertex="1">
-                    <mxGeometry x="1420" y="900" width="365" height="84" as="geometry"/>
+                <mxCell id="s2_output" value="&lt;b&gt;Output&lt;/b&gt;&lt;br&gt;emotion probability p(y|x)&lt;br&gt;uncertainty u(x)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2F8;strokeColor=#DB2777;strokeWidth=2.2;arcSize=8;fontSize=20;fontColor=#111827;fontFamily=Helvetica;" vertex="1" parent="1">
+                    <mxGeometry x="1550" y="617.5" width="300" height="82" as="geometry"/>
                 </mxCell>
-
-                <!-- Shared and Stage 1 edges -->
-                <mxCell id="e_s1_input_clip" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#334155;endArrow=block;" parent="1" source="s1_input" target="s1_clip" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_s1_clip_cache" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#334155;endArrow=block;" parent="1" source="s1_clip" target="s1_cache" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_s1_label_prompt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.8;strokeColor=#64748B;endArrow=block;" parent="1" source="s1_label" target="s1_prompt" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_s1_stats_prompt" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.8;strokeColor=#059669;dashed=1;dashPattern=5 5;endArrow=block;" parent="1" source="s1_stats" target="s1_prompt" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_s1_prompt_text" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D97706;endArrow=block;" parent="1" source="s1_prompt" target="s1_text" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_s1_text_proto" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D97706;endArrow=block;" parent="1" source="s1_text" target="s1_proto" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_s1_cache_loss" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.8;strokeColor=#5B8DEF;endArrow=block;" parent="1" source="s1_cache" target="s1_loss" edge="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="660" y="565"/><mxPoint x="485" y="565"/></Array></mxGeometry></mxCell>
-                <mxCell id="e_s1_proto_loss" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.8;strokeColor=#D97706;endArrow=block;" parent="1" source="s1_proto" target="s1_loss" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_s1_prompt_artifact" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2563EB;endArrow=block;" parent="1" source="s1_prompt" target="s1_artifact" edge="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="650" y="710"/><mxPoint x="715" y="710"/></Array></mxGeometry></mxCell>
-                <mxCell id="e_s1_proto_artifact" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2563EB;endArrow=block;" parent="1" source="s1_proto" target="s1_artifact" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_s1_stats_artifact" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.6;strokeColor=#059669;dashed=1;dashPattern=5 5;endArrow=block;" parent="1" source="s1_stats" target="s1_artifact" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-
-                <!-- Cross-stage transfer -->
-                <mxCell id="e_artifact_proto" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.2;strokeColor=#2563EB;dashed=1;dashPattern=7 5;endArrow=block;" parent="1" source="s1_artifact" target="s2_proto" edge="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="760" y="860"/><mxPoint x="1815" y="860"/><mxPoint x="1815" y="300"/></Array></mxGeometry></mxCell>
-                <mxCell id="e_contract_anatomy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.6;strokeColor=#059669;dashed=1;dashPattern=5 5;endArrow=block;" parent="1" source="contract" target="s2_anatomy" edge="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="930" y="160"/><mxPoint x="930" y="455"/></Array></mxGeometry></mxCell>
-
-                <!-- Stage 2 edges -->
-                <mxCell id="e_s2_input_clip" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#334155;endArrow=block;" parent="1" source="s2_input" target="s2_clip" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_s2_clip_features" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#334155;endArrow=block;" parent="1" source="s2_clip" target="s2_features" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_anatomy_router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#059669;endArrow=block;" parent="1" source="s2_anatomy" target="s2_router" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_features_router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.8;strokeColor=#5B8DEF;endArrow=block;" parent="1" source="s2_features" target="s2_router" edge="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1460" y="400"/><mxPoint x="1345" y="400"/><mxPoint x="1345" y="445"/></Array></mxGeometry></mxCell>
-                <mxCell id="e_router_region" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#0F766E;endArrow=block;" parent="1" source="s2_router" target="s2_region" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_features_evidence" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.8;strokeColor=#5B8DEF;endArrow=block;" parent="1" source="s2_features" target="s2_evidence" edge="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1580" y="400"/><mxPoint x="1780" y="400"/><mxPoint x="1780" y="585"/><mxPoint x="1500" y="585"/></Array></mxGeometry></mxCell>
-                <mxCell id="e_region_evidence" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#2563EB;endArrow=block;" parent="1" source="s2_region" target="s2_evidence" edge="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1650" y="585"/><mxPoint x="1520" y="585"/><mxPoint x="1520" y="625"/></Array></mxGeometry></mxCell>
-                <mxCell id="e_proto_evidence" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.8;strokeColor=#D97706;dashed=1;dashPattern=5 5;endArrow=block;" parent="1" source="s2_proto" target="s2_evidence" edge="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1815" y="585"/><mxPoint x="1640" y="585"/><mxPoint x="1640" y="625"/></Array></mxGeometry></mxCell>
-                <mxCell id="e_evidence_fusion" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D97706;endArrow=block;" parent="1" source="s2_evidence" target="s2_fusion" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_evidence_reliability" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.8;strokeColor=#DB2777;dashed=1;dashPattern=5 5;endArrow=block;" parent="1" source="s2_evidence" target="s2_reliability" edge="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1590" y="735"/><mxPoint x="1600" y="735"/><mxPoint x="1600" y="760"/></Array></mxGeometry></mxCell>
-                <mxCell id="e_fusion_output" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D97706;endArrow=block;" parent="1" source="s2_fusion" target="s2_output" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
-                <mxCell id="e_reliability_output" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#DB2777;endArrow=block;" parent="1" source="s2_reliability" target="s2_output" edge="1"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1600" y="875"/><mxPoint x="1300" y="875"/><mxPoint x="1300" y="900"/></Array></mxGeometry></mxCell>
-                <mxCell id="e_output_eval" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=1.8;strokeColor=#64748B;dashed=1;dashPattern=6 5;endArrow=block;" parent="1" source="s2_output" target="s2_eval" edge="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+                <mxCell id="s2_eval_note" value="Đánh giá đúng mục tiêu: macro-F1 / balanced accuracy,&lt;br&gt;riêng cho mask, occlusion, pose shift; không claim SOTA nếu chưa đủ protocol." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=#475569;strokeWidth=2;arcSize=8;fontSize=20;fontColor=#111827;fontFamily=Helvetica;dashed=1;dashPattern=6 5;" vertex="1" parent="1">
+                    <mxGeometry x="1552.5" y="757.75" width="297.5" height="134.5" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s1_1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#334155;endArrow=block;fontSize=20;" parent="1" source="s1_face" target="s1_img_encoder" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s1_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#334155;endArrow=block;fontSize=20;" parent="1" source="s1_img_encoder" target="s1_img_feat" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s1_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#334155;endArrow=block;fontSize=20;" parent="1" source="s1_text_encoder" target="s1_text_feat" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s1_4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#334155;endArrow=block;fontSize=20;" parent="1" source="s1_img_feat" target="s1_contrastive" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s1_5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#334155;endArrow=block;fontSize=20;" parent="1" source="s1_text_feat" target="s1_contrastive" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s1_6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#D97706;endArrow=block;fontSize=20;" parent="1" source="s1_prompt" target="s1_contrastive" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="450" y="450"/>
+                            <mxPoint x="450" y="450"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_s1_7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#2563EB;endArrow=block;fontSize=20;" parent="1" source="s1_mer" target="s1_prompt" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="310" y="401"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_s1_8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#334155;endArrow=block;fontSize=20;" parent="1" source="s1_contrastive" target="s1_prompt" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="540" y="450"/>
+                            <mxPoint x="540" y="450"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_s1_9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#64748B;endArrow=block;fontSize=20;" edge="1" parent="1" source="s1_label" target="s1_prompt">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="650" y="430"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_s2_1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#334155;endArrow=block;fontSize=20;" parent="1" source="s2_face" target="s2_encoder" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s2_2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#2563EB;endArrow=block;fontSize=20;" parent="1" source="s2_eaclip" target="s2_encoder" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s2_3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#334155;endArrow=block;fontSize=20;" parent="1" source="s2_encoder" target="s2_loss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s2_4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#2563EB;endArrow=block;fontSize=20;" parent="1" source="s2_uafer" target="s2_loss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s2_5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#334155;endArrow=block;fontSize=20;" parent="1" source="s2_text_encoder" target="s2_loss" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s2_6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#D97706;endArrow=block;fontSize=20;" parent="1" source="s2_tokens" target="s2_text_encoder" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s2_7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#334155;endArrow=block;fontSize=20;" parent="1" source="s2_tokens" target="s2_anchor" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e_s2_8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#DB2777;endArrow=block;fontSize=20;" edge="1" parent="1" source="s2_loss" target="s2_output">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1630" y="587.5"/>
+                            <mxPoint x="1630" y="587.5"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e_s2_9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2.1;strokeColor=#475569;endArrow=block;dashed=1;dashPattern=6 5;fontSize=20;" edge="1" parent="1" source="s2_output" target="s2_eval_note">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
