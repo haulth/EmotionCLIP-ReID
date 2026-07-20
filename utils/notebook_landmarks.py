@@ -70,6 +70,89 @@ def _nonempty_line_count(path: Path) -> int:
         return sum(1 for line in handle if line.strip())
 
 
+def validate_landmark_manifest_layout(
+    manifest: str | Path,
+    data_dir: str | Path,
+) -> dict[str, Any]:
+    """Verify that a landmark manifest and every referenced artifact are colocated.
+
+    The training loader resolves relative ``landmark_path`` values against the
+    manifest directory. Requiring the derived manifest to live directly in the
+    dataset directory keeps the artifact bundle portable between the local
+    checkout and JupyterHub.
+    """
+
+    manifest = Path(manifest).expanduser().resolve()
+    data_dir = Path(data_dir).expanduser().resolve()
+    if not manifest.is_file():
+        raise FileNotFoundError(f"Landmark manifest does not exist: {manifest}")
+    if manifest.parent != data_dir:
+        raise ValueError(
+            f"Landmark manifest must be stored directly in the dataset directory: "
+            f"manifest={manifest}, data_dir={data_dir}"
+        )
+
+    record_count = 0
+    relative_reference_count = 0
+    missing_references = []
+    outside_data_dir = []
+    missing_artifacts = []
+    with manifest.open("r", encoding="utf-8") as handle:
+        for line_number, line in enumerate(handle, 1):
+            if not line.strip():
+                continue
+            record_count += 1
+            record = json.loads(line)
+            reference = str(record.get("landmark_path") or "").strip()
+            if not reference:
+                missing_references.append(line_number)
+                continue
+            reference_path = Path(reference)
+            relative_reference_count += int(not reference_path.is_absolute())
+            artifact = (
+                reference_path.resolve()
+                if reference_path.is_absolute()
+                else (manifest.parent / reference_path).resolve()
+            )
+            try:
+                artifact.relative_to(data_dir)
+            except ValueError:
+                outside_data_dir.append(str(artifact))
+                continue
+            if not artifact.is_file():
+                missing_artifacts.append(str(artifact))
+
+    if record_count == 0:
+        raise ValueError(f"Landmark manifest is empty: {manifest}")
+    if missing_references:
+        raise ValueError(
+            f"Landmark manifest has {len(missing_references)} record(s) without landmark_path; "
+            f"first line(s): {missing_references[:5]}"
+        )
+    if outside_data_dir:
+        raise ValueError(
+            f"Landmark manifest references {len(outside_data_dir)} artifact(s) outside {data_dir}; "
+            f"first: {outside_data_dir[0]}"
+        )
+    if missing_artifacts:
+        raise FileNotFoundError(
+            f"Landmark manifest references {len(missing_artifacts)} missing artifact(s); "
+            f"first: {missing_artifacts[0]}"
+        )
+    if relative_reference_count != record_count:
+        raise ValueError(
+            "All landmark_path values must be relative so the dataset remains portable "
+            f"between machines; relative={relative_reference_count}, records={record_count}"
+        )
+    return {
+        "manifest": str(manifest),
+        "data_dir": str(data_dir),
+        "record_count": record_count,
+        "artifact_count": record_count,
+        "all_references_relative": True,
+    }
+
+
 def prepare_cached_landmarks(
     *,
     repo_root: str | Path,

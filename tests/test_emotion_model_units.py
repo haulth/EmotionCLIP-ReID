@@ -109,6 +109,13 @@ class _DummyBlock(torch.nn.Module):
         self.emotion_adapter = ExpressionAdapter(4, bottleneck_dim=2)
 
 
+class _Stage1Prompt(torch.nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.ctx = torch.nn.Parameter(torch.zeros(3, 4, 4))
+        self.geometry_residual = torch.nn.Linear(4, 4)
+
+
 def _stage_test_model(last_blocks):
     model = EmotionCLIPModel.__new__(EmotionCLIPModel)
     torch.nn.Module.__init__(model)
@@ -123,6 +130,25 @@ def _stage_test_model(last_blocks):
     model.image_encoder = torch.nn.Module()
     model.image_encoder.transformer = transformer
     return model
+
+
+def test_stage1_phases_train_base_then_geometry_residual_exclusively():
+    model = _stage_test_model(last_blocks=0)
+    model.prompt_learner = _Stage1Prompt()
+    model.set_train_stage(1)
+
+    model.set_stage1_phase("base")
+    assert model.prompt_learner.ctx.requires_grad
+    assert not any(
+        parameter.requires_grad for parameter in model.prompt_learner.geometry_residual.parameters()
+    )
+
+    model.set_stage1_phase("geometry")
+    assert not model.prompt_learner.ctx.requires_grad
+    assert all(
+        parameter.requires_grad for parameter in model.prompt_learner.geometry_residual.parameters()
+    )
+    assert not model.classifier.weight.requires_grad
 
 
 def test_adapter_only_stage2_trainable_parameter_whitelist():

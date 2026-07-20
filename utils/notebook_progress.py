@@ -13,7 +13,9 @@ except ImportError:  # pragma: no cover - only used outside notebooks
     display = None
 
 
-_PROGRESS_RE = re.compile(r"^(Stage[12]\s+\d+/\d+:).*?\|\s*(\d+)/(\d+)")
+_PROGRESS_RE = re.compile(
+    r"^(Stage(?:1(?:-[A-Za-z0-9_]+)?|2)\s+\d+/\d+:).*?\|\s*(\d+)/(\d+)"
+)
 
 
 def _is_progress_update(text: str) -> bool:

@@ -1,7 +1,11 @@
 import pytest
 import torch
 
-from processor.processor_emotionclip import EmotionDataParallel, unwrap_model
+from processor.processor_emotionclip import (
+    EmotionDataParallel,
+    get_shared_text_features,
+    unwrap_model,
+)
 from train_emotionclip import parse_gpu_ids
 
 
@@ -45,3 +49,21 @@ def test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly():
     assert gathered["gate_regularization"].ndim == 0
     assert float(gathered["gate_regularization"]) == 2.0
     assert gathered["text_features"].shape == (7, 4)
+
+
+def test_shared_text_features_are_built_from_unwrapped_model():
+    class TextModel(torch.nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.descriptors = torch.nn.Parameter(torch.randn(7, 4))
+
+        def get_text_features(self):
+            return self.descriptors
+
+    core_model = TextModel()
+    parallel = EmotionDataParallel(core_model, device_ids=[])
+
+    descriptors = get_shared_text_features(parallel)
+
+    assert descriptors.shape == (7, 4)
+    assert descriptors is core_model.descriptors

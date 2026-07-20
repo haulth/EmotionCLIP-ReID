@@ -22,18 +22,17 @@ _DEFAULT = {
             "STAGE1_WEIGHT": "",
         },
         "ANATOMY_PROMPT": {
-            # Conservative defaults keep legacy/quick configs anatomy-free.
-            # Research presets must opt into every anatomy-dependent module.
+            # Anatomy is the default contract; explicit ablation configs may opt out.
             "MODE": "legacy",
             "HIDDEN_DIM": 32,
             "GATE_INIT": -4.0,
         },
         "ROUTING": {
-            "MODE": "topk",
+            "MODE": "hybrid",
             "SIGMA": 0.08,
         },
         "GEOMETRY": {
-            "ENABLED": False,
+            "ENABLED": True,
             "FUSION_MODE": "gated_residual",
             "HIDDEN_DIM": 64,
             "IMPORTANCE_HIDDEN_DIM": 128,
@@ -46,7 +45,7 @@ _DEFAULT = {
         },
         "UNCERTAINTY": {
             "MODE": "decoupled",
-            "USE_ANATOMY_QUALITY": False,
+            "USE_ANATOMY_QUALITY": True,
             "HIDDEN_DIM": 128,
             "DROPOUT": 0.1,
             "DETACH_CLASS_PROB": True,
@@ -78,7 +77,7 @@ _DEFAULT = {
         "STRICT_SPLIT_LEAKAGE": True,
         "REQUIRE_VAL": True,
         "REQUIRE_TEST": False,
-        "REQUIRE_ANATOMY": False,
+        "REQUIRE_ANATOMY": True,
         "MIN_ANATOMY_COVERAGE": 0.8,
         "ALLOW_ANATOMY_FALLBACK": False,
     },
@@ -101,6 +100,9 @@ _DEFAULT = {
             "WEIGHT_DECAY": 1.0e-4,
             "CHECKPOINT_PERIOD": 10,
             "LOG_PERIOD": 20,
+            "EVAL_PERIOD": 1,
+            "SELECTION_METRIC": "macro_f1",
+            "MIN_DELTA": 0.0,
         },
         "STAGE2": {
             "IMS_PER_BATCH": 32,

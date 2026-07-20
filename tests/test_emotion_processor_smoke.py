@@ -119,6 +119,55 @@ def test_processor_stage1_stage2_cpu_smoke(tmp_path):
     assert os.path.exists(tmp_path / "trainable_parameters.json")
 
 
+def test_stage1_validation_writes_and_selects_prompt_checkpoint(tmp_path):
+    cfg = {
+        "MODEL": {"DEVICE": "cpu"},
+        "OUTPUT_DIR": str(tmp_path),
+        "SOLVER": {
+            "STAGE1": {
+                "MAX_EPOCHS": 1,
+                "IMS_PER_BATCH": 4,
+                "LOG_PERIOD": 100,
+                "EVAL_PERIOD": 1,
+                "SELECTION_METRIC": "macro_f1",
+            }
+        },
+    }
+    model = TinyEmotionModel()
+    model.set_train_stage(1)
+    optimizer = torch.optim.SGD([model.prompt], lr=0.01)
+    metrics = do_train_emotion_stage1(cfg, model, _loader(), optimizer, val_loader=_loader())
+    assert metrics["selection_split"] == "val"
+    assert os.path.exists(tmp_path / "best_emotionclip_stage1.pth")
+    assert os.path.exists(tmp_path / "stage1_metrics_epoch_1.json")
+    assert os.path.exists(tmp_path / "stage1_validation_metrics.csv")
+    assert os.path.exists(tmp_path / "stage1_selection.json")
+
+
+def test_stage1b_fails_closed_when_geometry_statistics_are_missing(tmp_path):
+    cfg = {
+        "MODEL": {"DEVICE": "cpu"},
+        "DATASETS": {"ALLOW_ANATOMY_FALLBACK": False},
+        "OUTPUT_DIR": str(tmp_path),
+        "SOLVER": {
+            "STAGE1": {
+                "MODE": "both",
+                "BASE_EPOCHS": 1,
+                "GEOMETRY_EPOCHS": 1,
+                "MAX_EPOCHS": 2,
+                "IMS_PER_BATCH": 4,
+                "LOG_PERIOD": 100,
+            }
+        },
+    }
+    model = TinyEmotionModel()
+    model.set_train_stage(1)
+    optimizer = torch.optim.SGD([model.prompt], lr=0.01)
+
+    with pytest.raises(RuntimeError, match="no reliable anatomy statistics"):
+        do_train_emotion_stage1(cfg, model, _loader(), optimizer)
+
+
 def test_fixed_epoch_training_skips_model_selection_and_test_is_explicit(tmp_path):
     cfg = {
         "MODEL": {"DEVICE": "cpu"},

@@ -449,6 +449,19 @@ def unwrap_model(model):
     return model.module if isinstance(model, torch.nn.DataParallel) else model
 
 
+def get_shared_text_features(model, **kwargs):
+    """Build class text descriptors once instead of once per data-parallel replica.
+
+    Text descriptors are indexed by class rather than by image batch. Calling
+    ``DataParallel.forward(get_text=True)`` therefore makes every replica return
+    the complete class table and the default gather concatenates those tables.
+    """
+    core_model = unwrap_model(model)
+    if not hasattr(core_model, "get_text_features"):
+        raise AttributeError("Emotion model must define get_text_features()")
+    return core_model.get_text_features(**kwargs)
+
+
 class EmotionDataParallel(torch.nn.DataParallel):
     """DataParallel adapter for EmotionCLIP's batch and shared output tensors.
 
@@ -754,7 +767,35 @@ def precompute_stage1_features(model, loader, device: torch.device) -> Dict[str,
     return result
 
 
-def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, scheduler=None):
+def evaluate_stage1_prompt_model(
+    cfg, model, cached: Dict[str, torch.Tensor], *, use_geometry: bool = False
+) -> Dict[str, Any]:
+    """Evaluate only the Stage 1 contract: frozen image features vs learned prompts."""
+    model.eval()
+    device = torch.device(cfg["MODEL"]["DEVICE"])
+    core_model = unwrap_model(model)
+    with torch.no_grad():
+        try:
+            text_features = core_model.get_text_features(use_geometry=use_geometry)
+        except TypeError:
+            text_features = core_model.get_text_features()
+        logits = core_model.logit_scale.exp().float() * cached["features"].to(device) @ text_features.t()
+        probabilities = F.softmax(logits, dim=1)
+    labels = cached["labels"].detach().cpu().tolist()
+    probs = probabilities.detach().cpu().tolist()
+    # Stage 1 has no trained reliability head; uncertainty is deliberately neutral.
+    metrics = compute_fer_metrics(
+        labels, probs, [0.0] * len(labels), core_model.class_names
+    )
+    metrics["stage"] = 1
+    metrics["evaluation_split"] = "val"
+    metrics["selection_split"] = "val"
+    metrics["num_samples"] = len(labels)
+    metrics["loss"] = float(F.cross_entropy(logits, cached["labels"].to(device)).detach().cpu())
+    return metrics
+
+
+def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, scheduler=None, val_loader=None):
     logger = logging.getLogger("emotionclip.train")
     device = torch.device(cfg["MODEL"]["DEVICE"])
     output_dir = cfg["OUTPUT_DIR"]
@@ -764,7 +805,9 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
     model.to(device)
     core_model = unwrap_model(model)
     core_model.set_train_stage(1)
+    initial_lrs = [float(group["lr"]) for group in optimizer.param_groups]
     cached = precompute_stage1_features(model, train_loader_stage1, device)
+    val_cached = precompute_stage1_features(model, val_loader, device) if val_loader is not None else None
     features = cached["features"].to(device)
     labels = cached["labels"].to(device)
     statistics_available = False
@@ -796,7 +839,13 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
         if statistics_available:
             phases.append(("geometry", geometry_epochs))
         else:
-            logger.warning("Stage1 geometry phase skipped: train split has no reliable anatomy statistics")
+            message = "Stage1 geometry phase requested but train split has no reliable anatomy statistics"
+            if not bool(cfg.get("DATASETS", {}).get("ALLOW_ANATOMY_FALLBACK", False)):
+                raise RuntimeError(
+                    message
+                    + ". Build compatible landmark artifacts or explicitly enable anatomy fallback."
+                )
+            logger.warning("%s; explicit anatomy fallback enabled, so Stage1B is skipped", message)
     total_epochs = sum(epochs for _, epochs in phases)
 
     batch_size = int(stage_cfg.get("IMS_PER_BATCH", 64))
@@ -813,7 +862,36 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
     )
 
     global_epoch = 0
+    selection_metric = str(stage_cfg.get("SELECTION_METRIC", "macro_f1"))
+    valid_selection_metrics = {"macro_f1", "balanced_accuracy", "accuracy", "loss"}
+    if selection_metric not in valid_selection_metrics:
+        raise ValueError(
+            f"Unsupported SOLVER.STAGE1.SELECTION_METRIC={selection_metric!r}; "
+            f"expected one of {sorted(valid_selection_metrics)}"
+        )
+    best_metric = float("inf") if selection_metric == "loss" else float("-inf")
+    best_metrics = None
     for phase, phase_epochs in phases:
+        # In MODE=both, geometry must start from the best validated base prompt,
+        # never from an overfit last-base state.
+        if phase == "geometry" and best_metrics is not None:
+            load_emotion_checkpoint(
+                model,
+                os.path.join(output_dir, "best_emotionclip_stage1.pth"),
+                strict=False,
+                allow_untrained_stage2=True,
+            )
+            # The restored best-base weights must not inherit Adam moments or
+            # a decayed LR schedule from the last-base trajectory.
+            optimizer.state.clear()
+            for group, initial_lr in zip(optimizer.param_groups, initial_lrs):
+                group["lr"] = initial_lr
+            if scheduler is not None:
+                scheduler.base_lrs = list(initial_lrs)
+                scheduler.last_epoch = -1
+                scheduler._step_count = 0
+                if hasattr(scheduler, "T_max"):
+                    scheduler.T_max = max(1, phase_epochs)
         if hasattr(core_model, "set_stage1_phase"):
             core_model.set_stage1_phase(phase)
         base_text_features = None
@@ -846,7 +924,7 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
                 if hasattr(core_model, "prompt_learner") and hasattr(core_model.prompt_learner, "geometry_residual"):
                     text_features = core_model.get_text_features(use_geometry=phase == "geometry")
                 else:
-                    text_features = model(get_text=True)
+                    text_features = get_shared_text_features(model)
                 logits = core_model.logit_scale.exp().float() * batch_features @ text_features.t()
                 classification_loss = F.cross_entropy(logits, batch_labels)
                 shift_loss = classification_loss.new_zeros(())
@@ -918,9 +996,61 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
             )
             _record_training_epoch(cfg, epoch_metrics)
             save_checkpoint(model, output_dir, "last_emotionclip_stage1.pth", global_epoch, stage=1)
+            if val_cached is not None and (
+                global_epoch % max(1, int(stage_cfg.get("EVAL_PERIOD", 1))) == 0
+                or global_epoch == total_epochs
+            ):
+                metrics = evaluate_stage1_prompt_model(
+                    cfg, model, val_cached, use_geometry=(phase == "geometry")
+                )
+                metrics["epoch"] = global_epoch
+                metrics["phase"] = phase
+                metrics_path = os.path.join(output_dir, f"stage1_metrics_epoch_{global_epoch}.json")
+                with open(metrics_path, "w", encoding="utf-8") as handle:
+                    json.dump(metrics, handle, indent=2)
+                _append_csv_row(
+                    _artifact_path(cfg, "STAGE1_VALIDATION_CSV", "stage1_validation_metrics.csv"),
+                    _VALIDATION_COLUMNS,
+                    {**metrics, "epoch": global_epoch, "epoch_total": total_epochs},
+                )
+                score = float(metrics[selection_metric])
+                is_better = (
+                    score < best_metric - float(stage_cfg.get("MIN_DELTA", 0.0))
+                    if selection_metric == "loss"
+                    else score > best_metric + float(stage_cfg.get("MIN_DELTA", 0.0))
+                )
+                if is_better:
+                    best_metric = score
+                    best_metrics = metrics
+                    save_checkpoint(
+                        model, output_dir, "best_emotionclip_stage1.pth", global_epoch, stage=1, metrics=metrics
+                    )
+
+    if val_cached is not None and best_metrics is not None:
+        load_emotion_checkpoint(
+            model,
+            os.path.join(output_dir, "best_emotionclip_stage1.pth"),
+            strict=False,
+            allow_untrained_stage2=True,
+        )
+        with open(os.path.join(output_dir, "stage1_selection.json"), "w", encoding="utf-8") as handle:
+            json.dump(
+                {
+                    "stage": 1,
+                    "selection_split": "val",
+                    "selection_metric": selection_metric,
+                    "best_epoch": best_metrics.get("epoch"),
+                    "best_phase": best_metrics.get("phase"),
+                    "best_value": best_metric,
+                    "checkpoint": "best_emotionclip_stage1.pth",
+                },
+                handle,
+                indent=2,
+            )
 
     if hasattr(core_model, "save_stage1_descriptors"):
         core_model.save_stage1_descriptors(os.path.join(output_dir, "stage1_text_descriptors.pth"))
+    return best_metrics
 
 
 def evaluate_emotion_model(
@@ -943,7 +1073,7 @@ def evaluate_emotion_model(
     model.eval()
     with torch.no_grad():
         if text_features is None:
-            text_features = model(get_text=True)
+            text_features = get_shared_text_features(model)
         text_features = text_features.to(device)
         for batch in data_loader:
             batch = _batch_to_device(batch, device)
@@ -1115,7 +1245,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         if device.type == "cuda":
             torch.cuda.synchronize(device)
             torch.cuda.reset_peak_memory_stats(device)
-        text_features = model(get_text=True).detach()
+        text_features = get_shared_text_features(model).detach()
         total_loss = 0.0
         total_cls = 0.0
         total_align = 0.0

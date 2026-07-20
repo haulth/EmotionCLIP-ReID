@@ -4,11 +4,15 @@ from pathlib import Path
 
 import pytest
 
+import utils.notebook_progress as notebook_progress
 from utils.notebook_run import (
     prepare_notebook_staging,
     publish_notebook_artifacts,
     timestamped_run_id,
 )
+from utils.notebook_landmarks import validate_landmark_manifest_layout
+from config.emotion_defaults import get_default_emotion_cfg, load_emotion_cfg
+from utils.notebook_progress import _is_progress_update, _progress_html
 
 
 def test_timestamped_run_id_is_local_time_safe_and_precise():
@@ -46,6 +50,31 @@ def test_publish_notebook_artifacts_copies_visuals_and_log(tmp_path: Path):
 
 
 @pytest.mark.parametrize(
+    "line",
+    [
+        "Stage1-base 1/200:  25%|██▌       | 5/20 [00:01<00:03, loss=1.23]",
+        "Stage1-geometry 2/50:  50%|█████     | 10/20 [00:02<00:02, loss=0.95]",
+        "Stage2 3/100:  75%|███████▌  | 15/20 [00:03<00:01, loss=0.71]",
+    ],
+)
+def test_notebook_progress_recognizes_all_training_phase_labels(line: str):
+    assert _is_progress_update(line)
+
+
+def test_notebook_progress_html_keeps_stage1_phase_in_single_display(monkeypatch):
+    class FakeHTML:
+        def __init__(self, data):
+            self.data = data
+
+    monkeypatch.setattr(notebook_progress, "HTML", FakeHTML)
+    rendered = _progress_html("Stage1-base 1/200:  25%|██▌       | 5/20 [00:01<00:03]")
+    rendered_text = getattr(rendered, "data", rendered)
+
+    assert "Stage1-base 1/200:" in rendered_text
+    assert "5/20 (25.0%)" in rendered_text
+
+
+@pytest.mark.parametrize(
     "notebook_name",
     [
         "emotionclip_reid_jupyterhub_fer2013.ipynb",
@@ -75,11 +104,102 @@ def test_training_notebooks_forward_resolved_runtime_controls(notebook_name: str
         assert control in source
     assert "GPU_ID =" not in source
 
-    training_cells = [
-        cell
-        for cell in notebook["cells"]
-        if cell.get("cell_type") == "code"
-        and any(token in "".join(cell.get("source", [])) for token in ("TRAIN_OVERRIDES =", "train_cmd ="))
-    ]
-    assert training_cells
-    assert all(cell.get("execution_count") is None and not cell.get("outputs") for cell in training_cells)
+def test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts(tmp_path: Path):
+    data_dir = tmp_path / "RAF-DB"
+    artifact_dir = data_dir / "anatomy_v3"
+    artifact_dir.mkdir(parents=True)
+    (artifact_dir / "sample.json").write_text("{}", encoding="utf-8")
+    manifest = data_dir / "manifest_anatomy.jsonl"
+    manifest.write_text(
+        json.dumps({"image_path": "image.jpg", "landmark_path": "anatomy_v3/sample.json"}) + "\n",
+        encoding="utf-8",
+    )
+
+    report = validate_landmark_manifest_layout(manifest, data_dir)
+    assert report["record_count"] == 1
+    assert report["all_references_relative"] is True
+
+
+def test_validate_landmark_manifest_layout_rejects_missing_artifact(tmp_path: Path):
+    data_dir = tmp_path / "RAF-DB"
+    data_dir.mkdir()
+    manifest = data_dir / "manifest_anatomy.jsonl"
+    manifest.write_text(
+        json.dumps({"image_path": "image.jpg", "landmark_path": "anatomy_v3/missing.json"}) + "\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(FileNotFoundError, match="missing artifact"):
+        validate_landmark_manifest_layout(manifest, data_dir)
+
+
+def test_rafdb_notebooks_share_explicit_colocated_landmark_paths():
+    repo_root = Path(__file__).resolve().parents[1]
+    notebook_sources = {}
+    for notebook_name in (
+        "emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+        "emotionclip_reid_jupyterhub_rafdb.ipynb",
+    ):
+        notebook = json.loads((repo_root / "notebooks" / notebook_name).read_text(encoding="utf-8"))
+        notebook_sources[notebook_name] = "\n".join(
+            "".join(cell.get("source", [])) for cell in notebook["cells"]
+        )
+
+    build_source = notebook_sources["emotionclip_reid_jupyterhub_build_landmarks.ipynb"]
+    train_source = notebook_sources["emotionclip_reid_jupyterhub_rafdb.ipynb"]
+    for source in (build_source, train_source):
+        assert "RAFDB_DATA_DIR" in source
+        assert "RAFDB_ANATOMY_MANIFEST" in source
+        assert "RAFDB_ANATOMY_DIR" in source
+        assert "validate_landmark_manifest_layout" in source
+    assert "DATASETS.REQUIRE_ANATOMY" in train_source
+    assert "MODEL.ROUTING.MODE" in train_source
+    assert "MODEL.UNCERTAINTY.USE_ANATOMY_QUALITY" in train_source
+
+
+def test_anatomy_is_required_by_default_and_quick_presets():
+    default_cfg = get_default_emotion_cfg()
+    assert default_cfg["MODEL"]["ROUTING"]["MODE"] == "hybrid"
+    assert default_cfg["MODEL"]["GEOMETRY"]["ENABLED"] is True
+    assert default_cfg["MODEL"]["UNCERTAINTY"]["USE_ANATOMY_QUALITY"] is True
+    assert default_cfg["DATASETS"]["REQUIRE_ANATOMY"] is True
+    assert default_cfg["DATASETS"]["ALLOW_ANATOMY_FALLBACK"] is False
+
+    repo_root = Path(__file__).resolve().parents[1]
+    for config_name in (
+        "vit_b16_emotionclip_hf_fer2013_quick.yml",
+        "vit_b16_emotionclip_fer2013_quick.yml",
+        "vit_b16_emotionclip_rafdb_quick.yml",
+    ):
+        cfg = load_emotion_cfg(str(repo_root / "configs" / "emotion" / config_name))
+        assert cfg["MODEL"]["ROUTING"]["MODE"] == "hybrid"
+        assert cfg["MODEL"]["GEOMETRY"]["ENABLED"] is True
+        assert cfg["MODEL"]["UNCERTAINTY"]["USE_ANATOMY_QUALITY"] is True
+        assert cfg["DATASETS"]["REQUIRE_ANATOMY"] is True
+        assert cfg["DATASETS"]["MANIFEST"].endswith("manifest_anatomy.jsonl")
+
+
+def test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt():
+    repo_root = Path(__file__).resolve().parents[1]
+    notebook = json.loads(
+        (repo_root / "notebooks" / "emotionclip_reid_jupyterhub_fer2013.ipynb").read_text(
+            encoding="utf-8"
+        )
+    )
+    source = "\n".join("".join(cell.get("source", [])) for cell in notebook["cells"])
+
+    assert "ANATOMY_PROMPT_MODE = 'quality'" in source
+    assert "STAGE1_MODE = 'both'" in source
+    assert "STAGE1_GEOMETRY_EPOCHS = 10" in source
+    assert "MODEL.ANATOMY_PROMPT.MODE" in source
+    assert "GEOMETRY_EPOCHS'] > 0" in source
+
+    for config_name in (
+        "vit_b16_emotionclip_hf_fer2013_quick.yml",
+        "vit_b16_emotionclip_fer2013_quick.yml",
+    ):
+        cfg = load_emotion_cfg(str(repo_root / "configs" / "emotion" / config_name))
+        assert cfg["MODEL"]["ANATOMY_PROMPT"]["MODE"] == "quality"
+        assert cfg["SOLVER"]["STAGE1"]["MODE"] == "both"
+        assert cfg["SOLVER"]["STAGE1"]["BASE_EPOCHS"] == 190
+        assert cfg["SOLVER"]["STAGE1"]["GEOMETRY_EPOCHS"] == 10

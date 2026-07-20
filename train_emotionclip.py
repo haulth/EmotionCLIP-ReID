@@ -311,7 +311,7 @@ def main():
         elif stage1_mode == "geometry":
             stage1_epochs = int(stage1_cfg.get("GEOMETRY_EPOCHS", stage1_epochs))
         scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=max(1, stage1_epochs))
-        do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, scheduler)
+        do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, scheduler, val_loader=val_loader)
 
     if cfg["TRAIN"].get("RUN_STAGE2", True):
         unwrap_model(model).set_train_stage(2)
