@@ -502,8 +502,9 @@ def anatomy_to_model_inputs(
                 if selected_confidence_valid.any()
                 else 1.0
             )
-            measurement_coverage = float(
-                (selected_visibility_valid | selected_confidence_valid).mean()
+            measurement_valid = selected_visibility_valid | selected_confidence_valid
+            measurement_coverage = (
+                float(measurement_valid.mean()) if measurement_valid.any() else 1.0
             )
             jitter_quality = float(np.exp(-uncertainty[selected].mean() / max(float(uncertainty_tau), 1e-6)))
             region_quality[region_index] = (

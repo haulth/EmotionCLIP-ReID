@@ -204,6 +204,25 @@ def test_landmarks_follow_center_crop_and_horizontal_flip():
     assert torch.all(anatomy["region_quality"] > 0)
 
 
+def test_landmarks_without_optional_confidence_scores_remain_usable():
+    artifact = _face_mesh_artifact()
+    artifact["detector"].update({"confidence": None, "confidence_valid": False})
+    for landmark in artifact["landmarks"]:
+        landmark.update(
+            {
+                "visibility_valid": False,
+                "presence_valid": False,
+                "confidence_valid": False,
+            }
+        )
+
+    image = Image.new("RGB", (200, 100), color=(120, 80, 40))
+    _, anatomy = FaceSafeTransform(size=(100, 100), train=False)(image, anatomy=artifact)
+
+    assert bool(anatomy["anatomy_available"])
+    assert torch.all(anatomy["region_quality"] > 0)
+
+
 def test_horizontal_flip_swaps_left_right_geometry_semantics():
     artifact = _face_mesh_artifact()
     landmarks = artifact["landmarks"]
