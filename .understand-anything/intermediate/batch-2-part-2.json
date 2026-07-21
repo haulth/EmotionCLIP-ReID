@@ -1,0 +1,2613 @@
+{
+  "nodes": [
+    {
+      "id": "file:processor/processor_emotionclip.py",
+      "type": "file",
+      "name": "processor_emotionclip.py",
+      "filePath": "processor/processor_emotionclip.py",
+      "summary": "Điều phối vòng lặp huấn luyện/đánh giá trong processor_emotionclip.py, bao gồm luồng dữ liệu, tối ưu hóa, ghi metric và checkpoint.",
+      "tags": [
+        "huan-luyen",
+        "dieu-phoi",
+        "entry-point"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_batch_to_device",
+      "type": "function",
+      "name": "_batch_to_device",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        31,
+        40
+      ],
+      "summary": "Thực hiện xử lý _batch_to_device trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_as_bool",
+      "type": "function",
+      "name": "_as_bool",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        43,
+        53
+      ],
+      "summary": "Thực hiện xử lý _as_bool trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_progress_enabled",
+      "type": "function",
+      "name": "_progress_enabled",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        56,
+        70
+      ],
+      "summary": "Thực hiện xử lý _progress_enabled trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_progress",
+      "type": "function",
+      "name": "_progress",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        73,
+        76
+      ],
+      "summary": "Thực hiện xử lý _progress trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_batch_accuracy",
+      "type": "function",
+      "name": "_batch_accuracy",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        79,
+        80
+      ],
+      "summary": "Thực hiện xử lý _batch_accuracy trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_batch_confidence",
+      "type": "function",
+      "name": "_batch_confidence",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        83,
+        84
+      ],
+      "summary": "Thực hiện xử lý _batch_confidence trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_batch_uncertainty",
+      "type": "function",
+      "name": "_batch_uncertainty",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        87,
+        88
+      ],
+      "summary": "Thực hiện xử lý _batch_uncertainty trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_forward_batch",
+      "type": "function",
+      "name": "_forward_batch",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        91,
+        97
+      ],
+      "summary": "Thực hiện xử lý _forward_batch trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:corrupt_images_for_reliability",
+      "type": "function",
+      "name": "corrupt_images_for_reliability",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        100,
+        129
+      ],
+      "summary": "Thực hiện xử lý corrupt_images_for_reliability trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:corrupt_anatomy_for_reliability",
+      "type": "function",
+      "name": "corrupt_anatomy_for_reliability",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        132,
+        177
+      ],
+      "summary": "Thực hiện xử lý corrupt_anatomy_for_reliability trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_format_log_value",
+      "type": "function",
+      "name": "_format_log_value",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        180,
+        183
+      ],
+      "summary": "Thực hiện xử lý _format_log_value trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:log_training_event",
+      "type": "function",
+      "name": "log_training_event",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        186,
+        188
+      ],
+      "summary": "Thực thi logic huấn luyện log_training_event trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_csv_value",
+      "type": "function",
+      "name": "_csv_value",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        338,
+        343
+      ],
+      "summary": "Thực hiện xử lý _csv_value trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_append_csv_row",
+      "type": "function",
+      "name": "_append_csv_row",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        346,
+        355
+      ],
+      "summary": "Thực hiện xử lý _append_csv_row trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_artifact_path",
+      "type": "function",
+      "name": "_artifact_path",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        358,
+        359
+      ],
+      "summary": "Thực hiện xử lý _artifact_path trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_record_training_epoch",
+      "type": "function",
+      "name": "_record_training_epoch",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        362,
+        372
+      ],
+      "summary": "Thực thi logic huấn luyện _record_training_epoch trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_record_validation_epoch",
+      "type": "function",
+      "name": "_record_validation_epoch",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        375,
+        383
+      ],
+      "summary": "Thực hiện xử lý _record_validation_epoch trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:log_run_config",
+      "type": "function",
+      "name": "log_run_config",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        386,
+        444
+      ],
+      "summary": "Thực hiện xử lý log_run_config trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:unwrap_model",
+      "type": "function",
+      "name": "unwrap_model",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        447,
+        449
+      ],
+      "summary": "Thực hiện xử lý unwrap_model trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:get_shared_text_features",
+      "type": "function",
+      "name": "get_shared_text_features",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        452,
+        462
+      ],
+      "summary": "Thực hiện xử lý get_shared_text_features trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_model_signature",
+      "type": "function",
+      "name": "_model_signature",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        544,
+        568
+      ],
+      "summary": "Thực hiện xử lý _model_signature trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:_checkpoint_payload",
+      "type": "function",
+      "name": "_checkpoint_payload",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        571,
+        581
+      ],
+      "summary": "Thực hiện xử lý _checkpoint_payload trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:parameter_report",
+      "type": "function",
+      "name": "parameter_report",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        584,
+        616
+      ],
+      "summary": "Thực hiện xử lý parameter_report trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:save_checkpoint",
+      "type": "function",
+      "name": "save_checkpoint",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        619,
+        623
+      ],
+      "summary": "Thực hiện xử lý save_checkpoint trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:load_emotion_checkpoint",
+      "type": "function",
+      "name": "load_emotion_checkpoint",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        626,
+        747
+      ],
+      "summary": "Thực hiện xử lý load_emotion_checkpoint trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:precompute_stage1_features",
+      "type": "function",
+      "name": "precompute_stage1_features",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        750,
+        767
+      ],
+      "summary": "Thực thi logic huấn luyện precompute_stage1_features trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:evaluate_stage1_prompt_model",
+      "type": "function",
+      "name": "evaluate_stage1_prompt_model",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        770,
+        795
+      ],
+      "summary": "Thực thi logic huấn luyện evaluate_stage1_prompt_model trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "danh-gia",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:do_train_emotion_stage1",
+      "type": "function",
+      "name": "do_train_emotion_stage1",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        798,
+        1053
+      ],
+      "summary": "Thực thi logic huấn luyện do_train_emotion_stage1 trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:evaluate_emotion_model",
+      "type": "function",
+      "name": "evaluate_emotion_model",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        1056,
+        1144
+      ],
+      "summary": "Thực thi logic đánh giá evaluate_emotion_model trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "danh-gia",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:evaluate_sealed_test",
+      "type": "function",
+      "name": "evaluate_sealed_test",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        1147,
+        1177
+      ],
+      "summary": "Thực thi logic đánh giá evaluate_sealed_test trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "danh-gia",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:processor/processor_emotionclip.py:do_train_emotion_stage2",
+      "type": "function",
+      "name": "do_train_emotion_stage2",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        1180,
+        1542
+      ],
+      "summary": "Thực thi logic huấn luyện do_train_emotion_stage2 trong mô-đun processor_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:processor/processor_emotionclip.py:EmotionDataParallel",
+      "type": "class",
+      "name": "EmotionDataParallel",
+      "filePath": "processor/processor_emotionclip.py",
+      "lineRange": [
+        465,
+        541
+      ],
+      "summary": "Lớp EmotionDataParallel đóng gói trạng thái và hành vi liên quan trong processor_emotionclip.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_anatomy_audit.py",
+      "type": "file",
+      "name": "test_anatomy_audit.py",
+      "filePath": "tests/test_anatomy_audit.py",
+      "summary": "Bộ kiểm thử xác minh hành vi và các điều kiện biên của test_anatomy_audit, giúp ngăn hồi quy trong pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "kiem-thu",
+        "hoi-quy",
+        "xac-minh"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:tests/test_anatomy_audit.py:_landmarks",
+      "type": "function",
+      "name": "_landmarks",
+      "filePath": "tests/test_anatomy_audit.py",
+      "lineRange": [
+        8,
+        27
+      ],
+      "summary": "Thực hiện xử lý _landmarks trong mô-đun test_anatomy_audit.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_anatomy_audit.py:test_artifact_builder_propagates_jitter_into_feature_units",
+      "type": "function",
+      "name": "test_artifact_builder_propagates_jitter_into_feature_units",
+      "filePath": "tests/test_anatomy_audit.py",
+      "lineRange": [
+        30,
+        45
+      ],
+      "summary": "Xác minh test_artifact_builder_propagates_jitter_into_feature_units trong mô-đun test_anatomy_audit.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_anatomy_audit.py:test_signal_to_jitter_compares_quantities_in_geometry_feature_units",
+      "type": "function",
+      "name": "test_signal_to_jitter_compares_quantities_in_geometry_feature_units",
+      "filePath": "tests/test_anatomy_audit.py",
+      "lineRange": [
+        48,
+        69
+      ],
+      "summary": "Xác minh test_signal_to_jitter_compares_quantities_in_geometry_feature_units trong mô-đun test_anatomy_audit.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_emotion_losses_metrics.py",
+      "type": "file",
+      "name": "test_emotion_losses_metrics.py",
+      "filePath": "tests/test_emotion_losses_metrics.py",
+      "summary": "Bộ kiểm thử xác minh hành vi và các điều kiện biên của test_emotion_losses_metrics, giúp ngăn hồi quy trong pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "kiem-thu",
+        "hoi-quy",
+        "xac-minh"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:tests/test_emotion_losses_metrics.py:test_decoupled_dirichlet_is_offset_invariant_and_consistent",
+      "type": "function",
+      "name": "test_decoupled_dirichlet_is_offset_invariant_and_consistent",
+      "filePath": "tests/test_emotion_losses_metrics.py",
+      "lineRange": [
+        15,
+        31
+      ],
+      "summary": "Xác minh test_decoupled_dirichlet_is_offset_invariant_and_consistent trong mô-đun test_emotion_losses_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_losses_metrics.py:test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax",
+      "type": "function",
+      "name": "test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax",
+      "filePath": "tests/test_emotion_losses_metrics.py",
+      "lineRange": [
+        34,
+        40
+      ],
+      "summary": "Xác minh test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax trong mô-đun test_emotion_losses_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_losses_metrics.py:test_emotion_stage2_loss_has_gradients",
+      "type": "function",
+      "name": "test_emotion_stage2_loss_has_gradients",
+      "filePath": "tests/test_emotion_losses_metrics.py",
+      "lineRange": [
+        43,
+        60
+      ],
+      "summary": "Xác minh test_emotion_stage2_loss_has_gradients trong mô-đun test_emotion_losses_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_losses_metrics.py:test_reliability_loss_does_not_backpropagate_to_classifier_logits",
+      "type": "function",
+      "name": "test_reliability_loss_does_not_backpropagate_to_classifier_logits",
+      "filePath": "tests/test_emotion_losses_metrics.py",
+      "lineRange": [
+        63,
+        70
+      ],
+      "summary": "Xác minh test_reliability_loss_does_not_backpropagate_to_classifier_logits trong mô-đun test_emotion_losses_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "ham-mat-mat",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_losses_metrics.py:test_fer_metrics_basic_values",
+      "type": "function",
+      "name": "test_fer_metrics_basic_values",
+      "filePath": "tests/test_emotion_losses_metrics.py",
+      "lineRange": [
+        73,
+        90
+      ],
+      "summary": "Xác minh test_fer_metrics_basic_values trong mô-đun test_emotion_losses_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "danh-gia",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_losses_metrics.py:test_ood_metrics_reward_separated_uncertainty_scores",
+      "type": "function",
+      "name": "test_ood_metrics_reward_separated_uncertainty_scores",
+      "filePath": "tests/test_emotion_losses_metrics.py",
+      "lineRange": [
+        93,
+        95
+      ],
+      "summary": "Xác minh test_ood_metrics_reward_separated_uncertainty_scores trong mô-đun test_emotion_losses_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "danh-gia",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_losses_metrics.py:test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients",
+      "type": "function",
+      "name": "test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients",
+      "filePath": "tests/test_emotion_losses_metrics.py",
+      "lineRange": [
+        98,
+        122
+      ],
+      "summary": "Xác minh test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients trong mô-đun test_emotion_losses_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_emotion_manifest.py",
+      "type": "file",
+      "name": "test_emotion_manifest.py",
+      "filePath": "tests/test_emotion_manifest.py",
+      "summary": "Bộ kiểm thử xác minh hành vi và các điều kiện biên của test_emotion_manifest, giúp ngăn hồi quy trong pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "kiem-thu",
+        "hoi-quy",
+        "xac-minh"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:_write_image",
+      "type": "function",
+      "name": "_write_image",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        21,
+        22
+      ],
+      "summary": "Thực hiện xử lý _write_image trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_normalize_emotion_aliases",
+      "type": "function",
+      "name": "test_normalize_emotion_aliases",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        25,
+        29
+      ],
+      "summary": "Xác minh test_normalize_emotion_aliases trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_manifest_uses_string_label_when_id_mismatches",
+      "type": "function",
+      "name": "test_manifest_uses_string_label_when_id_mismatches",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        32,
+        64
+      ],
+      "summary": "Xác minh test_manifest_uses_string_label_when_id_mismatches trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_split_leakage_detects_video_overlap",
+      "type": "function",
+      "name": "test_split_leakage_detects_video_overlap",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        67,
+        85
+      ],
+      "summary": "Xác minh test_split_leakage_detects_video_overlap trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_dataloaders_keep_validation_and_test_separate",
+      "type": "function",
+      "name": "test_dataloaders_keep_validation_and_test_separate",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        88,
+        120
+      ],
+      "summary": "Xác minh test_dataloaders_keep_validation_and_test_separate trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_fer2013_official_splits_are_not_merged",
+      "type": "function",
+      "name": "test_fer2013_official_splits_are_not_merged",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        123,
+        129
+      ],
+      "summary": "Xác minh test_fer2013_official_splits_are_not_merged trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_rafdb_dev_split_is_deterministic_stratified_and_train_only",
+      "type": "function",
+      "name": "test_rafdb_dev_split_is_deterministic_stratified_and_train_only",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        132,
+        145
+      ],
+      "summary": "Xác minh test_rafdb_dev_split_is_deterministic_stratified_and_train_only trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_rafdb_full_official_train_mode_has_no_validation_selection",
+      "type": "function",
+      "name": "test_rafdb_full_official_train_mode_has_no_validation_selection",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        148,
+        150
+      ],
+      "summary": "Xác minh test_rafdb_full_official_train_mode_has_no_validation_selection trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:_face_mesh_artifact",
+      "type": "function",
+      "name": "_face_mesh_artifact",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        153,
+        185
+      ],
+      "summary": "Thực hiện xử lý _face_mesh_artifact trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_landmarks_follow_center_crop_and_horizontal_flip",
+      "type": "function",
+      "name": "test_landmarks_follow_center_crop_and_horizontal_flip",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        188,
+        204
+      ],
+      "summary": "Xác minh test_landmarks_follow_center_crop_and_horizontal_flip trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_landmarks_without_optional_confidence_scores_remain_usable",
+      "type": "function",
+      "name": "test_landmarks_without_optional_confidence_scores_remain_usable",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        207,
+        223
+      ],
+      "summary": "Xác minh test_landmarks_without_optional_confidence_scores_remain_usable trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_horizontal_flip_swaps_left_right_geometry_semantics",
+      "type": "function",
+      "name": "test_horizontal_flip_swaps_left_right_geometry_semantics",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        226,
+        266
+      ],
+      "summary": "Xác minh test_horizontal_flip_swaps_left_right_geometry_semantics trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing",
+      "type": "function",
+      "name": "test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        269,
+        281
+      ],
+      "summary": "Xác minh test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_manifest.py:test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback",
+      "type": "function",
+      "name": "test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback",
+      "filePath": "tests/test_emotion_manifest.py",
+      "lineRange": [
+        284,
+        300
+      ],
+      "summary": "Xác minh test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback trong mô-đun test_emotion_manifest.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_emotion_model_units.py",
+      "type": "file",
+      "name": "test_emotion_model_units.py",
+      "filePath": "tests/test_emotion_model_units.py",
+      "summary": "Bộ kiểm thử xác minh hành vi và các điều kiện biên của test_emotion_model_units, giúp ngăn hồi quy trong pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "kiem-thu",
+        "hoi-quy",
+        "xac-minh"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_emotion_prompt_learner_shapes",
+      "type": "function",
+      "name": "test_emotion_prompt_learner_shapes",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        22,
+        37
+      ],
+      "summary": "Xác minh test_emotion_prompt_learner_shapes trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_expression_adapter_zero_initialized_residual",
+      "type": "function",
+      "name": "test_expression_adapter_zero_initialized_residual",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        40,
+        44
+      ],
+      "summary": "Xác minh test_expression_adapter_zero_initialized_residual trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients",
+      "type": "function",
+      "name": "test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        47,
+        69
+      ],
+      "summary": "Xác minh test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes",
+      "type": "function",
+      "name": "test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        72,
+        90
+      ],
+      "summary": "Xác minh test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_train_last_blocks_validation",
+      "type": "function",
+      "name": "test_train_last_blocks_validation",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        93,
+        102
+      ],
+      "summary": "Xác minh test_train_last_blocks_validation trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:_stage_test_model",
+      "type": "function",
+      "name": "_stage_test_model",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        119,
+        132
+      ],
+      "summary": "Thực thi logic huấn luyện _stage_test_model trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_stage1_phases_train_base_then_geometry_residual_exclusively",
+      "type": "function",
+      "name": "test_stage1_phases_train_base_then_geometry_residual_exclusively",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        135,
+        151
+      ],
+      "summary": "Xác minh test_stage1_phases_train_base_then_geometry_residual_exclusively trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_adapter_only_stage2_trainable_parameter_whitelist",
+      "type": "function",
+      "name": "test_adapter_only_stage2_trainable_parameter_whitelist",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        154,
+        166
+      ],
+      "summary": "Xác minh test_adapter_only_stage2_trainable_parameter_whitelist trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:_router_anatomy",
+      "type": "function",
+      "name": "_router_anatomy",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        169,
+        179
+      ],
+      "summary": "Thực hiện xử lý _router_anatomy trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality",
+      "type": "function",
+      "name": "test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        182,
+        186
+      ],
+      "summary": "Xác minh test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_routing_supervision_is_only_active_for_hybrid_ablation",
+      "type": "function",
+      "name": "test_routing_supervision_is_only_active_for_hybrid_ablation",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        189,
+        199
+      ],
+      "summary": "Xác minh test_routing_supervision_is_only_active_for_hybrid_ablation trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_geometry_fusion_zero_init_does_not_change_visual_regions",
+      "type": "function",
+      "name": "test_geometry_fusion_zero_init_does_not_change_visual_regions",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        202,
+        211
+      ],
+      "summary": "Xác minh test_geometry_fusion_zero_init_does_not_change_visual_regions trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_unconditional_cross_attention_has_missing_region_visual_fallback",
+      "type": "function",
+      "name": "test_unconditional_cross_attention_has_missing_region_visual_fallback",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        214,
+        232
+      ],
+      "summary": "Xác minh test_unconditional_cross_attention_has_missing_region_visual_fallback trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_reliable_region_disagreement_requires_two_quality_regions",
+      "type": "function",
+      "name": "test_reliable_region_disagreement_requires_two_quality_regions",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        235,
+        244
+      ],
+      "summary": "Xác minh test_reliable_region_disagreement_requires_two_quality_regions trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_prompt_geometry_and_class_statistics_are_zero_init_and_robust",
+      "type": "function",
+      "name": "test_prompt_geometry_and_class_statistics_are_zero_init_and_robust",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        247,
+        268
+      ],
+      "summary": "Xác minh test_prompt_geometry_and_class_statistics_are_zero_init_and_robust trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_class_quality_ignores_reserved_padding_slots",
+      "type": "function",
+      "name": "test_class_quality_ignores_reserved_padding_slots",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        271,
+        284
+      ],
+      "summary": "Xác minh test_class_quality_ignores_reserved_padding_slots trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_model_units.py:test_full_emotionclip_constructor_and_anatomy_forward_integration",
+      "type": "function",
+      "name": "test_full_emotionclip_constructor_and_anatomy_forward_integration",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        320,
+        348
+      ],
+      "summary": "Xác minh test_full_emotionclip_constructor_and_anatomy_forward_integration trong mô-đun test_emotion_model_units.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_emotion_model_units.py:_DummyBlock",
+      "type": "class",
+      "name": "_DummyBlock",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        105,
+        109
+      ],
+      "summary": "Lớp _DummyBlock đóng gói trạng thái và hành vi liên quan trong test_emotion_model_units.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_emotion_model_units.py:_Stage1Prompt",
+      "type": "class",
+      "name": "_Stage1Prompt",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        112,
+        116
+      ],
+      "summary": "Lớp _Stage1Prompt đóng gói trạng thái và hành vi liên quan trong test_emotion_model_units.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_emotion_model_units.py:_TinyResidualBlock",
+      "type": "class",
+      "name": "_TinyResidualBlock",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        287,
+        290
+      ],
+      "summary": "Lớp _TinyResidualBlock đóng gói trạng thái và hành vi liên quan trong test_emotion_model_units.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_emotion_model_units.py:_TinyVisual",
+      "type": "class",
+      "name": "_TinyVisual",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        293,
+        304
+      ],
+      "summary": "Lớp _TinyVisual đóng gói trạng thái và hành vi liên quan trong test_emotion_model_units.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_emotion_model_units.py:_TinyClip",
+      "type": "class",
+      "name": "_TinyClip",
+      "filePath": "tests/test_emotion_model_units.py",
+      "lineRange": [
+        307,
+        317
+      ],
+      "summary": "Lớp _TinyClip đóng gói trạng thái và hành vi liên quan trong test_emotion_model_units.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_batch_to_device",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_batch_to_device",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_as_bool",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_as_bool",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_progress_enabled",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_progress_enabled",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_progress",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_progress",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_batch_accuracy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_batch_accuracy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_batch_confidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_batch_confidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_batch_uncertainty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_batch_uncertainty",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_forward_batch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_forward_batch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:corrupt_images_for_reliability",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:corrupt_images_for_reliability",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:corrupt_anatomy_for_reliability",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:corrupt_anatomy_for_reliability",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_format_log_value",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_format_log_value",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:log_training_event",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:log_training_event",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_csv_value",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_csv_value",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_append_csv_row",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_append_csv_row",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_artifact_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_artifact_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_record_training_epoch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_record_training_epoch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_record_validation_epoch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_record_validation_epoch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:log_run_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:log_run_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:unwrap_model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:unwrap_model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:get_shared_text_features",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:get_shared_text_features",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_model_signature",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_model_signature",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_checkpoint_payload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:_checkpoint_payload",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:parameter_report",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:parameter_report",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:save_checkpoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:save_checkpoint",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:load_emotion_checkpoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:load_emotion_checkpoint",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:precompute_stage1_features",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:precompute_stage1_features",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:evaluate_stage1_prompt_model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:evaluate_stage1_prompt_model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:do_train_emotion_stage1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:do_train_emotion_stage1",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:evaluate_emotion_model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:evaluate_emotion_model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:evaluate_sealed_test",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:evaluate_sealed_test",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:do_train_emotion_stage2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "function:processor/processor_emotionclip.py:do_train_emotion_stage2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "class:processor/processor_emotionclip.py:EmotionDataParallel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "class:processor/processor_emotionclip.py:EmotionDataParallel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:loss/emotion_losses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:utils/fer_metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "function:tests/test_anatomy_audit.py:_landmarks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "function:tests/test_anatomy_audit.py:_landmarks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "function:tests/test_anatomy_audit.py:test_artifact_builder_propagates_jitter_into_feature_units",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "function:tests/test_anatomy_audit.py:test_artifact_builder_propagates_jitter_into_feature_units",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "function:tests/test_anatomy_audit.py:test_signal_to_jitter_compares_quantities_in_geometry_feature_units",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "function:tests/test_anatomy_audit.py:test_signal_to_jitter_compares_quantities_in_geometry_feature_units",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "file:tools/audit_anatomy_geometry.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "file:tools/build_face_landmark_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_decoupled_dirichlet_is_offset_invariant_and_consistent",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_decoupled_dirichlet_is_offset_invariant_and_consistent",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_emotion_stage2_loss_has_gradients",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_emotion_stage2_loss_has_gradients",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_reliability_loss_does_not_backpropagate_to_classifier_logits",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_reliability_loss_does_not_backpropagate_to_classifier_logits",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_fer_metrics_basic_values",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_fer_metrics_basic_values",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_ood_metrics_reward_separated_uncertainty_scores",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_ood_metrics_reward_separated_uncertainty_scores",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "function:tests/test_emotion_losses_metrics.py:test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:loss/emotion_losses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:utils/fer_metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:_write_image",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:_write_image",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_normalize_emotion_aliases",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_normalize_emotion_aliases",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_manifest_uses_string_label_when_id_mismatches",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_manifest_uses_string_label_when_id_mismatches",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_split_leakage_detects_video_overlap",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_split_leakage_detects_video_overlap",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_dataloaders_keep_validation_and_test_separate",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_dataloaders_keep_validation_and_test_separate",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_fer2013_official_splits_are_not_merged",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_fer2013_official_splits_are_not_merged",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_rafdb_dev_split_is_deterministic_stratified_and_train_only",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_rafdb_dev_split_is_deterministic_stratified_and_train_only",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_rafdb_full_official_train_mode_has_no_validation_selection",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_rafdb_full_official_train_mode_has_no_validation_selection",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:_face_mesh_artifact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:_face_mesh_artifact",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_landmarks_follow_center_crop_and_horizontal_flip",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_landmarks_follow_center_crop_and_horizontal_flip",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_landmarks_without_optional_confidence_scores_remain_usable",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_landmarks_without_optional_confidence_scores_remain_usable",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_horizontal_flip_swaps_left_right_geometry_semantics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_horizontal_flip_swaps_left_right_geometry_semantics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "function:tests/test_emotion_manifest.py:test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:tools/download_hf_emotion_dataset.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_emotion_prompt_learner_shapes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_emotion_prompt_learner_shapes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_expression_adapter_zero_initialized_residual",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_expression_adapter_zero_initialized_residual",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_train_last_blocks_validation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_train_last_blocks_validation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:_stage_test_model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:_stage_test_model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_stage1_phases_train_base_then_geometry_residual_exclusively",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_stage1_phases_train_base_then_geometry_residual_exclusively",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_adapter_only_stage2_trainable_parameter_whitelist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_adapter_only_stage2_trainable_parameter_whitelist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:_router_anatomy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:_router_anatomy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_routing_supervision_is_only_active_for_hybrid_ablation",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_routing_supervision_is_only_active_for_hybrid_ablation",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_geometry_fusion_zero_init_does_not_change_visual_regions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_geometry_fusion_zero_init_does_not_change_visual_regions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_unconditional_cross_attention_has_missing_region_visual_fallback",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_unconditional_cross_attention_has_missing_region_visual_fallback",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_reliable_region_disagreement_requires_two_quality_regions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_reliable_region_disagreement_requires_two_quality_regions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_prompt_geometry_and_class_statistics_are_zero_init_and_robust",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_prompt_geometry_and_class_statistics_are_zero_init_and_robust",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_class_quality_ignores_reserved_padding_slots",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_class_quality_ignores_reserved_padding_slots",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_full_emotionclip_constructor_and_anatomy_forward_integration",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "function:tests/test_emotion_model_units.py:test_full_emotionclip_constructor_and_anatomy_forward_integration",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "class:tests/test_emotion_model_units.py:_DummyBlock",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "class:tests/test_emotion_model_units.py:_DummyBlock",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "class:tests/test_emotion_model_units.py:_Stage1Prompt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "class:tests/test_emotion_model_units.py:_Stage1Prompt",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "class:tests/test_emotion_model_units.py:_TinyResidualBlock",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "class:tests/test_emotion_model_units.py:_TinyResidualBlock",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "class:tests/test_emotion_model_units.py:_TinyVisual",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "class:tests/test_emotion_model_units.py:_TinyVisual",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "class:tests/test_emotion_model_units.py:_TinyClip",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "class:tests/test_emotion_model_units.py:_TinyClip",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

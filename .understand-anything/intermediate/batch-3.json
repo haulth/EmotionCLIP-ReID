@@ -1,0 +1,1193 @@
+{
+  "nodes": [
+    {
+      "id": "file:datasets/bases.py",
+      "type": "file",
+      "name": "bases.py",
+      "filePath": "datasets/bases.py",
+      "summary": "Xử lý dữ liệu trong bases.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:datasets/bases.py:read_image",
+      "type": "function",
+      "name": "read_image",
+      "filePath": "datasets/bases.py",
+      "lineRange": [
+        10,
+        23
+      ],
+      "summary": "Thực hiện xử lý read_image trong mô-đun bases.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:datasets/bases.py:BaseDataset",
+      "type": "class",
+      "name": "BaseDataset",
+      "filePath": "datasets/bases.py",
+      "lineRange": [
+        26,
+        47
+      ],
+      "summary": "Lớp BaseDataset đóng gói trạng thái và hành vi liên quan trong bases.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:datasets/bases.py:BaseImageDataset",
+      "type": "class",
+      "name": "BaseImageDataset",
+      "filePath": "datasets/bases.py",
+      "lineRange": [
+        50,
+        67
+      ],
+      "summary": "Lớp BaseImageDataset đóng gói trạng thái và hành vi liên quan trong bases.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:datasets/bases.py:ImageDataset",
+      "type": "class",
+      "name": "ImageDataset",
+      "filePath": "datasets/bases.py",
+      "lineRange": [
+        70,
+        85
+      ],
+      "summary": "Lớp ImageDataset đóng gói trạng thái và hành vi liên quan trong bases.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:datasets/dukemtmcreid.py",
+      "type": "file",
+      "name": "dukemtmcreid.py",
+      "filePath": "datasets/dukemtmcreid.py",
+      "summary": "Xử lý dữ liệu trong dukemtmcreid.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:datasets/dukemtmcreid.py:DukeMTMCreID",
+      "type": "class",
+      "name": "DukeMTMCreID",
+      "filePath": "datasets/dukemtmcreid.py",
+      "lineRange": [
+        18,
+        108
+      ],
+      "summary": "Lớp DukeMTMCreID đóng gói trạng thái và hành vi liên quan trong dukemtmcreid.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/make_dataloader.py",
+      "type": "file",
+      "name": "make_dataloader.py",
+      "filePath": "datasets/make_dataloader.py",
+      "summary": "Xử lý dữ liệu trong make_dataloader.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:datasets/make_dataloader.py:train_collate_fn",
+      "type": "function",
+      "name": "train_collate_fn",
+      "filePath": "datasets/make_dataloader.py",
+      "lineRange": [
+        26,
+        34
+      ],
+      "summary": "Thực thi logic huấn luyện train_collate_fn trong mô-đun make_dataloader.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:datasets/make_dataloader.py:val_collate_fn",
+      "type": "function",
+      "name": "val_collate_fn",
+      "filePath": "datasets/make_dataloader.py",
+      "lineRange": [
+        36,
+        40
+      ],
+      "summary": "Thực hiện xử lý val_collate_fn trong mô-đun make_dataloader.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:datasets/make_dataloader.py:make_dataloader",
+      "type": "function",
+      "name": "make_dataloader",
+      "filePath": "datasets/make_dataloader.py",
+      "lineRange": [
+        42,
+        108
+      ],
+      "summary": "Thực hiện xử lý make_dataloader trong mô-đun make_dataloader.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/make_dataloader_clipreid.py",
+      "type": "file",
+      "name": "make_dataloader_clipreid.py",
+      "filePath": "datasets/make_dataloader_clipreid.py",
+      "summary": "Xử lý dữ liệu trong make_dataloader_clipreid.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:datasets/make_dataloader_clipreid.py:train_collate_fn",
+      "type": "function",
+      "name": "train_collate_fn",
+      "filePath": "datasets/make_dataloader_clipreid.py",
+      "lineRange": [
+        26,
+        34
+      ],
+      "summary": "Thực thi logic huấn luyện train_collate_fn trong mô-đun make_dataloader_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:datasets/make_dataloader_clipreid.py:val_collate_fn",
+      "type": "function",
+      "name": "val_collate_fn",
+      "filePath": "datasets/make_dataloader_clipreid.py",
+      "lineRange": [
+        36,
+        40
+      ],
+      "summary": "Thực hiện xử lý val_collate_fn trong mô-đun make_dataloader_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:datasets/make_dataloader_clipreid.py:make_dataloader",
+      "type": "function",
+      "name": "make_dataloader",
+      "filePath": "datasets/make_dataloader_clipreid.py",
+      "lineRange": [
+        42,
+        108
+      ],
+      "summary": "Thực hiện xử lý make_dataloader trong mô-đun make_dataloader_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/market1501.py",
+      "type": "file",
+      "name": "market1501.py",
+      "filePath": "datasets/market1501.py",
+      "summary": "Xử lý dữ liệu trong market1501.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:datasets/market1501.py:Market1501",
+      "type": "class",
+      "name": "Market1501",
+      "filePath": "datasets/market1501.py",
+      "lineRange": [
+        15,
+        84
+      ],
+      "summary": "Lớp Market1501 đóng gói trạng thái và hành vi liên quan trong market1501.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/msmt17.py",
+      "type": "file",
+      "name": "msmt17.py",
+      "filePath": "datasets/msmt17.py",
+      "summary": "Xử lý dữ liệu trong msmt17.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:datasets/msmt17.py:MSMT17",
+      "type": "class",
+      "name": "MSMT17",
+      "filePath": "datasets/msmt17.py",
+      "lineRange": [
+        10,
+        81
+      ],
+      "summary": "Lớp MSMT17 đóng gói trạng thái và hành vi liên quan trong msmt17.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/occ_duke.py",
+      "type": "file",
+      "name": "occ_duke.py",
+      "filePath": "datasets/occ_duke.py",
+      "summary": "Xử lý dữ liệu trong occ_duke.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:datasets/occ_duke.py:OCC_DukeMTMCreID",
+      "type": "class",
+      "name": "OCC_DukeMTMCreID",
+      "filePath": "datasets/occ_duke.py",
+      "lineRange": [
+        18,
+        108
+      ],
+      "summary": "Lớp OCC_DukeMTMCreID đóng gói trạng thái và hành vi liên quan trong occ_duke.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/sampler.py",
+      "type": "file",
+      "name": "sampler.py",
+      "filePath": "datasets/sampler.py",
+      "summary": "Xử lý dữ liệu trong sampler.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:datasets/sampler.py:RandomIdentitySampler",
+      "type": "class",
+      "name": "RandomIdentitySampler",
+      "filePath": "datasets/sampler.py",
+      "lineRange": [
+        7,
+        66
+      ],
+      "summary": "Lớp RandomIdentitySampler đóng gói trạng thái và hành vi liên quan trong sampler.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/sampler_ddp.py",
+      "type": "file",
+      "name": "sampler_ddp.py",
+      "filePath": "datasets/sampler_ddp.py",
+      "summary": "Xử lý dữ liệu trong sampler_ddp.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:datasets/sampler_ddp.py:_get_global_gloo_group",
+      "type": "function",
+      "name": "_get_global_gloo_group",
+      "filePath": "datasets/sampler_ddp.py",
+      "lineRange": [
+        12,
+        20
+      ],
+      "summary": "Thực hiện xử lý _get_global_gloo_group trong mô-đun sampler_ddp.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:datasets/sampler_ddp.py:_serialize_to_tensor",
+      "type": "function",
+      "name": "_serialize_to_tensor",
+      "filePath": "datasets/sampler_ddp.py",
+      "lineRange": [
+        22,
+        36
+      ],
+      "summary": "Thực hiện xử lý _serialize_to_tensor trong mô-đun sampler_ddp.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:datasets/sampler_ddp.py:_pad_to_largest_tensor",
+      "type": "function",
+      "name": "_pad_to_largest_tensor",
+      "filePath": "datasets/sampler_ddp.py",
+      "lineRange": [
+        38,
+        62
+      ],
+      "summary": "Thực hiện xử lý _pad_to_largest_tensor trong mô-đun sampler_ddp.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:datasets/sampler_ddp.py:all_gather",
+      "type": "function",
+      "name": "all_gather",
+      "filePath": "datasets/sampler_ddp.py",
+      "lineRange": [
+        64,
+        97
+      ],
+      "summary": "Thực hiện xử lý all_gather trong mô-đun sampler_ddp.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:datasets/sampler_ddp.py:shared_random_seed",
+      "type": "function",
+      "name": "shared_random_seed",
+      "filePath": "datasets/sampler_ddp.py",
+      "lineRange": [
+        99,
+        109
+      ],
+      "summary": "Thực hiện xử lý shared_random_seed trong mô-đun sampler_ddp.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:datasets/sampler_ddp.py:RandomIdentitySampler_DDP",
+      "type": "class",
+      "name": "RandomIdentitySampler_DDP",
+      "filePath": "datasets/sampler_ddp.py",
+      "lineRange": [
+        111,
+        196
+      ],
+      "summary": "Lớp RandomIdentitySampler_DDP đóng gói trạng thái và hành vi liên quan trong sampler_ddp.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/vehicleid.py",
+      "type": "file",
+      "name": "vehicleid.py",
+      "filePath": "datasets/vehicleid.py",
+      "summary": "Xử lý dữ liệu trong vehicleid.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:datasets/vehicleid.py:VehicleID",
+      "type": "class",
+      "name": "VehicleID",
+      "filePath": "datasets/vehicleid.py",
+      "lineRange": [
+        10,
+        156
+      ],
+      "summary": "Lớp VehicleID đóng gói trạng thái và hành vi liên quan trong vehicleid.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/veri.py",
+      "type": "file",
+      "name": "veri.py",
+      "filePath": "datasets/veri.py",
+      "summary": "Xử lý dữ liệu trong veri.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình.",
+      "tags": [
+        "du-lieu",
+        "data-pipeline",
+        "tien-xu-ly"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:datasets/veri.py:VeRi",
+      "type": "class",
+      "name": "VeRi",
+      "filePath": "datasets/veri.py",
+      "lineRange": [
+        8,
+        116
+      ],
+      "summary": "Lớp VeRi đóng gói trạng thái và hành vi liên quan trong veri.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:utils/iotools.py",
+      "type": "file",
+      "name": "iotools.py",
+      "filePath": "utils/iotools.py",
+      "summary": "Cung cấp các thành phần hỗ trợ trong iotools.py cho pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "utility",
+        "emotionclip",
+        "pipeline"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:utils/iotools.py:mkdir_if_missing",
+      "type": "function",
+      "name": "mkdir_if_missing",
+      "filePath": "utils/iotools.py",
+      "lineRange": [
+        14,
+        20
+      ],
+      "summary": "Thực hiện xử lý mkdir_if_missing trong mô-đun iotools.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/iotools.py:check_isfile",
+      "type": "function",
+      "name": "check_isfile",
+      "filePath": "utils/iotools.py",
+      "lineRange": [
+        23,
+        27
+      ],
+      "summary": "Thực hiện xử lý check_isfile trong mô-đun iotools.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/iotools.py:read_json",
+      "type": "function",
+      "name": "read_json",
+      "filePath": "utils/iotools.py",
+      "lineRange": [
+        30,
+        33
+      ],
+      "summary": "Thực hiện xử lý read_json trong mô-đun iotools.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/iotools.py:write_json",
+      "type": "function",
+      "name": "write_json",
+      "filePath": "utils/iotools.py",
+      "lineRange": [
+        36,
+        39
+      ],
+      "summary": "Thực hiện xử lý write_json trong mô-đun iotools.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:datasets/bases.py",
+      "target": "function:datasets/bases.py:read_image",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/bases.py",
+      "target": "function:datasets/bases.py:read_image",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/bases.py",
+      "target": "class:datasets/bases.py:BaseDataset",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/bases.py",
+      "target": "class:datasets/bases.py:BaseDataset",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/bases.py",
+      "target": "class:datasets/bases.py:BaseImageDataset",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/bases.py",
+      "target": "class:datasets/bases.py:BaseImageDataset",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/bases.py",
+      "target": "class:datasets/bases.py:ImageDataset",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/bases.py",
+      "target": "class:datasets/bases.py:ImageDataset",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/dukemtmcreid.py",
+      "target": "class:datasets/dukemtmcreid.py:DukeMTMCreID",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/dukemtmcreid.py",
+      "target": "class:datasets/dukemtmcreid.py:DukeMTMCreID",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/dukemtmcreid.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/dukemtmcreid.py",
+      "target": "file:utils/iotools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "function:datasets/make_dataloader.py:train_collate_fn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "function:datasets/make_dataloader.py:train_collate_fn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "function:datasets/make_dataloader.py:val_collate_fn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "function:datasets/make_dataloader.py:val_collate_fn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "function:datasets/make_dataloader.py:make_dataloader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "function:datasets/make_dataloader.py:make_dataloader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/dukemtmcreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/market1501.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/msmt17.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/occ_duke.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/sampler_ddp.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/sampler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/vehicleid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/veri.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "function:datasets/make_dataloader_clipreid.py:train_collate_fn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "function:datasets/make_dataloader_clipreid.py:train_collate_fn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "function:datasets/make_dataloader_clipreid.py:val_collate_fn",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "function:datasets/make_dataloader_clipreid.py:val_collate_fn",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "function:datasets/make_dataloader_clipreid.py:make_dataloader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "function:datasets/make_dataloader_clipreid.py:make_dataloader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/dukemtmcreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/market1501.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/msmt17.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/occ_duke.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/sampler_ddp.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/sampler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/vehicleid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/veri.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/market1501.py",
+      "target": "class:datasets/market1501.py:Market1501",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/market1501.py",
+      "target": "class:datasets/market1501.py:Market1501",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/market1501.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/msmt17.py",
+      "target": "class:datasets/msmt17.py:MSMT17",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/msmt17.py",
+      "target": "class:datasets/msmt17.py:MSMT17",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/msmt17.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/occ_duke.py",
+      "target": "class:datasets/occ_duke.py:OCC_DukeMTMCreID",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/occ_duke.py",
+      "target": "class:datasets/occ_duke.py:OCC_DukeMTMCreID",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/occ_duke.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/occ_duke.py",
+      "target": "file:utils/iotools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/sampler.py",
+      "target": "class:datasets/sampler.py:RandomIdentitySampler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/sampler.py",
+      "target": "class:datasets/sampler.py:RandomIdentitySampler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "function:datasets/sampler_ddp.py:_get_global_gloo_group",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "function:datasets/sampler_ddp.py:_get_global_gloo_group",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "function:datasets/sampler_ddp.py:_serialize_to_tensor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "function:datasets/sampler_ddp.py:_serialize_to_tensor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "function:datasets/sampler_ddp.py:_pad_to_largest_tensor",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "function:datasets/sampler_ddp.py:_pad_to_largest_tensor",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "function:datasets/sampler_ddp.py:all_gather",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "function:datasets/sampler_ddp.py:all_gather",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "function:datasets/sampler_ddp.py:shared_random_seed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "function:datasets/sampler_ddp.py:shared_random_seed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "class:datasets/sampler_ddp.py:RandomIdentitySampler_DDP",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/sampler_ddp.py",
+      "target": "class:datasets/sampler_ddp.py:RandomIdentitySampler_DDP",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/vehicleid.py",
+      "target": "class:datasets/vehicleid.py:VehicleID",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/vehicleid.py",
+      "target": "class:datasets/vehicleid.py:VehicleID",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/vehicleid.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/veri.py",
+      "target": "class:datasets/veri.py:VeRi",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/veri.py",
+      "target": "class:datasets/veri.py:VeRi",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:datasets/veri.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/iotools.py",
+      "target": "function:utils/iotools.py:mkdir_if_missing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/iotools.py",
+      "target": "function:utils/iotools.py:mkdir_if_missing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/iotools.py",
+      "target": "function:utils/iotools.py:check_isfile",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/iotools.py",
+      "target": "function:utils/iotools.py:check_isfile",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/iotools.py",
+      "target": "function:utils/iotools.py:read_json",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/iotools.py",
+      "target": "function:utils/iotools.py:read_json",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/iotools.py",
+      "target": "function:utils/iotools.py:write_json",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/iotools.py",
+      "target": "function:utils/iotools.py:write_json",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

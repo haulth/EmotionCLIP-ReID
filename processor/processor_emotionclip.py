@@ -88,6 +88,105 @@ def _batch_uncertainty(uncertainty: torch.Tensor) -> float:
     return float(uncertainty.mean().detach().cpu())
 
 
+def _tensor_diagnostic(tensor: torch.Tensor) -> Dict[str, Any]:
+    detached = tensor.detach().float()
+    finite = torch.isfinite(detached)
+    values = detached[finite]
+    return {
+        "shape": list(detached.shape),
+        "finite": bool(finite.all()),
+        "nonfinite_count": int((~finite).sum().cpu()),
+        "min": float(values.min().cpu()) if values.numel() else None,
+        "max": float(values.max().cpu()) if values.numel() else None,
+        "mean": float(values.mean().cpu()) if values.numel() else None,
+    }
+
+
+def _write_training_failure(
+    output_dir: str,
+    *,
+    epoch: int,
+    batch_index: int,
+    reason: str,
+    losses: Optional[Dict[str, Any]] = None,
+    outputs: Optional[Dict[str, Any]] = None,
+    model=None,
+    batch: Optional[Dict[str, Any]] = None,
+) -> str:
+    """Write a compact, JSON-safe forensic snapshot before failing closed."""
+    payload: Dict[str, Any] = {
+        "epoch": int(epoch),
+        "batch_index": int(batch_index),
+        "reason": reason,
+        "losses": {},
+        "outputs": {},
+        "nonfinite_gradients": [],
+        "nonfinite_parameters": [],
+    }
+    for name, value in (losses or {}).items():
+        if torch.is_tensor(value):
+            payload["losses"][name] = _tensor_diagnostic(value)
+    for name in (
+        "logits",
+        "alignment_logits",
+        "raw_strength",
+        "strength",
+        "uncertainty",
+        "branch_temperatures",
+        "routing_loss",
+    ):
+        value = (outputs or {}).get(name)
+        if torch.is_tensor(value):
+            payload["outputs"][name] = _tensor_diagnostic(value)
+    if model is not None:
+        for name, parameter in unwrap_model(model).named_parameters():
+            if parameter.grad is not None and not bool(torch.isfinite(parameter.grad).all()):
+                payload["nonfinite_gradients"].append(name)
+            if not bool(torch.isfinite(parameter).all()):
+                payload["nonfinite_parameters"].append(name)
+    if batch is not None:
+        paths = batch.get("image_paths", [])
+        payload["image_paths"] = [str(path) for path in list(paths)[:32]]
+    if torch.cuda.is_available():
+        payload["cuda"] = {
+            "allocated_mb": torch.cuda.memory_allocated() / 1024**2,
+            "reserved_mb": torch.cuda.memory_reserved() / 1024**2,
+            "max_allocated_mb": torch.cuda.max_memory_allocated() / 1024**2,
+        }
+    os.makedirs(output_dir, exist_ok=True)
+    path = os.path.join(output_dir, "training_failure.json")
+    with open(path, "w", encoding="utf-8") as handle:
+        json.dump(payload, handle, indent=2, ensure_ascii=False)
+    return path
+
+
+def _losses_are_finite(losses: Dict[str, Any]) -> bool:
+    return all(
+        bool(torch.isfinite(value).all())
+        for value in losses.values()
+        if torch.is_tensor(value)
+    )
+
+
+def _make_grad_scaler(enabled: bool):
+    try:
+        return torch.amp.GradScaler("cuda", enabled=enabled)
+    except (AttributeError, TypeError):  # pragma: no cover - older supported PyTorch
+        return torch.cuda.amp.GradScaler(enabled=enabled)
+
+
+def _trainable_parameters(model):
+    return [parameter for parameter in model.parameters() if parameter.requires_grad]
+
+
+def _nonfinite_parameter_names(model):
+    return [
+        name
+        for name, parameter in unwrap_model(model).named_parameters()
+        if parameter.requires_grad and not bool(torch.isfinite(parameter).all())
+    ]
+
+
 def _forward_batch(model, batch: Dict[str, Any], text_features: Optional[torch.Tensor] = None):
     kwargs = {"images": batch["images"]}
     if text_features is not None:
@@ -179,6 +278,8 @@ def corrupt_anatomy_for_reliability(
 
 def _format_log_value(value: Any) -> str:
     if isinstance(value, float):
+        if value != 0.0 and (abs(value) < 1e-3 or abs(value) >= 1e4):
+            return f"{value:.4e}"
         return f"{value:.4f}"
     return str(value)
 
@@ -232,6 +333,8 @@ _RUN_HISTORY_COLUMNS = [
     "gate_entropy",
     "gate_collapse_rate",
     "images_per_second",
+    "optimizer_steps",
+    "gradient_accumulation_steps",
     "peak_vram_allocated_mb",
     "peak_vram_reserved_mb",
     "lr",
@@ -420,7 +523,7 @@ def log_run_config(logger: logging.Logger, cfg: Dict[str, Any], config_file: str
         fusion_gate_mode=fusion_cfg.get("GATE_MODE", "fixed"),
         fusion_scale_mode=fusion_cfg.get("SCALE_MODE", "temperature"),
         learn_temperatures=fusion_cfg.get("LEARN_TEMPERATURES", True),
-        initial_temperatures=fusion_cfg.get("INITIAL_TEMPERATURES", [0.1, 1.0, 1.0]),
+        initial_temperatures=fusion_cfg.get("INITIAL_TEMPERATURES", [1.0, 1.0, 1.0]),
         routing_mode=routing_cfg.get("MODE", "hybrid"),
         routing_sigma=routing_cfg.get("SIGMA", 0.08),
         anatomy_prompt_mode=prompt_geometry_cfg.get("MODE", "quality"),
@@ -435,6 +538,14 @@ def log_run_config(logger: logging.Logger, cfg: Dict[str, Any], config_file: str
         stage1_log_period=stage1_cfg.get("LOG_PERIOD", 20),
         stage2_epochs=stage2_cfg["MAX_EPOCHS"],
         stage2_batch=stage2_cfg["IMS_PER_BATCH"],
+        stage2_gradient_accumulation=stage2_cfg.get("GRADIENT_ACCUMULATION_STEPS", 1),
+        stage2_effective_batch=(
+            int(stage2_cfg["IMS_PER_BATCH"])
+            * int(stage2_cfg.get("GRADIENT_ACCUMULATION_STEPS", 1))
+        ),
+        stage2_amp=stage2_cfg.get("AMP_ENABLED", True),
+        stage2_max_grad_norm=stage2_cfg.get("MAX_GRAD_NORM", 1.0),
+        stage2_corruption_ranking=stage2_cfg.get("CORRUPTION", {}).get("LAMBDA_RANKING", 0.0),
         stage2_lr=stage2_cfg["BASE_LR"],
         stage2_log_period=stage2_cfg.get("LOG_PERIOD", 20),
         beta_align=stage2_cfg.get("BETA_ALIGN", 0.5),
@@ -871,7 +982,9 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
         )
     best_metric = float("inf") if selection_metric == "loss" else float("-inf")
     best_metrics = None
+    early_stopping_patience = int(stage_cfg.get("EARLY_STOPPING_PATIENCE", 0))
     for phase, phase_epochs in phases:
+        phase_epochs_without_improvement = 0
         # In MODE=both, geometry must start from the best validated base prompt,
         # never from an overfit last-base state.
         if phase == "geometry" and best_metrics is not None:
@@ -939,8 +1052,62 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
                     + float(stage_cfg.get("LAMBDA_SHIFT", 0.01)) * shift_loss
                     + float(stage_cfg.get("LAMBDA_SEMANTIC", 0.1)) * semantic_loss
                 )
+                if not bool(torch.isfinite(loss)):
+                    failure_path = _write_training_failure(
+                        output_dir,
+                        epoch=global_epoch,
+                        batch_index=steps + 1,
+                        reason=f"non-finite Stage 1 {phase} loss",
+                        losses={
+                            "loss": loss,
+                            "classification": classification_loss,
+                            "shift": shift_loss,
+                            "semantic": semantic_loss,
+                        },
+                        outputs={"logits": logits},
+                        model=model,
+                    )
+                    raise FloatingPointError(
+                        f"Non-finite Stage 1 loss in phase={phase} epoch={phase_epoch}; "
+                        f"diagnostic={failure_path}"
+                    )
                 loss.backward()
+                grad_norm = torch.nn.utils.clip_grad_norm_(
+                    _trainable_parameters(model),
+                    max_norm=float(stage_cfg.get("MAX_GRAD_NORM", 1.0)),
+                    error_if_nonfinite=False,
+                )
+                if not bool(torch.isfinite(grad_norm)):
+                    failure_path = _write_training_failure(
+                        output_dir,
+                        epoch=global_epoch,
+                        batch_index=steps + 1,
+                        reason=f"non-finite Stage 1 {phase} gradient norm",
+                        losses={"loss": loss},
+                        outputs={"logits": logits},
+                        model=model,
+                    )
+                    optimizer.zero_grad(set_to_none=True)
+                    raise FloatingPointError(
+                        f"Non-finite Stage 1 gradients in phase={phase} epoch={phase_epoch}; "
+                        f"diagnostic={failure_path}"
+                    )
                 optimizer.step()
+                nonfinite_parameters = _nonfinite_parameter_names(model)
+                if nonfinite_parameters:
+                    failure_path = _write_training_failure(
+                        output_dir,
+                        epoch=global_epoch,
+                        batch_index=steps + 1,
+                        reason=f"non-finite Stage 1 {phase} parameters after optimizer step",
+                        losses={"loss": loss},
+                        outputs={"logits": logits},
+                        model=model,
+                    )
+                    raise FloatingPointError(
+                        f"Non-finite Stage 1 parameters after optimizer step: "
+                        f"{nonfinite_parameters[:5]}; diagnostic={failure_path}"
+                    )
 
                 total_loss += float(loss.detach().cpu())
                 total_acc += _batch_accuracy(logits, batch_labels)
@@ -1022,9 +1189,26 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
                 if is_better:
                     best_metric = score
                     best_metrics = metrics
+                    phase_epochs_without_improvement = 0
                     save_checkpoint(
                         model, output_dir, "best_emotionclip_stage1.pth", global_epoch, stage=1, metrics=metrics
                     )
+                else:
+                    phase_epochs_without_improvement += 1
+                if (
+                    early_stopping_patience > 0
+                    and phase_epochs_without_improvement >= early_stopping_patience
+                ):
+                    log_training_event(
+                        logger,
+                        "Stage1 early stop",
+                        phase=phase,
+                        epoch=phase_epoch,
+                        patience=early_stopping_patience,
+                        selection_metric=selection_metric,
+                        best_value=best_metric,
+                    )
+                    break
 
     if val_cached is not None and best_metrics is not None:
         load_emotion_checkpoint(
@@ -1207,6 +1391,11 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         lambda_routing = 0.0
     corruption_cfg = stage_cfg.get("CORRUPTION", {})
     lambda_reliability_ranking = float(corruption_cfg.get("LAMBDA_RANKING", 0.0))
+    accumulation_steps = max(1, int(stage_cfg.get("GRADIENT_ACCUMULATION_STEPS", 1)))
+    amp_enabled = bool(stage_cfg.get("AMP_ENABLED", True)) and device.type == "cuda"
+    max_grad_norm = float(stage_cfg.get("MAX_GRAD_NORM", 1.0))
+    fail_on_nonfinite = bool(stage_cfg.get("FAIL_ON_NONFINITE", True))
+    scaler = _make_grad_scaler(amp_enabled)
     anneal_epochs = max(
         1,
         int(stage_cfg.get("RELIABILITY_WARMUP_EPOCHS", stage_cfg.get("EDL_ANNEALING_EPOCHS", 10))),
@@ -1221,12 +1410,18 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
     best_macro_f1 = -1.0
     best_metrics = None
     last_metrics = None
+    early_stopping_patience = int(stage_cfg.get("EARLY_STOPPING_PATIENCE", 0))
+    epochs_without_improvement = 0
     log_training_event(
         logger,
         "Stage2 start",
         epoch_total=max_epochs,
         samples=len(train_loader.dataset) if hasattr(train_loader, "dataset") else "unknown",
         batch_size=stage_cfg.get("IMS_PER_BATCH", "unknown"),
+        gradient_accumulation_steps=accumulation_steps,
+        effective_batch_size=int(stage_cfg.get("IMS_PER_BATCH", 1)) * accumulation_steps,
+        amp_enabled=amp_enabled,
+        max_grad_norm=max_grad_norm,
         steps_per_epoch=len(train_loader),
         lr=optimizer.param_groups[0]["lr"],
         beta_align=beta_align,
@@ -1269,50 +1464,123 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         total_gate_collapse = 0.0
         samples_seen = 0
         steps = 0
+        optimizer_steps = 0
+        last_grad_norm = 0.0
         anneal = min(1.0, epoch / anneal_epochs)
         progress = _progress(train_loader, cfg=cfg, desc=f"Stage2 {epoch}/{max_epochs}", total=len(train_loader))
-        for batch in progress:
+        optimizer.zero_grad(set_to_none=True)
+        for batch_index, batch in enumerate(progress, start=1):
             batch = _batch_to_device(batch, device)
             samples_seen += int(batch["labels"].shape[0])
-            optimizer.zero_grad()
-            outputs = _forward_batch(model, batch, text_features=text_features)
-            corrupted_outputs = None
-            if (
-                lambda_reliability_ranking > 0
-                and float(torch.rand((), device=batch["images"].device))
-                < float(corruption_cfg.get("PROBABILITY", 1.0))
-            ):
-                corrupted_batch = dict(batch)
-                corrupted_images, occlusion_mask = corrupt_images_for_reliability(
-                    batch["images"],
-                    noise_std=float(corruption_cfg.get("NOISE_STD", 0.08)),
-                    occlusion_ratio=float(corruption_cfg.get("OCCLUSION_RATIO", 0.2)),
-                    return_occlusion_mask=True,
+            with torch.autocast(device_type=device.type, enabled=amp_enabled):
+                outputs = _forward_batch(model, batch, text_features=text_features)
+                corrupted_outputs = None
+                if (
+                    lambda_reliability_ranking > 0
+                    and float(torch.rand((), device=batch["images"].device))
+                    < float(corruption_cfg.get("PROBABILITY", 1.0))
+                ):
+                    corrupted_batch = dict(batch)
+                    corrupted_images, occlusion_mask = corrupt_images_for_reliability(
+                        batch["images"],
+                        noise_std=float(corruption_cfg.get("NOISE_STD", 0.08)),
+                        occlusion_ratio=float(corruption_cfg.get("OCCLUSION_RATIO", 0.2)),
+                        return_occlusion_mask=True,
+                    )
+                    corrupted_batch["images"] = corrupted_images
+                    corrupted_anatomy = corrupt_anatomy_for_reliability(
+                        batch.get("anatomy"),
+                        occlusion_mask,
+                    )
+                    if corrupted_anatomy is not None:
+                        corrupted_batch["anatomy"] = corrupted_anatomy
+                    corrupted_outputs = _forward_batch(model, corrupted_batch, text_features=text_features)
+                losses = emotion_stage2_loss(
+                    outputs,
+                    batch["labels"],
+                    beta_align=beta_align,
+                    lambda_unc=lambda_unc,
+                    edl_annealing=anneal,
+                    reliability_target=reliability_target,
+                    lambda_gate=lambda_gate,
+                    lambda_temperature=lambda_temperature,
+                    lambda_routing=lambda_routing,
+                    corrupted_outputs=corrupted_outputs,
+                    lambda_reliability_ranking=lambda_reliability_ranking,
+                    reliability_ranking_margin=float(corruption_cfg.get("RANKING_MARGIN", 1.0)),
                 )
-                corrupted_batch["images"] = corrupted_images
-                corrupted_anatomy = corrupt_anatomy_for_reliability(
-                    batch.get("anatomy"),
-                    occlusion_mask,
+            if not _losses_are_finite(losses):
+                failure_path = _write_training_failure(
+                    output_dir,
+                    epoch=epoch,
+                    batch_index=batch_index,
+                    reason="non-finite loss",
+                    losses=losses,
+                    outputs=outputs,
+                    model=model,
+                    batch=batch,
                 )
-                if corrupted_anatomy is not None:
-                    corrupted_batch["anatomy"] = corrupted_anatomy
-                corrupted_outputs = _forward_batch(model, corrupted_batch, text_features=text_features)
-            losses = emotion_stage2_loss(
-                outputs,
-                batch["labels"],
-                beta_align=beta_align,
-                lambda_unc=lambda_unc,
-                edl_annealing=anneal,
-                reliability_target=reliability_target,
-                lambda_gate=lambda_gate,
-                lambda_temperature=lambda_temperature,
-                lambda_routing=lambda_routing,
-                corrupted_outputs=corrupted_outputs,
-                lambda_reliability_ranking=lambda_reliability_ranking,
-                reliability_ranking_margin=float(corruption_cfg.get("RANKING_MARGIN", 1.0)),
-            )
-            losses["loss"].backward()
-            optimizer.step()
+                optimizer.zero_grad(set_to_none=True)
+                message = f"Non-finite Stage 2 loss at epoch={epoch} batch={batch_index}; diagnostic={failure_path}"
+                if fail_on_nonfinite:
+                    raise FloatingPointError(message)
+                logger.error("%s; batch skipped", message)
+                continue
+
+            window_start = ((batch_index - 1) // accumulation_steps) * accumulation_steps + 1
+            window_size = min(accumulation_steps, len(train_loader) - window_start + 1)
+            scaler.scale(losses["loss"] / window_size).backward()
+            should_step = batch_index % accumulation_steps == 0 or batch_index == len(train_loader)
+            if should_step:
+                scaler.unscale_(optimizer)
+                grad_norm = torch.nn.utils.clip_grad_norm_(
+                    _trainable_parameters(model),
+                    max_norm=max_grad_norm,
+                    error_if_nonfinite=False,
+                )
+                if not bool(torch.isfinite(grad_norm)):
+                    failure_path = _write_training_failure(
+                        output_dir,
+                        epoch=epoch,
+                        batch_index=batch_index,
+                        reason="non-finite gradient norm",
+                        losses=losses,
+                        outputs=outputs,
+                        model=model,
+                        batch=batch,
+                    )
+                    optimizer.zero_grad(set_to_none=True)
+                    message = (
+                        f"Non-finite Stage 2 gradients at epoch={epoch} batch={batch_index}; "
+                        f"diagnostic={failure_path}"
+                    )
+                    if fail_on_nonfinite:
+                        raise FloatingPointError(message)
+                    logger.error("%s; optimizer step skipped", message)
+                    scaler.update()
+                    continue
+                scaler.step(optimizer)
+                nonfinite_parameters = _nonfinite_parameter_names(model)
+                if nonfinite_parameters:
+                    failure_path = _write_training_failure(
+                        output_dir,
+                        epoch=epoch,
+                        batch_index=batch_index,
+                        reason="non-finite parameters after optimizer step",
+                        losses=losses,
+                        outputs=outputs,
+                        model=model,
+                        batch=batch,
+                    )
+                    optimizer.zero_grad(set_to_none=True)
+                    raise FloatingPointError(
+                        f"Non-finite Stage 2 parameters after optimizer step: "
+                        f"{nonfinite_parameters[:5]}; diagnostic={failure_path}"
+                    )
+                scaler.update()
+                optimizer.zero_grad(set_to_none=True)
+                optimizer_steps += 1
+                last_grad_norm = float(grad_norm.detach().cpu())
             batch_loss = float(losses["loss"].detach().cpu())
             batch_cls = float(losses["classification"].detach().cpu())
             batch_align = float(losses["alignment"].detach().cpu())
@@ -1362,6 +1630,8 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     lr=f"{optimizer.param_groups[0]['lr']:.2e}",
                 )
             if log_period > 0 and steps % log_period == 0:
+                logits_for_log = outputs["logits"].detach().float()
+                raw_strength_for_log = outputs["raw_strength"].detach().float()
                 log_training_event(
                     logger,
                     "Stage2 train",
@@ -1371,10 +1641,22 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     cls=total_cls / max(steps, 1),
                     align=total_align / max(steps, 1),
                     unc_loss=total_unc / max(steps, 1),
+                    routing_loss=batch_routing_loss,
+                    temperature_loss=batch_temperature_loss,
+                    reliability_ranking_loss=batch_reliability_ranking,
                     pred_unc=total_pred_unc / max(steps, 1),
                     conf=total_conf / max(steps, 1),
                     acc=total_acc / max(steps, 1),
                     anneal=anneal,
+                    logit_min=float(logits_for_log.min().cpu()),
+                    logit_max=float(logits_for_log.max().cpu()),
+                    raw_strength_min=float(raw_strength_for_log.min().cpu()),
+                    raw_strength_max=float(raw_strength_for_log.max().cpu()),
+                    branch_temperatures=outputs.get("branch_temperatures", []).detach().float().cpu().tolist()
+                    if torch.is_tensor(outputs.get("branch_temperatures"))
+                    else [],
+                    grad_norm=last_grad_norm,
+                    optimizer_step=optimizer_steps,
                     lr=optimizer.param_groups[0]["lr"],
                 )
 
@@ -1441,6 +1723,8 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             "gate_entropy": total_gate_entropy / max(steps, 1),
             "gate_collapse_rate": total_gate_collapse / max(steps, 1),
             "images_per_second": samples_seen / max(epoch_time, 1e-12),
+            "optimizer_steps": optimizer_steps,
+            "gradient_accumulation_steps": accumulation_steps,
             "peak_vram_allocated_mb": peak_vram_allocated_mb,
             "peak_vram_reserved_mb": peak_vram_reserved_mb,
             "lr": optimizer.param_groups[0]["lr"],
@@ -1469,6 +1753,8 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             gate_collapse_rate=epoch_metrics["gate_collapse_rate"],
             images_per_second=epoch_metrics["images_per_second"],
             peak_vram_allocated_mb=epoch_metrics["peak_vram_allocated_mb"],
+            optimizer_steps=epoch_metrics["optimizer_steps"],
+            gradient_accumulation_steps=epoch_metrics["gradient_accumulation_steps"],
             lr=epoch_metrics["lr"],
             time_sec=epoch_metrics["time_sec"],
         )
@@ -1534,9 +1820,25 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             if metrics["macro_f1"] > best_macro_f1:
                 best_macro_f1 = metrics["macro_f1"]
                 best_metrics = metrics
+                epochs_without_improvement = 0
                 save_checkpoint(model, output_dir, "best_emotionclip.pth", epoch, stage=2, metrics=metrics)
+            else:
+                epochs_without_improvement += 1
             last_metrics = metrics
 
         save_checkpoint(model, output_dir, "last_emotionclip.pth", epoch, stage=2, metrics=last_metrics)
+        if (
+            val_loader is not None
+            and early_stopping_patience > 0
+            and epochs_without_improvement >= early_stopping_patience
+        ):
+            log_training_event(
+                logger,
+                "Stage2 early stop",
+                epoch=epoch,
+                patience=early_stopping_patience,
+                best_macro_f1=best_macro_f1,
+            )
+            break
 
     return best_metrics

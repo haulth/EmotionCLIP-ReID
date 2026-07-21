@@ -1,0 +1,1576 @@
+{
+  "nodes": [
+    {
+      "id": "file:config/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "config/__init__.py",
+      "summary": "Định nghĩa và kiểm tra cấu hình trong __init__.py, cung cấp mặc định an toàn cho pipeline EmotionCLIP.",
+      "tags": [
+        "utility",
+        "emotionclip",
+        "pipeline"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "file:loss/center_loss.py",
+      "type": "file",
+      "name": "center_loss.py",
+      "filePath": "loss/center_loss.py",
+      "summary": "Cài đặt các hàm mất mát trong center_loss.py để tối ưu biểu diễn, phân loại và độ phân tách mẫu của mô hình.",
+      "tags": [
+        "ham-mat-mat",
+        "toi-uu-hoa",
+        "hoc-bieu-dien"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:loss/center_loss.py:CenterLoss",
+      "type": "class",
+      "name": "CenterLoss",
+      "filePath": "loss/center_loss.py",
+      "lineRange": [
+        7,
+        54
+      ],
+      "summary": "Lớp CenterLoss đóng gói trạng thái và hành vi liên quan trong center_loss.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:loss/make_loss.py",
+      "type": "file",
+      "name": "make_loss.py",
+      "filePath": "loss/make_loss.py",
+      "summary": "Cài đặt các hàm mất mát trong make_loss.py để tối ưu biểu diễn, phân loại và độ phân tách mẫu của mô hình.",
+      "tags": [
+        "ham-mat-mat",
+        "toi-uu-hoa",
+        "hoc-bieu-dien"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:loss/make_loss.py:make_loss",
+      "type": "function",
+      "name": "make_loss",
+      "filePath": "loss/make_loss.py",
+      "lineRange": [
+        13,
+        87
+      ],
+      "summary": "Tính toán hàm mất mát make_loss trong mô-đun make_loss.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "ham-mat-mat",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:loss/softmax_loss.py",
+      "type": "file",
+      "name": "softmax_loss.py",
+      "filePath": "loss/softmax_loss.py",
+      "summary": "Cài đặt các hàm mất mát trong softmax_loss.py để tối ưu biểu diễn, phân loại và độ phân tách mẫu của mô hình.",
+      "tags": [
+        "ham-mat-mat",
+        "toi-uu-hoa",
+        "hoc-bieu-dien"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:loss/softmax_loss.py:CrossEntropyLabelSmooth",
+      "type": "class",
+      "name": "CrossEntropyLabelSmooth",
+      "filePath": "loss/softmax_loss.py",
+      "lineRange": [
+        5,
+        35
+      ],
+      "summary": "Lớp CrossEntropyLabelSmooth đóng gói trạng thái và hành vi liên quan trong softmax_loss.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:loss/softmax_loss.py:LabelSmoothingCrossEntropy",
+      "type": "class",
+      "name": "LabelSmoothingCrossEntropy",
+      "filePath": "loss/softmax_loss.py",
+      "lineRange": [
+        37,
+        57
+      ],
+      "summary": "Lớp LabelSmoothingCrossEntropy đóng gói trạng thái và hành vi liên quan trong softmax_loss.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:loss/supcontrast.py",
+      "type": "file",
+      "name": "supcontrast.py",
+      "filePath": "loss/supcontrast.py",
+      "summary": "Cài đặt các hàm mất mát trong supcontrast.py để tối ưu biểu diễn, phân loại và độ phân tách mẫu của mô hình.",
+      "tags": [
+        "ham-mat-mat",
+        "toi-uu-hoa",
+        "hoc-bieu-dien"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:loss/supcontrast.py:SupConLoss",
+      "type": "class",
+      "name": "SupConLoss",
+      "filePath": "loss/supcontrast.py",
+      "lineRange": [
+        10,
+        30
+      ],
+      "summary": "Lớp SupConLoss đóng gói trạng thái và hành vi liên quan trong supcontrast.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:loss/triplet_loss.py",
+      "type": "file",
+      "name": "triplet_loss.py",
+      "filePath": "loss/triplet_loss.py",
+      "summary": "Cài đặt các hàm mất mát trong triplet_loss.py để tối ưu biểu diễn, phân loại và độ phân tách mẫu của mô hình.",
+      "tags": [
+        "ham-mat-mat",
+        "toi-uu-hoa",
+        "hoc-bieu-dien"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:loss/triplet_loss.py:normalize",
+      "type": "function",
+      "name": "normalize",
+      "filePath": "loss/triplet_loss.py",
+      "lineRange": [
+        5,
+        13
+      ],
+      "summary": "Thực hiện xử lý normalize trong mô-đun triplet_loss.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:loss/triplet_loss.py:euclidean_dist",
+      "type": "function",
+      "name": "euclidean_dist",
+      "filePath": "loss/triplet_loss.py",
+      "lineRange": [
+        16,
+        31
+      ],
+      "summary": "Thực hiện xử lý euclidean_dist trong mô-đun triplet_loss.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:loss/triplet_loss.py:cosine_dist",
+      "type": "function",
+      "name": "cosine_dist",
+      "filePath": "loss/triplet_loss.py",
+      "lineRange": [
+        34,
+        48
+      ],
+      "summary": "Thực hiện xử lý cosine_dist trong mô-đun triplet_loss.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:loss/triplet_loss.py:hard_example_mining",
+      "type": "function",
+      "name": "hard_example_mining",
+      "filePath": "loss/triplet_loss.py",
+      "lineRange": [
+        51,
+        103
+      ],
+      "summary": "Thực hiện xử lý hard_example_mining trong mô-đun triplet_loss.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:loss/triplet_loss.py:TripletLoss",
+      "type": "class",
+      "name": "TripletLoss",
+      "filePath": "loss/triplet_loss.py",
+      "lineRange": [
+        106,
+        134
+      ],
+      "summary": "Lớp TripletLoss đóng gói trạng thái và hành vi liên quan trong triplet_loss.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:processor/processor.py",
+      "type": "file",
+      "name": "processor.py",
+      "filePath": "processor/processor.py",
+      "summary": "Điều phối vòng lặp huấn luyện/đánh giá trong processor.py, bao gồm luồng dữ liệu, tối ưu hóa, ghi metric và checkpoint.",
+      "tags": [
+        "huan-luyen",
+        "dieu-phoi",
+        "entry-point"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:processor/processor.py:do_train",
+      "type": "function",
+      "name": "do_train",
+      "filePath": "processor/processor.py",
+      "lineRange": [
+        11,
+        164
+      ],
+      "summary": "Thực thi logic huấn luyện do_train trong mô-đun processor.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:processor/processor.py:do_inference",
+      "type": "function",
+      "name": "do_inference",
+      "filePath": "processor/processor.py",
+      "lineRange": [
+        166,
+        208
+      ],
+      "summary": "Thực thi logic đánh giá do_inference trong mô-đun processor.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:processor/processor_clipreid_stage1.py",
+      "type": "file",
+      "name": "processor_clipreid_stage1.py",
+      "filePath": "processor/processor_clipreid_stage1.py",
+      "summary": "Điều phối vòng lặp huấn luyện/đánh giá trong processor_clipreid_stage1.py, bao gồm luồng dữ liệu, tối ưu hóa, ghi metric và checkpoint.",
+      "tags": [
+        "huan-luyen",
+        "dieu-phoi",
+        "entry-point"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:processor/processor_clipreid_stage1.py:do_train_stage1",
+      "type": "function",
+      "name": "do_train_stage1",
+      "filePath": "processor/processor_clipreid_stage1.py",
+      "lineRange": [
+        12,
+        106
+      ],
+      "summary": "Thực thi logic huấn luyện do_train_stage1 trong mô-đun processor_clipreid_stage1.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:processor/processor_clipreid_stage2.py",
+      "type": "file",
+      "name": "processor_clipreid_stage2.py",
+      "filePath": "processor/processor_clipreid_stage2.py",
+      "summary": "Điều phối vòng lặp huấn luyện/đánh giá trong processor_clipreid_stage2.py, bao gồm luồng dữ liệu, tối ưu hóa, ghi metric và checkpoint.",
+      "tags": [
+        "huan-luyen",
+        "dieu-phoi",
+        "entry-point"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:processor/processor_clipreid_stage2.py:do_train_stage2",
+      "type": "function",
+      "name": "do_train_stage2",
+      "filePath": "processor/processor_clipreid_stage2.py",
+      "lineRange": [
+        13,
+        187
+      ],
+      "summary": "Thực thi logic huấn luyện do_train_stage2 trong mô-đun processor_clipreid_stage2.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:processor/processor_clipreid_stage2.py:do_inference",
+      "type": "function",
+      "name": "do_inference",
+      "filePath": "processor/processor_clipreid_stage2.py",
+      "lineRange": [
+        189,
+        231
+      ],
+      "summary": "Thực thi logic đánh giá do_inference trong mô-đun processor_clipreid_stage2.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/cosine_lr.py",
+      "type": "file",
+      "name": "cosine_lr.py",
+      "filePath": "solver/cosine_lr.py",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong cosine_lr.py cho các giai đoạn huấn luyện.",
+      "tags": [
+        "toi-uu-hoa",
+        "scheduler",
+        "huan-luyen"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:solver/cosine_lr.py:CosineLRScheduler",
+      "type": "class",
+      "name": "CosineLRScheduler",
+      "filePath": "solver/cosine_lr.py",
+      "lineRange": [
+        17,
+        115
+      ],
+      "summary": "Lớp CosineLRScheduler đóng gói trạng thái và hành vi liên quan trong cosine_lr.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:solver/lr_scheduler.py",
+      "type": "file",
+      "name": "lr_scheduler.py",
+      "filePath": "solver/lr_scheduler.py",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong lr_scheduler.py cho các giai đoạn huấn luyện.",
+      "tags": [
+        "toi-uu-hoa",
+        "scheduler",
+        "huan-luyen"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:solver/lr_scheduler.py:WarmupMultiStepLR",
+      "type": "class",
+      "name": "WarmupMultiStepLR",
+      "filePath": "solver/lr_scheduler.py",
+      "lineRange": [
+        14,
+        56
+      ],
+      "summary": "Lớp WarmupMultiStepLR đóng gói trạng thái và hành vi liên quan trong lr_scheduler.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/make_optimizer.py",
+      "type": "file",
+      "name": "make_optimizer.py",
+      "filePath": "solver/make_optimizer.py",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong make_optimizer.py cho các giai đoạn huấn luyện.",
+      "tags": [
+        "toi-uu-hoa",
+        "scheduler",
+        "huan-luyen"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:solver/make_optimizer.py:make_optimizer",
+      "type": "function",
+      "name": "make_optimizer",
+      "filePath": "solver/make_optimizer.py",
+      "lineRange": [
+        3,
+        28
+      ],
+      "summary": "Thực hiện xử lý make_optimizer trong mô-đun make_optimizer.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/make_optimizer_prompt.py",
+      "type": "file",
+      "name": "make_optimizer_prompt.py",
+      "filePath": "solver/make_optimizer_prompt.py",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong make_optimizer_prompt.py cho các giai đoạn huấn luyện.",
+      "tags": [
+        "toi-uu-hoa",
+        "scheduler",
+        "huan-luyen"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:solver/make_optimizer_prompt.py:make_optimizer_1stage",
+      "type": "function",
+      "name": "make_optimizer_1stage",
+      "filePath": "solver/make_optimizer_prompt.py",
+      "lineRange": [
+        4,
+        19
+      ],
+      "summary": "Thực thi logic huấn luyện make_optimizer_1stage trong mô-đun make_optimizer_prompt.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:solver/make_optimizer_prompt.py:make_optimizer_2stage",
+      "type": "function",
+      "name": "make_optimizer_2stage",
+      "filePath": "solver/make_optimizer_prompt.py",
+      "lineRange": [
+        23,
+        55
+      ],
+      "summary": "Thực thi logic huấn luyện make_optimizer_2stage trong mô-đun make_optimizer_prompt.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/scheduler.py",
+      "type": "file",
+      "name": "scheduler.py",
+      "filePath": "solver/scheduler.py",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong scheduler.py cho các giai đoạn huấn luyện.",
+      "tags": [
+        "toi-uu-hoa",
+        "scheduler",
+        "huan-luyen"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:solver/scheduler.py:Scheduler",
+      "type": "class",
+      "name": "Scheduler",
+      "filePath": "solver/scheduler.py",
+      "lineRange": [
+        6,
+        105
+      ],
+      "summary": "Lớp Scheduler đóng gói trạng thái và hành vi liên quan trong scheduler.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:solver/scheduler_factory.py",
+      "type": "file",
+      "name": "scheduler_factory.py",
+      "filePath": "solver/scheduler_factory.py",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong scheduler_factory.py cho các giai đoạn huấn luyện.",
+      "tags": [
+        "toi-uu-hoa",
+        "scheduler",
+        "huan-luyen"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:solver/scheduler_factory.py:create_scheduler",
+      "type": "function",
+      "name": "create_scheduler",
+      "filePath": "solver/scheduler_factory.py",
+      "lineRange": [
+        7,
+        25
+      ],
+      "summary": "Thực hiện xử lý create_scheduler trong mô-đun scheduler_factory.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:test.py",
+      "type": "file",
+      "name": "test.py",
+      "filePath": "test.py",
+      "summary": "Bộ kiểm thử xác minh hành vi và các điều kiện biên của test, giúp ngăn hồi quy trong pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "kiem-thu",
+        "hoi-quy",
+        "xac-minh"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "file:test_clipreid.py",
+      "type": "file",
+      "name": "test_clipreid.py",
+      "filePath": "test_clipreid.py",
+      "summary": "Bộ kiểm thử xác minh hành vi và các điều kiện biên của test_clipreid, giúp ngăn hồi quy trong pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "kiem-thu",
+        "hoi-quy",
+        "xac-minh"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "file:train.py",
+      "type": "file",
+      "name": "train.py",
+      "filePath": "train.py",
+      "summary": "Điểm vào huấn luyện train.py, lắp ghép cấu hình, dữ liệu, mô hình, optimizer và các stage training.",
+      "tags": [
+        "huan-luyen",
+        "dieu-phoi",
+        "entry-point"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:train.py:set_seed",
+      "type": "function",
+      "name": "set_seed",
+      "filePath": "train.py",
+      "lineRange": [
+        15,
+        22
+      ],
+      "summary": "Thực hiện xử lý set_seed trong mô-đun train.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:train_clipreid.py",
+      "type": "file",
+      "name": "train_clipreid.py",
+      "filePath": "train_clipreid.py",
+      "summary": "Điểm vào huấn luyện train_clipreid.py, lắp ghép cấu hình, dữ liệu, mô hình, optimizer và các stage training.",
+      "tags": [
+        "huan-luyen",
+        "dieu-phoi",
+        "entry-point"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:train_clipreid.py:set_seed",
+      "type": "function",
+      "name": "set_seed",
+      "filePath": "train_clipreid.py",
+      "lineRange": [
+        17,
+        24
+      ],
+      "summary": "Thực hiện xử lý set_seed trong mô-đun train_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/logger.py",
+      "type": "file",
+      "name": "logger.py",
+      "filePath": "utils/logger.py",
+      "summary": "Cung cấp các thành phần hỗ trợ trong logger.py cho pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "utility",
+        "emotionclip",
+        "pipeline"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:utils/logger.py:setup_logger",
+      "type": "function",
+      "name": "setup_logger",
+      "filePath": "utils/logger.py",
+      "lineRange": [
+        5,
+        26
+      ],
+      "summary": "Thực hiện xử lý setup_logger trong mô-đun logger.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/meter.py",
+      "type": "file",
+      "name": "meter.py",
+      "filePath": "utils/meter.py",
+      "summary": "Cung cấp các thành phần hỗ trợ trong meter.py cho pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "utility",
+        "emotionclip",
+        "pipeline"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "class:utils/meter.py:AverageMeter",
+      "type": "class",
+      "name": "AverageMeter",
+      "filePath": "utils/meter.py",
+      "lineRange": [
+        1,
+        20
+      ],
+      "summary": "Lớp AverageMeter đóng gói trạng thái và hành vi liên quan trong meter.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/metrics.py",
+      "type": "file",
+      "name": "metrics.py",
+      "filePath": "utils/metrics.py",
+      "summary": "Tính toán metric đánh giá trong metrics.py, tổng hợp chất lượng dự đoán và độ tin cậy của mô hình.",
+      "tags": [
+        "utility",
+        "emotionclip",
+        "pipeline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:utils/metrics.py:euclidean_distance",
+      "type": "function",
+      "name": "euclidean_distance",
+      "filePath": "utils/metrics.py",
+      "lineRange": [
+        7,
+        13
+      ],
+      "summary": "Thực hiện xử lý euclidean_distance trong mô-đun metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/metrics.py:cosine_similarity",
+      "type": "function",
+      "name": "cosine_similarity",
+      "filePath": "utils/metrics.py",
+      "lineRange": [
+        15,
+        25
+      ],
+      "summary": "Thực hiện xử lý cosine_similarity trong mô-đun metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/metrics.py:eval_func",
+      "type": "function",
+      "name": "eval_func",
+      "filePath": "utils/metrics.py",
+      "lineRange": [
+        28,
+        87
+      ],
+      "summary": "Thực thi logic đánh giá eval_func trong mô-đun metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "danh-gia",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:utils/metrics.py:R1_mAP_eval",
+      "type": "class",
+      "name": "R1_mAP_eval",
+      "filePath": "utils/metrics.py",
+      "lineRange": [
+        90,
+        133
+      ],
+      "summary": "Lớp R1_mAP_eval đóng gói trạng thái và hành vi liên quan trong metrics.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/reranking.py",
+      "type": "file",
+      "name": "reranking.py",
+      "filePath": "utils/reranking.py",
+      "summary": "Cung cấp các thành phần hỗ trợ trong reranking.py cho pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "utility",
+        "emotionclip",
+        "pipeline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:utils/reranking.py:re_ranking",
+      "type": "function",
+      "name": "re_ranking",
+      "filePath": "utils/reranking.py",
+      "lineRange": [
+        29,
+        100
+      ],
+      "summary": "Thực hiện xử lý re_ranking trong mô-đun reranking.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:loss/center_loss.py",
+      "target": "class:loss/center_loss.py:CenterLoss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/center_loss.py",
+      "target": "class:loss/center_loss.py:CenterLoss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "function:loss/make_loss.py:make_loss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "function:loss/make_loss.py:make_loss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/center_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/softmax_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/triplet_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/softmax_loss.py",
+      "target": "class:loss/softmax_loss.py:CrossEntropyLabelSmooth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/softmax_loss.py",
+      "target": "class:loss/softmax_loss.py:CrossEntropyLabelSmooth",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/softmax_loss.py",
+      "target": "class:loss/softmax_loss.py:LabelSmoothingCrossEntropy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/softmax_loss.py",
+      "target": "class:loss/softmax_loss.py:LabelSmoothingCrossEntropy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/supcontrast.py",
+      "target": "class:loss/supcontrast.py:SupConLoss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/supcontrast.py",
+      "target": "class:loss/supcontrast.py:SupConLoss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:normalize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:normalize",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:euclidean_dist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:euclidean_dist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:cosine_dist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:cosine_dist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:hard_example_mining",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:hard_example_mining",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "class:loss/triplet_loss.py:TripletLoss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "class:loss/triplet_loss.py:TripletLoss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "function:processor/processor.py:do_train",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "function:processor/processor.py:do_train",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "function:processor/processor.py:do_inference",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "function:processor/processor.py:do_inference",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "file:utils/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "function:processor/processor_clipreid_stage1.py:do_train_stage1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "function:processor/processor_clipreid_stage1.py:do_train_stage1",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "file:loss/supcontrast.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "function:processor/processor_clipreid_stage2.py:do_train_stage2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "function:processor/processor_clipreid_stage2.py:do_train_stage2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "function:processor/processor_clipreid_stage2.py:do_inference",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "function:processor/processor_clipreid_stage2.py:do_inference",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:loss/supcontrast.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:utils/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:solver/cosine_lr.py",
+      "target": "class:solver/cosine_lr.py:CosineLRScheduler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/cosine_lr.py",
+      "target": "class:solver/cosine_lr.py:CosineLRScheduler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/cosine_lr.py",
+      "target": "file:solver/scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:solver/lr_scheduler.py",
+      "target": "class:solver/lr_scheduler.py:WarmupMultiStepLR",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/lr_scheduler.py",
+      "target": "class:solver/lr_scheduler.py:WarmupMultiStepLR",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/make_optimizer.py",
+      "target": "function:solver/make_optimizer.py:make_optimizer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/make_optimizer.py",
+      "target": "function:solver/make_optimizer.py:make_optimizer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/make_optimizer_prompt.py",
+      "target": "function:solver/make_optimizer_prompt.py:make_optimizer_1stage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/make_optimizer_prompt.py",
+      "target": "function:solver/make_optimizer_prompt.py:make_optimizer_1stage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/make_optimizer_prompt.py",
+      "target": "function:solver/make_optimizer_prompt.py:make_optimizer_2stage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/make_optimizer_prompt.py",
+      "target": "function:solver/make_optimizer_prompt.py:make_optimizer_2stage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/scheduler.py",
+      "target": "class:solver/scheduler.py:Scheduler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/scheduler.py",
+      "target": "class:solver/scheduler.py:Scheduler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/scheduler_factory.py",
+      "target": "function:solver/scheduler_factory.py:create_scheduler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/scheduler_factory.py",
+      "target": "function:solver/scheduler_factory.py:create_scheduler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/scheduler_factory.py",
+      "target": "file:solver/cosine_lr.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:datasets/make_dataloader.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:model/make_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:processor/processor.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:datasets/make_dataloader_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:model/make_model_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage2.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "function:train.py:set_seed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train.py",
+      "target": "function:train.py:set_seed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:datasets/make_dataloader.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:loss/make_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:model/make_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:processor/processor.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:solver/lr_scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:solver/make_optimizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "function:train_clipreid.py:set_seed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "function:train_clipreid.py:set_seed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:datasets/make_dataloader_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:loss/make_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:model/make_model_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage1.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage2.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/lr_scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/make_optimizer_prompt.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/scheduler_factory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/logger.py",
+      "target": "function:utils/logger.py:setup_logger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/logger.py",
+      "target": "function:utils/logger.py:setup_logger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/meter.py",
+      "target": "class:utils/meter.py:AverageMeter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/meter.py",
+      "target": "class:utils/meter.py:AverageMeter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:euclidean_distance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:euclidean_distance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:cosine_similarity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:cosine_similarity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:eval_func",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:eval_func",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "class:utils/metrics.py:R1_mAP_eval",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "class:utils/metrics.py:R1_mAP_eval",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "file:utils/reranking.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/reranking.py",
+      "target": "function:utils/reranking.py:re_ranking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/reranking.py",
+      "target": "function:utils/reranking.py:re_ranking",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

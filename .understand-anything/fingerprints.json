@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "0ff83a0a2b2d05a61b5671c0fc4b2223c83ec7c0",
-  "generatedAt": "2026-07-17T14:32:14.262Z",
+  "gitCommitHash": "c930a88395e1d3ba8e39ffde19d3980aabbe57ab",
+  "generatedAt": "2026-07-21T04:31:47.540Z",
   "files": {
     "config/__init__.py": {
       "filePath": "config/__init__.py",
@@ -49,8 +49,17 @@
     },
     "config/emotion_defaults.py": {
       "filePath": "config/emotion_defaults.py",
-      "contentHash": "0208114bef1f7a531ad1d7b34f887950984c111aaf75685c2ae6d90491878a80",
+      "contentHash": "42254e4c8e06c0e40603a7e60500c258a978c1d7e30b7f0bb750671e23f644fe",
       "functions": [
+        {
+          "name": "anatomy_requirement_reasons",
+          "params": [
+            "cfg"
+          ],
+          "returnType": "List[str]",
+          "exported": true,
+          "lineCount": 27
+        },
         {
           "name": "get_default_emotion_cfg",
           "params": [],
@@ -89,6 +98,15 @@
           "lineCount": 6
         },
         {
+          "name": "validate_emotion_cfg",
+          "params": [
+            "cfg"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
           "name": "load_emotion_cfg",
           "params": [
             "config_file",
@@ -96,7 +114,7 @@
           ],
           "returnType": "Dict[str, Any]",
           "exported": true,
-          "lineCount": 13
+          "lineCount": 14
         }
       ],
       "classes": [],
@@ -131,53 +149,55 @@
         }
       ],
       "exports": [
+        "anatomy_requirement_reasons",
         "get_default_emotion_cfg",
         "_deep_update",
         "_coerce_value",
         "_set_by_dotted_key",
+        "validate_emotion_cfg",
         "load_emotion_cfg"
       ],
-      "totalLines": 196,
+      "totalLines": 255,
       "hasStructuralAnalysis": true
     },
     "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml": {
       "filePath": "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
-      "contentHash": "88a2b5cdb40318f3b9d0a7d34a4083ffd0bc374834b9f936ee8960b8fef3536d",
+      "contentHash": "9810c2672fa24adf493b5cd8ac200ea0048bd73e176633921d2c84d304360528",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 67,
+      "totalLines": 83,
       "hasStructuralAnalysis": true
     },
     "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml": {
       "filePath": "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
-      "contentHash": "a30bd102fd13643b72116e5e07544deb601cb2ae8f5077b6c627c3582b56732c",
+      "contentHash": "0af47506f9fbe522a45d26862fe6508df2773de754fe583c0547d77370ec8710",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 67,
+      "totalLines": 83,
       "hasStructuralAnalysis": true
     },
     "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml": {
       "filePath": "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
-      "contentHash": "94c41481f985b7746bb993f505104738ce07fe1533fbbc51da67b39cca3835dc",
+      "contentHash": "fe9ff86ba477ff04a48ca7162d08b2c385b92eaacd29da205d83de191e1e84fb",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 67,
+      "totalLines": 81,
       "hasStructuralAnalysis": true
     },
     "configs/emotion/vit_b16_emotionclip.yml": {
       "filePath": "configs/emotion/vit_b16_emotionclip.yml",
-      "contentHash": "dcb6ce4be2896bfb04e0932fdfdf0618ac597d2535bcde4199c0d6add5bf0151",
+      "contentHash": "4281d98ce1479f51823ec12a01df57ceb332495029abe92743f41ba7cd3ea88b",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 119,
+      "totalLines": 123,
       "hasStructuralAnalysis": true
     },
     "configs/person/cnn_base.yml": {
@@ -312,7 +332,7 @@
     },
     "datasets/anatomy.py": {
       "filePath": "datasets/anatomy.py",
-      "contentHash": "9f6924d2969531b696b5baf12189ffad895d7fa976df468f13fc6ef828f16ca0",
+      "contentHash": "80bf5984b45d1dbee77235354dd02b7b13a34be13d669f8aa2cd0408e5b7872f",
       "functions": [
         {
           "name": "geometry_feature_definition_mask",
@@ -369,7 +389,7 @@
           ],
           "returnType": "Dict[str, np.ndarray]",
           "exported": true,
-          "lineCount": 54
+          "lineCount": 80
         },
         {
           "name": "transform_normalized_landmarks",
@@ -464,7 +484,7 @@
           "params": [],
           "returnType": "Dict[str, torch.Tensor]",
           "exported": true,
-          "lineCount": 14
+          "lineCount": 15
         },
         {
           "name": "anatomy_to_model_inputs",
@@ -477,7 +497,7 @@
           ],
           "returnType": "Dict[str, torch.Tensor]",
           "exported": true,
-          "lineCount": 84
+          "lineCount": 124
         },
         {
           "name": "fit_class_geometry_statistics",
@@ -492,7 +512,7 @@
           ],
           "returnType": "Dict[str, torch.Tensor]",
           "exported": true,
-          "lineCount": 66
+          "lineCount": 76
         }
       ],
       "classes": [],
@@ -565,7 +585,7 @@
         "anatomy_to_model_inputs",
         "fit_class_geometry_statistics"
       ],
-      "totalLines": 549,
+      "totalLines": 627,
       "hasStructuralAnalysis": true
     },
     "datasets/bases.py": {
@@ -725,7 +745,7 @@
     },
     "datasets/emotion_manifest.py": {
       "filePath": "datasets/emotion_manifest.py",
-      "contentHash": "2eca0657849cc9f45586f3baf052a1495f2d49217934b90fd11393fbc55162d0",
+      "contentHash": "6102c8c7d568105cfbacd1d0d6f270093985e7f4321685e2542b743904f1d706",
       "functions": [
         {
           "name": "normalize_emotion",
@@ -782,6 +802,26 @@
           "lineCount": 15
         },
         {
+          "name": "summarize_anatomy_coverage",
+          "params": [
+            "samples",
+            "output_size"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 79
+        },
+        {
+          "name": "validate_anatomy_coverage",
+          "params": [
+            "cfg",
+            "report"
+          ],
+          "returnType": "List[str]",
+          "exported": true,
+          "lineCount": 45
+        },
+        {
           "name": "emotion_collate_fn",
           "params": [
             "batch"
@@ -796,7 +836,7 @@
             "cfg"
           ],
           "exported": true,
-          "lineCount": 115
+          "lineCount": 135
         }
       ],
       "classes": [
@@ -910,6 +950,7 @@
         {
           "source": ".anatomy",
           "specifiers": [
+            "ANATOMY_ARTIFACT_SCHEMA_VERSION",
             "anatomy_to_model_inputs",
             "empty_anatomy_inputs",
             "load_anatomy_artifact"
@@ -923,12 +964,14 @@
         "_sample_from_record",
         "load_emotion_manifest",
         "validate_split_leakage",
+        "summarize_anatomy_coverage",
+        "validate_anatomy_coverage",
         "FaceSafeTransform",
         "EmotionManifestDataset",
         "emotion_collate_fn",
         "make_emotion_dataloaders"
       ],
-      "totalLines": 447,
+      "totalLines": 600,
       "hasStructuralAnalysis": true
     },
     "datasets/keypoint_test.txt": {
@@ -1712,13 +1755,13 @@
     },
     "infer_emotionclip.py": {
       "filePath": "infer_emotionclip.py",
-      "contentHash": "ab82dcad0abdfb122c5c207e7e0f4a7643821e82fd1645850dcfeddfb4b6fe94",
+      "contentHash": "296b2d7fb906087b296f8057540beaebfbf5e3b4ef9c9bbceedc365f626e7921",
       "functions": [
         {
           "name": "main",
           "params": [],
           "exported": true,
-          "lineCount": 107
+          "lineCount": 125
         }
       ],
       "classes": [],
@@ -1750,12 +1793,14 @@
         {
           "source": "config.emotion_defaults",
           "specifiers": [
+            "anatomy_requirement_reasons",
             "load_emotion_cfg"
           ]
         },
         {
           "source": "datasets.anatomy",
           "specifiers": [
+            "ANATOMY_ARTIFACT_SCHEMA_VERSION",
             "load_anatomy_artifact"
           ]
         },
@@ -1782,7 +1827,7 @@
       "exports": [
         "main"
       ],
-      "totalLines": 125,
+      "totalLines": 143,
       "hasStructuralAnalysis": true
     },
     "loss/__init__.py": {
@@ -2770,7 +2815,7 @@
     },
     "model/emotionclip_model.py": {
       "filePath": "model/emotionclip_model.py",
-      "contentHash": "764d29743e57bcda413721ddc38c0a9e9585d642517b4ae7a682be89b12bb8e9",
+      "contentHash": "17fbb62655f9ec15609396f7bcaf44819504513d2d62cbdb8cd7862fa46d33ae",
       "functions": [
         {
           "name": "decoupled_dirichlet",
@@ -2877,7 +2922,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 98
+          "lineCount": 155
         },
         {
           "name": "EmotionPromptLearner",
@@ -2997,7 +3042,8 @@
             "ANATOMY_REGIONS",
             "MAX_GEOMETRY_FEATURES",
             "MAX_REGION_LANDMARKS",
-            "NUM_ANATOMY_REGIONS"
+            "NUM_ANATOMY_REGIONS",
+            "geometry_feature_definition_mask"
           ]
         },
         {
@@ -3036,7 +3082,7 @@
         "AnatomyRegionFusion",
         "EmotionCLIPModel"
       ],
-      "totalLines": 1106,
+      "totalLines": 1165,
       "hasStructuralAnalysis": true
     },
     "model/make_model_clipreid.py": {
@@ -3275,24 +3321,44 @@
       "totalLines": 151,
       "hasStructuralAnalysis": true
     },
-    "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb": {
-      "filePath": "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
-      "contentHash": "976c75f07b164742378744ba0315f4ad1497bd4a46b0b66111812fb57e0ae5cd",
+    "note_edit.md": {
+      "filePath": "note_edit.md",
+      "contentHash": "dae66d642119e5e26d4d61563f9d2c78ab605b7349de9b57567c7c534429711b",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 1881,
+      "totalLines": 74,
+      "hasStructuralAnalysis": true
+    },
+    "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb": {
+      "filePath": "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+      "contentHash": "0b3825b1217612005a1d84e45d32f63d4a10d5fb0b9706e19fe1c1488e23a81f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 805,
+      "hasStructuralAnalysis": false
+    },
+    "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb": {
+      "filePath": "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "contentHash": "af2e340ed1df96029dfb1bf27ddce440513442e57fa4a206f7d0cd3863b8d8ca",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1481,
       "hasStructuralAnalysis": false
     },
     "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb": {
       "filePath": "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
-      "contentHash": "1676eee8945e6778fccaedb61f2caf017f6cd198c92571b16a5a4c5256a4058a",
+      "contentHash": "3e1c2679befbdcd91bb73861c390e15bd8bc35ebb289df4da197c512d6c2a766",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 1965,
+      "totalLines": 1415,
       "hasStructuralAnalysis": false
     },
     "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx": {
@@ -3994,7 +4060,7 @@
     },
     "processor/processor_emotionclip.py": {
       "filePath": "processor/processor_emotionclip.py",
-      "contentHash": "59ffd646548dc117682015df6394b760a0a83375a6cdac7e38a57126c1b18f31",
+      "contentHash": "53388831602f23da1c2be6b337f46e3fc1e8bc9d8c3b6d34a02780770715857b",
       "functions": [
         {
           "name": "_batch_to_device",
@@ -4176,13 +4242,30 @@
           "lineCount": 59
         },
         {
+          "name": "unwrap_model",
+          "params": [
+            "model"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "get_shared_text_features",
+          "params": [
+            "model",
+            "**kwargs"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
           "name": "_model_signature",
           "params": [
             "model"
           ],
           "returnType": "Dict[str, Any]",
           "exported": true,
-          "lineCount": 24
+          "lineCount": 25
         },
         {
           "name": "_checkpoint_payload",
@@ -4193,7 +4276,7 @@
             "metrics"
           ],
           "exported": true,
-          "lineCount": 10
+          "lineCount": 11
         },
         {
           "name": "parameter_report",
@@ -4202,7 +4285,7 @@
           ],
           "returnType": "Dict[str, Any]",
           "exported": true,
-          "lineCount": 32
+          "lineCount": 33
         },
         {
           "name": "save_checkpoint",
@@ -4227,7 +4310,7 @@
             "allow_untrained_stage2"
           ],
           "exported": true,
-          "lineCount": 121
+          "lineCount": 122
         },
         {
           "name": "precompute_stage1_features",
@@ -4241,16 +4324,29 @@
           "lineCount": 18
         },
         {
+          "name": "evaluate_stage1_prompt_model",
+          "params": [
+            "cfg",
+            "model",
+            "cached",
+            "use_geometry"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 26
+        },
+        {
           "name": "do_train_emotion_stage1",
           "params": [
             "cfg",
             "model",
             "train_loader_stage1",
             "optimizer",
-            "scheduler"
+            "scheduler",
+            "val_loader"
           ],
           "exported": true,
-          "lineCount": 166
+          "lineCount": 256
         },
         {
           "name": "evaluate_emotion_model",
@@ -4289,10 +4385,22 @@
             "scheduler"
           ],
           "exported": true,
-          "lineCount": 362
+          "lineCount": 363
         }
       ],
-      "classes": [],
+      "classes": [
+        {
+          "name": "EmotionDataParallel",
+          "methods": [
+            "scatter",
+            "_output_device",
+            "gather"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 77
+        }
+      ],
       "imports": [
         {
           "source": "csv",
@@ -4395,18 +4503,22 @@
         "_record_training_epoch",
         "_record_validation_epoch",
         "log_run_config",
+        "unwrap_model",
+        "get_shared_text_features",
+        "EmotionDataParallel",
         "_model_signature",
         "_checkpoint_payload",
         "parameter_report",
         "save_checkpoint",
         "load_emotion_checkpoint",
         "precompute_stage1_features",
+        "evaluate_stage1_prompt_model",
         "do_train_emotion_stage1",
         "evaluate_emotion_model",
         "evaluate_sealed_test",
         "do_train_emotion_stage2"
       ],
-      "totalLines": 1323,
+      "totalLines": 1543,
       "hasStructuralAnalysis": true
     },
     "processor/processor.py": {
@@ -4519,12 +4631,12 @@
     },
     "README.md": {
       "filePath": "README.md",
-      "contentHash": "7c18db1cebe19541ddb670f426df9baa1f64327bd81d4be1d14aa837cb6b561e",
+      "contentHash": "31ee71c959b183fbbb03029cb6f6d3e48b719e5b12f3d03ed08bf74405e5c6ee",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 255,
+      "totalLines": 271,
       "hasStructuralAnalysis": true
     },
     "solver/__init__.py": {
@@ -5040,7 +5152,7 @@
     },
     "tests/test_emotion_manifest.py": {
       "filePath": "tests/test_emotion_manifest.py",
-      "contentHash": "14cdcd627fe7012aad75e64911ad757e428dd70693918c61f616de967c8555bf",
+      "contentHash": "64f91f65b2d1a87fd04b440ee034733e0b11500391696df5e3d7b1f1c12f6836",
       "functions": [
         {
           "name": "_write_image",
@@ -5106,6 +5218,12 @@
         },
         {
           "name": "test_landmarks_follow_center_crop_and_horizontal_flip",
+          "params": [],
+          "exported": true,
+          "lineCount": 17
+        },
+        {
+          "name": "test_landmarks_without_optional_confidence_scores_remain_usable",
           "params": [],
           "exported": true,
           "lineCount": 17
@@ -5194,16 +5312,17 @@
         "test_rafdb_full_official_train_mode_has_no_validation_selection",
         "_face_mesh_artifact",
         "test_landmarks_follow_center_crop_and_horizontal_flip",
+        "test_landmarks_without_optional_confidence_scores_remain_usable",
         "test_horizontal_flip_swaps_left_right_geometry_semantics",
         "test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing",
         "test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback"
       ],
-      "totalLines": 282,
+      "totalLines": 301,
       "hasStructuralAnalysis": true
     },
     "tests/test_emotion_model_units.py": {
       "filePath": "tests/test_emotion_model_units.py",
-      "contentHash": "acd018642b0b8fce205863071e069173ff873723b60982f4e7a1bc05341a9ab6",
+      "contentHash": "d0d88d33d8fb48d9b3d226d2b765739a05772390c2ab420fb26d4a0bf68fb405",
       "functions": [
         {
           "name": "test_emotion_prompt_learner_shapes",
@@ -5242,6 +5361,12 @@
           ],
           "exported": true,
           "lineCount": 14
+        },
+        {
+          "name": "test_stage1_phases_train_base_then_geometry_residual_exclusively",
+          "params": [],
+          "exported": true,
+          "lineCount": 17
         },
         {
           "name": "test_adapter_only_stage2_trainable_parameter_whitelist",
@@ -5311,6 +5436,15 @@
       "classes": [
         {
           "name": "_DummyBlock",
+          "methods": [
+            "__init__"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "_Stage1Prompt",
           "methods": [
             "__init__"
           ],
@@ -5395,7 +5529,9 @@
         "test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes",
         "test_train_last_blocks_validation",
         "_DummyBlock",
+        "_Stage1Prompt",
         "_stage_test_model",
+        "test_stage1_phases_train_base_then_geometry_residual_exclusively",
         "test_adapter_only_stage2_trainable_parameter_whitelist",
         "_router_anatomy",
         "test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality",
@@ -5410,12 +5546,12 @@
         "_TinyClip",
         "test_full_emotionclip_constructor_and_anatomy_forward_integration"
       ],
-      "totalLines": 323,
+      "totalLines": 349,
       "hasStructuralAnalysis": true
     },
     "tests/test_emotion_processor_smoke.py": {
       "filePath": "tests/test_emotion_processor_smoke.py",
-      "contentHash": "64c53f0ba7a6449d2bb05e863088b62742fb9b9841c3e31d289d284262c11adf",
+      "contentHash": "79b5c09e91730f1a7990b937d524b6f30afd6478a13840cf90de0bb0015077d7",
       "functions": [
         {
           "name": "_loader",
@@ -5430,6 +5566,22 @@
           ],
           "exported": true,
           "lineCount": 28
+        },
+        {
+          "name": "test_stage1_validation_writes_and_selects_prompt_checkpoint",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "test_stage1b_fails_closed_when_geometry_statistics_are_missing",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 22
         },
         {
           "name": "test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
@@ -5528,6 +5680,7 @@
         {
           "source": "datasets.anatomy",
           "specifiers": [
+            "ANATOMY_DESCRIPTOR_VERSION",
             "empty_anatomy_inputs"
           ]
         }
@@ -5536,6 +5689,8 @@
         "TinyEmotionModel",
         "_loader",
         "test_processor_stage1_stage2_cpu_smoke",
+        "test_stage1_validation_writes_and_selects_prompt_checkpoint",
+        "test_stage1b_fails_closed_when_geometry_statistics_are_missing",
         "test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
         "_CheckpointPrompt",
         "_CheckpointModel",
@@ -5543,7 +5698,171 @@
         "test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference",
         "test_corruption_invalidates_occluded_anatomy_evidence"
       ],
-      "totalLines": 270,
+      "totalLines": 319,
+      "hasStructuralAnalysis": true
+    },
+    "tests/test_notebook_helpers.py": {
+      "filePath": "tests/test_notebook_helpers.py",
+      "contentHash": "e00303eb9f35047412d05544442e44ef9d19eac500ec6cf29923978fd47058af",
+      "functions": [
+        {
+          "name": "test_timestamped_run_id_is_local_time_safe_and_precise",
+          "params": [],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "test_publish_notebook_artifacts_requires_initialized_run",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "test_notebook_progress_recognizes_all_training_phase_labels",
+          "params": [
+            "line"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+          "params": [
+            "monkeypatch"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "test_training_notebooks_forward_resolved_runtime_controls",
+          "params": [
+            "notebook_name"
+          ],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+          "params": [],
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "test_anatomy_is_required_by_default_and_quick_presets",
+          "params": [],
+          "exported": true,
+          "lineCount": 20
+        },
+        {
+          "name": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "params": [],
+          "exported": true,
+          "lineCount": 24
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timedelta",
+            "timezone"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "utils.notebook_progress",
+          "specifiers": [
+            "notebook_progress"
+          ]
+        },
+        {
+          "source": "utils.notebook_run",
+          "specifiers": [
+            "prepare_notebook_staging",
+            "publish_notebook_artifacts",
+            "timestamped_run_id"
+          ]
+        },
+        {
+          "source": "utils.notebook_landmarks",
+          "specifiers": [
+            "validate_landmark_manifest_layout"
+          ]
+        },
+        {
+          "source": "config.emotion_defaults",
+          "specifiers": [
+            "get_default_emotion_cfg",
+            "load_emotion_cfg"
+          ]
+        },
+        {
+          "source": "utils.notebook_progress",
+          "specifiers": [
+            "_is_progress_update",
+            "_progress_html"
+          ]
+        }
+      ],
+      "exports": [
+        "test_timestamped_run_id_is_local_time_safe_and_precise",
+        "test_publish_notebook_artifacts_requires_initialized_run",
+        "test_publish_notebook_artifacts_copies_visuals_and_log",
+        "test_notebook_progress_recognizes_all_training_phase_labels",
+        "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+        "test_training_notebooks_forward_resolved_runtime_controls",
+        "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+        "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+        "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+        "test_anatomy_is_required_by_default_and_quick_presets",
+        "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt"
+      ],
+      "totalLines": 206,
       "hasStructuralAnalysis": true
     },
     "tests/test_run_artifacts.py": {
@@ -5594,6 +5913,82 @@
         "test_artifact_lookup_requires_explicit_run_id"
       ],
       "totalLines": 39,
+      "hasStructuralAnalysis": true
+    },
+    "tests/test_train_emotionclip_parallel.py": {
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "contentHash": "1291b0c5621ee53ebd9b1f80f97a057f0de7f1dbe9d65c148a92d0d6a8a73008",
+      "functions": [
+        {
+          "name": "test_parse_gpu_ids_accepts_two_cuda_indices",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_parse_gpu_ids_rejects_invalid_lists",
+          "params": [
+            "value"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+          "params": [],
+          "exported": true,
+          "lineCount": 23
+        },
+        {
+          "name": "test_shared_text_features_are_built_from_unwrapped_model",
+          "params": [],
+          "exported": true,
+          "lineCount": 16
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "pytest",
+          "specifiers": [
+            "pytest"
+          ]
+        },
+        {
+          "source": "torch",
+          "specifiers": [
+            "torch"
+          ]
+        },
+        {
+          "source": "processor.processor_emotionclip",
+          "specifiers": [
+            "EmotionDataParallel",
+            "get_shared_text_features",
+            "unwrap_model"
+          ]
+        },
+        {
+          "source": "train_emotionclip",
+          "specifiers": [
+            "parse_gpu_ids"
+          ]
+        }
+      ],
+      "exports": [
+        "test_parse_gpu_ids_accepts_two_cuda_indices",
+        "test_parse_gpu_ids_rejects_invalid_lists",
+        "test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+        "test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+        "test_shared_text_features_are_built_from_unwrapped_model"
+      ],
+      "totalLines": 70,
       "hasStructuralAnalysis": true
     },
     "tools/audit_anatomy_geometry.py": {
@@ -5730,7 +6125,7 @@
     },
     "tools/build_face_landmark_artifacts.py": {
       "filePath": "tools/build_face_landmark_artifacts.py",
-      "contentHash": "300c0630e821385f177675ae01dff43f9a0e721c79fc1dffa88c0a2856de53df",
+      "contentHash": "a3ba38d8e2ce6ec6dc059c8f33b2a5005495e22d9900ac4c7494bad0cf5185ff",
       "functions": [
         {
           "name": "_parse_args",
@@ -5795,7 +6190,7 @@
           ],
           "returnType": "Dict[str, Any]",
           "exported": true,
-          "lineCount": 23
+          "lineCount": 24
         },
         {
           "name": "_score",
@@ -5807,6 +6202,17 @@
           "returnType": "float",
           "exported": true,
           "lineCount": 9
+        },
+        {
+          "name": "_score_with_validity",
+          "params": [
+            "landmark",
+            "name",
+            "default"
+          ],
+          "returnType": "Tuple[float, bool]",
+          "exported": true,
+          "lineCount": 11
         },
         {
           "name": "_jitter_offsets",
@@ -5843,7 +6249,7 @@
           ],
           "returnType": "Dict[str, Any]",
           "exported": true,
-          "lineCount": 106
+          "lineCount": 131
         },
         {
           "name": "_file_sha256",
@@ -5943,6 +6349,7 @@
         {
           "source": "datasets.anatomy",
           "specifiers": [
+            "ANATOMY_ARTIFACT_SCHEMA_VERSION",
             "anatomy_to_model_inputs"
           ]
         }
@@ -5956,6 +6363,7 @@
         "_detect",
         "_pose_from_matrix",
         "_score",
+        "_score_with_validity",
         "_jitter_offsets",
         "_feature_jitter_from_observations",
         "_build_artifact",
@@ -5963,7 +6371,7 @@
         "_portable_artifact_reference",
         "main"
       ],
-      "totalLines": 401,
+      "totalLines": 443,
       "hasStructuralAnalysis": true
     },
     "tools/convert_affwild2_to_emotion_jsonl.py": {
@@ -6612,7 +7020,7 @@
     },
     "train_emotionclip.py": {
       "filePath": "train_emotionclip.py",
-      "contentHash": "20db006c4b1ff0b221e074a6390bd8527d04419854b860e33f21fb05aa90b359",
+      "contentHash": "5e42969e9501774d56b0042b7945c04315c4b5058c0fa7892435cb8c96163599",
       "functions": [
         {
           "name": "set_seed",
@@ -6667,6 +7075,14 @@
           "lineCount": 2
         },
         {
+          "name": "parse_gpu_ids",
+          "params": [
+            "gpus"
+          ],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
           "name": "configure_device",
           "params": [
             "cfg",
@@ -6679,7 +7095,7 @@
           "name": "main",
           "params": [],
           "exported": true,
-          "lineCount": 191
+          "lineCount": 219
         }
       ],
       "classes": [],
@@ -6768,10 +7184,12 @@
           "specifiers": [
             "do_train_emotion_stage1",
             "do_train_emotion_stage2",
+            "EmotionDataParallel",
             "evaluate_sealed_test",
             "load_emotion_checkpoint",
             "log_run_config",
-            "log_training_event"
+            "log_training_event",
+            "unwrap_model"
           ]
         },
         {
@@ -6788,10 +7206,11 @@
         "_csv_value",
         "save_train_config_csv",
         "trainable_parameters",
+        "parse_gpu_ids",
         "configure_device",
         "main"
       ],
-      "totalLines": 322,
+      "totalLines": 366,
       "hasStructuralAnalysis": true
     },
     "train.py": {
@@ -7335,9 +7754,167 @@
       "totalLines": 137,
       "hasStructuralAnalysis": true
     },
+    "utils/notebook_landmarks.py": {
+      "filePath": "utils/notebook_landmarks.py",
+      "contentHash": "e91674b4bb06ef2a84ade73e81ad13dedd941aff1b5000d5b412c4b29b5049f8",
+      "functions": [
+        {
+          "name": "_sha256",
+          "params": [
+            "path"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "download_once",
+          "params": [
+            "url",
+            "destination"
+          ],
+          "returnType": "tuple[Path, bool]",
+          "exported": true,
+          "lineCount": 22
+        },
+        {
+          "name": "_cache_metadata_path",
+          "params": [
+            "output_manifest"
+          ],
+          "returnType": "Path",
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "_read_json",
+          "params": [
+            "path"
+          ],
+          "returnType": "dict[str, Any]",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "_nonempty_line_count",
+          "params": [
+            "path"
+          ],
+          "returnType": "int",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "validate_landmark_manifest_layout",
+          "params": [
+            "manifest",
+            "data_dir"
+          ],
+          "returnType": "dict[str, Any]",
+          "exported": true,
+          "lineCount": 81
+        },
+        {
+          "name": "prepare_cached_landmarks",
+          "params": [
+            "repo_root",
+            "manifest",
+            "output_manifest",
+            "artifact_root",
+            "model_path",
+            "root_dir",
+            "jitter_repeats",
+            "jitter_pixels",
+            "seed",
+            "force_rebuild",
+            "python_executable",
+            "log_path"
+          ],
+          "returnType": "dict[str, Any]",
+          "exported": true,
+          "lineCount": 143
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "hashlib",
+          "specifiers": [
+            "hashlib"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "subprocess",
+          "specifiers": [
+            "subprocess"
+          ]
+        },
+        {
+          "source": "sys",
+          "specifiers": [
+            "sys"
+          ]
+        },
+        {
+          "source": "urllib.request",
+          "specifiers": [
+            "urllib.request"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Optional"
+          ]
+        },
+        {
+          "source": "datasets.anatomy",
+          "specifiers": [
+            "ANATOMY_ARTIFACT_SCHEMA_VERSION"
+          ]
+        }
+      ],
+      "exports": [
+        "_sha256",
+        "download_once",
+        "_cache_metadata_path",
+        "_read_json",
+        "_nonempty_line_count",
+        "validate_landmark_manifest_layout",
+        "prepare_cached_landmarks"
+      ],
+      "totalLines": 299,
+      "hasStructuralAnalysis": true
+    },
     "utils/notebook_metrics.py": {
       "filePath": "utils/notebook_metrics.py",
-      "contentHash": "2ac2e431883f31b7ed3a89bd629184c088af80af475384437157ca7fb71d08e9",
+      "contentHash": "0d56756c6743532994e9e9e91e6e8e75dcb5a3faf74b434faf7d29bd81180fd5",
       "functions": [
         {
           "name": "metric_epoch",
@@ -7533,7 +8110,7 @@
           ],
           "returnType": "Tuple[List[MetricRow], Optional[Path]]",
           "exported": true,
-          "lineCount": 29
+          "lineCount": 30
         },
         {
           "name": "plot_training_metric_curves",
@@ -7630,12 +8207,12 @@
         "plot_training_metric_curves",
         "plot_confusion_matrix_and_f1"
       ],
-      "totalLines": 610,
+      "totalLines": 611,
       "hasStructuralAnalysis": true
     },
     "utils/notebook_progress.py": {
       "filePath": "utils/notebook_progress.py",
-      "contentHash": "08d84d9b12e3e2e91b2c3b1f10d2d2e65388f72082d8d8023ca8026ef9aac386",
+      "contentHash": "fb78dcc5888dd35992ee8e6adcbc1eb1c2b16b84e728acfa4c14e5bce609d437",
       "functions": [
         {
           "name": "_is_progress_update",
@@ -7693,7 +8270,89 @@
         "_progress_html",
         "stream_process_output"
       ],
-      "totalLines": 78,
+      "totalLines": 80,
+      "hasStructuralAnalysis": true
+    },
+    "utils/notebook_run.py": {
+      "filePath": "utils/notebook_run.py",
+      "contentHash": "254e818182fa1e32330eddd7dca64e6f1d148490a6aafb68816d51ec185a0145",
+      "functions": [
+        {
+          "name": "timestamped_run_id",
+          "params": [
+            "prefix",
+            "seed",
+            "now"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 16
+        },
+        {
+          "name": "prepare_notebook_staging",
+          "params": [
+            "repo_root",
+            "run_id"
+          ],
+          "returnType": "Path",
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "publish_notebook_artifacts",
+          "params": [
+            "output_dir",
+            "staging_dir",
+            "console_text",
+            "metadata"
+          ],
+          "returnType": "dict[str, Any]",
+          "exported": true,
+          "lineCount": 41
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "shutil",
+          "specifiers": [
+            "shutil"
+          ]
+        },
+        {
+          "source": "datetime",
+          "specifiers": [
+            "datetime",
+            "timezone"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "typing",
+          "specifiers": [
+            "Any",
+            "Mapping",
+            "Optional"
+          ]
+        }
+      ],
+      "exports": [
+        "timestamped_run_id",
+        "prepare_notebook_staging",
+        "publish_notebook_artifacts"
+      ],
+      "totalLines": 88,
       "hasStructuralAnalysis": true
     },
     "utils/reranking.py": {

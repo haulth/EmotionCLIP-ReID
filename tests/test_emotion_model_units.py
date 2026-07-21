@@ -1,11 +1,21 @@
 import torch
 
 import model.emotionclip_model as emotionclip_model_module
+from model.clip.model import resize_pos_embed
 from datasets.anatomy import (
     empty_anatomy_inputs,
     fit_class_geometry_statistics,
     geometry_feature_definition_mask,
 )
+
+
+def test_position_embedding_noop_is_silent_when_grid_is_unchanged(capsys):
+    embedding = torch.randn(197, 8)
+
+    resized = resize_pos_embed(embedding, torch.empty_like(embedding), 14, 14)
+
+    assert resized is embedding
+    assert capsys.readouterr().out == ""
 from datasets.emotion_manifest import CANONICAL_EMOTIONS
 from model.emotionclip_model import (
     AnatomyPromptResidual,

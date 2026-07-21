@@ -403,7 +403,7 @@ class BranchFusion(nn.Module):
         gate_dropout: float = 0.1,
         min_temperature: float = 0.05,
         max_temperature: float = 20.0,
-        initial_temperatures: Sequence[float] = (0.1, 1.0, 1.0),
+        initial_temperatures: Sequence[float] = (1.0, 1.0, 1.0),
         learn_temperatures: bool = True,
     ):
         super().__init__()
@@ -578,7 +578,9 @@ class RegionPatchRouter(nn.Module):
             route = quality.unsqueeze(-1) * anatomical_attention + (1.0 - quality.unsqueeze(-1)) * free_attention
         region_features = torch.einsum("brp,bpd->brd", route, patch_features)
         if self.mode == "hybrid":
-            overlap = (free_attention * anatomical_attention.detach()).sum(dim=-1).clamp_min(1e-8)
+            # Avoid an extreme 1/x gradient when the learned and anatomical
+            # routes barely overlap; global gradient clipping is the second guard.
+            overlap = (free_attention * anatomical_attention.detach()).sum(dim=-1).clamp_min(1e-4)
             routing_loss = (quality * -overlap.log()).sum() / quality.sum().clamp_min(1.0)
         else:
             # S1 (free) and S2 (anatomy-only) are pure routing ablations.
@@ -798,7 +800,7 @@ class EmotionCLIPModel(nn.Module):
         fusion_gate_dropout: float = 0.1,
         min_branch_temperature: float = 0.05,
         max_branch_temperature: float = 20.0,
-        initial_branch_temperatures: Sequence[float] = (0.1, 1.0, 1.0),
+        initial_branch_temperatures: Sequence[float] = (1.0, 1.0, 1.0),
         learn_branch_temperatures: bool = True,
         routing_mode: str = "hybrid",
         routing_sigma: float = 0.08,

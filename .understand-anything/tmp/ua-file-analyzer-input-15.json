@@ -1,0 +1,196 @@
+{
+    "projectRoot":  "E:\\Source\\EmotionCLIP-ReID",
+    "batchFiles":  [
+                       {
+                           "path":  "config/defaults_base.py",
+                           "language":  "python",
+                           "sizeLines":  188,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "config/defaults.py",
+                           "language":  "python",
+                           "sizeLines":  237,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/__init__.py",
+                           "language":  "python",
+                           "sizeLines":  0,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/keypoint_test.txt",
+                           "language":  "txt",
+                           "sizeLines":  12079,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "datasets/keypoint_train.txt",
+                           "language":  "txt",
+                           "sizeLines":  38631,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "datasets/preprocessing.py",
+                           "language":  "python",
+                           "sizeLines":  50,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/__init__.py",
+                           "language":  "python",
+                           "sizeLines":  0,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/arcface.py",
+                           "language":  "python",
+                           "sizeLines":  79,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/metric_learning.py",
+                           "language":  "python",
+                           "sizeLines":  188,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+                           "language":  "ipynb",
+                           "sizeLines":  804,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+                           "language":  "ipynb",
+                           "sizeLines":  1480,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+                           "language":  "ipynb",
+                           "sizeLines":  1414,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx",
+                           "language":  "xlsx",
+                           "sizeLines":  204,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  8,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  8,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  63,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  8,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "processor/__init__.py",
+                           "language":  "python",
+                           "sizeLines":  0,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "solver/__init__.py",
+                           "language":  "python",
+                           "sizeLines":  0,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "utils/__init__.py",
+                           "language":  "python",
+                           "sizeLines":  0,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "utils/notebook_metrics.py",
+                           "language":  "python",
+                           "sizeLines":  610,
+                           "fileCategory":  "code"
+                       }
+                   ],
+    "batchImportData":  {
+                            "config/defaults_base.py":  [
+
+                                                        ],
+                            "config/defaults.py":  [
+
+                                                   ],
+                            "datasets/__init__.py":  [
+
+                                                     ],
+                            "datasets/keypoint_test.txt":  [
+
+                                                           ],
+                            "datasets/keypoint_train.txt":  [
+
+                                                            ],
+                            "datasets/preprocessing.py":  [
+
+                                                          ],
+                            "loss/__init__.py":  [
+                                                     "loss/arcface.py"
+                                                 ],
+                            "loss/arcface.py":  [
+
+                                                ],
+                            "loss/metric_learning.py":  [
+
+                                                        ],
+                            "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb":  [
+
+                                                                                            ],
+                            "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb":  [
+
+                                                                                    ],
+                            "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb":  [
+
+                                                                                  ],
+                            "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx":  [
+
+                                                                                                          ],
+                            "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio":  [
+
+                                                                                                   ],
+                            "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio":  [
+
+                                                                                                ],
+                            "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio":  [
+
+                                                                                                ],
+                            "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio":  [
+
+                                                                                                ],
+                            "processor/__init__.py":  [
+
+                                                      ],
+                            "solver/__init__.py":  [
+
+                                                   ],
+                            "utils/__init__.py":  [
+
+                                                  ],
+                            "utils/notebook_metrics.py":  [
+
+                                                          ]
+                        }
+}

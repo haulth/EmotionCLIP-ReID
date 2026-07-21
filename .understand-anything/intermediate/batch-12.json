@@ -1,0 +1,147 @@
+{
+    "nodes":  [
+                  {
+                      "id":  "config:outputs/RAF-DB/metrics_epoch_28.json",
+                      "type":  "config",
+                      "name":  "metrics_epoch_28.json",
+                      "filePath":  "outputs/RAF-DB/metrics_epoch_28.json",
+                      "summary":  "Lưu snapshot đánh giá validation RAF-DB tại epoch 28, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả.",
+                      "tags":  [
+                                   "configuration",
+                                   "validation-metrics",
+                                   "raf-db",
+                                   "uncertainty"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "config:outputs/RAF-DB/metrics_epoch_29.json",
+                      "type":  "config",
+                      "name":  "metrics_epoch_29.json",
+                      "filePath":  "outputs/RAF-DB/metrics_epoch_29.json",
+                      "summary":  "Lưu snapshot đánh giá validation RAF-DB tại epoch 29, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả.",
+                      "tags":  [
+                                   "configuration",
+                                   "validation-metrics",
+                                   "raf-db",
+                                   "uncertainty"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "config:outputs/RAF-DB/metrics_epoch_3.json",
+                      "type":  "config",
+                      "name":  "metrics_epoch_3.json",
+                      "filePath":  "outputs/RAF-DB/metrics_epoch_3.json",
+                      "summary":  "Lưu snapshot đánh giá validation RAF-DB tại epoch 3, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả.",
+                      "tags":  [
+                                   "configuration",
+                                   "validation-metrics",
+                                   "raf-db",
+                                   "uncertainty"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "config:outputs/RAF-DB/metrics_epoch_30.json",
+                      "type":  "config",
+                      "name":  "metrics_epoch_30.json",
+                      "filePath":  "outputs/RAF-DB/metrics_epoch_30.json",
+                      "summary":  "Lưu snapshot đánh giá validation RAF-DB tại epoch 30, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả.",
+                      "tags":  [
+                                   "configuration",
+                                   "validation-metrics",
+                                   "raf-db",
+                                   "uncertainty"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "config:outputs/RAF-DB/metrics_epoch_4.json",
+                      "type":  "config",
+                      "name":  "metrics_epoch_4.json",
+                      "filePath":  "outputs/RAF-DB/metrics_epoch_4.json",
+                      "summary":  "Lưu snapshot đánh giá validation RAF-DB tại epoch 4, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả.",
+                      "tags":  [
+                                   "configuration",
+                                   "validation-metrics",
+                                   "raf-db",
+                                   "uncertainty"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "config:outputs/RAF-DB/metrics_epoch_5.json",
+                      "type":  "config",
+                      "name":  "metrics_epoch_5.json",
+                      "filePath":  "outputs/RAF-DB/metrics_epoch_5.json",
+                      "summary":  "Lưu snapshot đánh giá validation RAF-DB tại epoch 5, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả.",
+                      "tags":  [
+                                   "configuration",
+                                   "validation-metrics",
+                                   "raf-db",
+                                   "uncertainty"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "config:outputs/RAF-DB/metrics_epoch_6.json",
+                      "type":  "config",
+                      "name":  "metrics_epoch_6.json",
+                      "filePath":  "outputs/RAF-DB/metrics_epoch_6.json",
+                      "summary":  "Lưu snapshot đánh giá validation RAF-DB tại epoch 6, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả.",
+                      "tags":  [
+                                   "configuration",
+                                   "validation-metrics",
+                                   "raf-db",
+                                   "uncertainty"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "config:outputs/RAF-DB/metrics_epoch_7.json",
+                      "type":  "config",
+                      "name":  "metrics_epoch_7.json",
+                      "filePath":  "outputs/RAF-DB/metrics_epoch_7.json",
+                      "summary":  "Lưu snapshot đánh giá validation RAF-DB tại epoch 7, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả.",
+                      "tags":  [
+                                   "configuration",
+                                   "validation-metrics",
+                                   "raf-db",
+                                   "uncertainty"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "config:outputs/RAF-DB/metrics_epoch_8.json",
+                      "type":  "config",
+                      "name":  "metrics_epoch_8.json",
+                      "filePath":  "outputs/RAF-DB/metrics_epoch_8.json",
+                      "summary":  "Lưu snapshot đánh giá validation RAF-DB tại epoch 8, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả.",
+                      "tags":  [
+                                   "configuration",
+                                   "validation-metrics",
+                                   "raf-db",
+                                   "uncertainty"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "config:outputs/RAF-DB/metrics_epoch_9.json",
+                      "type":  "config",
+                      "name":  "metrics_epoch_9.json",
+                      "filePath":  "outputs/RAF-DB/metrics_epoch_9.json",
+                      "summary":  "Lưu snapshot đánh giá validation RAF-DB tại epoch 9, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả.",
+                      "tags":  [
+                                   "configuration",
+                                   "validation-metrics",
+                                   "raf-db",
+                                   "uncertainty"
+                               ],
+                      "complexity":  "complex"
+                  }
+              ],
+    "edges":  [
+
+              ]
+}

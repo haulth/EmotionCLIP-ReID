@@ -179,6 +179,65 @@ def test_anatomy_is_required_by_default_and_quick_presets():
         assert cfg["DATASETS"]["MANIFEST"].endswith("manifest_anatomy.jsonl")
 
 
+def test_notebook_cli_overrides_have_highest_precedence_and_source_provenance(tmp_path):
+    config_path = tmp_path / "experiment.yml"
+    config_path.write_text(
+        "SOLVER:\n  STAGE2:\n    IMS_PER_BATCH: 64\n",
+        encoding="utf-8",
+    )
+    cfg, sources = load_emotion_cfg(
+        str(config_path),
+        [
+            "SOLVER.STAGE2.IMS_PER_BATCH",
+            "32",
+            "SOLVER.STAGE2.GRADIENT_ACCUMULATION_STEPS",
+            "4",
+        ],
+        return_sources=True,
+    )
+
+    assert cfg["SOLVER"]["STAGE2"]["IMS_PER_BATCH"] == 32
+    assert cfg["SOLVER"]["STAGE2"]["GRADIENT_ACCUMULATION_STEPS"] == 4
+    assert sources["SOLVER.STAGE2.IMS_PER_BATCH"] == "notebook_or_cli"
+    assert sources["SOLVER.STAGE2.BASE_LR"] == "default"
+
+
+def test_stage1_both_rejects_a_missing_phase():
+    with pytest.raises(ValueError, match="requires BASE_EPOCHS > 0 and GEOMETRY_EPOCHS > 0"):
+        load_emotion_cfg(
+            opts=[
+                "SOLVER.STAGE1.MODE",
+                "both",
+                "SOLVER.STAGE1.BASE_EPOCHS",
+                "0",
+                "SOLVER.STAGE1.GEOMETRY_EPOCHS",
+                "20",
+            ]
+        )
+
+
+def test_rafdb_notebook_exposes_gpu_safety_controls():
+    repo_root = Path(__file__).resolve().parents[1]
+    notebook = json.loads(
+        (repo_root / "notebooks" / "emotionclip_reid_jupyterhub_rafdb.ipynb").read_text(
+            encoding="utf-8"
+        )
+    )
+    source = "\n".join("".join(cell.get("source", [])) for cell in notebook["cells"])
+
+    assert "STAGE2_BATCH_SIZE = 32" in source
+    assert "STAGE2_GRADIENT_ACCUMULATION_STEPS = 4" in source
+    assert "SOLVER.STAGE2.AMP_ENABLED" in source
+    assert "SOLVER.STAGE2.MAX_GRAD_NORM" in source
+    assert "SOLVER.STAGE2.CORRUPTION.LAMBDA_RANKING" in source
+    assert "STAGE1_GEOMETRY_EPOCHS = 10" in source
+    assert "INITIAL_BRANCH_TEMPERATURES = [1.0, 1.0, 1.0]" in source
+    assert "STAGE2_LOG_PERIOD = 1" in source
+    assert "STAGE2_EARLY_STOPPING_PATIENCE = 20" in source
+    assert "NUM_WORKERS = 4" in source
+    assert "PIN_MEMORY = True" in source
+
+
 def test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt():
     repo_root = Path(__file__).resolve().parents[1]
     notebook = json.loads(

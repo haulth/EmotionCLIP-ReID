@@ -9,6 +9,7 @@ from typing import Any, Iterable
 
 import numpy as np
 import torch
+import yaml
 
 from config.emotion_defaults import load_emotion_cfg
 from datasets.emotion_manifest import make_emotion_dataloaders
@@ -91,6 +92,18 @@ def save_train_config_csv(cfg, config_file: str = "", opts: Iterable[str] = ()):
     return path
 
 
+def save_effective_config(cfg, config_sources):
+    """Persist the notebook-first resolved configuration and source provenance."""
+    os.makedirs(cfg["OUTPUT_DIR"], exist_ok=True)
+    effective_path = os.path.join(cfg["OUTPUT_DIR"], "effective_config.yml")
+    sources_path = os.path.join(cfg["OUTPUT_DIR"], "config_sources.json")
+    with open(effective_path, "w", encoding="utf-8") as handle:
+        yaml.safe_dump(cfg, handle, sort_keys=False, allow_unicode=True)
+    with open(sources_path, "w", encoding="utf-8") as handle:
+        json.dump(config_sources, handle, indent=2, ensure_ascii=False, sort_keys=True)
+    return effective_path, sources_path
+
+
 def trainable_parameters(model):
     return [parameter for parameter in model.parameters() if parameter.requires_grad]
 
@@ -159,7 +172,11 @@ def main():
     parser.add_argument("opts", nargs=argparse.REMAINDER)
     args = parser.parse_args()
 
-    cfg = load_emotion_cfg(args.config_file, args.opts)
+    cfg, config_sources = load_emotion_cfg(
+        args.config_file,
+        args.opts,
+        return_sources=True,
+    )
     if args.no_progress:
         cfg["TRAIN"]["PROGRESS_BAR"] = False
     gpu_ids = parse_gpu_ids(args.gpus)
@@ -192,8 +209,44 @@ def main():
             visible_devices=torch.cuda.device_count(),
         )
 
+    stage2_cfg = cfg["SOLVER"]["STAGE2"]
+    accumulation_steps = int(stage2_cfg.get("GRADIENT_ACCUMULATION_STEPS", 1))
+    micro_batch = int(stage2_cfg.get("IMS_PER_BATCH", 1))
+    effective_batch = micro_batch * accumulation_steps
+    device_count = max(1, len(cfg["TRAIN"]["GPU_IDS"]))
+    corruption_enabled = float(
+        stage2_cfg.get("CORRUPTION", {}).get("LAMBDA_RANKING", 0.0)
+    ) > 0
+    per_gpu_micro_batch = (micro_batch + device_count - 1) // device_count
+    if device.type == "cuda" and corruption_enabled and per_gpu_micro_batch > 32:
+        logger.warning(
+            "High-memory notebook configuration: corrupted dual-forward is enabled "
+            "with per_gpu_micro_batch=%s. Prefer <=32 on 16 GiB GPUs.",
+            per_gpu_micro_batch,
+        )
+    cfg["TRAIN"]["STAGE2_MICRO_BATCH_SIZE"] = micro_batch
+    cfg["TRAIN"]["STAGE2_EFFECTIVE_BATCH_SIZE"] = effective_batch
+    cfg["TRAIN"]["STAGE2_PER_GPU_MICRO_BATCH_SIZE"] = per_gpu_micro_batch
+    config_sources.update(
+        {
+            "TRAIN.STAGE2_MICRO_BATCH_SIZE": "runtime_derived",
+            "TRAIN.STAGE2_EFFECTIVE_BATCH_SIZE": "runtime_derived",
+            "TRAIN.STAGE2_PER_GPU_MICRO_BATCH_SIZE": "runtime_derived",
+        }
+    )
     train_config_csv = save_train_config_csv(cfg, config_file=args.config_file, opts=args.opts)
     log_training_event(logger, "Train config saved", path=train_config_csv)
+    effective_config_path, config_sources_path = save_effective_config(cfg, config_sources)
+    log_training_event(
+        logger,
+        "Effective config saved",
+        path=effective_config_path,
+        sources=config_sources_path,
+        precedence="defaults<yaml<notebook_or_cli",
+        stage2_micro_batch=micro_batch,
+        stage2_effective_batch=effective_batch,
+        stage2_per_gpu_micro_batch=per_gpu_micro_batch,
+    )
     log_run_config(logger, cfg, config_file=args.config_file, opts=args.opts)
     set_seed(int(cfg["SOLVER"].get("SEED", 1234)))
     log_training_event(logger, "Seed set", seed=cfg["SOLVER"].get("SEED", 1234))

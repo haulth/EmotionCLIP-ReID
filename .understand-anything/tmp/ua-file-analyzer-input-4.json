@@ -1,0 +1,79 @@
+{
+    "projectRoot":  "E:\\Source\\EmotionCLIP-ReID",
+    "batchFiles":  [
+                       {
+                           "path":  "model/clip/__init__.py",
+                           "language":  "python",
+                           "sizeLines":  1,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "model/clip/clip.py",
+                           "language":  "python",
+                           "sizeLines":  229,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "model/clip/model.py",
+                           "language":  "python",
+                           "sizeLines":  468,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "model/clip/simple_tokenizer.py",
+                           "language":  "python",
+                           "sizeLines":  148,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "model/emotionclip_model.py",
+                           "language":  "python",
+                           "sizeLines":  1164,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "model/make_model.py",
+                           "language":  "python",
+                           "sizeLines":  150,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "model/make_model_clipreid.py",
+                           "language":  "python",
+                           "sizeLines":  239,
+                           "fileCategory":  "code"
+                       }
+                   ],
+    "batchImportData":  {
+                            "model/clip/__init__.py":  [
+                                                           "model/clip/clip.py"
+                                                       ],
+                            "model/clip/clip.py":  [
+                                                       "model/clip/model.py",
+                                                       "model/clip/simple_tokenizer.py"
+                                                   ],
+                            "model/clip/model.py":  [
+
+                                                    ],
+                            "model/clip/simple_tokenizer.py":  [
+
+                                                               ],
+                            "model/emotionclip_model.py":  [
+                                                               "datasets/anatomy.py",
+                                                               "datasets/emotion_manifest.py",
+                                                               "model/clip/__init__.py",
+                                                               "model/clip/clip.py",
+                                                               "model/clip/simple_tokenizer.py"
+                                                           ],
+                            "model/make_model.py":  [
+                                                        "model/clip/__init__.py",
+                                                        "model/clip/clip.py",
+                                                        "model/clip/simple_tokenizer.py"
+                                                    ],
+                            "model/make_model_clipreid.py":  [
+                                                                 "model/clip/__init__.py",
+                                                                 "model/clip/clip.py",
+                                                                 "model/clip/simple_tokenizer.py"
+                                                             ]
+                        }
+}

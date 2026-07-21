@@ -1,0 +1,953 @@
+{
+  "scriptCompleted": true,
+  "files": [
+    {
+      "path": "config/__init__.py",
+      "language": "python",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "config/defaults_base.py",
+      "language": "python",
+      "sizeLines": 188,
+      "fileCategory": "code"
+    },
+    {
+      "path": "config/defaults.py",
+      "language": "python",
+      "sizeLines": 237,
+      "fileCategory": "code"
+    },
+    {
+      "path": "config/emotion_defaults.py",
+      "language": "python",
+      "sizeLines": 254,
+      "fileCategory": "code"
+    },
+    {
+      "path": "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+      "language": "yaml",
+      "sizeLines": 82,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "language": "yaml",
+      "sizeLines": 82,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+      "language": "yaml",
+      "sizeLines": 80,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/emotion/vit_b16_emotionclip.yml",
+      "language": "yaml",
+      "sizeLines": 122,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/person/cnn_base.yml",
+      "language": "yaml",
+      "sizeLines": 67,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/person/cnn_clipreid.yml",
+      "language": "yaml",
+      "sizeLines": 84,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/person/vit_base.yml",
+      "language": "yaml",
+      "sizeLines": 70,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/person/vit_clipreid.yml",
+      "language": "yaml",
+      "sizeLines": 87,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/VehicleID/cnn_base.yml",
+      "language": "yaml",
+      "sizeLines": 55,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/VehicleID/cnn_clipreid.yml",
+      "language": "yaml",
+      "sizeLines": 71,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/VehicleID/vit_base.yml",
+      "language": "yaml",
+      "sizeLines": 57,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/VehicleID/vit_clipreid.yml",
+      "language": "yaml",
+      "sizeLines": 73,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/veri/cnn_base.yml",
+      "language": "yaml",
+      "sizeLines": 55,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/veri/cnn_prom.yml",
+      "language": "yaml",
+      "sizeLines": 71,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/veri/vit_base.yml",
+      "language": "yaml",
+      "sizeLines": 60,
+      "fileCategory": "config"
+    },
+    {
+      "path": "configs/veri/vit_prom.yml",
+      "language": "yaml",
+      "sizeLines": 76,
+      "fileCategory": "config"
+    },
+    {
+      "path": "datasets/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/anatomy.py",
+      "language": "python",
+      "sizeLines": 626,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/bases.py",
+      "language": "python",
+      "sizeLines": 84,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/dukemtmcreid.py",
+      "language": "python",
+      "sizeLines": 108,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/emotion_manifest.py",
+      "language": "python",
+      "sizeLines": 599,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/keypoint_test.txt",
+      "language": "txt",
+      "sizeLines": 12079,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "datasets/keypoint_train.txt",
+      "language": "txt",
+      "sizeLines": 38631,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "datasets/make_dataloader_clipreid.py",
+      "language": "python",
+      "sizeLines": 108,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/make_dataloader.py",
+      "language": "python",
+      "sizeLines": 108,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/market1501.py",
+      "language": "python",
+      "sizeLines": 83,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/msmt17.py",
+      "language": "python",
+      "sizeLines": 80,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/occ_duke.py",
+      "language": "python",
+      "sizeLines": 108,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/preprocessing.py",
+      "language": "python",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/sampler_ddp.py",
+      "language": "python",
+      "sizeLines": 196,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/sampler.py",
+      "language": "python",
+      "sizeLines": 67,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/vehicleid.py",
+      "language": "python",
+      "sizeLines": 155,
+      "fileCategory": "code"
+    },
+    {
+      "path": "datasets/veri.py",
+      "language": "python",
+      "sizeLines": 116,
+      "fileCategory": "code"
+    },
+    {
+      "path": "environment_emotionclip_cuda.yml",
+      "language": "yaml",
+      "sizeLines": 21,
+      "fileCategory": "config"
+    },
+    {
+      "path": "infer_emotionclip.py",
+      "language": "python",
+      "sizeLines": 142,
+      "fileCategory": "code"
+    },
+    {
+      "path": "loss/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "loss/arcface.py",
+      "language": "python",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "loss/center_loss.py",
+      "language": "python",
+      "sizeLines": 67,
+      "fileCategory": "code"
+    },
+    {
+      "path": "loss/emotion_losses.py",
+      "language": "python",
+      "sizeLines": 120,
+      "fileCategory": "code"
+    },
+    {
+      "path": "loss/make_loss.py",
+      "language": "python",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "loss/metric_learning.py",
+      "language": "python",
+      "sizeLines": 188,
+      "fileCategory": "code"
+    },
+    {
+      "path": "loss/softmax_loss.py",
+      "language": "python",
+      "sizeLines": 56,
+      "fileCategory": "code"
+    },
+    {
+      "path": "loss/supcontrast.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "loss/triplet_loss.py",
+      "language": "python",
+      "sizeLines": 136,
+      "fileCategory": "code"
+    },
+    {
+      "path": "model/clip/__init__.py",
+      "language": "python",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": "model/clip/clip.py",
+      "language": "python",
+      "sizeLines": 229,
+      "fileCategory": "code"
+    },
+    {
+      "path": "model/clip/model.py",
+      "language": "python",
+      "sizeLines": 468,
+      "fileCategory": "code"
+    },
+    {
+      "path": "model/clip/simple_tokenizer.py",
+      "language": "python",
+      "sizeLines": 148,
+      "fileCategory": "code"
+    },
+    {
+      "path": "model/emotionclip_model.py",
+      "language": "python",
+      "sizeLines": 1164,
+      "fileCategory": "code"
+    },
+    {
+      "path": "model/make_model_clipreid.py",
+      "language": "python",
+      "sizeLines": 239,
+      "fileCategory": "code"
+    },
+    {
+      "path": "model/make_model.py",
+      "language": "python",
+      "sizeLines": 150,
+      "fileCategory": "code"
+    },
+    {
+      "path": "note_edit.md",
+      "language": "markdown",
+      "sizeLines": 73,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+      "language": "ipynb",
+      "sizeLines": 804,
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "language": "ipynb",
+      "sizeLines": 1480,
+      "fileCategory": "code"
+    },
+    {
+      "path": "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "language": "ipynb",
+      "sizeLines": 1414,
+      "fileCategory": "code"
+    },
+    {
+      "path": "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx",
+      "language": "xlsx",
+      "sizeLines": 204,
+      "fileCategory": "code"
+    },
+    {
+      "path": "outputs/fer2013/accuracy_uce_summary.json",
+      "language": "json",
+      "sizeLines": 44,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/fer2013/best_metrics_summary.json",
+      "language": "json",
+      "sizeLines": 82,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/fer2013/inference_sample_uncertainty.json",
+      "language": "json",
+      "sizeLines": 23,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/fer2013/README_training_logs.md",
+      "language": "markdown",
+      "sizeLines": 30,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "outputs/fer2013/training_epoch_losses.csv",
+      "language": "csv",
+      "sizeLines": 51,
+      "fileCategory": "data"
+    },
+    {
+      "path": "outputs/fer2013/training_step_losses.csv",
+      "language": "csv",
+      "sizeLines": 1761,
+      "fileCategory": "data"
+    },
+    {
+      "path": "outputs/fer2013/uncertainty_summary.json",
+      "language": "json",
+      "sizeLines": 14,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/fer2013/validation_accuracy.csv",
+      "language": "csv",
+      "sizeLines": 31,
+      "fileCategory": "data"
+    },
+    {
+      "path": "outputs/fer2013/validation_metrics.csv",
+      "language": "csv",
+      "sizeLines": 31,
+      "fileCategory": "data"
+    },
+    {
+      "path": "outputs/fer2013/validation_uncertainty.csv",
+      "language": "csv",
+      "sizeLines": 2,
+      "fileCategory": "data"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_1.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_10.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_11.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_12.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_13.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_14.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_15.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_16.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_17.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_18.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_19.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_2.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_20.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_21.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_22.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_23.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_24.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_25.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_26.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_27.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_28.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_29.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_3.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_30.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_4.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_5.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_6.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_7.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_8.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_9.json",
+      "language": "json",
+      "sizeLines": 3153,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/report_w4/emotionclip_outputs_summary.csv",
+      "language": "csv",
+      "sizeLines": 3,
+      "fileCategory": "data"
+    },
+    {
+      "path": "outputs/report_w4/emotionclip_outputs_summary.json",
+      "language": "json",
+      "sizeLines": 82,
+      "fileCategory": "config"
+    },
+    {
+      "path": "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio",
+      "language": "drawio",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio",
+      "language": "drawio",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio",
+      "language": "drawio",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+      "language": "drawio",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "outputs/report_w4/rafdb_training_history_extracted.csv",
+      "language": "csv",
+      "sizeLines": 51,
+      "fileCategory": "data"
+    },
+    {
+      "path": "outputs/report_w4/rafdb_validation_history_extracted.csv",
+      "language": "csv",
+      "sizeLines": 31,
+      "fileCategory": "data"
+    },
+    {
+      "path": "processor/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "processor/processor_clipreid_stage1.py",
+      "language": "python",
+      "sizeLines": 106,
+      "fileCategory": "code"
+    },
+    {
+      "path": "processor/processor_clipreid_stage2.py",
+      "language": "python",
+      "sizeLines": 230,
+      "fileCategory": "code"
+    },
+    {
+      "path": "processor/processor_emotionclip.py",
+      "language": "python",
+      "sizeLines": 1542,
+      "fileCategory": "code"
+    },
+    {
+      "path": "processor/processor.py",
+      "language": "python",
+      "sizeLines": 207,
+      "fileCategory": "code"
+    },
+    {
+      "path": "pytest.ini",
+      "language": "config",
+      "sizeLines": 2,
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 270,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "solver/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "solver/cosine_lr.py",
+      "language": "python",
+      "sizeLines": 115,
+      "fileCategory": "code"
+    },
+    {
+      "path": "solver/lr_scheduler.py",
+      "language": "python",
+      "sizeLines": 56,
+      "fileCategory": "code"
+    },
+    {
+      "path": "solver/make_optimizer_prompt.py",
+      "language": "python",
+      "sizeLines": 55,
+      "fileCategory": "code"
+    },
+    {
+      "path": "solver/make_optimizer.py",
+      "language": "python",
+      "sizeLines": 27,
+      "fileCategory": "code"
+    },
+    {
+      "path": "solver/scheduler_factory.py",
+      "language": "python",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "solver/scheduler.py",
+      "language": "python",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test_clipreid.py",
+      "language": "python",
+      "sizeLines": 70,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test.py",
+      "language": "python",
+      "sizeLines": 70,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_anatomy_audit.py",
+      "language": "python",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_emotion_losses_metrics.py",
+      "language": "python",
+      "sizeLines": 122,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_emotion_manifest.py",
+      "language": "python",
+      "sizeLines": 300,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_emotion_model_units.py",
+      "language": "python",
+      "sizeLines": 348,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_emotion_processor_smoke.py",
+      "language": "python",
+      "sizeLines": 318,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_notebook_helpers.py",
+      "language": "python",
+      "sizeLines": 205,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_run_artifacts.py",
+      "language": "python",
+      "sizeLines": 38,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tests/test_train_emotionclip_parallel.py",
+      "language": "python",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/audit_anatomy_geometry.py",
+      "language": "python",
+      "sizeLines": 268,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/build_face_landmark_artifacts.py",
+      "language": "python",
+      "sizeLines": 442,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/convert_affwild2_to_emotion_jsonl.py",
+      "language": "python",
+      "sizeLines": 86,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "language": "python",
+      "sizeLines": 231,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/convert_raf_au_to_emotion_jsonl.py",
+      "language": "python",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "language": "python",
+      "sizeLines": 363,
+      "fileCategory": "code"
+    },
+    {
+      "path": "tools/download_hf_emotion_dataset.py",
+      "language": "python",
+      "sizeLines": 176,
+      "fileCategory": "code"
+    },
+    {
+      "path": "train_clipreid.py",
+      "language": "python",
+      "sizeLines": 99,
+      "fileCategory": "code"
+    },
+    {
+      "path": "train_emotionclip.py",
+      "language": "python",
+      "sizeLines": 365,
+      "fileCategory": "code"
+    },
+    {
+      "path": "train.py",
+      "language": "python",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/fer_metrics.py",
+      "language": "python",
+      "sizeLines": 227,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/iotools.py",
+      "language": "python",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/logger.py",
+      "language": "python",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/meter.py",
+      "language": "python",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/metrics.py",
+      "language": "python",
+      "sizeLines": 136,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/notebook_landmarks.py",
+      "language": "python",
+      "sizeLines": 298,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/notebook_metrics.py",
+      "language": "python",
+      "sizeLines": 610,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/notebook_progress.py",
+      "language": "python",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/notebook_run.py",
+      "language": "python",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/reranking.py",
+      "language": "python",
+      "sizeLines": 101,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/run_artifacts.py",
+      "language": "python",
+      "sizeLines": 133,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 154,
+  "filteredByIgnore": 58,
+  "estimatedComplexity": "large",
+  "stats": {
+    "filesScanned": 154,
+    "byCategory": {
+      "code": 88,
+      "config": 53,
+      "docs": 5,
+      "data": 8
+    },
+    "byLanguage": {
+      "python": 80,
+      "yaml": 17,
+      "txt": 2,
+      "markdown": 3,
+      "ipynb": 3,
+      "xlsx": 1,
+      "json": 35,
+      "csv": 8,
+      "drawio": 4,
+      "config": 1
+    }
+  }
+}

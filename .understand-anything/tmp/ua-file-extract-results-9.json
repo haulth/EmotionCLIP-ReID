@@ -1,0 +1,191 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "configs/person/cnn_base.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 68,
+      "nonEmptyLines": 58,
+      "sections": [
+        {
+          "heading": "MODEL",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "INPUT",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "DATALOADER",
+          "level": 1,
+          "line": 19
+        },
+        {
+          "heading": "SOLVER",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "TEST",
+          "level": 1,
+          "line": 43
+        },
+        {
+          "heading": "DATASETS",
+          "level": 1,
+          "line": 51
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "configs/person/cnn_clipreid.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 84,
+      "nonEmptyLines": 73,
+      "sections": [
+        {
+          "heading": "MODEL",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "INPUT",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "DATALOADER",
+          "level": 1,
+          "line": 20
+        },
+        {
+          "heading": "SOLVER",
+          "level": 1,
+          "line": 25
+        },
+        {
+          "heading": "TEST",
+          "level": 1,
+          "line": 59
+        },
+        {
+          "heading": "DATASETS",
+          "level": 1,
+          "line": 67
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "configs/person/vit_base.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 71,
+      "nonEmptyLines": 61,
+      "sections": [
+        {
+          "heading": "MODEL",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "INPUT",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "DATALOADER",
+          "level": 1,
+          "line": 22
+        },
+        {
+          "heading": "SOLVER",
+          "level": 1,
+          "line": 27
+        },
+        {
+          "heading": "TEST",
+          "level": 1,
+          "line": 46
+        },
+        {
+          "heading": "DATASETS",
+          "level": 1,
+          "line": 54
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "configs/person/vit_clipreid.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 87,
+      "nonEmptyLines": 76,
+      "sections": [
+        {
+          "heading": "MODEL",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "INPUT",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "DATALOADER",
+          "level": 1,
+          "line": 23
+        },
+        {
+          "heading": "SOLVER",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "TEST",
+          "level": 1,
+          "line": 62
+        },
+        {
+          "heading": "DATASETS",
+          "level": 1,
+          "line": 70
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    }
+  ]
+}

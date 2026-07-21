@@ -1,0 +1,237 @@
+{
+    "projectRoot":  "E:\\Source\\EmotionCLIP-ReID",
+    "batchFiles":  [
+                       {
+                           "path":  "config/emotion_defaults.py",
+                           "language":  "python",
+                           "sizeLines":  254,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/anatomy.py",
+                           "language":  "python",
+                           "sizeLines":  626,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/emotion_manifest.py",
+                           "language":  "python",
+                           "sizeLines":  599,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "infer_emotionclip.py",
+                           "language":  "python",
+                           "sizeLines":  142,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/emotion_losses.py",
+                           "language":  "python",
+                           "sizeLines":  120,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "processor/processor_emotionclip.py",
+                           "language":  "python",
+                           "sizeLines":  1542,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tests/test_anatomy_audit.py",
+                           "language":  "python",
+                           "sizeLines":  69,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tests/test_emotion_losses_metrics.py",
+                           "language":  "python",
+                           "sizeLines":  122,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tests/test_emotion_manifest.py",
+                           "language":  "python",
+                           "sizeLines":  300,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tests/test_emotion_model_units.py",
+                           "language":  "python",
+                           "sizeLines":  348,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tests/test_emotion_processor_smoke.py",
+                           "language":  "python",
+                           "sizeLines":  318,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tests/test_run_artifacts.py",
+                           "language":  "python",
+                           "sizeLines":  38,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tests/test_train_emotionclip_parallel.py",
+                           "language":  "python",
+                           "sizeLines":  69,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tools/audit_anatomy_geometry.py",
+                           "language":  "python",
+                           "sizeLines":  268,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tools/build_face_landmark_artifacts.py",
+                           "language":  "python",
+                           "sizeLines":  442,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tools/convert_affwild2_to_emotion_jsonl.py",
+                           "language":  "python",
+                           "sizeLines":  86,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tools/convert_fer2013_to_emotion_jsonl.py",
+                           "language":  "python",
+                           "sizeLines":  231,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tools/convert_raf_au_to_emotion_jsonl.py",
+                           "language":  "python",
+                           "sizeLines":  69,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tools/convert_rafdb_to_emotion_jsonl.py",
+                           "language":  "python",
+                           "sizeLines":  363,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "tools/download_hf_emotion_dataset.py",
+                           "language":  "python",
+                           "sizeLines":  176,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "train_emotionclip.py",
+                           "language":  "python",
+                           "sizeLines":  365,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "utils/fer_metrics.py",
+                           "language":  "python",
+                           "sizeLines":  227,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "utils/run_artifacts.py",
+                           "language":  "python",
+                           "sizeLines":  133,
+                           "fileCategory":  "code"
+                       }
+                   ],
+    "batchImportData":  {
+                            "config/emotion_defaults.py":  [
+
+                                                           ],
+                            "datasets/anatomy.py":  [
+
+                                                    ],
+                            "datasets/emotion_manifest.py":  [
+                                                                 "datasets/anatomy.py"
+                                                             ],
+                            "infer_emotionclip.py":  [
+                                                         "config/emotion_defaults.py",
+                                                         "datasets/anatomy.py",
+                                                         "datasets/emotion_manifest.py",
+                                                         "model/emotionclip_model.py",
+                                                         "processor/processor_emotionclip.py"
+                                                     ],
+                            "loss/emotion_losses.py":  [
+
+                                                       ],
+                            "processor/processor_emotionclip.py":  [
+                                                                       "datasets/anatomy.py",
+                                                                       "loss/emotion_losses.py",
+                                                                       "utils/fer_metrics.py"
+                                                                   ],
+                            "tests/test_anatomy_audit.py":  [
+                                                                "datasets/anatomy.py",
+                                                                "tools/audit_anatomy_geometry.py",
+                                                                "tools/build_face_landmark_artifacts.py"
+                                                            ],
+                            "tests/test_emotion_losses_metrics.py":  [
+                                                                         "datasets/emotion_manifest.py",
+                                                                         "loss/emotion_losses.py",
+                                                                         "model/emotionclip_model.py",
+                                                                         "utils/fer_metrics.py"
+                                                                     ],
+                            "tests/test_emotion_manifest.py":  [
+                                                                   "datasets/emotion_manifest.py",
+                                                                   "tools/convert_fer2013_to_emotion_jsonl.py",
+                                                                   "tools/convert_rafdb_to_emotion_jsonl.py",
+                                                                   "tools/download_hf_emotion_dataset.py"
+                                                               ],
+                            "tests/test_emotion_model_units.py":  [
+                                                                      "datasets/anatomy.py",
+                                                                      "datasets/emotion_manifest.py",
+                                                                      "model/emotionclip_model.py"
+                                                                  ],
+                            "tests/test_emotion_processor_smoke.py":  [
+                                                                          "datasets/anatomy.py",
+                                                                          "processor/processor_emotionclip.py"
+                                                                      ],
+                            "tests/test_run_artifacts.py":  [
+                                                                "utils/run_artifacts.py"
+                                                            ],
+                            "tests/test_train_emotionclip_parallel.py":  [
+                                                                             "processor/processor_emotionclip.py",
+                                                                             "train_emotionclip.py"
+                                                                         ],
+                            "tools/audit_anatomy_geometry.py":  [
+                                                                    "datasets/anatomy.py",
+                                                                    "datasets/emotion_manifest.py"
+                                                                ],
+                            "tools/build_face_landmark_artifacts.py":  [
+                                                                           "datasets/anatomy.py"
+                                                                       ],
+                            "tools/convert_affwild2_to_emotion_jsonl.py":  [
+                                                                               "datasets/emotion_manifest.py"
+                                                                           ],
+                            "tools/convert_fer2013_to_emotion_jsonl.py":  [
+
+                                                                          ],
+                            "tools/convert_raf_au_to_emotion_jsonl.py":  [
+                                                                             "datasets/emotion_manifest.py"
+                                                                         ],
+                            "tools/convert_rafdb_to_emotion_jsonl.py":  [
+
+                                                                        ],
+                            "tools/download_hf_emotion_dataset.py":  [
+
+                                                                     ],
+                            "train_emotionclip.py":  [
+                                                         "config/emotion_defaults.py",
+                                                         "datasets/emotion_manifest.py",
+                                                         "model/emotionclip_model.py",
+                                                         "processor/processor_emotionclip.py",
+                                                         "utils/run_artifacts.py"
+                                                     ],
+                            "utils/fer_metrics.py":  [
+
+                                                     ],
+                            "utils/run_artifacts.py":  [
+
+                                                       ]
+                        }
+}

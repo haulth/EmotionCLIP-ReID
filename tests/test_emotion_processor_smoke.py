@@ -1,3 +1,4 @@
+import json
 import os
 
 import pytest
@@ -11,6 +12,7 @@ from processor.processor_emotionclip import (
     evaluate_sealed_test,
     load_emotion_checkpoint,
     save_checkpoint,
+    _format_log_value,
 )
 from datasets.anatomy import ANATOMY_DESCRIPTOR_VERSION, empty_anatomy_inputs
 
@@ -117,6 +119,162 @@ def test_processor_stage1_stage2_cpu_smoke(tmp_path):
     assert metrics["num_samples"] == 8
     assert os.path.exists(tmp_path / "best_emotionclip.pth")
     assert os.path.exists(tmp_path / "trainable_parameters.json")
+
+
+def test_stage2_gradient_accumulation_controls_optimizer_steps(tmp_path):
+    class CountingSGD(torch.optim.SGD):
+        def __init__(self, params, **kwargs):
+            super().__init__(params, **kwargs)
+            self.step_calls = 0
+
+        def step(self, closure=None):
+            self.step_calls += 1
+            return super().step(closure)
+
+    cfg = {
+        "MODEL": {"DEVICE": "cpu"},
+        "OUTPUT_DIR": str(tmp_path),
+        "SOLVER": {
+            "STAGE2": {
+                "MAX_EPOCHS": 1,
+                "LOG_PERIOD": 100,
+                "EVAL_PERIOD": 1,
+                "BETA_ALIGN": 0.1,
+                "LAMBDA_UNC": 0.01,
+                "GRADIENT_ACCUMULATION_STEPS": 2,
+                "AMP_ENABLED": False,
+                "MAX_GRAD_NORM": 1.0,
+            }
+        },
+    }
+    model = TinyEmotionModel()
+    model.set_train_stage(2)
+    optimizer = CountingSGD([p for p in model.parameters() if p.requires_grad], lr=0.01)
+
+    do_train_emotion_stage2(cfg, model, _loader(), None, optimizer)
+
+    assert optimizer.step_calls == 1
+
+
+def test_stage2_nonfinite_loss_fails_before_optimizer_step(tmp_path):
+    class NonFiniteEmotionModel(TinyEmotionModel):
+        def forward(self, *args, **kwargs):
+            outputs = super().forward(*args, **kwargs)
+            if isinstance(outputs, dict):
+                outputs["logits"] = outputs["logits"] * torch.tensor(float("nan"))
+            return outputs
+
+    class CountingSGD(torch.optim.SGD):
+        def __init__(self, params, **kwargs):
+            super().__init__(params, **kwargs)
+            self.step_calls = 0
+
+        def step(self, closure=None):
+            self.step_calls += 1
+            return super().step(closure)
+
+    cfg = {
+        "MODEL": {"DEVICE": "cpu"},
+        "OUTPUT_DIR": str(tmp_path),
+        "SOLVER": {
+            "STAGE2": {
+                "MAX_EPOCHS": 1,
+                "LOG_PERIOD": 100,
+                "BETA_ALIGN": 0.1,
+                "LAMBDA_UNC": 0.01,
+                "AMP_ENABLED": False,
+                "MAX_GRAD_NORM": 1.0,
+                "FAIL_ON_NONFINITE": True,
+            }
+        },
+    }
+    model = NonFiniteEmotionModel()
+    model.set_train_stage(2)
+    optimizer = CountingSGD([p for p in model.parameters() if p.requires_grad], lr=0.01)
+
+    with pytest.raises(FloatingPointError, match="Non-finite Stage 2 loss"):
+        do_train_emotion_stage2(cfg, model, _loader(), None, optimizer)
+
+    assert optimizer.step_calls == 0
+    diagnostic = json.loads((tmp_path / "training_failure.json").read_text(encoding="utf-8"))
+    assert diagnostic["reason"] == "non-finite loss"
+    assert diagnostic["losses"]["loss"]["finite"] is False
+
+
+def test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed(tmp_path):
+    class PoisonSGD(torch.optim.SGD):
+        def step(self, closure=None):
+            result = super().step(closure)
+            with torch.no_grad():
+                self.param_groups[0]["params"][0].fill_(float("nan"))
+            return result
+
+    cfg = {
+        "MODEL": {"DEVICE": "cpu"},
+        "OUTPUT_DIR": str(tmp_path),
+        "SOLVER": {
+            "STAGE2": {
+                "MAX_EPOCHS": 1,
+                "LOG_PERIOD": 100,
+                "BETA_ALIGN": 0.1,
+                "LAMBDA_UNC": 0.01,
+                "AMP_ENABLED": False,
+                "MAX_GRAD_NORM": 1.0,
+                "FAIL_ON_NONFINITE": True,
+            }
+        },
+    }
+    model = TinyEmotionModel()
+    model.set_train_stage(2)
+    optimizer = PoisonSGD([p for p in model.parameters() if p.requires_grad], lr=0.01)
+
+    with pytest.raises(FloatingPointError, match="parameters after optimizer step"):
+        do_train_emotion_stage2(cfg, model, _loader(), None, optimizer)
+
+    diagnostic = json.loads((tmp_path / "training_failure.json").read_text(encoding="utf-8"))
+    assert diagnostic["reason"] == "non-finite parameters after optimizer step"
+    assert diagnostic["nonfinite_parameters"]
+
+
+def test_stage2_early_stopping_uses_validation_patience(tmp_path):
+    class CountingSGD(torch.optim.SGD):
+        def __init__(self, params, **kwargs):
+            super().__init__(params, **kwargs)
+            self.step_calls = 0
+
+        def step(self, closure=None):
+            self.step_calls += 1
+            return super().step(closure)
+
+    cfg = {
+        "MODEL": {"DEVICE": "cpu"},
+        "OUTPUT_DIR": str(tmp_path),
+        "SOLVER": {
+            "STAGE2": {
+                "MAX_EPOCHS": 5,
+                "LOG_PERIOD": 100,
+                "EVAL_PERIOD": 1,
+                "EARLY_STOPPING_PATIENCE": 2,
+                "BETA_ALIGN": 0.1,
+                "LAMBDA_UNC": 0.01,
+                "AMP_ENABLED": False,
+                "MAX_GRAD_NORM": 1.0,
+            }
+        },
+    }
+    model = TinyEmotionModel()
+    model.set_train_stage(2)
+    # lr=0 keeps validation predictions unchanged across epochs.
+    optimizer = CountingSGD([p for p in model.parameters() if p.requires_grad], lr=0.0)
+
+    do_train_emotion_stage2(cfg, model, _loader(), _loader(), optimizer)
+
+    assert optimizer.step_calls == 6  # 2 batches x (best epoch + 2 stale epochs)
+
+
+def test_small_learning_rates_use_scientific_log_format():
+    assert _format_log_value(5e-6) == "5.0000e-06"
+    assert _format_log_value(0.5) == "0.5000"
 
 
 def test_stage1_validation_writes_and_selects_prompt_checkpoint(tmp_path):

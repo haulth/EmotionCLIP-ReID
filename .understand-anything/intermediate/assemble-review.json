@@ -1,0 +1,14 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "Báo cáo merge không ghi nhận sửa đổi, phần tử bị loại hoặc lỗi không thể khắc phục; số lượng đầu vào và đầu ra giữ nguyên ở 533 nodes và 883 edges.",
+    "Toàn bộ 533 nodes có id, type và complexity hợp lệ; graph không có dangling edge.",
+    "Đã đối chiếu đủ 125 quan hệ trong importMap với 125 imports edges của assembled graph; không thiếu quan hệ cross-batch nào.",
+    "Phân bố kiểu node và complexity hợp lý, không thấy dấu hiệu chuẩn hóa hàng loạt hoặc sai lệch hệ thống từ batch analyzer."
+  ]
+}

@@ -1,0 +1,1044 @@
+{
+  "nodes": [
+    {
+      "id": "file:train_emotionclip.py",
+      "type": "file",
+      "name": "train_emotionclip.py",
+      "filePath": "train_emotionclip.py",
+      "summary": "Điểm vào huấn luyện train_emotionclip.py, lắp ghép cấu hình, dữ liệu, mô hình, optimizer và các stage training.",
+      "tags": [
+        "huan-luyen",
+        "dieu-phoi",
+        "entry-point"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:train_emotionclip.py:set_seed",
+      "type": "function",
+      "name": "set_seed",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        29,
+        34
+      ],
+      "summary": "Thực hiện xử lý set_seed trong mô-đun train_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:setup_logging",
+      "type": "function",
+      "name": "setup_logging",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        37,
+        46
+      ],
+      "summary": "Thực hiện xử lý setup_logging trong mô-đun train_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:_flatten_config",
+      "type": "function",
+      "name": "_flatten_config",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        49,
+        55
+      ],
+      "summary": "Thực hiện xử lý _flatten_config trong mô-đun train_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:_csv_value",
+      "type": "function",
+      "name": "_csv_value",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        58,
+        63
+      ],
+      "summary": "Thực hiện xử lý _csv_value trong mô-đun train_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:save_train_config_csv",
+      "type": "function",
+      "name": "save_train_config_csv",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        66,
+        91
+      ],
+      "summary": "Thực thi logic huấn luyện save_train_config_csv trong mô-đun train_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:trainable_parameters",
+      "type": "function",
+      "name": "trainable_parameters",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        94,
+        95
+      ],
+      "summary": "Thực thi logic huấn luyện trainable_parameters trong mô-đun train_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:parse_gpu_ids",
+      "type": "function",
+      "name": "parse_gpu_ids",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        98,
+        109
+      ],
+      "summary": "Thực hiện xử lý parse_gpu_ids trong mô-đun train_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:configure_device",
+      "type": "function",
+      "name": "configure_device",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        112,
+        140
+      ],
+      "summary": "Thực hiện xử lý configure_device trong mô-đun train_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        143,
+        361
+      ],
+      "summary": "Thực hiện xử lý main trong mô-đun train_emotionclip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:utils/fer_metrics.py",
+      "type": "file",
+      "name": "fer_metrics.py",
+      "filePath": "utils/fer_metrics.py",
+      "summary": "Tính toán metric đánh giá trong fer_metrics.py, tổng hợp chất lượng dự đoán và độ tin cậy của mô hình.",
+      "tags": [
+        "utility",
+        "emotionclip",
+        "pipeline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:utils/fer_metrics.py:_safe_div",
+      "type": "function",
+      "name": "_safe_div",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        6,
+        7
+      ],
+      "summary": "Thực hiện xử lý _safe_div trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:confusion_matrix",
+      "type": "function",
+      "name": "confusion_matrix",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        10,
+        14
+      ],
+      "summary": "Thực hiện xử lý confusion_matrix trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:per_class_f1",
+      "type": "function",
+      "name": "per_class_f1",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        17,
+        26
+      ],
+      "summary": "Thực hiện xử lý per_class_f1 trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:balanced_accuracy",
+      "type": "function",
+      "name": "balanced_accuracy",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        29,
+        34
+      ],
+      "summary": "Thực hiện xử lý balanced_accuracy trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:expected_calibration_error",
+      "type": "function",
+      "name": "expected_calibration_error",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        37,
+        54
+      ],
+      "summary": "Thực hiện xử lý expected_calibration_error trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:adaptive_calibration_error",
+      "type": "function",
+      "name": "adaptive_calibration_error",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        57,
+        70
+      ],
+      "summary": "Thực hiện xử lý adaptive_calibration_error trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:classwise_calibration_error",
+      "type": "function",
+      "name": "classwise_calibration_error",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        73,
+        87
+      ],
+      "summary": "Thực hiện xử lý classwise_calibration_error trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:negative_log_likelihood",
+      "type": "function",
+      "name": "negative_log_likelihood",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        90,
+        94
+      ],
+      "summary": "Thực hiện xử lý negative_log_likelihood trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:brier_score",
+      "type": "function",
+      "name": "brier_score",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        97,
+        101
+      ],
+      "summary": "Thực hiện xử lý brier_score trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:uncertainty_risk_auc",
+      "type": "function",
+      "name": "uncertainty_risk_auc",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        104,
+        111
+      ],
+      "summary": "Thực hiện xử lý uncertainty_risk_auc trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:excess_aurc",
+      "type": "function",
+      "name": "excess_aurc",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        114,
+        122
+      ],
+      "summary": "Thực hiện xử lý excess_aurc trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:risk_at_coverage",
+      "type": "function",
+      "name": "risk_at_coverage",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        125,
+        131
+      ],
+      "summary": "Thực hiện xử lý risk_at_coverage trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:_binary_ranking_metrics",
+      "type": "function",
+      "name": "_binary_ranking_metrics",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        134,
+        156
+      ],
+      "summary": "Thực thi logic đánh giá _binary_ranking_metrics trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "danh-gia",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:ood_detection_metrics",
+      "type": "function",
+      "name": "ood_detection_metrics",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        159,
+        180
+      ],
+      "summary": "Thực thi logic đánh giá ood_detection_metrics trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "danh-gia",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:compute_fer_metrics",
+      "type": "function",
+      "name": "compute_fer_metrics",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        183,
+        227
+      ],
+      "summary": "Thực thi logic đánh giá compute_fer_metrics trong mô-đun fer_metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "danh-gia",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/run_artifacts.py",
+      "type": "file",
+      "name": "run_artifacts.py",
+      "filePath": "utils/run_artifacts.py",
+      "summary": "Cung cấp các thành phần hỗ trợ trong run_artifacts.py cho pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "utility",
+        "emotionclip",
+        "pipeline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:utils/run_artifacts.py:_sha256_bytes",
+      "type": "function",
+      "name": "_sha256_bytes",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        21,
+        22
+      ],
+      "summary": "Thực hiện xử lý _sha256_bytes trong mô-đun run_artifacts.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:_git",
+      "type": "function",
+      "name": "_git",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        25,
+        29
+      ],
+      "summary": "Thực hiện xử lý _git trong mô-đun run_artifacts.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:_manifest_hashes",
+      "type": "function",
+      "name": "_manifest_hashes",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        32,
+        53
+      ],
+      "summary": "Thực hiện xử lý _manifest_hashes trong mô-đun run_artifacts.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:_dependency_versions",
+      "type": "function",
+      "name": "_dependency_versions",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        56,
+        64
+      ],
+      "summary": "Thực hiện xử lý _dependency_versions trong mô-đun run_artifacts.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:_hardware",
+      "type": "function",
+      "name": "_hardware",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        67,
+        81
+      ],
+      "summary": "Thực hiện xử lý _hardware trong mô-đun run_artifacts.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:initialize_immutable_run",
+      "type": "function",
+      "name": "initialize_immutable_run",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        84,
+        123
+      ],
+      "summary": "Thực hiện xử lý initialize_immutable_run trong mô-đun run_artifacts.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:artifact_dir",
+      "type": "function",
+      "name": "artifact_dir",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        126,
+        133
+      ],
+      "summary": "Thực hiện xử lý artifact_dir trong mô-đun run_artifacts.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:set_seed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:set_seed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:setup_logging",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:setup_logging",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_flatten_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_flatten_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_csv_value",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_csv_value",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:save_train_config_csv",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:save_train_config_csv",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:trainable_parameters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:trainable_parameters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:parse_gpu_ids",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:parse_gpu_ids",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:configure_device",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:configure_device",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:config/emotion_defaults.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:utils/run_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:_safe_div",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:_safe_div",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:confusion_matrix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:confusion_matrix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:per_class_f1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:per_class_f1",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:balanced_accuracy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:balanced_accuracy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:expected_calibration_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:expected_calibration_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:adaptive_calibration_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:adaptive_calibration_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:classwise_calibration_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:classwise_calibration_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:negative_log_likelihood",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:negative_log_likelihood",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:brier_score",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:brier_score",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:uncertainty_risk_auc",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:uncertainty_risk_auc",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:excess_aurc",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:excess_aurc",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:risk_at_coverage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:risk_at_coverage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:_binary_ranking_metrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:_binary_ranking_metrics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:ood_detection_metrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:ood_detection_metrics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:compute_fer_metrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:compute_fer_metrics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_sha256_bytes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_sha256_bytes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_git",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_git",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_manifest_hashes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_manifest_hashes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_dependency_versions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_dependency_versions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_hardware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_hardware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:initialize_immutable_run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:initialize_immutable_run",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:artifact_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:artifact_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

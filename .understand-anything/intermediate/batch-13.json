@@ -1,0 +1,137 @@
+{
+    "nodes":  [
+                  {
+                      "id":  "document:outputs/fer2013/README_training_logs.md",
+                      "type":  "document",
+                      "name":  "README_training_logs.md",
+                      "filePath":  "outputs/fer2013/README_training_logs.md",
+                      "summary":  "Tài liệu mô tả nguồn gốc và cấu trúc các log training FER2013 đã được trích xuất từ notebook, giúp đối chiếu các bảng loss, validation và uncertainty.",
+                      "tags":  [
+                                   "documentation",
+                                   "dataset",
+                                   "training-artifact"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "config:outputs/fer2013/accuracy_uce_summary.json",
+                      "type":  "config",
+                      "name":  "accuracy_uce_summary.json",
+                      "filePath":  "outputs/fer2013/accuracy_uce_summary.json",
+                      "summary":  "Tổng hợp các epoch tốt nhất của FER2013 theo accuracy, balanced accuracy, macro-F1, ECE và UCE, kèm ghi chú về ý nghĩa metric.",
+                      "tags":  [
+                                   "configuration",
+                                   "experiment-metrics",
+                                   "reporting"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "config:outputs/fer2013/best_metrics_summary.json",
+                      "type":  "config",
+                      "name":  "best_metrics_summary.json",
+                      "filePath":  "outputs/fer2013/best_metrics_summary.json",
+                      "summary":  "Snapshot đầy đủ của checkpoint FER2013 tốt nhất, gồm confusion matrix, F1 theo lớp, calibration và uncertainty-risk AUC.",
+                      "tags":  [
+                                   "configuration",
+                                   "experiment-metrics",
+                                   "reporting"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "config:outputs/fer2013/inference_sample_uncertainty.json",
+                      "type":  "config",
+                      "name":  "inference_sample_uncertainty.json",
+                      "filePath":  "outputs/fer2013/inference_sample_uncertainty.json",
+                      "summary":  "Ghi kết quả inference của một mẫu FER2013 với nhãn dự đoán, phân phối xác suất, uncertainty và độ tương đồng descriptor.",
+                      "tags":  [
+                                   "configuration",
+                                   "experiment-metrics",
+                                   "reporting"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "file:outputs/fer2013/training_epoch_losses.csv",
+                      "type":  "file",
+                      "name":  "training_epoch_losses.csv",
+                      "filePath":  "outputs/fer2013/training_epoch_losses.csv",
+                      "summary":  "Chuỗi loss training FER2013 được tổng hợp theo epoch để theo dõi xu hướng hội tụ ở cấp vòng lặp.",
+                      "tags":  [
+                                   "data-pipeline",
+                                   "training-metrics",
+                                   "experiment-artifact"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "file:outputs/fer2013/training_step_losses.csv",
+                      "type":  "file",
+                      "name":  "training_step_losses.csv",
+                      "filePath":  "outputs/fer2013/training_step_losses.csv",
+                      "summary":  "Log loss chi tiết theo từng optimization step của FER2013, phục vụ phát hiện dao động, divergence và NaN trong training.",
+                      "tags":  [
+                                   "data-pipeline",
+                                   "training-metrics",
+                                   "experiment-artifact"
+                               ],
+                      "complexity":  "complex"
+                  },
+                  {
+                      "id":  "config:outputs/fer2013/uncertainty_summary.json",
+                      "type":  "config",
+                      "name":  "uncertainty_summary.json",
+                      "filePath":  "outputs/fer2013/uncertainty_summary.json",
+                      "summary":  "Tổng hợp ngắn checkpoint FER2013 tốt nhất và các metric validation, calibration, uncertainty cùng kết quả inference mẫu.",
+                      "tags":  [
+                                   "configuration",
+                                   "experiment-metrics",
+                                   "reporting"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "file:outputs/fer2013/validation_accuracy.csv",
+                      "type":  "file",
+                      "name":  "validation_accuracy.csv",
+                      "filePath":  "outputs/fer2013/validation_accuracy.csv",
+                      "summary":  "Lịch sử validation accuracy của FER2013 theo epoch để chọn checkpoint và đánh giá tiến trình học.",
+                      "tags":  [
+                                   "data-pipeline",
+                                   "training-metrics",
+                                   "experiment-artifact"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "file:outputs/fer2013/validation_metrics.csv",
+                      "type":  "file",
+                      "name":  "validation_metrics.csv",
+                      "filePath":  "outputs/fer2013/validation_metrics.csv",
+                      "summary":  "Lịch sử metric validation FER2013 theo epoch, bao phủ accuracy, balanced accuracy, macro-F1 và các chỉ số uncertainty/calibration.",
+                      "tags":  [
+                                   "data-pipeline",
+                                   "training-metrics",
+                                   "experiment-artifact"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "file:outputs/fer2013/validation_uncertainty.csv",
+                      "type":  "file",
+                      "name":  "validation_uncertainty.csv",
+                      "filePath":  "outputs/fer2013/validation_uncertainty.csv",
+                      "summary":  "Bảng uncertainty validation FER2013 rút gọn, dùng làm nguồn đối chiếu cho báo cáo độ tin cậy.",
+                      "tags":  [
+                                   "data-pipeline",
+                                   "training-metrics",
+                                   "experiment-artifact"
+                               ],
+                      "complexity":  "simple"
+                  }
+              ],
+    "edges":  [
+
+              ]
+}

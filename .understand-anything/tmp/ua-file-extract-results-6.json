@@ -1,0 +1,121 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 270,
+      "nonEmptyLines": 200,
+      "sections": [
+        {
+          "heading": "Pipeline",
+          "level": 3,
+          "line": 4
+        },
+        {
+          "heading": "Installation",
+          "level": 3,
+          "line": 8
+        },
+        {
+          "heading": "Prepare Dataset",
+          "level": 3,
+          "line": 22
+        },
+        {
+          "heading": "Training",
+          "level": 3,
+          "line": 26
+        },
+        {
+          "heading": "EmotionCLIP-ReID for FER",
+          "level": 3,
+          "line": 28
+        },
+        {
+          "heading": "Evaluation",
+          "level": 3,
+          "line": 231
+        },
+        {
+          "heading": "Acknowledgement",
+          "level": 3,
+          "line": 239
+        },
+        {
+          "heading": "Trained models and test logs",
+          "level": 3,
+          "line": 245
+        },
+        {
+          "heading": "Citation",
+          "level": 3,
+          "line": 258
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "path": "environment_emotionclip_cuda.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 21,
+      "nonEmptyLines": 21,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "channels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "dependencies",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "note_edit.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 73,
+      "nonEmptyLines": 61,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 0
+      }
+    },
+    {
+      "path": "pytest.ini",
+      "language": "config",
+      "fileCategory": "config",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "metrics": {}
+    }
+  ]
+}

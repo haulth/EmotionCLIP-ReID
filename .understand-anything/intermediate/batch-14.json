@@ -1,0 +1,59 @@
+{
+    "nodes":  [
+                  {
+                      "id":  "file:outputs/report_w4/emotionclip_outputs_summary.csv",
+                      "type":  "file",
+                      "name":  "emotionclip_outputs_summary.csv",
+                      "filePath":  "outputs/report_w4/emotionclip_outputs_summary.csv",
+                      "summary":  "Bảng tóm tắt cực gọn các output chính của EmotionCLIP-ReID cho FER2013 và RAF-DB để đưa vào báo cáo tuần 4.",
+                      "tags":  [
+                                   "data-pipeline",
+                                   "training-metrics",
+                                   "experiment-artifact"
+                               ],
+                      "complexity":  "simple"
+                  },
+                  {
+                      "id":  "config:outputs/report_w4/emotionclip_outputs_summary.json",
+                      "type":  "config",
+                      "name":  "emotionclip_outputs_summary.json",
+                      "filePath":  "outputs/report_w4/emotionclip_outputs_summary.json",
+                      "summary":  "Tổng hợp có cấu trúc kết quả FER2013 và RAF-DB, liên kết các metric, lịch sử training và artifact phục vụ báo cáo tuần 4.",
+                      "tags":  [
+                                   "configuration",
+                                   "experiment-metrics",
+                                   "reporting"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "file:outputs/report_w4/rafdb_training_history_extracted.csv",
+                      "type":  "file",
+                      "name":  "rafdb_training_history_extracted.csv",
+                      "filePath":  "outputs/report_w4/rafdb_training_history_extracted.csv",
+                      "summary":  "Lịch sử training RAF-DB đã trích xuất theo epoch, dùng để phân tích loss, hội tụ và so sánh với validation.",
+                      "tags":  [
+                                   "data-pipeline",
+                                   "training-metrics",
+                                   "experiment-artifact"
+                               ],
+                      "complexity":  "moderate"
+                  },
+                  {
+                      "id":  "file:outputs/report_w4/rafdb_validation_history_extracted.csv",
+                      "type":  "file",
+                      "name":  "rafdb_validation_history_extracted.csv",
+                      "filePath":  "outputs/report_w4/rafdb_validation_history_extracted.csv",
+                      "summary":  "Lịch sử validation RAF-DB đã trích xuất theo epoch, phục vụ chọn checkpoint và lập biểu đồ hiệu năng.",
+                      "tags":  [
+                                   "data-pipeline",
+                                   "training-metrics",
+                                   "experiment-artifact"
+                               ],
+                      "complexity":  "simple"
+                  }
+              ],
+    "edges":  [
+
+              ]
+}

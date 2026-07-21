@@ -1,0 +1,1752 @@
+{
+  "nodes": [
+    {
+      "id": "file:model/clip/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "model/clip/__init__.py",
+      "summary": "Định nghĩa thành phần mô hình trong __init__.py, kết nối CLIP, prompt, adapter, routing và các đầu ra cảm xúc/ReID.",
+      "tags": [
+        "mo-hinh",
+        "clip",
+        "deep-learning"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "file:model/clip/clip.py",
+      "type": "file",
+      "name": "clip.py",
+      "filePath": "model/clip/clip.py",
+      "summary": "Định nghĩa thành phần mô hình trong clip.py, kết nối CLIP, prompt, adapter, routing và các đầu ra cảm xúc/ReID.",
+      "tags": [
+        "mo-hinh",
+        "clip",
+        "deep-learning"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:model/clip/clip.py:_download",
+      "type": "function",
+      "name": "_download",
+      "filePath": "model/clip/clip.py",
+      "lineRange": [
+        43,
+        72
+      ],
+      "summary": "Thực hiện xử lý _download trong mô-đun clip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/clip.py:_transform",
+      "type": "function",
+      "name": "_transform",
+      "filePath": "model/clip/clip.py",
+      "lineRange": [
+        75,
+        84
+      ],
+      "summary": "Thực hiện xử lý _transform trong mô-đun clip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/clip.py:available_models",
+      "type": "function",
+      "name": "available_models",
+      "filePath": "model/clip/clip.py",
+      "lineRange": [
+        87,
+        89
+      ],
+      "summary": "Thực hiện xử lý available_models trong mô-đun clip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/clip.py:load",
+      "type": "function",
+      "name": "load",
+      "filePath": "model/clip/clip.py",
+      "lineRange": [
+        92,
+        188
+      ],
+      "summary": "Thực hiện xử lý load trong mô-đun clip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:model/clip/clip.py:tokenize",
+      "type": "function",
+      "name": "tokenize",
+      "filePath": "model/clip/clip.py",
+      "lineRange": [
+        191,
+        229
+      ],
+      "summary": "Thực hiện xử lý tokenize trong mô-đun clip.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:model/clip/model.py",
+      "type": "file",
+      "name": "model.py",
+      "filePath": "model/clip/model.py",
+      "summary": "Định nghĩa thành phần mô hình trong model.py, kết nối CLIP, prompt, adapter, routing và các đầu ra cảm xúc/ReID.",
+      "tags": [
+        "mo-hinh",
+        "clip",
+        "deep-learning"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:model/clip/model.py:convert_weights",
+      "type": "function",
+      "name": "convert_weights",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        381,
+        402
+      ],
+      "summary": "Thực hiện xử lý convert_weights trong mô-đun model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/model.py:build_model",
+      "type": "function",
+      "name": "build_model",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        405,
+        449
+      ],
+      "summary": "Thực hiện xử lý build_model trong mô-đun model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/model.py:resize_pos_embed",
+      "type": "function",
+      "name": "resize_pos_embed",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        452,
+        468
+      ],
+      "summary": "Thực hiện xử lý resize_pos_embed trong mô-đun model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:Bottleneck",
+      "type": "class",
+      "name": "Bottleneck",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        10,
+        53
+      ],
+      "summary": "Lớp Bottleneck đóng gói trạng thái và hành vi liên quan trong model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:AttentionPool2d",
+      "type": "class",
+      "name": "AttentionPool2d",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        56,
+        90
+      ],
+      "summary": "Lớp AttentionPool2d đóng gói trạng thái và hành vi liên quan trong model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:ModifiedResNet",
+      "type": "class",
+      "name": "ModifiedResNet",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        92,
+        148
+      ],
+      "summary": "Lớp ModifiedResNet đóng gói trạng thái và hành vi liên quan trong model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:model/clip/model.py:LayerNorm",
+      "type": "class",
+      "name": "LayerNorm",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        151,
+        157
+      ],
+      "summary": "Lớp LayerNorm đóng gói trạng thái và hành vi liên quan trong model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:QuickGELU",
+      "type": "class",
+      "name": "QuickGELU",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        160,
+        162
+      ],
+      "summary": "Lớp QuickGELU đóng gói trạng thái và hành vi liên quan trong model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:ResidualAttentionBlock",
+      "type": "class",
+      "name": "ResidualAttentionBlock",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        165,
+        189
+      ],
+      "summary": "Lớp ResidualAttentionBlock đóng gói trạng thái và hành vi liên quan trong model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:Transformer",
+      "type": "class",
+      "name": "Transformer",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        192,
+        200
+      ],
+      "summary": "Lớp Transformer đóng gói trạng thái và hành vi liên quan trong model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:VisionTransformer",
+      "type": "class",
+      "name": "VisionTransformer",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        203,
+        243
+      ],
+      "summary": "Lớp VisionTransformer đóng gói trạng thái và hành vi liên quan trong model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:CLIP",
+      "type": "class",
+      "name": "CLIP",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        246,
+        378
+      ],
+      "summary": "Lớp CLIP đóng gói trạng thái và hành vi liên quan trong model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:model/clip/simple_tokenizer.py",
+      "type": "file",
+      "name": "simple_tokenizer.py",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "summary": "Định nghĩa thành phần mô hình trong simple_tokenizer.py, kết nối CLIP, prompt, adapter, routing và các đầu ra cảm xúc/ReID.",
+      "tags": [
+        "mo-hinh",
+        "clip",
+        "deep-learning"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:model/clip/simple_tokenizer.py:default_bpe",
+      "type": "function",
+      "name": "default_bpe",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        24,
+        25
+      ],
+      "summary": "Thực hiện xử lý default_bpe trong mô-đun simple_tokenizer.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/simple_tokenizer.py:bytes_to_unicode",
+      "type": "function",
+      "name": "bytes_to_unicode",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        29,
+        48
+      ],
+      "summary": "Thực hiện xử lý bytes_to_unicode trong mô-đun simple_tokenizer.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/simple_tokenizer.py:get_pairs",
+      "type": "function",
+      "name": "get_pairs",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        51,
+        60
+      ],
+      "summary": "Thực hiện xử lý get_pairs trong mô-đun simple_tokenizer.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/simple_tokenizer.py:basic_clean",
+      "type": "function",
+      "name": "basic_clean",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        63,
+        66
+      ],
+      "summary": "Thực hiện xử lý basic_clean trong mô-đun simple_tokenizer.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/simple_tokenizer.py:whitespace_clean",
+      "type": "function",
+      "name": "whitespace_clean",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        69,
+        72
+      ],
+      "summary": "Thực hiện xử lý whitespace_clean trong mô-đun simple_tokenizer.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/simple_tokenizer.py:SimpleTokenizer",
+      "type": "class",
+      "name": "SimpleTokenizer",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        75,
+        148
+      ],
+      "summary": "Lớp SimpleTokenizer đóng gói trạng thái và hành vi liên quan trong simple_tokenizer.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:model/emotionclip_model.py",
+      "type": "file",
+      "name": "emotionclip_model.py",
+      "filePath": "model/emotionclip_model.py",
+      "summary": "Định nghĩa thành phần mô hình trong emotionclip_model.py, kết nối CLIP, prompt, adapter, routing và các đầu ra cảm xúc/ReID.",
+      "tags": [
+        "mo-hinh",
+        "clip",
+        "deep-learning"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:model/emotionclip_model.py:decoupled_dirichlet",
+      "type": "function",
+      "name": "decoupled_dirichlet",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        26,
+        55
+      ],
+      "summary": "Thực hiện xử lý decoupled_dirichlet trong mô-đun emotionclip_model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/emotionclip_model.py:load_clip_to_cpu",
+      "type": "function",
+      "name": "load_clip_to_cpu",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        350,
+        358
+      ],
+      "summary": "Thực hiện xử lý load_clip_to_cpu trong mô-đun emotionclip_model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/emotionclip_model.py:install_expression_adapters",
+      "type": "function",
+      "name": "install_expression_adapters",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        361,
+        369
+      ],
+      "summary": "Thực hiện xử lý install_expression_adapters trong mô-đun emotionclip_model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/emotionclip_model.py:_set_requires_grad",
+      "type": "function",
+      "name": "_set_requires_grad",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        372,
+        374
+      ],
+      "summary": "Thực hiện xử lý _set_requires_grad trong mô-đun emotionclip_model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/emotionclip_model.py:normalized_fusion_prior",
+      "type": "function",
+      "name": "normalized_fusion_prior",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        377,
+        383
+      ],
+      "summary": "Thực hiện xử lý normalized_fusion_prior trong mô-đun emotionclip_model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/emotionclip_model.py:validate_train_last_blocks",
+      "type": "function",
+      "name": "validate_train_last_blocks",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        386,
+        390
+      ],
+      "summary": "Thực thi logic huấn luyện validate_train_last_blocks trong mô-đun emotionclip_model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "huan-luyen",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/emotionclip_model.py:QuickGELU",
+      "type": "class",
+      "name": "QuickGELU",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        58,
+        60
+      ],
+      "summary": "Lớp QuickGELU đóng gói trạng thái và hành vi liên quan trong emotionclip_model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/emotionclip_model.py:ExpressionAdapter",
+      "type": "class",
+      "name": "ExpressionAdapter",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        63,
+        80
+      ],
+      "summary": "Lớp ExpressionAdapter đóng gói trạng thái và hành vi liên quan trong emotionclip_model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/emotionclip_model.py:EmotionTextEncoder",
+      "type": "class",
+      "name": "EmotionTextEncoder",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        83,
+        99
+      ],
+      "summary": "Lớp EmotionTextEncoder đóng gói trạng thái và hành vi liên quan trong emotionclip_model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/emotionclip_model.py:AnatomyPromptResidual",
+      "type": "class",
+      "name": "AnatomyPromptResidual",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        102,
+        256
+      ],
+      "summary": "Lớp AnatomyPromptResidual đóng gói trạng thái và hành vi liên quan trong emotionclip_model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:model/emotionclip_model.py:EmotionPromptLearner",
+      "type": "class",
+      "name": "EmotionPromptLearner",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        259,
+        347
+      ],
+      "summary": "Lớp EmotionPromptLearner đóng gói trạng thái và hành vi liên quan trong emotionclip_model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:model/emotionclip_model.py:BranchFusion",
+      "type": "class",
+      "name": "BranchFusion",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        393,
+        508
+      ],
+      "summary": "Lớp BranchFusion đóng gói trạng thái và hành vi liên quan trong emotionclip_model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:model/emotionclip_model.py:RegionPatchRouter",
+      "type": "class",
+      "name": "RegionPatchRouter",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        511,
+        594
+      ],
+      "summary": "Lớp RegionPatchRouter đóng gói trạng thái và hành vi liên quan trong emotionclip_model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:model/emotionclip_model.py:AnatomyRegionFusion",
+      "type": "class",
+      "name": "AnatomyRegionFusion",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        597,
+        774
+      ],
+      "summary": "Lớp AnatomyRegionFusion đóng gói trạng thái và hành vi liên quan trong emotionclip_model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:model/emotionclip_model.py:EmotionCLIPModel",
+      "type": "class",
+      "name": "EmotionCLIPModel",
+      "filePath": "model/emotionclip_model.py",
+      "lineRange": [
+        777,
+        1164
+      ],
+      "summary": "Lớp EmotionCLIPModel đóng gói trạng thái và hành vi liên quan trong emotionclip_model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:model/make_model.py",
+      "type": "file",
+      "name": "make_model.py",
+      "filePath": "model/make_model.py",
+      "summary": "Định nghĩa thành phần mô hình trong make_model.py, kết nối CLIP, prompt, adapter, routing và các đầu ra cảm xúc/ReID.",
+      "tags": [
+        "mo-hinh",
+        "clip",
+        "deep-learning"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:model/make_model.py:weights_init_kaiming",
+      "type": "function",
+      "name": "weights_init_kaiming",
+      "filePath": "model/make_model.py",
+      "lineRange": [
+        8,
+        21
+      ],
+      "summary": "Thực hiện xử lý weights_init_kaiming trong mô-đun make_model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/make_model.py:weights_init_classifier",
+      "type": "function",
+      "name": "weights_init_classifier",
+      "filePath": "model/make_model.py",
+      "lineRange": [
+        23,
+        28
+      ],
+      "summary": "Thực hiện xử lý weights_init_classifier trong mô-đun make_model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/make_model.py:make_model",
+      "type": "function",
+      "name": "make_model",
+      "filePath": "model/make_model.py",
+      "lineRange": [
+        131,
+        133
+      ],
+      "summary": "Thực hiện xử lý make_model trong mô-đun make_model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/make_model.py:load_clip_to_cpu",
+      "type": "function",
+      "name": "load_clip_to_cpu",
+      "filePath": "model/make_model.py",
+      "lineRange": [
+        137,
+        151
+      ],
+      "summary": "Thực hiện xử lý load_clip_to_cpu trong mô-đun make_model.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/make_model.py:build_transformer",
+      "type": "class",
+      "name": "build_transformer",
+      "filePath": "model/make_model.py",
+      "lineRange": [
+        30,
+        128
+      ],
+      "summary": "Lớp build_transformer đóng gói trạng thái và hành vi liên quan trong make_model.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:model/make_model_clipreid.py",
+      "type": "file",
+      "name": "make_model_clipreid.py",
+      "filePath": "model/make_model_clipreid.py",
+      "summary": "Định nghĩa thành phần mô hình trong make_model_clipreid.py, kết nối CLIP, prompt, adapter, routing và các đầu ra cảm xúc/ReID.",
+      "tags": [
+        "mo-hinh",
+        "clip",
+        "deep-learning"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Mã Python tổ chức theo mô-đun, dùng PyTorch cho tensor, mô hình và vòng lặp huấn luyện."
+    },
+    {
+      "id": "function:model/make_model_clipreid.py:weights_init_kaiming",
+      "type": "function",
+      "name": "weights_init_kaiming",
+      "filePath": "model/make_model_clipreid.py",
+      "lineRange": [
+        8,
+        21
+      ],
+      "summary": "Thực hiện xử lý weights_init_kaiming trong mô-đun make_model_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/make_model_clipreid.py:weights_init_classifier",
+      "type": "function",
+      "name": "weights_init_classifier",
+      "filePath": "model/make_model_clipreid.py",
+      "lineRange": [
+        23,
+        28
+      ],
+      "summary": "Thực hiện xử lý weights_init_classifier trong mô-đun make_model_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/make_model_clipreid.py:make_model",
+      "type": "function",
+      "name": "make_model",
+      "filePath": "model/make_model_clipreid.py",
+      "lineRange": [
+        169,
+        171
+      ],
+      "summary": "Thực hiện xử lý make_model trong mô-đun make_model_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/make_model_clipreid.py:load_clip_to_cpu",
+      "type": "function",
+      "name": "load_clip_to_cpu",
+      "filePath": "model/make_model_clipreid.py",
+      "lineRange": [
+        175,
+        189
+      ],
+      "summary": "Thực hiện xử lý load_clip_to_cpu trong mô-đun make_model_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính.",
+      "tags": [
+        "ham-nghiep-vu",
+        "xu-ly",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/make_model_clipreid.py:TextEncoder",
+      "type": "class",
+      "name": "TextEncoder",
+      "filePath": "model/make_model_clipreid.py",
+      "lineRange": [
+        31,
+        50
+      ],
+      "summary": "Lớp TextEncoder đóng gói trạng thái và hành vi liên quan trong make_model_clipreid.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/make_model_clipreid.py:build_transformer",
+      "type": "class",
+      "name": "build_transformer",
+      "filePath": "model/make_model_clipreid.py",
+      "lineRange": [
+        52,
+        166
+      ],
+      "summary": "Lớp build_transformer đóng gói trạng thái và hành vi liên quan trong make_model_clipreid.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:model/make_model_clipreid.py:PromptLearner",
+      "type": "class",
+      "name": "PromptLearner",
+      "filePath": "model/make_model_clipreid.py",
+      "lineRange": [
+        191,
+        238
+      ],
+      "summary": "Lớp PromptLearner đóng gói trạng thái và hành vi liên quan trong make_model_clipreid.py, phục vụ pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "lop-mo-hinh",
+        "thanh-phan",
+        "emotionclip"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:model/clip/__init__.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:_download",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:_download",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:_transform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:_transform",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:available_models",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:available_models",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:load",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:tokenize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:tokenize",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "file:model/clip/model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:convert_weights",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:convert_weights",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:build_model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:build_model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:resize_pos_embed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:resize_pos_embed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:Bottleneck",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:Bottleneck",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:AttentionPool2d",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:AttentionPool2d",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:ModifiedResNet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:ModifiedResNet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:LayerNorm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:LayerNorm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:QuickGELU",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:QuickGELU",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:ResidualAttentionBlock",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:ResidualAttentionBlock",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:Transformer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:Transformer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:VisionTransformer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:VisionTransformer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:CLIP",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:CLIP",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:default_bpe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:default_bpe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:bytes_to_unicode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:bytes_to_unicode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:get_pairs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:get_pairs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:basic_clean",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:basic_clean",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:whitespace_clean",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:whitespace_clean",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "class:model/clip/simple_tokenizer.py:SimpleTokenizer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "class:model/clip/simple_tokenizer.py:SimpleTokenizer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:decoupled_dirichlet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:decoupled_dirichlet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:load_clip_to_cpu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:load_clip_to_cpu",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:install_expression_adapters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:install_expression_adapters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:_set_requires_grad",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:_set_requires_grad",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:normalized_fusion_prior",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:normalized_fusion_prior",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:validate_train_last_blocks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "function:model/emotionclip_model.py:validate_train_last_blocks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:QuickGELU",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:QuickGELU",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:ExpressionAdapter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:ExpressionAdapter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:EmotionTextEncoder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:EmotionTextEncoder",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:AnatomyPromptResidual",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:AnatomyPromptResidual",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:EmotionPromptLearner",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:EmotionPromptLearner",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:BranchFusion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:BranchFusion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:RegionPatchRouter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:RegionPatchRouter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:AnatomyRegionFusion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:AnatomyRegionFusion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:EmotionCLIPModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "class:model/emotionclip_model.py:EmotionCLIPModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:model/clip/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "function:model/make_model.py:weights_init_kaiming",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "function:model/make_model.py:weights_init_kaiming",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "function:model/make_model.py:weights_init_classifier",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "function:model/make_model.py:weights_init_classifier",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "function:model/make_model.py:make_model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "function:model/make_model.py:make_model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "function:model/make_model.py:load_clip_to_cpu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "function:model/make_model.py:load_clip_to_cpu",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "class:model/make_model.py:build_transformer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "class:model/make_model.py:build_transformer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "file:model/clip/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "function:model/make_model_clipreid.py:weights_init_kaiming",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "function:model/make_model_clipreid.py:weights_init_kaiming",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "function:model/make_model_clipreid.py:weights_init_classifier",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "function:model/make_model_clipreid.py:weights_init_classifier",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "function:model/make_model_clipreid.py:make_model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "function:model/make_model_clipreid.py:make_model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "function:model/make_model_clipreid.py:load_clip_to_cpu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "function:model/make_model_clipreid.py:load_clip_to_cpu",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "class:model/make_model_clipreid.py:TextEncoder",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "class:model/make_model_clipreid.py:TextEncoder",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "class:model/make_model_clipreid.py:build_transformer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "class:model/make_model_clipreid.py:build_transformer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "class:model/make_model_clipreid.py:PromptLearner",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "class:model/make_model_clipreid.py:PromptLearner",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "file:model/clip/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}
