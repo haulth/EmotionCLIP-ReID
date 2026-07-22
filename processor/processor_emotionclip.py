@@ -9,6 +9,7 @@ from typing import Any, Dict, Optional
 
 import torch
 import torch.nn.functional as F
+from torch.nn.parallel.scatter_gather import gather as parallel_gather
 
 from datasets.anatomy import ANATOMY_DESCRIPTOR_VERSION, fit_class_geometry_statistics
 from loss.emotion_losses import emotion_stage2_loss
@@ -102,6 +103,64 @@ def _tensor_diagnostic(tensor: torch.Tensor) -> Dict[str, Any]:
     }
 
 
+def _model_output_error(outputs: Dict[str, Any], model=None) -> Optional[str]:
+    """Return a precise invariant violation before an invalid output reaches a loss."""
+    for name in ("logits", "alignment_logits", "probabilities", "raw_strength", "uncertainty"):
+        value = outputs.get(name)
+        if not torch.is_tensor(value):
+            return f"missing tensor output {name!r}"
+        if not bool(torch.isfinite(value).all()):
+            return f"non-finite model output {name!r}"
+
+    logits = outputs["logits"]
+    probabilities = outputs["probabilities"]
+    if probabilities.shape != logits.shape:
+        return (
+            f"probabilities shape {tuple(probabilities.shape)} does not match "
+            f"logits shape {tuple(logits.shape)}"
+        )
+    tolerance = 1e-4
+    if bool((probabilities < -tolerance).any()) or bool((probabilities > 1.0 + tolerance).any()):
+        return (
+            "probabilities outside [0, 1]: "
+            f"min={float(probabilities.min().detach().cpu()):.6g} "
+            f"max={float(probabilities.max().detach().cpu()):.6g}"
+        )
+    row_sums = probabilities.float().sum(dim=-1)
+    if not bool(torch.allclose(row_sums, torch.ones_like(row_sums), atol=1e-4, rtol=1e-4)):
+        return (
+            "probability rows do not sum to one: "
+            f"min_sum={float(row_sums.min().detach().cpu()):.6g} "
+            f"max_sum={float(row_sums.max().detach().cpu()):.6g}"
+        )
+    uncertainty = outputs["uncertainty"]
+    if bool((uncertainty < -tolerance).any()) or bool((uncertainty > 1.0 + tolerance).any()):
+        return (
+            "uncertainty outside [0, 1]: "
+            f"min={float(uncertainty.min().detach().cpu()):.6g} "
+            f"max={float(uncertainty.max().detach().cpu()):.6g}"
+        )
+
+    raw_strength_unbounded = outputs.get("raw_strength_unbounded")
+    if torch.is_tensor(raw_strength_unbounded):
+        if not bool(torch.isfinite(raw_strength_unbounded).all()):
+            return "non-finite model output 'raw_strength_unbounded'"
+        core_model = unwrap_model(model) if model is not None else None
+        max_abs = float(getattr(core_model, "max_abs_raw_strength", 20.0))
+        observed = float(raw_strength_unbounded.detach().abs().max().cpu())
+        if observed > 10.0 * max_abs:
+            return (
+                "unbounded reliability logit exceeded the safety envelope: "
+                f"abs_max={observed:.6g} limit={10.0 * max_abs:.6g}"
+            )
+
+    temperatures = outputs.get("branch_temperatures")
+    if torch.is_tensor(temperatures):
+        if not bool(torch.isfinite(temperatures).all()) or bool((temperatures <= 0).any()):
+            return "branch temperatures must be finite and positive"
+    return None
+
+
 def _write_training_failure(
     output_dir: str,
     *,
@@ -129,7 +188,14 @@ def _write_training_failure(
     for name in (
         "logits",
         "alignment_logits",
+        "classifier_logits",
+        "global_logits",
+        "local_logits",
+        "scaled_branch_logits",
+        "probabilities",
+        "alpha",
         "raw_strength",
+        "raw_strength_unbounded",
         "strength",
         "uncertainty",
         "branch_temperatures",
@@ -583,8 +649,11 @@ class EmotionDataParallel(torch.nn.DataParallel):
     shared across every replica.
     """
 
-    _SHARED_MEAN_KEYS = {
+    _SHARED_IDENTICAL_KEYS = {
         "branch_temperatures",
+        "text_features",
+    }
+    _SHARED_WEIGHTED_MEAN_KEYS = {
         "gate_regularization",
         "temperature_regularization",
         "routing_loss",
@@ -630,7 +699,21 @@ class EmotionDataParallel(torch.nn.DataParallel):
             if not values or not all(torch.is_tensor(value) for value in values):
                 return values[0]
             target = self._output_device(output_device, values)
-            moved = [value.to(target, non_blocking=True) for value in values]
+            # Resolve known shared tensors by semantic key before shape-based
+            # detection. A local batch of three must not make the three branch
+            # temperatures look like a batch tensor.
+            if key in self._SHARED_IDENTICAL_KEYS:
+                moved = [value.to(target, non_blocking=True) for value in values]
+                reference = moved[0]
+                if not all(
+                    value.shape == reference.shape
+                    and torch.allclose(value, reference, atol=1e-5, rtol=1e-5)
+                    for value in moved[1:]
+                ):
+                    raise RuntimeError(
+                        f"DataParallel replicas produced inconsistent shared output {key!r}"
+                    )
+                return moved[0]
             is_batch_tensor = all(
                 batch_size is not None
                 and value.ndim > 0
@@ -638,11 +721,17 @@ class EmotionDataParallel(torch.nn.DataParallel):
                 for value, batch_size in zip(values, batch_sizes)
             )
             if is_batch_tensor:
+                if all(value.is_cuda for value in values):
+                    return parallel_gather(values, output_device, dim=self.dim)
+                moved = [value.to(target, non_blocking=True) for value in values]
                 return torch.cat(moved, dim=0)
-            if key in self._SHARED_MEAN_KEYS:
+            moved = [value.to(target, non_blocking=True) for value in values]
+            if key in self._SHARED_WEIGHTED_MEAN_KEYS:
+                valid_sizes = [size for size in batch_sizes if size is not None]
+                if len(valid_sizes) == len(moved) and sum(valid_sizes) > 0:
+                    total = sum(valid_sizes)
+                    return sum(value * (size / total) for value, size in zip(moved, valid_sizes))
                 return torch.stack(moved, dim=0).mean(dim=0)
-            if key == "text_features":
-                return moved[0]
             # Keep a conservative fallback for future shared metadata tensors.
             if all(value.shape == moved[0].shape for value in moved):
                 return moved[0]
@@ -673,6 +762,7 @@ def _model_signature(model) -> Dict[str, Any]:
             "reliability_detach_visual_feature",
             None,
         ),
+        "max_abs_raw_strength": getattr(model, "max_abs_raw_strength", None),
         "prompt_n_ctx": getattr(prompt_learner, "n_ctx", None),
         "prompt_prefix": getattr(prompt_learner, "prompt_prefix", None),
         "prompt_suffix_template": getattr(prompt_learner, "prompt_suffix_template", None),
@@ -743,7 +833,10 @@ def load_emotion_checkpoint(
     allow_untrained_stage2: bool = False,
 ):
     model = unwrap_model(model)
-    checkpoint = torch.load(checkpoint_path, map_location="cpu")
+    try:
+        checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+    except TypeError:  # pragma: no cover - compatibility with older PyTorch
+        checkpoint = torch.load(checkpoint_path, map_location="cpu")
     if not isinstance(checkpoint, dict):
         raise ValueError(f"Checkpoint {checkpoint_path} must contain a state-dict mapping")
     schema_version = int(checkpoint.get("schema_version", 0) or 0)
@@ -1044,9 +1137,9 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
                 semantic_loss = classification_loss.new_zeros(())
                 if phase == "geometry":
                     shift_loss = core_model.prompt_learner.geometry_residual.regularization()
-                    semantic_loss = 1.0 - F.cosine_similarity(
+                    semantic_loss = (1.0 - F.cosine_similarity(
                         text_features, base_text_features, dim=-1
-                    ).mean()
+                    ).mean()).clamp_min(0.0)
                 loss = (
                     classification_loss
                     + float(stage_cfg.get("LAMBDA_SHIFT", 0.01)) * shift_loss
@@ -1154,8 +1247,8 @@ def do_train_emotion_stage1(cfg, model, train_loader_stage1, optimizer, schedule
                 phase=phase,
                 epoch=f"{phase_epoch}/{phase_epochs}",
                 loss=epoch_metrics["loss"],
-                shift=total_shift / max(steps, 1),
-                semantic=total_semantic / max(steps, 1),
+                shift=f"{total_shift / max(steps, 1):.6e}",
+                semantic=f"{total_semantic / max(steps, 1):.6e}",
                 acc=epoch_metrics["acc"],
                 conf=epoch_metrics["conf"],
                 lr=epoch_metrics["lr"],
@@ -1391,6 +1484,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         lambda_routing = 0.0
     corruption_cfg = stage_cfg.get("CORRUPTION", {})
     lambda_reliability_ranking = float(corruption_cfg.get("LAMBDA_RANKING", 0.0))
+    reliability_ranking_warmup_epochs = max(0, int(corruption_cfg.get("WARMUP_EPOCHS", 0)))
     accumulation_steps = max(1, int(stage_cfg.get("GRADIENT_ACCUMULATION_STEPS", 1)))
     amp_enabled = bool(stage_cfg.get("AMP_ENABLED", True)) and device.type == "cuda"
     max_grad_norm = float(stage_cfg.get("MAX_GRAD_NORM", 1.0))
@@ -1428,6 +1522,9 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         lambda_unc=lambda_unc,
         lambda_routing=lambda_routing,
         lambda_reliability_ranking=lambda_reliability_ranking,
+        reliability_ranking_warmup_epochs=reliability_ranking_warmup_epochs,
+        max_abs_raw_strength=getattr(core_model, "max_abs_raw_strength", "unknown"),
+        numeric_heads_dtype="float32",
         reliability_target=reliability_target,
         trainable_params=params["trainable_params"],
         trainable_percent=params["trainable_percent"],
@@ -1467,6 +1564,9 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         optimizer_steps = 0
         last_grad_norm = 0.0
         anneal = min(1.0, epoch / anneal_epochs)
+        effective_reliability_ranking = (
+            lambda_reliability_ranking if epoch > reliability_ranking_warmup_epochs else 0.0
+        )
         progress = _progress(train_loader, cfg=cfg, desc=f"Stage2 {epoch}/{max_epochs}", total=len(train_loader))
         optimizer.zero_grad(set_to_none=True)
         for batch_index, batch in enumerate(progress, start=1):
@@ -1476,7 +1576,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                 outputs = _forward_batch(model, batch, text_features=text_features)
                 corrupted_outputs = None
                 if (
-                    lambda_reliability_ranking > 0
+                    effective_reliability_ranking > 0
                     and float(torch.rand((), device=batch["images"].device))
                     < float(corruption_cfg.get("PROBABILITY", 1.0))
                 ):
@@ -1495,20 +1595,45 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     if corrupted_anatomy is not None:
                         corrupted_batch["anatomy"] = corrupted_anatomy
                     corrupted_outputs = _forward_batch(model, corrupted_batch, text_features=text_features)
-                losses = emotion_stage2_loss(
-                    outputs,
-                    batch["labels"],
-                    beta_align=beta_align,
-                    lambda_unc=lambda_unc,
-                    edl_annealing=anneal,
-                    reliability_target=reliability_target,
-                    lambda_gate=lambda_gate,
-                    lambda_temperature=lambda_temperature,
-                    lambda_routing=lambda_routing,
-                    corrupted_outputs=corrupted_outputs,
-                    lambda_reliability_ranking=lambda_reliability_ranking,
-                    reliability_ranking_margin=float(corruption_cfg.get("RANKING_MARGIN", 1.0)),
+                output_error = _model_output_error(outputs, model=model)
+                if output_error is None and corrupted_outputs is not None:
+                    corrupted_error = _model_output_error(corrupted_outputs, model=model)
+                    if corrupted_error is not None:
+                        output_error = f"corrupted forward: {corrupted_error}"
+                if output_error is None:
+                    losses = emotion_stage2_loss(
+                        outputs,
+                        batch["labels"],
+                        beta_align=beta_align,
+                        lambda_unc=lambda_unc,
+                        edl_annealing=anneal,
+                        reliability_target=reliability_target,
+                        lambda_gate=lambda_gate,
+                        lambda_temperature=lambda_temperature,
+                        lambda_routing=lambda_routing,
+                        corrupted_outputs=corrupted_outputs,
+                        lambda_reliability_ranking=effective_reliability_ranking,
+                        reliability_ranking_margin=float(corruption_cfg.get("RANKING_MARGIN", 1.0)),
+                    )
+            if output_error is not None:
+                failure_path = _write_training_failure(
+                    output_dir,
+                    epoch=epoch,
+                    batch_index=batch_index,
+                    reason=output_error,
+                    outputs=corrupted_outputs if output_error.startswith("corrupted forward:") else outputs,
+                    model=model,
+                    batch=batch,
                 )
+                optimizer.zero_grad(set_to_none=True)
+                message = (
+                    f"Invalid Stage 2 output at epoch={epoch} batch={batch_index}: "
+                    f"{output_error}; diagnostic={failure_path}"
+                )
+                if fail_on_nonfinite:
+                    raise FloatingPointError(message)
+                logger.error("%s; batch skipped", message)
+                continue
             if not _losses_are_finite(losses):
                 failure_path = _write_training_failure(
                     output_dir,
@@ -1632,6 +1757,9 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             if log_period > 0 and steps % log_period == 0:
                 logits_for_log = outputs["logits"].detach().float()
                 raw_strength_for_log = outputs["raw_strength"].detach().float()
+                raw_strength_unbounded_for_log = outputs.get("raw_strength_unbounded")
+                probabilities_for_log = outputs["probabilities"].detach().float()
+                probability_sums_for_log = probabilities_for_log.sum(dim=-1)
                 log_training_event(
                     logger,
                     "Stage2 train",
@@ -1644,6 +1772,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     routing_loss=batch_routing_loss,
                     temperature_loss=batch_temperature_loss,
                     reliability_ranking_loss=batch_reliability_ranking,
+                    reliability_ranking_weight=effective_reliability_ranking,
                     pred_unc=total_pred_unc / max(steps, 1),
                     conf=total_conf / max(steps, 1),
                     acc=total_acc / max(steps, 1),
@@ -1652,6 +1781,20 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     logit_max=float(logits_for_log.max().cpu()),
                     raw_strength_min=float(raw_strength_for_log.min().cpu()),
                     raw_strength_max=float(raw_strength_for_log.max().cpu()),
+                    raw_strength_unbounded_min=(
+                        float(raw_strength_unbounded_for_log.detach().float().min().cpu())
+                        if torch.is_tensor(raw_strength_unbounded_for_log)
+                        else "unavailable"
+                    ),
+                    raw_strength_unbounded_max=(
+                        float(raw_strength_unbounded_for_log.detach().float().max().cpu())
+                        if torch.is_tensor(raw_strength_unbounded_for_log)
+                        else "unavailable"
+                    ),
+                    probability_min=float(probabilities_for_log.min().cpu()),
+                    probability_max=float(probabilities_for_log.max().cpu()),
+                    probability_sum_min=float(probability_sums_for_log.min().cpu()),
+                    probability_sum_max=float(probability_sums_for_log.max().cpu()),
                     branch_temperatures=outputs.get("branch_temperatures", []).detach().float().cpu().tolist()
                     if torch.is_tensor(outputs.get("branch_temperatures"))
                     else [],

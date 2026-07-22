@@ -3,6 +3,7 @@ import torch
 
 from processor.processor_emotionclip import (
     EmotionDataParallel,
+    _model_output_error,
     get_shared_text_features,
     unwrap_model,
 )
@@ -37,18 +38,43 @@ def test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly():
         },
         {
             "logits": torch.ones(3, 7),
-            "branch_temperatures": torch.tensor([3.0, 4.0, 5.0]),
+            "branch_temperatures": torch.tensor([1.0, 2.0, 3.0]),
             "gate_regularization": torch.tensor(3.0),
-            "text_features": torch.ones(7, 4) * 2,
+            "text_features": torch.ones(7, 4),
         },
     ]
     gathered = parallel.gather(outputs, output_device=0)
     assert gathered["logits"].shape == (5, 7)
     assert gathered["branch_temperatures"].shape == (3,)
-    assert torch.equal(gathered["branch_temperatures"], torch.tensor([2.0, 3.0, 4.0]))
+    assert torch.equal(gathered["branch_temperatures"], torch.tensor([1.0, 2.0, 3.0]))
     assert gathered["gate_regularization"].ndim == 0
-    assert float(gathered["gate_regularization"]) == 2.0
+    assert float(gathered["gate_regularization"]) == pytest.approx(2.2)
     assert gathered["text_features"].shape == (7, 4)
+
+
+def test_emotion_data_parallel_rejects_divergent_shared_temperatures():
+    parallel = EmotionDataParallel(torch.nn.Identity(), device_ids=[])
+    outputs = [
+        {"logits": torch.zeros(3, 7), "branch_temperatures": torch.ones(3)},
+        {"logits": torch.zeros(3, 7), "branch_temperatures": torch.tensor([0.5, 1.0, 1.0])},
+    ]
+
+    with pytest.raises(RuntimeError, match="inconsistent shared output 'branch_temperatures'"):
+        parallel.gather(outputs, output_device=0)
+
+
+def test_model_output_invariant_rejects_impossible_confidence():
+    probabilities = torch.full((2, 7), 1.0 / 7.0)
+    probabilities[0, 0] = 2.0
+    outputs = {
+        "logits": torch.zeros(2, 7),
+        "alignment_logits": torch.zeros(2, 7),
+        "probabilities": probabilities,
+        "raw_strength": torch.zeros(2),
+        "uncertainty": torch.ones(2),
+    }
+
+    assert "outside [0, 1]" in _model_output_error(outputs)
 
 
 def test_shared_text_features_are_built_from_unwrapped_model():

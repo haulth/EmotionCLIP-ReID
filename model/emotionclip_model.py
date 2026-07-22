@@ -815,6 +815,7 @@ class EmotionCLIPModel(nn.Module):
         reliability_dropout: float = 0.1,
         detach_class_prob: bool = True,
         max_strength: Optional[float] = 100.0,
+        max_abs_raw_strength: float = 20.0,
         reliability_use_anatomy_quality: bool = True,
         reliability_detach_visual_feature: bool = True,
     ):
@@ -833,6 +834,9 @@ class EmotionCLIPModel(nn.Module):
         self.max_strength = None if max_strength is None else float(max_strength)
         if self.max_strength is not None and self.max_strength <= self.num_classes:
             raise ValueError("max_strength must be greater than the number of classes")
+        self.max_abs_raw_strength = float(max_abs_raw_strength)
+        if self.max_abs_raw_strength <= 0:
+            raise ValueError("max_abs_raw_strength must be positive")
 
         height, width = int(image_size[0]), int(image_size[1])
         stride = int(stride_size[0])
@@ -892,6 +896,11 @@ class EmotionCLIPModel(nn.Module):
             nn.Dropout(float(reliability_dropout)),
             nn.Linear(reliability_hidden_dim, 1),
         )
+        # Stage 1 does not train this head.  A neutral final layer guarantees
+        # that a fresh Stage 2 starts with finite, calibrated reliability logits
+        # instead of inheriting an arbitrary random confidence scale.
+        nn.init.zeros_(self.reliability_head[-1].weight)
+        nn.init.zeros_(self.reliability_head[-1].bias)
 
         self.fusion = BranchFusion(
             feature_dim=feature_dim,
@@ -1071,12 +1080,16 @@ class EmotionCLIPModel(nn.Module):
             local_logits = anatomy_outputs["local_logits"]
         classifier_logits = self.classifier(image_outputs["global_feature"])
 
-        fusion_outputs = self.fusion(
-            classifier_logits,
-            global_logits,
-            local_logits,
-            image_outputs["global_feature"],
-        )
+        # Temperature division, softmax and evidential statistics are sensitive
+        # to FP16 range. Keep the large CLIP encoder under AMP, but force these
+        # small heads to FP32 so AMP still provides the intended GPU memory win.
+        with torch.autocast(device_type=images.device.type, enabled=False):
+            fusion_outputs = self.fusion(
+                classifier_logits.float(),
+                global_logits.float(),
+                local_logits.float(),
+                image_outputs["global_feature"].float(),
+            )
         final_logits = fusion_outputs["logits"]
         alignment_logits = fusion_outputs["alignment_logits"]
         region_quality = anatomy_outputs["region_quality"].to(image_outputs["global_feature"])
@@ -1105,18 +1118,23 @@ class EmotionCLIPModel(nn.Module):
             ),
             dim=-1,
         )
-        raw_strength = self.reliability_head(reliability_context).squeeze(-1)
-        strength = float(self.num_classes) + F.softplus(raw_strength)
-        if self.max_strength is not None:
-            strength = strength.clamp_max(self.max_strength)
-        evidential = decoupled_dirichlet(
-            final_logits,
-            strength,
-            detach_class_prob=self.detach_class_prob,
-        )
+        with torch.autocast(device_type=images.device.type, enabled=False):
+            reliability_context = reliability_context.float()
+            raw_strength_unbounded = self.reliability_head(reliability_context).squeeze(-1)
+            raw_strength = self.max_abs_raw_strength * torch.tanh(
+                raw_strength_unbounded / self.max_abs_raw_strength
+            )
+            strength = float(self.num_classes) + F.softplus(raw_strength)
+            if self.max_strength is not None:
+                strength = strength.clamp_max(self.max_strength)
+            evidential = decoupled_dirichlet(
+                final_logits.float(),
+                strength,
+                detach_class_prob=self.detach_class_prob,
+            )
 
-        probabilities = evidential["probabilities"]
-        class_ambiguity = -(probabilities * probabilities.clamp_min(1e-8).log()).sum(dim=-1)
+            probabilities = evidential["probabilities"]
+            class_ambiguity = -(probabilities * probabilities.clamp_min(1e-8).log()).sum(dim=-1)
         outputs = {
             "logits": final_logits,
             "classifier_logits": classifier_logits,
@@ -1134,6 +1152,7 @@ class EmotionCLIPModel(nn.Module):
             "alpha": evidential["alpha"],
             "strength": evidential["strength"],
             "raw_strength": raw_strength,
+            "raw_strength_unbounded": raw_strength_unbounded,
             "uncertainty": evidential["uncertainty"],
             "extrinsic_unreliability": evidential["uncertainty"],
             "class_ambiguity": class_ambiguity,

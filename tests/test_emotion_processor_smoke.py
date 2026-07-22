@@ -156,6 +156,46 @@ def test_stage2_gradient_accumulation_controls_optimizer_steps(tmp_path):
     assert optimizer.step_calls == 1
 
 
+def test_stage2_defers_corruption_ranking_until_after_warmup(tmp_path):
+    class CountingEmotionModel(TinyEmotionModel):
+        def __init__(self):
+            super().__init__()
+            self.forward_calls = 0
+
+        def forward(self, *args, **kwargs):
+            if not kwargs.get("get_text", False):
+                self.forward_calls += 1
+            return super().forward(*args, **kwargs)
+
+    cfg = {
+        "MODEL": {"DEVICE": "cpu"},
+        "OUTPUT_DIR": str(tmp_path),
+        "SOLVER": {
+            "STAGE2": {
+                "MAX_EPOCHS": 2,
+                "LOG_PERIOD": 100,
+                "BETA_ALIGN": 0.1,
+                "LAMBDA_UNC": 0.01,
+                "AMP_ENABLED": False,
+                "MAX_GRAD_NORM": 1.0,
+                "CORRUPTION": {
+                    "LAMBDA_RANKING": 0.05,
+                    "WARMUP_EPOCHS": 1,
+                    "PROBABILITY": 1.0,
+                },
+            }
+        },
+    }
+    model = CountingEmotionModel()
+    model.set_train_stage(2)
+    optimizer = torch.optim.SGD([p for p in model.parameters() if p.requires_grad], lr=0.01)
+
+    do_train_emotion_stage2(cfg, model, _loader(), None, optimizer)
+
+    # Epoch 1: two clean forwards. Epoch 2: two clean + two corrupted forwards.
+    assert model.forward_calls == 6
+
+
 def test_stage2_nonfinite_loss_fails_before_optimizer_step(tmp_path):
     class NonFiniteEmotionModel(TinyEmotionModel):
         def forward(self, *args, **kwargs):
@@ -192,13 +232,13 @@ def test_stage2_nonfinite_loss_fails_before_optimizer_step(tmp_path):
     model.set_train_stage(2)
     optimizer = CountingSGD([p for p in model.parameters() if p.requires_grad], lr=0.01)
 
-    with pytest.raises(FloatingPointError, match="Non-finite Stage 2 loss"):
+    with pytest.raises(FloatingPointError, match="Invalid Stage 2 output"):
         do_train_emotion_stage2(cfg, model, _loader(), None, optimizer)
 
     assert optimizer.step_calls == 0
     diagnostic = json.loads((tmp_path / "training_failure.json").read_text(encoding="utf-8"))
-    assert diagnostic["reason"] == "non-finite loss"
-    assert diagnostic["losses"]["loss"]["finite"] is False
+    assert diagnostic["reason"] == "non-finite model output 'logits'"
+    assert diagnostic["outputs"]["logits"]["finite"] is False
 
 
 def test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed(tmp_path):

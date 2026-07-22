@@ -297,7 +297,7 @@ def main():
         fusion_gate_dropout=float(fusion_cfg.get("GATE_DROPOUT", 0.1)),
         min_branch_temperature=float(fusion_cfg.get("MIN_TEMPERATURE", 0.05)),
         max_branch_temperature=float(fusion_cfg.get("MAX_TEMPERATURE", 20.0)),
-        initial_branch_temperatures=fusion_cfg.get("INITIAL_TEMPERATURES", [0.1, 1.0, 1.0]),
+        initial_branch_temperatures=fusion_cfg.get("INITIAL_TEMPERATURES", [1.0, 1.0, 1.0]),
         learn_branch_temperatures=bool(fusion_cfg.get("LEARN_TEMPERATURES", True)),
         routing_mode=str(routing_cfg.get("MODE", "hybrid")),
         routing_sigma=float(routing_cfg.get("SIGMA", 0.08)),
@@ -315,6 +315,7 @@ def main():
             uncertainty_cfg.get("DETACH_VISUAL_FEATURE", True)
         ),
         max_strength=uncertainty_cfg.get("MAX_STRENGTH", 100.0),
+        max_abs_raw_strength=float(uncertainty_cfg.get("MAX_ABS_RAW_STRENGTH", 20.0)),
         reliability_use_anatomy_quality=bool(uncertainty_cfg.get("USE_ANATOMY_QUALITY", True)),
     )
 

@@ -51,6 +51,7 @@ _DEFAULT = {
             "DETACH_CLASS_PROB": True,
             "DETACH_VISUAL_FEATURE": True,
             "MAX_STRENGTH": 100.0,
+            "MAX_ABS_RAW_STRENGTH": 20.0,
         },
         "FUSION": {
             "GATE_MODE": "fixed",
@@ -137,6 +138,7 @@ _DEFAULT = {
                 # Opt in explicitly from the experiment notebook. A hidden second
                 # forward pass is too expensive to enable as a global default.
                 "LAMBDA_RANKING": 0.0,
+                "WARMUP_EPOCHS": 10,
                 "RANKING_MARGIN": 1.0,
                 "PROBABILITY": 0.5,
                 "NOISE_STD": 0.08,
@@ -273,6 +275,18 @@ def validate_emotion_cfg(cfg: MutableMapping[str, Any]) -> None:
             raise ValueError(
                 "SOLVER.STAGE1.MODE='both' requires BASE_EPOCHS > 0 and GEOMETRY_EPOCHS > 0"
             )
+        prompt_geometry_mode = str(
+            cfg.get("MODEL", {}).get("ANATOMY_PROMPT", {}).get("MODE", "quality")
+        ).lower()
+        if stage1_mode in {"geometry", "both"} and prompt_geometry_mode in {
+            "legacy",
+            "disabled",
+            "role_only",
+        }:
+            raise ValueError(
+                "Stage 1 geometry requires MODEL.ANATOMY_PROMPT.MODE to enable geometry "
+                "conditioning; use 'quality', 'median_mad', or another active geometry mode"
+            )
         if float(stage1_cfg.get("MAX_GRAD_NORM", 1.0)) <= 0:
             raise ValueError("SOLVER.STAGE1.MAX_GRAD_NORM must be > 0")
         if int(stage1_cfg.get("EARLY_STOPPING_PATIENCE", 0)) < 0:
@@ -293,6 +307,16 @@ def validate_emotion_cfg(cfg: MutableMapping[str, Any]) -> None:
         raise ValueError("SOLVER.STAGE2.CORRUPTION.PROBABILITY must be between 0 and 1")
     if float(corruption_cfg.get("LAMBDA_RANKING", 0.0)) < 0:
         raise ValueError("SOLVER.STAGE2.CORRUPTION.LAMBDA_RANKING must be >= 0")
+    ranking_warmup_epochs = int(
+        corruption_cfg.get("WARMUP_EPOCHS", stage2_cfg.get("RELIABILITY_WARMUP_EPOCHS", 0))
+    )
+    if ranking_warmup_epochs < 0:
+        raise ValueError("SOLVER.STAGE2.CORRUPTION.WARMUP_EPOCHS must be >= 0")
+    max_abs_raw_strength = float(
+        cfg.get("MODEL", {}).get("UNCERTAINTY", {}).get("MAX_ABS_RAW_STRENGTH", 20.0)
+    )
+    if max_abs_raw_strength <= 0:
+        raise ValueError("MODEL.UNCERTAINTY.MAX_ABS_RAW_STRENGTH must be > 0")
     disagreement = cfg.get("MODEL", {}).get("REGION_DISAGREEMENT", {})
     min_region_quality = float(disagreement.get("MIN_REGION_QUALITY", 0.2))
     if not 0.0 <= min_region_quality <= 1.0:

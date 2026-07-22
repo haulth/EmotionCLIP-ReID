@@ -216,6 +216,22 @@ def test_stage1_both_rejects_a_missing_phase():
         )
 
 
+def test_stage1_geometry_rejects_an_inactive_prompt_conditioner():
+    with pytest.raises(ValueError, match="Stage 1 geometry requires"):
+        load_emotion_cfg(
+            opts=[
+                "SOLVER.STAGE1.MODE",
+                "both",
+                "SOLVER.STAGE1.BASE_EPOCHS",
+                "10",
+                "SOLVER.STAGE1.GEOMETRY_EPOCHS",
+                "2",
+                "MODEL.ANATOMY_PROMPT.MODE",
+                "legacy",
+            ]
+        )
+
+
 def test_rafdb_notebook_exposes_gpu_safety_controls():
     repo_root = Path(__file__).resolve().parents[1]
     notebook = json.loads(
@@ -232,6 +248,10 @@ def test_rafdb_notebook_exposes_gpu_safety_controls():
     assert "SOLVER.STAGE2.CORRUPTION.LAMBDA_RANKING" in source
     assert "STAGE1_GEOMETRY_EPOCHS = 10" in source
     assert "INITIAL_BRANCH_TEMPERATURES = [1.0, 1.0, 1.0]" in source
+    assert "ANATOMY_PROMPT_MODE = 'quality'" in source
+    assert "MODEL.ANATOMY_PROMPT.MODE" in source
+    assert "CORRUPTION_RANKING_WARMUP_EPOCHS" in source
+    assert "MAX_ABS_RAW_STRENGTH = 20.0" in source
     assert "STAGE2_LOG_PERIOD = 1" in source
     assert "STAGE2_EARLY_STOPPING_PATIENCE = 20" in source
     assert "NUM_WORKERS = 4" in source

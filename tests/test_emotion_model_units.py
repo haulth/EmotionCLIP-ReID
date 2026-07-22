@@ -353,6 +353,13 @@ def test_full_emotionclip_constructor_and_anatomy_forward_integration(monkeypatc
     assert outputs["region_logits"].shape == (2, 3, 7)
     assert outputs["routing_attention"].shape == (2, 3, 4)
     assert torch.isfinite(outputs["uncertainty"]).all()
+    torch.testing.assert_close(outputs["raw_strength"], torch.zeros(2))
+    assert torch.count_nonzero(model.reliability_head[-1].weight) == 0
     outputs["raw_strength"].sum().backward()
     assert model.reliability_head[-1].weight.grad is not None
     assert model.image_encoder.conv1.weight.grad is None
+
+    with torch.no_grad():
+        model.reliability_head[-1].bias.fill_(1.0e6)
+    bounded = model(images=torch.randn(2, 3, 32, 32), anatomy=anatomy)
+    assert float(bounded["raw_strength"].detach().max()) <= model.max_abs_raw_strength

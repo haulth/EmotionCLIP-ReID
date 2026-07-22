@@ -13,7 +13,7 @@ MODEL:
     TRAIN_LAST_BLOCKS: 0
     STAGE1_WEIGHT: ""
   ANATOMY_PROMPT:
-    MODE: legacy
+    MODE: quality
   ROUTING:
     MODE: hybrid
   GEOMETRY:
