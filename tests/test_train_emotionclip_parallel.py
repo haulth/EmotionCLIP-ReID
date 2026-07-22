@@ -7,12 +7,18 @@ from processor.processor_emotionclip import (
     get_shared_text_features,
     unwrap_model,
 )
-from train_emotionclip import parse_gpu_ids
+from train_emotionclip import parse_gpu_ids, validate_gpu_topology
 
 
 def test_parse_gpu_ids_accepts_two_cuda_indices():
     assert parse_gpu_ids("0,1") == [0, 1]
     assert parse_gpu_ids("") == []
+
+
+def test_production_training_rejects_single_process_multi_gpu():
+    validate_gpu_topology([0])
+    with pytest.raises(ValueError, match="DistributedDataParallel"):
+        validate_gpu_topology([0, 1])
 
 
 @pytest.mark.parametrize("value", ["0,0", "0,-1", "0,x"])
@@ -61,6 +67,11 @@ def test_emotion_data_parallel_rejects_divergent_shared_temperatures():
 
     with pytest.raises(RuntimeError, match="inconsistent shared output 'branch_temperatures'"):
         parallel.gather(outputs, output_device=0)
+
+
+def test_emotion_data_parallel_rejects_multi_gpu_construction():
+    with pytest.raises(RuntimeError, match="multi-GPU execution is disabled"):
+        EmotionDataParallel(torch.nn.Identity(), device_ids=[0, 1])
 
 
 def test_model_output_invariant_rejects_impossible_confidence():

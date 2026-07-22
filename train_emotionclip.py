@@ -17,7 +17,6 @@ from model.emotionclip_model import EmotionCLIPModel
 from processor.processor_emotionclip import (
     do_train_emotion_stage1,
     do_train_emotion_stage2,
-    EmotionDataParallel,
     evaluate_sealed_test,
     load_emotion_checkpoint,
     log_run_config,
@@ -122,6 +121,22 @@ def parse_gpu_ids(gpus: str):
     return gpu_ids
 
 
+def validate_gpu_topology(gpu_ids):
+    """Fail closed until the training pipeline is migrated to process-based DDP.
+
+    EmotionCLIP returns a mixture of image-batch tensors and shared tensors.
+    Single-process ``DataParallel`` has produced divergent shared parameters on
+    real two-GPU runs, so silently using it would make one optimization step mix
+    predictions computed by different models.
+    """
+    if len(gpu_ids) > 1:
+        raise ValueError(
+            "Multi-GPU single-process DataParallel is disabled because EmotionCLIP replicas "
+            "produce divergent shared outputs. Select exactly one GPU (for example --gpus 0). "
+            "Multi-GPU training requires a process-based DistributedDataParallel implementation."
+        )
+
+
 def configure_device(cfg, gpu_id=None):
     requested_device = str(cfg["MODEL"].get("DEVICE", "cpu")).strip()
     if gpu_id is not None:
@@ -160,7 +175,7 @@ def main():
     parser.add_argument(
         "--gpus",
         default="",
-        help="Comma-separated CUDA indices for single-process DataParallel, for example --gpus 0,1",
+        help="CUDA index used by notebook launches, for example --gpus 0",
     )
     parser.add_argument("--run-id", default="", help="Unique immutable artifact run id")
     parser.add_argument(
@@ -182,6 +197,7 @@ def main():
     gpu_ids = parse_gpu_ids(args.gpus)
     if args.gpu is not None and gpu_ids:
         raise ValueError("Use either --gpu or --gpus, not both")
+    validate_gpu_topology(gpu_ids)
     device, device_warning = configure_device(cfg, gpu_id=gpu_ids[0] if gpu_ids else args.gpu)
     if gpu_ids and device.type != "cuda":
         gpu_ids = []
@@ -193,7 +209,7 @@ def main():
                 f"{torch.cuda.device_count()} CUDA device(s) are visible"
             )
     cfg["TRAIN"]["GPU_IDS"] = gpu_ids or ([device.index] if device.type == "cuda" else [])
-    cfg["TRAIN"]["PARALLEL_MODE"] = "data_parallel" if len(gpu_ids) > 1 else "single_device"
+    cfg["TRAIN"]["PARALLEL_MODE"] = "single_device"
     initialize_immutable_run(cfg, run_id=args.run_id)
     setup_logging(cfg["OUTPUT_DIR"])
     logger = logging.getLogger("emotionclip.train")
@@ -320,15 +336,6 @@ def main():
     )
 
     model.to(device)
-    if len(gpu_ids) > 1:
-        model = EmotionDataParallel(model, device_ids=gpu_ids, output_device=gpu_ids[0])
-        log_training_event(
-            logger,
-            "DataParallel enabled",
-            gpu_ids=",".join(str(gpu_id) for gpu_id in gpu_ids),
-            primary_device=device,
-            global_batch_size=cfg["SOLVER"]["STAGE2"].get("IMS_PER_BATCH", "unknown"),
-        )
     log_training_event(
         logger,
         "Model ready",

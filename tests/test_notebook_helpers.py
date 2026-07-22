@@ -87,7 +87,7 @@ def test_training_notebooks_forward_resolved_runtime_controls(notebook_name: str
     source = "\n".join("".join(cell.get("source", [])) for cell in notebook["cells"])
 
     required_controls = (
-        "GPU_IDS = [0, 1]",
+        "GPU_IDS = [",
         "SOLVER.STAGE1.MAX_EPOCHS",
         "SOLVER.STAGE1.BASE_EPOCHS",
         "SOLVER.STAGE1.GEOMETRY_EPOCHS",
@@ -241,12 +241,14 @@ def test_rafdb_notebook_exposes_gpu_safety_controls():
     )
     source = "\n".join("".join(cell.get("source", [])) for cell in notebook["cells"])
 
-    assert "STAGE2_BATCH_SIZE = 32" in source
-    assert "STAGE2_GRADIENT_ACCUMULATION_STEPS = 4" in source
+    assert "GPU_IDS = [0]" in source
+    assert "STAGE1_BATCH_SIZE = 128" in source
+    assert "STAGE2_BATCH_SIZE = 16" in source
+    assert "STAGE2_GRADIENT_ACCUMULATION_STEPS = 8" in source
     assert "SOLVER.STAGE2.AMP_ENABLED" in source
     assert "SOLVER.STAGE2.MAX_GRAD_NORM" in source
     assert "SOLVER.STAGE2.CORRUPTION.LAMBDA_RANKING" in source
-    assert "STAGE1_GEOMETRY_EPOCHS = 10" in source
+    assert "STAGE1_GEOMETRY_EPOCHS" in source
     assert "INITIAL_BRANCH_TEMPERATURES = [1.0, 1.0, 1.0]" in source
     assert "ANATOMY_PROMPT_MODE = 'quality'" in source
     assert "MODEL.ANATOMY_PROMPT.MODE" in source

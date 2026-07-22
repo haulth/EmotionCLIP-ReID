@@ -640,13 +640,11 @@ def get_shared_text_features(model, **kwargs):
 
 
 class EmotionDataParallel(torch.nn.DataParallel):
-    """DataParallel adapter for EmotionCLIP's batch and shared output tensors.
+    """Legacy gather adapter retained for diagnostics and checkpoint compatibility.
 
-    The default DataParallel scatter would split ``text_features`` by class and
-    the default gather would concatenate shared tensors such as the three branch
-    temperatures. Both operations are incorrect for this model: image-shaped
-    tensors are batch-parallel, while text descriptors and regularizers are
-    shared across every replica.
+    Real multi-GPU runs demonstrated replica divergence in shared temperatures.
+    Construction with more than one device is therefore rejected; production
+    multi-GPU support must use process-based DistributedDataParallel.
     """
 
     _SHARED_IDENTICAL_KEYS = {
@@ -658,6 +656,14 @@ class EmotionDataParallel(torch.nn.DataParallel):
         "temperature_regularization",
         "routing_loss",
     }
+
+    def __init__(self, module, device_ids=None, output_device=None, dim=0):
+        if device_ids is not None and len(device_ids) > 1:
+            raise RuntimeError(
+                "EmotionDataParallel multi-GPU execution is disabled; use one GPU or migrate to "
+                "process-based DistributedDataParallel"
+            )
+        super().__init__(module, device_ids=device_ids, output_device=output_device, dim=dim)
 
     def scatter(self, inputs, kwargs, device_ids):
         shared_text_features = kwargs.get("text_features")
