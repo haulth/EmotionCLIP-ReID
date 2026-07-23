@@ -39,7 +39,5 @@
 # *.test.*
 # *.spec.*
 # *.snap
-docs/
 data/
-fig/
 models/

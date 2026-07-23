@@ -1,0 +1,1496 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "louvain",
+  "totalFiles": 154,
+  "totalBatches": 6,
+  "exportsByPath": {
+    "config/__init__.py": [],
+    "config/defaults_base.py": [],
+    "config/defaults.py": [],
+    "config/emotion_defaults.py": [
+      "anatomy_requirement_reasons",
+      "get_default_emotion_cfg",
+      "_deep_update",
+      "_coerce_value",
+      "_set_by_dotted_key",
+      "_mark_source",
+      "validate_emotion_cfg",
+      "load_emotion_cfg"
+    ],
+    "datasets/__init__.py": [],
+    "datasets/anatomy.py": [
+      "geometry_feature_definition_mask",
+      "apply_horizontal_flip_to_geometry",
+      "_load_anatomy_artifact_path",
+      "load_anatomy_artifact",
+      "_coerce_score",
+      "_artifact_arrays",
+      "transform_normalized_landmarks",
+      "_distance",
+      "_region_indices",
+      "_feature",
+      "_polyline_curvature",
+      "_geometry_features",
+      "_post_transform_crop_quality",
+      "_artifact_feature_uncertainty",
+      "empty_anatomy_inputs",
+      "anatomy_to_model_inputs",
+      "fit_class_geometry_statistics"
+    ],
+    "datasets/bases.py": [
+      "read_image",
+      "BaseDataset",
+      "BaseImageDataset",
+      "ImageDataset"
+    ],
+    "datasets/dukemtmcreid.py": [
+      "DukeMTMCreID"
+    ],
+    "datasets/emotion_manifest.py": [
+      "EmotionSample",
+      "normalize_emotion",
+      "_resolve_image_path",
+      "_sample_from_record",
+      "load_emotion_manifest",
+      "validate_split_leakage",
+      "summarize_anatomy_coverage",
+      "validate_anatomy_coverage",
+      "FaceSafeTransform",
+      "EmotionManifestDataset",
+      "emotion_collate_fn",
+      "make_emotion_dataloaders"
+    ],
+    "datasets/make_dataloader_clipreid.py": [
+      "train_collate_fn",
+      "val_collate_fn",
+      "make_dataloader"
+    ],
+    "datasets/make_dataloader.py": [
+      "train_collate_fn",
+      "val_collate_fn",
+      "make_dataloader"
+    ],
+    "datasets/market1501.py": [
+      "Market1501"
+    ],
+    "datasets/msmt17.py": [
+      "MSMT17"
+    ],
+    "datasets/occ_duke.py": [
+      "OCC_DukeMTMCreID"
+    ],
+    "datasets/preprocessing.py": [
+      "RandomErasing"
+    ],
+    "datasets/sampler_ddp.py": [
+      "_get_global_gloo_group",
+      "_serialize_to_tensor",
+      "_pad_to_largest_tensor",
+      "all_gather",
+      "shared_random_seed",
+      "RandomIdentitySampler_DDP"
+    ],
+    "datasets/sampler.py": [
+      "RandomIdentitySampler"
+    ],
+    "datasets/vehicleid.py": [
+      "VehicleID"
+    ],
+    "datasets/veri.py": [
+      "VeRi"
+    ],
+    "infer_emotionclip.py": [
+      "main"
+    ],
+    "loss/__init__.py": [],
+    "loss/arcface.py": [
+      "ArcFace",
+      "CircleLoss"
+    ],
+    "loss/center_loss.py": [
+      "CenterLoss"
+    ],
+    "loss/emotion_losses.py": [
+      "dirichlet_kl_to_uniform",
+      "evidential_ce_loss",
+      "dirichlet_statistics",
+      "reliability_correctness_loss",
+      "reliability_ranking_loss",
+      "emotion_stage2_loss"
+    ],
+    "loss/make_loss.py": [
+      "make_loss"
+    ],
+    "loss/metric_learning.py": [
+      "ContrastiveLoss",
+      "CircleLoss",
+      "Arcface",
+      "Cosface",
+      "AMSoftmax"
+    ],
+    "loss/softmax_loss.py": [
+      "CrossEntropyLabelSmooth",
+      "LabelSmoothingCrossEntropy"
+    ],
+    "loss/supcontrast.py": [
+      "SupConLoss"
+    ],
+    "loss/triplet_loss.py": [
+      "normalize",
+      "euclidean_dist",
+      "cosine_dist",
+      "hard_example_mining",
+      "TripletLoss"
+    ],
+    "model/clip/__init__.py": [],
+    "model/clip/clip.py": [
+      "_download",
+      "_transform",
+      "available_models",
+      "load",
+      "tokenize"
+    ],
+    "model/clip/model.py": [
+      "Bottleneck",
+      "AttentionPool2d",
+      "ModifiedResNet",
+      "LayerNorm",
+      "QuickGELU",
+      "ResidualAttentionBlock",
+      "Transformer",
+      "VisionTransformer",
+      "CLIP",
+      "convert_weights",
+      "build_model",
+      "resize_pos_embed"
+    ],
+    "model/clip/simple_tokenizer.py": [
+      "default_bpe",
+      "bytes_to_unicode",
+      "get_pairs",
+      "basic_clean",
+      "whitespace_clean",
+      "SimpleTokenizer"
+    ],
+    "model/emotionclip_model.py": [
+      "decoupled_dirichlet",
+      "QuickGELU",
+      "ExpressionAdapter",
+      "EmotionTextEncoder",
+      "AnatomyPromptResidual",
+      "EmotionPromptLearner",
+      "load_clip_to_cpu",
+      "install_expression_adapters",
+      "_set_requires_grad",
+      "normalized_fusion_prior",
+      "validate_train_last_blocks",
+      "BranchFusion",
+      "RegionPatchRouter",
+      "AnatomyRegionFusion",
+      "EmotionCLIPModel"
+    ],
+    "model/make_model_clipreid.py": [
+      "weights_init_kaiming",
+      "weights_init_classifier",
+      "TextEncoder",
+      "build_transformer",
+      "make_model",
+      "load_clip_to_cpu",
+      "PromptLearner"
+    ],
+    "model/make_model.py": [
+      "weights_init_kaiming",
+      "weights_init_classifier",
+      "build_transformer",
+      "make_model",
+      "load_clip_to_cpu"
+    ],
+    "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb": [],
+    "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb": [],
+    "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb": [],
+    "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx": [],
+    "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio": [],
+    "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio": [],
+    "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio": [],
+    "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio": [],
+    "processor/__init__.py": [],
+    "processor/processor_clipreid_stage1.py": [
+      "do_train_stage1"
+    ],
+    "processor/processor_clipreid_stage2.py": [
+      "do_train_stage2",
+      "do_inference"
+    ],
+    "processor/processor_emotionclip.py": [
+      "_batch_to_device",
+      "_as_bool",
+      "_progress_enabled",
+      "_progress",
+      "_batch_accuracy",
+      "_batch_confidence",
+      "_batch_uncertainty",
+      "_tensor_diagnostic",
+      "_model_output_error",
+      "_write_training_failure",
+      "_losses_are_finite",
+      "_make_grad_scaler",
+      "_trainable_parameters",
+      "_nonfinite_parameter_names",
+      "_forward_batch",
+      "corrupt_images_for_reliability",
+      "corrupt_anatomy_for_reliability",
+      "_format_log_value",
+      "log_training_event",
+      "_csv_value",
+      "_append_csv_row",
+      "_artifact_path",
+      "_record_training_epoch",
+      "_record_validation_epoch",
+      "log_run_config",
+      "unwrap_model",
+      "get_shared_text_features",
+      "EmotionDataParallel",
+      "_model_signature",
+      "_checkpoint_payload",
+      "parameter_report",
+      "save_checkpoint",
+      "load_emotion_checkpoint",
+      "precompute_stage1_features",
+      "evaluate_stage1_prompt_model",
+      "do_train_emotion_stage1",
+      "evaluate_emotion_model",
+      "evaluate_sealed_test",
+      "do_train_emotion_stage2"
+    ],
+    "processor/processor.py": [
+      "do_train",
+      "do_inference"
+    ],
+    "solver/__init__.py": [],
+    "solver/cosine_lr.py": [
+      "CosineLRScheduler"
+    ],
+    "solver/lr_scheduler.py": [
+      "WarmupMultiStepLR"
+    ],
+    "solver/make_optimizer_prompt.py": [
+      "make_optimizer_1stage",
+      "make_optimizer_2stage"
+    ],
+    "solver/make_optimizer.py": [
+      "make_optimizer"
+    ],
+    "solver/scheduler_factory.py": [
+      "create_scheduler"
+    ],
+    "solver/scheduler.py": [
+      "Scheduler"
+    ],
+    "test_clipreid.py": [],
+    "test.py": [],
+    "tests/test_anatomy_audit.py": [
+      "_landmarks",
+      "test_artifact_builder_propagates_jitter_into_feature_units",
+      "test_signal_to_jitter_compares_quantities_in_geometry_feature_units"
+    ],
+    "tests/test_emotion_losses_metrics.py": [
+      "test_decoupled_dirichlet_is_offset_invariant_and_consistent",
+      "test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax",
+      "test_emotion_stage2_loss_has_gradients",
+      "test_reliability_loss_does_not_backpropagate_to_classifier_logits",
+      "test_fer_metrics_basic_values",
+      "test_ood_metrics_reward_separated_uncertainty_scores",
+      "test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients"
+    ],
+    "tests/test_emotion_manifest.py": [
+      "_write_image",
+      "test_normalize_emotion_aliases",
+      "test_manifest_uses_string_label_when_id_mismatches",
+      "test_split_leakage_detects_video_overlap",
+      "test_dataloaders_keep_validation_and_test_separate",
+      "test_fer2013_official_splits_are_not_merged",
+      "test_rafdb_dev_split_is_deterministic_stratified_and_train_only",
+      "test_rafdb_full_official_train_mode_has_no_validation_selection",
+      "_face_mesh_artifact",
+      "test_landmarks_follow_center_crop_and_horizontal_flip",
+      "test_landmarks_without_optional_confidence_scores_remain_usable",
+      "test_horizontal_flip_swaps_left_right_geometry_semantics",
+      "test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing",
+      "test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback"
+    ],
+    "tests/test_emotion_model_units.py": [
+      "test_position_embedding_noop_is_silent_when_grid_is_unchanged",
+      "test_emotion_prompt_learner_shapes",
+      "test_expression_adapter_zero_initialized_residual",
+      "test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients",
+      "test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes",
+      "test_train_last_blocks_validation",
+      "_DummyBlock",
+      "_Stage1Prompt",
+      "_stage_test_model",
+      "test_stage1_phases_train_base_then_geometry_residual_exclusively",
+      "test_adapter_only_stage2_trainable_parameter_whitelist",
+      "_router_anatomy",
+      "test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality",
+      "test_routing_supervision_is_only_active_for_hybrid_ablation",
+      "test_geometry_fusion_zero_init_does_not_change_visual_regions",
+      "test_unconditional_cross_attention_has_missing_region_visual_fallback",
+      "test_reliable_region_disagreement_requires_two_quality_regions",
+      "test_prompt_geometry_and_class_statistics_are_zero_init_and_robust",
+      "test_class_quality_ignores_reserved_padding_slots",
+      "_TinyResidualBlock",
+      "_TinyVisual",
+      "_TinyClip",
+      "test_full_emotionclip_constructor_and_anatomy_forward_integration"
+    ],
+    "tests/test_emotion_processor_smoke.py": [
+      "TinyEmotionModel",
+      "_loader",
+      "test_processor_stage1_stage2_cpu_smoke",
+      "test_stage2_gradient_accumulation_controls_optimizer_steps",
+      "test_stage2_defers_corruption_ranking_until_after_warmup",
+      "test_stage2_nonfinite_loss_fails_before_optimizer_step",
+      "test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed",
+      "test_stage2_early_stopping_uses_validation_patience",
+      "test_small_learning_rates_use_scientific_log_format",
+      "test_stage1_validation_writes_and_selects_prompt_checkpoint",
+      "test_stage1b_fails_closed_when_geometry_statistics_are_missing",
+      "test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
+      "_CheckpointPrompt",
+      "_CheckpointModel",
+      "test_checkpoint_schema_preserves_current_derived_prompt_buffers",
+      "test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference",
+      "test_corruption_invalidates_occluded_anatomy_evidence"
+    ],
+    "tests/test_notebook_helpers.py": [
+      "test_timestamped_run_id_is_local_time_safe_and_precise",
+      "test_publish_notebook_artifacts_requires_initialized_run",
+      "test_publish_notebook_artifacts_copies_visuals_and_log",
+      "test_notebook_progress_recognizes_all_training_phase_labels",
+      "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+      "test_training_notebooks_forward_resolved_runtime_controls",
+      "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+      "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+      "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+      "test_anatomy_is_required_by_default_and_quick_presets",
+      "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+      "test_stage1_both_rejects_a_missing_phase",
+      "test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+      "test_rafdb_notebook_exposes_gpu_safety_controls",
+      "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt"
+    ],
+    "tests/test_run_artifacts.py": [
+      "test_run_directory_is_immutable_and_records_provenance",
+      "test_artifact_lookup_requires_explicit_run_id"
+    ],
+    "tests/test_train_emotionclip_parallel.py": [
+      "test_parse_gpu_ids_accepts_two_cuda_indices",
+      "test_production_training_rejects_single_process_multi_gpu",
+      "test_parse_gpu_ids_rejects_invalid_lists",
+      "test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+      "test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+      "test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+      "test_emotion_data_parallel_rejects_multi_gpu_construction",
+      "test_model_output_invariant_rejects_impossible_confidence",
+      "test_shared_text_features_are_built_from_unwrapped_model"
+    ],
+    "tools/audit_anatomy_geometry.py": [
+      "_parse_args",
+      "_summary",
+      "_landmark_valid",
+      "_signal_to_jitter",
+      "main"
+    ],
+    "tools/build_face_landmark_artifacts.py": [
+      "_parse_args",
+      "_load_mediapipe",
+      "_resolve_image_path",
+      "_artifact_path",
+      "_shift_image",
+      "_detect",
+      "_pose_from_matrix",
+      "_score",
+      "_score_with_validity",
+      "_jitter_offsets",
+      "_feature_jitter_from_observations",
+      "_build_artifact",
+      "_file_sha256",
+      "_portable_artifact_reference",
+      "main"
+    ],
+    "tools/convert_affwild2_to_emotion_jsonl.py": [
+      "iter_label_file",
+      "main"
+    ],
+    "tools/convert_fer2013_to_emotion_jsonl.py": [
+      "row_value",
+      "split_from_usage",
+      "emotion_from_label",
+      "save_pixel_image",
+      "convert_csv",
+      "iter_split_dirs",
+      "convert_image_dir",
+      "write_records",
+      "main"
+    ],
+    "tools/convert_raf_au_to_emotion_jsonl.py": [
+      "parse_au_fields",
+      "main"
+    ],
+    "tools/convert_rafdb_to_emotion_jsonl.py": [
+      "_extract_archive",
+      "_find_label_files",
+      "_image_candidates",
+      "_resolve_image",
+      "_official_split_from_name",
+      "_split_from_label_file",
+      "_read_label_file",
+      "select_stratified_validation_images",
+      "convert_rafdb",
+      "main"
+    ],
+    "tools/download_hf_emotion_dataset.py": [
+      "normalize_emotion",
+      "split_name",
+      "save_image",
+      "iter_limited",
+      "main"
+    ],
+    "train_clipreid.py": [
+      "set_seed"
+    ],
+    "train_emotionclip.py": [
+      "set_seed",
+      "setup_logging",
+      "_flatten_config",
+      "_csv_value",
+      "save_train_config_csv",
+      "save_effective_config",
+      "trainable_parameters",
+      "parse_gpu_ids",
+      "validate_gpu_topology",
+      "configure_device",
+      "main"
+    ],
+    "train.py": [
+      "set_seed"
+    ],
+    "utils/__init__.py": [],
+    "utils/fer_metrics.py": [
+      "_safe_div",
+      "confusion_matrix",
+      "per_class_f1",
+      "balanced_accuracy",
+      "expected_calibration_error",
+      "adaptive_calibration_error",
+      "classwise_calibration_error",
+      "negative_log_likelihood",
+      "brier_score",
+      "uncertainty_risk_auc",
+      "excess_aurc",
+      "risk_at_coverage",
+      "_binary_ranking_metrics",
+      "ood_detection_metrics",
+      "compute_fer_metrics"
+    ],
+    "utils/iotools.py": [
+      "mkdir_if_missing",
+      "check_isfile",
+      "read_json",
+      "write_json"
+    ],
+    "utils/logger.py": [
+      "setup_logger"
+    ],
+    "utils/meter.py": [
+      "AverageMeter"
+    ],
+    "utils/metrics.py": [
+      "euclidean_distance",
+      "cosine_similarity",
+      "eval_func",
+      "R1_mAP_eval"
+    ],
+    "utils/notebook_landmarks.py": [
+      "_sha256",
+      "download_once",
+      "_cache_metadata_path",
+      "_read_json",
+      "_nonempty_line_count",
+      "validate_landmark_manifest_layout",
+      "prepare_cached_landmarks"
+    ],
+    "utils/notebook_metrics.py": [
+      "metric_epoch",
+      "unique_paths",
+      "_to_float",
+      "_read_json",
+      "_first_existing",
+      "_best_epoch_from_uncertainty",
+      "_finalize_metric_bundle",
+      "_load_json_metrics",
+      "_load_csv_metrics",
+      "load_validation_metrics",
+      "print_validation_summary",
+      "_finite_xy",
+      "_format_epoch_axis",
+      "_plot_metric_lines",
+      "_pick_payload",
+      "plot_validation_metric_curves",
+      "_parse_log_training_history",
+      "_parse_csv_training_history",
+      "load_training_history",
+      "plot_training_metric_curves",
+      "plot_confusion_matrix_and_f1"
+    ],
+    "utils/notebook_progress.py": [
+      "_is_progress_update",
+      "_progress_html",
+      "stream_process_output"
+    ],
+    "utils/notebook_run.py": [
+      "timestamped_run_id",
+      "prepare_notebook_staging",
+      "publish_notebook_artifacts"
+    ],
+    "utils/reranking.py": [
+      "re_ranking"
+    ],
+    "utils/run_artifacts.py": [
+      "_sha256_bytes",
+      "_git",
+      "_manifest_hashes",
+      "_dependency_versions",
+      "_hardware",
+      "initialize_immutable_run",
+      "artifact_dir"
+    ]
+  },
+  "batches": [
+    {
+      "batchIndex": 2,
+      "files": [
+        {
+          "path": "config/emotion_defaults.py",
+          "language": "python",
+          "sizeLines": 254,
+          "fileCategory": "code"
+        },
+        {
+          "path": "datasets/anatomy.py",
+          "language": "python",
+          "sizeLines": 626,
+          "fileCategory": "code"
+        },
+        {
+          "path": "datasets/emotion_manifest.py",
+          "language": "python",
+          "sizeLines": 599,
+          "fileCategory": "code"
+        },
+        {
+          "path": "infer_emotionclip.py",
+          "language": "python",
+          "sizeLines": 142,
+          "fileCategory": "code"
+        },
+        {
+          "path": "loss/emotion_losses.py",
+          "language": "python",
+          "sizeLines": 120,
+          "fileCategory": "code"
+        },
+        {
+          "path": "processor/processor_emotionclip.py",
+          "language": "python",
+          "sizeLines": 1542,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_anatomy_audit.py",
+          "language": "python",
+          "sizeLines": 69,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_emotion_losses_metrics.py",
+          "language": "python",
+          "sizeLines": 122,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_emotion_manifest.py",
+          "language": "python",
+          "sizeLines": 300,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_emotion_model_units.py",
+          "language": "python",
+          "sizeLines": 348,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_emotion_processor_smoke.py",
+          "language": "python",
+          "sizeLines": 318,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_run_artifacts.py",
+          "language": "python",
+          "sizeLines": 38,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tests/test_train_emotionclip_parallel.py",
+          "language": "python",
+          "sizeLines": 69,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/audit_anatomy_geometry.py",
+          "language": "python",
+          "sizeLines": 268,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/build_face_landmark_artifacts.py",
+          "language": "python",
+          "sizeLines": 442,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/convert_affwild2_to_emotion_jsonl.py",
+          "language": "python",
+          "sizeLines": 86,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/convert_fer2013_to_emotion_jsonl.py",
+          "language": "python",
+          "sizeLines": 231,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/convert_raf_au_to_emotion_jsonl.py",
+          "language": "python",
+          "sizeLines": 69,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/convert_rafdb_to_emotion_jsonl.py",
+          "language": "python",
+          "sizeLines": 363,
+          "fileCategory": "code"
+        },
+        {
+          "path": "tools/download_hf_emotion_dataset.py",
+          "language": "python",
+          "sizeLines": 176,
+          "fileCategory": "code"
+        },
+        {
+          "path": "train_emotionclip.py",
+          "language": "python",
+          "sizeLines": 365,
+          "fileCategory": "code"
+        },
+        {
+          "path": "utils/fer_metrics.py",
+          "language": "python",
+          "sizeLines": 227,
+          "fileCategory": "code"
+        },
+        {
+          "path": "utils/run_artifacts.py",
+          "language": "python",
+          "sizeLines": 133,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "config/emotion_defaults.py": [],
+        "datasets/anatomy.py": [],
+        "datasets/emotion_manifest.py": [
+          "datasets/anatomy.py"
+        ],
+        "infer_emotionclip.py": [
+          "config/emotion_defaults.py",
+          "datasets/anatomy.py",
+          "datasets/emotion_manifest.py",
+          "model/emotionclip_model.py",
+          "processor/processor_emotionclip.py"
+        ],
+        "loss/emotion_losses.py": [],
+        "processor/processor_emotionclip.py": [
+          "datasets/anatomy.py",
+          "loss/emotion_losses.py",
+          "utils/fer_metrics.py"
+        ],
+        "tests/test_anatomy_audit.py": [
+          "datasets/anatomy.py",
+          "tools/audit_anatomy_geometry.py",
+          "tools/build_face_landmark_artifacts.py"
+        ],
+        "tests/test_emotion_losses_metrics.py": [
+          "datasets/emotion_manifest.py",
+          "loss/emotion_losses.py",
+          "model/emotionclip_model.py",
+          "utils/fer_metrics.py"
+        ],
+        "tests/test_emotion_manifest.py": [
+          "datasets/emotion_manifest.py",
+          "tools/convert_fer2013_to_emotion_jsonl.py",
+          "tools/convert_rafdb_to_emotion_jsonl.py",
+          "tools/download_hf_emotion_dataset.py"
+        ],
+        "tests/test_emotion_model_units.py": [
+          "datasets/anatomy.py",
+          "datasets/emotion_manifest.py",
+          "model/emotionclip_model.py"
+        ],
+        "tests/test_emotion_processor_smoke.py": [
+          "datasets/anatomy.py",
+          "processor/processor_emotionclip.py"
+        ],
+        "tests/test_run_artifacts.py": [
+          "utils/run_artifacts.py"
+        ],
+        "tests/test_train_emotionclip_parallel.py": [
+          "processor/processor_emotionclip.py",
+          "train_emotionclip.py"
+        ],
+        "tools/audit_anatomy_geometry.py": [
+          "datasets/anatomy.py",
+          "datasets/emotion_manifest.py"
+        ],
+        "tools/build_face_landmark_artifacts.py": [
+          "datasets/anatomy.py"
+        ],
+        "tools/convert_affwild2_to_emotion_jsonl.py": [
+          "datasets/emotion_manifest.py"
+        ],
+        "tools/convert_fer2013_to_emotion_jsonl.py": [],
+        "tools/convert_raf_au_to_emotion_jsonl.py": [
+          "datasets/emotion_manifest.py"
+        ],
+        "tools/convert_rafdb_to_emotion_jsonl.py": [],
+        "tools/download_hf_emotion_dataset.py": [],
+        "train_emotionclip.py": [
+          "config/emotion_defaults.py",
+          "datasets/emotion_manifest.py",
+          "model/emotionclip_model.py",
+          "processor/processor_emotionclip.py",
+          "utils/run_artifacts.py"
+        ],
+        "utils/fer_metrics.py": [],
+        "utils/run_artifacts.py": []
+      },
+      "neighborMap": {
+        "config/emotion_defaults.py": [
+          {
+            "path": "tests/test_notebook_helpers.py",
+            "batchIndex": 5,
+            "symbols": [
+              "test_timestamped_run_id_is_local_time_safe_and_precise",
+              "test_publish_notebook_artifacts_requires_initialized_run",
+              "test_publish_notebook_artifacts_copies_visuals_and_log",
+              "test_notebook_progress_recognizes_all_training_phase_labels",
+              "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+              "test_training_notebooks_forward_resolved_runtime_controls",
+              "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+              "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+              "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+              "test_anatomy_is_required_by_default_and_quick_presets",
+              "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+              "test_stage1_both_rejects_a_missing_phase",
+              "test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+              "test_rafdb_notebook_exposes_gpu_safety_controls",
+              "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt"
+            ]
+          }
+        ],
+        "datasets/anatomy.py": [
+          {
+            "path": "model/emotionclip_model.py",
+            "batchIndex": 4,
+            "symbols": [
+              "decoupled_dirichlet",
+              "QuickGELU",
+              "ExpressionAdapter",
+              "EmotionTextEncoder",
+              "AnatomyPromptResidual",
+              "EmotionPromptLearner",
+              "load_clip_to_cpu",
+              "install_expression_adapters",
+              "_set_requires_grad",
+              "normalized_fusion_prior",
+              "validate_train_last_blocks",
+              "BranchFusion",
+              "RegionPatchRouter",
+              "AnatomyRegionFusion",
+              "EmotionCLIPModel"
+            ]
+          },
+          {
+            "path": "utils/notebook_landmarks.py",
+            "batchIndex": 5,
+            "symbols": [
+              "_sha256",
+              "download_once",
+              "_cache_metadata_path",
+              "_read_json",
+              "_nonempty_line_count",
+              "validate_landmark_manifest_layout",
+              "prepare_cached_landmarks"
+            ]
+          }
+        ],
+        "datasets/emotion_manifest.py": [
+          {
+            "path": "model/emotionclip_model.py",
+            "batchIndex": 4,
+            "symbols": [
+              "decoupled_dirichlet",
+              "QuickGELU",
+              "ExpressionAdapter",
+              "EmotionTextEncoder",
+              "AnatomyPromptResidual",
+              "EmotionPromptLearner",
+              "load_clip_to_cpu",
+              "install_expression_adapters",
+              "_set_requires_grad",
+              "normalized_fusion_prior",
+              "validate_train_last_blocks",
+              "BranchFusion",
+              "RegionPatchRouter",
+              "AnatomyRegionFusion",
+              "EmotionCLIPModel"
+            ]
+          }
+        ],
+        "infer_emotionclip.py": [
+          {
+            "path": "model/emotionclip_model.py",
+            "batchIndex": 4,
+            "symbols": [
+              "decoupled_dirichlet",
+              "QuickGELU",
+              "ExpressionAdapter",
+              "EmotionTextEncoder",
+              "AnatomyPromptResidual",
+              "EmotionPromptLearner",
+              "load_clip_to_cpu",
+              "install_expression_adapters",
+              "_set_requires_grad",
+              "normalized_fusion_prior",
+              "validate_train_last_blocks",
+              "BranchFusion",
+              "RegionPatchRouter",
+              "AnatomyRegionFusion",
+              "EmotionCLIPModel"
+            ]
+          }
+        ],
+        "tests/test_emotion_losses_metrics.py": [
+          {
+            "path": "model/emotionclip_model.py",
+            "batchIndex": 4,
+            "symbols": [
+              "decoupled_dirichlet",
+              "QuickGELU",
+              "ExpressionAdapter",
+              "EmotionTextEncoder",
+              "AnatomyPromptResidual",
+              "EmotionPromptLearner",
+              "load_clip_to_cpu",
+              "install_expression_adapters",
+              "_set_requires_grad",
+              "normalized_fusion_prior",
+              "validate_train_last_blocks",
+              "BranchFusion",
+              "RegionPatchRouter",
+              "AnatomyRegionFusion",
+              "EmotionCLIPModel"
+            ]
+          }
+        ],
+        "tests/test_emotion_model_units.py": [
+          {
+            "path": "model/emotionclip_model.py",
+            "batchIndex": 4,
+            "symbols": [
+              "decoupled_dirichlet",
+              "QuickGELU",
+              "ExpressionAdapter",
+              "EmotionTextEncoder",
+              "AnatomyPromptResidual",
+              "EmotionPromptLearner",
+              "load_clip_to_cpu",
+              "install_expression_adapters",
+              "_set_requires_grad",
+              "normalized_fusion_prior",
+              "validate_train_last_blocks",
+              "BranchFusion",
+              "RegionPatchRouter",
+              "AnatomyRegionFusion",
+              "EmotionCLIPModel"
+            ]
+          }
+        ],
+        "train_emotionclip.py": [
+          {
+            "path": "model/emotionclip_model.py",
+            "batchIndex": 4,
+            "symbols": [
+              "decoupled_dirichlet",
+              "QuickGELU",
+              "ExpressionAdapter",
+              "EmotionTextEncoder",
+              "AnatomyPromptResidual",
+              "EmotionPromptLearner",
+              "load_clip_to_cpu",
+              "install_expression_adapters",
+              "_set_requires_grad",
+              "normalized_fusion_prior",
+              "validate_train_last_blocks",
+              "BranchFusion",
+              "RegionPatchRouter",
+              "AnatomyRegionFusion",
+              "EmotionCLIPModel"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 4,
+      "files": [
+        {
+          "path": "model/clip/__init__.py",
+          "language": "python",
+          "sizeLines": 1,
+          "fileCategory": "code"
+        },
+        {
+          "path": "model/clip/clip.py",
+          "language": "python",
+          "sizeLines": 229,
+          "fileCategory": "code"
+        },
+        {
+          "path": "model/clip/model.py",
+          "language": "python",
+          "sizeLines": 468,
+          "fileCategory": "code"
+        },
+        {
+          "path": "model/clip/simple_tokenizer.py",
+          "language": "python",
+          "sizeLines": 148,
+          "fileCategory": "code"
+        },
+        {
+          "path": "model/emotionclip_model.py",
+          "language": "python",
+          "sizeLines": 1164,
+          "fileCategory": "code"
+        },
+        {
+          "path": "model/make_model.py",
+          "language": "python",
+          "sizeLines": 150,
+          "fileCategory": "code"
+        },
+        {
+          "path": "model/make_model_clipreid.py",
+          "language": "python",
+          "sizeLines": 239,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "model/clip/__init__.py": [
+          "model/clip/clip.py"
+        ],
+        "model/clip/clip.py": [
+          "model/clip/model.py",
+          "model/clip/simple_tokenizer.py"
+        ],
+        "model/clip/model.py": [],
+        "model/clip/simple_tokenizer.py": [],
+        "model/emotionclip_model.py": [
+          "datasets/anatomy.py",
+          "datasets/emotion_manifest.py",
+          "model/clip/__init__.py",
+          "model/clip/clip.py",
+          "model/clip/simple_tokenizer.py"
+        ],
+        "model/make_model.py": [
+          "model/clip/__init__.py",
+          "model/clip/clip.py",
+          "model/clip/simple_tokenizer.py"
+        ],
+        "model/make_model_clipreid.py": [
+          "model/clip/__init__.py",
+          "model/clip/clip.py",
+          "model/clip/simple_tokenizer.py"
+        ]
+      },
+      "neighborMap": {
+        "model/emotionclip_model.py": [
+          {
+            "path": "datasets/anatomy.py",
+            "batchIndex": 2,
+            "symbols": [
+              "geometry_feature_definition_mask",
+              "apply_horizontal_flip_to_geometry",
+              "_load_anatomy_artifact_path",
+              "load_anatomy_artifact",
+              "_coerce_score",
+              "_artifact_arrays",
+              "transform_normalized_landmarks",
+              "_distance",
+              "_region_indices",
+              "_feature",
+              "_polyline_curvature",
+              "_geometry_features",
+              "_post_transform_crop_quality",
+              "_artifact_feature_uncertainty",
+              "empty_anatomy_inputs",
+              "anatomy_to_model_inputs",
+              "fit_class_geometry_statistics"
+            ]
+          },
+          {
+            "path": "datasets/emotion_manifest.py",
+            "batchIndex": 2,
+            "symbols": [
+              "EmotionSample",
+              "normalize_emotion",
+              "_resolve_image_path",
+              "_sample_from_record",
+              "load_emotion_manifest",
+              "validate_split_leakage",
+              "summarize_anatomy_coverage",
+              "validate_anatomy_coverage",
+              "FaceSafeTransform",
+              "EmotionManifestDataset",
+              "emotion_collate_fn",
+              "make_emotion_dataloaders"
+            ]
+          },
+          {
+            "path": "infer_emotionclip.py",
+            "batchIndex": 2,
+            "symbols": [
+              "main"
+            ]
+          },
+          {
+            "path": "tests/test_emotion_losses_metrics.py",
+            "batchIndex": 2,
+            "symbols": [
+              "test_decoupled_dirichlet_is_offset_invariant_and_consistent",
+              "test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax",
+              "test_emotion_stage2_loss_has_gradients",
+              "test_reliability_loss_does_not_backpropagate_to_classifier_logits",
+              "test_fer_metrics_basic_values",
+              "test_ood_metrics_reward_separated_uncertainty_scores",
+              "test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients"
+            ]
+          },
+          {
+            "path": "tests/test_emotion_model_units.py",
+            "batchIndex": 2,
+            "symbols": [
+              "test_position_embedding_noop_is_silent_when_grid_is_unchanged",
+              "test_emotion_prompt_learner_shapes",
+              "test_expression_adapter_zero_initialized_residual",
+              "test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients",
+              "test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes",
+              "test_train_last_blocks_validation",
+              "_DummyBlock",
+              "_Stage1Prompt",
+              "_stage_test_model",
+              "test_stage1_phases_train_base_then_geometry_residual_exclusively",
+              "test_adapter_only_stage2_trainable_parameter_whitelist",
+              "_router_anatomy",
+              "test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality",
+              "test_routing_supervision_is_only_active_for_hybrid_ablation",
+              "test_geometry_fusion_zero_init_does_not_change_visual_regions",
+              "test_unconditional_cross_attention_has_missing_region_visual_fallback",
+              "test_reliable_region_disagreement_requires_two_quality_regions",
+              "test_prompt_geometry_and_class_statistics_are_zero_init_and_robust",
+              "test_class_quality_ignores_reserved_padding_slots",
+              "_TinyResidualBlock",
+              "_TinyVisual",
+              "_TinyClip",
+              "test_full_emotionclip_constructor_and_anatomy_forward_integration"
+            ]
+          },
+          {
+            "path": "train_emotionclip.py",
+            "batchIndex": 2,
+            "symbols": [
+              "set_seed",
+              "setup_logging",
+              "_flatten_config",
+              "_csv_value",
+              "save_train_config_csv",
+              "save_effective_config",
+              "trainable_parameters",
+              "parse_gpu_ids",
+              "validate_gpu_topology",
+              "configure_device",
+              "main"
+            ]
+          }
+        ],
+        "model/make_model.py": [
+          {
+            "path": "test.py",
+            "batchIndex": 1,
+            "symbols": []
+          },
+          {
+            "path": "train.py",
+            "batchIndex": 1,
+            "symbols": [
+              "set_seed"
+            ]
+          }
+        ],
+        "model/make_model_clipreid.py": [
+          {
+            "path": "test_clipreid.py",
+            "batchIndex": 1,
+            "symbols": []
+          },
+          {
+            "path": "train_clipreid.py",
+            "batchIndex": 1,
+            "symbols": [
+              "set_seed"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 5,
+      "files": [
+        {
+          "path": "tests/test_notebook_helpers.py",
+          "language": "python",
+          "sizeLines": 205,
+          "fileCategory": "code"
+        },
+        {
+          "path": "utils/notebook_landmarks.py",
+          "language": "python",
+          "sizeLines": 298,
+          "fileCategory": "code"
+        },
+        {
+          "path": "utils/notebook_progress.py",
+          "language": "python",
+          "sizeLines": 79,
+          "fileCategory": "code"
+        },
+        {
+          "path": "utils/notebook_run.py",
+          "language": "python",
+          "sizeLines": 87,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "tests/test_notebook_helpers.py": [
+          "config/emotion_defaults.py",
+          "utils/notebook_landmarks.py",
+          "utils/notebook_progress.py",
+          "utils/notebook_run.py"
+        ],
+        "utils/notebook_landmarks.py": [
+          "datasets/anatomy.py"
+        ],
+        "utils/notebook_progress.py": [],
+        "utils/notebook_run.py": []
+      },
+      "neighborMap": {
+        "tests/test_notebook_helpers.py": [
+          {
+            "path": "config/emotion_defaults.py",
+            "batchIndex": 2,
+            "symbols": [
+              "anatomy_requirement_reasons",
+              "get_default_emotion_cfg",
+              "_deep_update",
+              "_coerce_value",
+              "_set_by_dotted_key",
+              "_mark_source",
+              "validate_emotion_cfg",
+              "load_emotion_cfg"
+            ]
+          }
+        ],
+        "utils/notebook_landmarks.py": [
+          {
+            "path": "datasets/anatomy.py",
+            "batchIndex": 2,
+            "symbols": [
+              "geometry_feature_definition_mask",
+              "apply_horizontal_flip_to_geometry",
+              "_load_anatomy_artifact_path",
+              "load_anatomy_artifact",
+              "_coerce_score",
+              "_artifact_arrays",
+              "transform_normalized_landmarks",
+              "_distance",
+              "_region_indices",
+              "_feature",
+              "_polyline_curvature",
+              "_geometry_features",
+              "_post_transform_crop_quality",
+              "_artifact_feature_uncertainty",
+              "empty_anatomy_inputs",
+              "anatomy_to_model_inputs",
+              "fit_class_geometry_statistics"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "batchIndex": 6,
+      "files": [
+        {
+          "path": "README.md",
+          "language": "markdown",
+          "sizeLines": 270,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "environment_emotionclip_cuda.yml",
+          "language": "yaml",
+          "sizeLines": 21,
+          "fileCategory": "config"
+        },
+        {
+          "path": "note_edit.md",
+          "language": "markdown",
+          "sizeLines": 73,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "pytest.ini",
+          "language": "config",
+          "sizeLines": 2,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "README.md": [],
+        "environment_emotionclip_cuda.yml": [],
+        "note_edit.md": [],
+        "pytest.ini": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 8,
+      "files": [
+        {
+          "path": "configs/emotion/vit_b16_emotionclip.yml",
+          "language": "yaml",
+          "sizeLines": 122,
+          "fileCategory": "config"
+        },
+        {
+          "path": "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+          "language": "yaml",
+          "sizeLines": 82,
+          "fileCategory": "config"
+        },
+        {
+          "path": "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+          "language": "yaml",
+          "sizeLines": 82,
+          "fileCategory": "config"
+        },
+        {
+          "path": "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+          "language": "yaml",
+          "sizeLines": 80,
+          "fileCategory": "config"
+        }
+      ],
+      "batchImportData": {
+        "configs/emotion/vit_b16_emotionclip.yml": [],
+        "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml": [],
+        "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml": [],
+        "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml": []
+      },
+      "neighborMap": {}
+    },
+    {
+      "batchIndex": 15,
+      "files": [
+        {
+          "path": "config/defaults_base.py",
+          "language": "python",
+          "sizeLines": 188,
+          "fileCategory": "code"
+        },
+        {
+          "path": "config/defaults.py",
+          "language": "python",
+          "sizeLines": 237,
+          "fileCategory": "code"
+        },
+        {
+          "path": "datasets/__init__.py",
+          "language": "python",
+          "sizeLines": 0,
+          "fileCategory": "code"
+        },
+        {
+          "path": "datasets/keypoint_test.txt",
+          "language": "txt",
+          "sizeLines": 12079,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "datasets/keypoint_train.txt",
+          "language": "txt",
+          "sizeLines": 38631,
+          "fileCategory": "docs"
+        },
+        {
+          "path": "datasets/preprocessing.py",
+          "language": "python",
+          "sizeLines": 50,
+          "fileCategory": "code"
+        },
+        {
+          "path": "loss/__init__.py",
+          "language": "python",
+          "sizeLines": 0,
+          "fileCategory": "code"
+        },
+        {
+          "path": "loss/arcface.py",
+          "language": "python",
+          "sizeLines": 79,
+          "fileCategory": "code"
+        },
+        {
+          "path": "loss/metric_learning.py",
+          "language": "python",
+          "sizeLines": 188,
+          "fileCategory": "code"
+        },
+        {
+          "path": "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+          "language": "ipynb",
+          "sizeLines": 804,
+          "fileCategory": "code"
+        },
+        {
+          "path": "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+          "language": "ipynb",
+          "sizeLines": 1480,
+          "fileCategory": "code"
+        },
+        {
+          "path": "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+          "language": "ipynb",
+          "sizeLines": 1414,
+          "fileCategory": "code"
+        },
+        {
+          "path": "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx",
+          "language": "xlsx",
+          "sizeLines": 204,
+          "fileCategory": "code"
+        },
+        {
+          "path": "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio",
+          "language": "drawio",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        },
+        {
+          "path": "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio",
+          "language": "drawio",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        },
+        {
+          "path": "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio",
+          "language": "drawio",
+          "sizeLines": 63,
+          "fileCategory": "code"
+        },
+        {
+          "path": "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+          "language": "drawio",
+          "sizeLines": 8,
+          "fileCategory": "code"
+        },
+        {
+          "path": "processor/__init__.py",
+          "language": "python",
+          "sizeLines": 0,
+          "fileCategory": "code"
+        },
+        {
+          "path": "solver/__init__.py",
+          "language": "python",
+          "sizeLines": 0,
+          "fileCategory": "code"
+        },
+        {
+          "path": "utils/__init__.py",
+          "language": "python",
+          "sizeLines": 0,
+          "fileCategory": "code"
+        },
+        {
+          "path": "utils/notebook_metrics.py",
+          "language": "python",
+          "sizeLines": 610,
+          "fileCategory": "code"
+        }
+      ],
+      "batchImportData": {
+        "config/defaults_base.py": [],
+        "config/defaults.py": [],
+        "datasets/__init__.py": [],
+        "datasets/keypoint_test.txt": [],
+        "datasets/keypoint_train.txt": [],
+        "datasets/preprocessing.py": [],
+        "loss/__init__.py": [
+          "loss/arcface.py"
+        ],
+        "loss/arcface.py": [],
+        "loss/metric_learning.py": [],
+        "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb": [],
+        "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb": [],
+        "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb": [],
+        "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx": [],
+        "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio": [],
+        "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio": [],
+        "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio": [],
+        "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio": [],
+        "processor/__init__.py": [],
+        "solver/__init__.py": [],
+        "utils/__init__.py": [],
+        "utils/notebook_metrics.py": []
+      },
+      "neighborMap": {}
+    }
+  ]
+}

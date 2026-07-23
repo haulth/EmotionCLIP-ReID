@@ -1,0 +1,42 @@
+{
+  "projectRoot": "E:\\Source\\EmotionCLIP-ReID",
+  "batchFiles": [
+    {
+      "path": "docs/report/emotionclip_reid_feasibility_analysis.md",
+      "language": "markdown",
+      "sizeLines": 569,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/report/emotionclip_reid_model_proposal_report.md",
+      "language": "markdown",
+      "sizeLines": 130,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/report/emotionclip_reid_pipeline_diagram_script.md",
+      "language": "markdown",
+      "sizeLines": 180,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/report/emotionclip_reid_presentation_script.md",
+      "language": "markdown",
+      "sizeLines": 121,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "docs/report/emotionclip_reid_research_gap_proposal_brief.md",
+      "language": "markdown",
+      "sizeLines": 28,
+      "fileCategory": "docs"
+    }
+  ],
+  "batchImportData": {
+    "docs/report/emotionclip_reid_feasibility_analysis.md": [],
+    "docs/report/emotionclip_reid_model_proposal_report.md": [],
+    "docs/report/emotionclip_reid_pipeline_diagram_script.md": [],
+    "docs/report/emotionclip_reid_presentation_script.md": [],
+    "docs/report/emotionclip_reid_research_gap_proposal_brief.md": []
+  }
+}

@@ -1,0 +1,1053 @@
+{
+  "nodes": [
+    {
+      "id": "file:tests/test_notebook_helpers.py",
+      "type": "file",
+      "name": "test_notebook_helpers.py",
+      "filePath": "tests/test_notebook_helpers.py",
+      "summary": "Kiểm thử regression cho notebook FER: run ID, publish artifact, progress renderer, cache landmark, precedence cấu hình và các invariant anatomy/geometry mặc định. Suite cũng kiểm tra notebook FER2013/RAF-DB thực sự chuyển các điều khiển GPU, Stage 1/2 và uncertainty xuống CLI.",
+      "tags": [
+        "test",
+        "notebook",
+        "reproducibility",
+        "anatomy"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_timestamped_run_id_is_local_time_safe_and_precise",
+      "type": "function",
+      "name": "test_timestamped_run_id_is_local_time_safe_and_precise",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        18,
+        22
+      ],
+      "summary": "Kiểm tra run ID bảo toàn local timezone, microsecond và seed trong định dạng an toàn cho filesystem.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_publish_notebook_artifacts_requires_initialized_run",
+      "type": "function",
+      "name": "test_publish_notebook_artifacts_requires_initialized_run",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        25,
+        28
+      ],
+      "summary": "Kiểm tra publish bị từ chối khi output run chưa có provenance.json.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_publish_notebook_artifacts_copies_visuals_and_log",
+      "type": "function",
+      "name": "test_publish_notebook_artifacts_copies_visuals_and_log",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        31,
+        49
+      ],
+      "summary": "Kiểm tra visual, console log và notebook metadata được publish đúng vào run đã khởi tạo.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_notebook_progress_recognizes_all_training_phase_labels",
+      "type": "function",
+      "name": "test_notebook_progress_recognizes_all_training_phase_labels",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        60,
+        61
+      ],
+      "summary": "Kiểm tra progress parser nhận đủ nhãn Stage1-base, Stage1-geometry và Stage2.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+      "type": "function",
+      "name": "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        64,
+        74
+      ],
+      "summary": "Kiểm tra HTML renderer giữ phase Stage 1 trong cùng một progress display.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_training_notebooks_forward_resolved_runtime_controls",
+      "type": "function",
+      "name": "test_training_notebooks_forward_resolved_runtime_controls",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        84,
+        105
+      ],
+      "summary": "Kiểm tra notebook FER2013/RAF-DB chuyển toàn bộ runtime controls đã resolve xuống lệnh train.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+      "type": "function",
+      "name": "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        107,
+        120
+      ],
+      "summary": "Kiểm tra validator chấp nhận manifest đồng vị trí có artifact path tương đối hợp lệ.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_validate_landmark_manifest_layout_rejects_missing_artifact",
+      "type": "function",
+      "name": "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        123,
+        133
+      ],
+      "summary": "Kiểm tra validator báo lỗi khi landmark manifest trỏ đến artifact bị thiếu.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+      "type": "function",
+      "name": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        136,
+        157
+      ],
+      "summary": "Kiểm tra notebook build/train RAF-DB dùng chung đường dẫn anatomy manifest và artifact rõ ràng.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_anatomy_is_required_by_default_and_quick_presets",
+      "type": "function",
+      "name": "test_anatomy_is_required_by_default_and_quick_presets",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        160,
+        179
+      ],
+      "summary": "Khóa invariant rằng anatomy, hybrid routing, geometry và anatomy-aware uncertainty được bật trong default/quick presets.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+      "type": "function",
+      "name": "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        182,
+        202
+      ],
+      "summary": "Kiểm tra CLI/notebook overrides có độ ưu tiên cao nhất và nguồn cấu hình được ghi đúng.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_stage1_both_rejects_a_missing_phase",
+      "type": "function",
+      "name": "test_stage1_both_rejects_a_missing_phase",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        205,
+        216
+      ],
+      "summary": "Kiểm tra Stage 1 mode `both` từ chối cấu hình thiếu base hoặc geometry epochs.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+      "type": "function",
+      "name": "test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        219,
+        232
+      ],
+      "summary": "Kiểm tra geometry phase từ chối anatomy prompt conditioner không hoạt động.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_rafdb_notebook_exposes_gpu_safety_controls",
+      "type": "function",
+      "name": "test_rafdb_notebook_exposes_gpu_safety_controls",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        235,
+        260
+      ],
+      "summary": "Kiểm tra notebook RAF-DB công khai batch size, gradient accumulation, AMP, clipping và corruption controls an toàn GPU.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_notebook_helpers.py:test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+      "type": "function",
+      "name": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+      "filePath": "tests/test_notebook_helpers.py",
+      "lineRange": [
+        263,
+        286
+      ],
+      "summary": "Kiểm tra FER2013 notebook/presets bật Stage 1b geometry prompt với phân bổ epoch đúng.",
+      "tags": [
+        "test",
+        "regression",
+        "notebook",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/notebook_landmarks.py",
+      "type": "file",
+      "name": "notebook_landmarks.py",
+      "filePath": "utils/notebook_landmarks.py",
+      "summary": "Quản lý download-once và cache landmark artifacts cho notebook bằng SHA-256, schema version và chữ ký tham số tiền xử lý. Mô-đun xác minh manifest có tính di động, gọi builder một cách tái lập và ghi metadata/log cache.",
+      "tags": [
+        "artifact-cache",
+        "preprocessing",
+        "anatomy",
+        "reproducibility"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cache key kết hợp schema version, SHA-256 input/model và toàn bộ tham số jitter để phát hiện thay đổi có ảnh hưởng kết quả."
+    },
+    {
+      "id": "function:utils/notebook_landmarks.py:_sha256",
+      "type": "function",
+      "name": "_sha256",
+      "filePath": "utils/notebook_landmarks.py",
+      "lineRange": [
+        24,
+        29
+      ],
+      "summary": "Tính SHA-256 theo chunk để nhận diện nội dung artifact lớn.",
+      "tags": [
+        "function",
+        "artifact-cache",
+        "anatomy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_landmarks.py:download_once",
+      "type": "function",
+      "name": "download_once",
+      "filePath": "utils/notebook_landmarks.py",
+      "lineRange": [
+        32,
+        53
+      ],
+      "summary": "Tải model vào file tạm và atomically replace đích, bỏ qua nếu cache hợp lệ đã tồn tại.",
+      "tags": [
+        "function",
+        "artifact-cache",
+        "anatomy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_landmarks.py:_cache_metadata_path",
+      "type": "function",
+      "name": "_cache_metadata_path",
+      "filePath": "utils/notebook_landmarks.py",
+      "lineRange": [
+        56,
+        57
+      ],
+      "summary": "Suy ra đường dẫn metadata cache từ landmark manifest đầu ra.",
+      "tags": [
+        "function",
+        "artifact-cache",
+        "anatomy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_landmarks.py:_read_json",
+      "type": "function",
+      "name": "_read_json",
+      "filePath": "utils/notebook_landmarks.py",
+      "lineRange": [
+        60,
+        65
+      ],
+      "summary": "Đọc JSON an toàn và trả object rỗng khi file lỗi hoặc payload không hợp lệ.",
+      "tags": [
+        "function",
+        "artifact-cache",
+        "anatomy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_landmarks.py:_nonempty_line_count",
+      "type": "function",
+      "name": "_nonempty_line_count",
+      "filePath": "utils/notebook_landmarks.py",
+      "lineRange": [
+        68,
+        70
+      ],
+      "summary": "Đếm số record không rỗng trong manifest dạng JSONL.",
+      "tags": [
+        "function",
+        "artifact-cache",
+        "anatomy"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_landmarks.py:validate_landmark_manifest_layout",
+      "type": "function",
+      "name": "validate_landmark_manifest_layout",
+      "filePath": "utils/notebook_landmarks.py",
+      "lineRange": [
+        73,
+        153
+      ],
+      "summary": "Xác minh manifest đồng vị trí với dataset và mọi landmark_path tương đối, nằm trong data_dir, có artifact thật.",
+      "tags": [
+        "function",
+        "artifact-cache",
+        "anatomy"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils/notebook_landmarks.py:prepare_cached_landmarks",
+      "type": "function",
+      "name": "prepare_cached_landmarks",
+      "filePath": "utils/notebook_landmarks.py",
+      "lineRange": [
+        156,
+        298
+      ],
+      "summary": "So khớp cache signature; nếu miss thì gọi builder landmark, kiểm tra output và ghi metadata tái lập.",
+      "tags": [
+        "function",
+        "artifact-cache",
+        "anatomy"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:utils/notebook_progress.py",
+      "type": "file",
+      "name": "notebook_progress.py",
+      "filePath": "utils/notebook_progress.py",
+      "summary": "Chuyển output subprocess của các phase Stage1-base, Stage1-geometry và Stage2 thành progress bar HTML an toàn trong notebook, đồng thời stream log văn bản. Bộ đệm xử lý cả carriage-return của tqdm lẫn newline thông thường.",
+      "tags": [
+        "notebook",
+        "progress-streaming",
+        "subprocess",
+        "logging"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Đọc stdout từng ký tự để bảo toàn ngữ nghĩa carriage-return của tqdm trong môi trường Jupyter."
+    },
+    {
+      "id": "function:utils/notebook_progress.py:_is_progress_update",
+      "type": "function",
+      "name": "_is_progress_update",
+      "filePath": "utils/notebook_progress.py",
+      "lineRange": [
+        21,
+        22
+      ],
+      "summary": "Nhận diện dòng tqdm thuộc Stage1-base, Stage1-geometry hoặc Stage2.",
+      "tags": [
+        "function",
+        "progress-streaming",
+        "notebook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_progress.py:_progress_html",
+      "type": "function",
+      "name": "_progress_html",
+      "filePath": "utils/notebook_progress.py",
+      "lineRange": [
+        25,
+        42
+      ],
+      "summary": "Render một dòng tiến độ thành HTML progress bar đã escape nội dung.",
+      "tags": [
+        "function",
+        "progress-streaming",
+        "notebook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_progress.py:stream_process_output",
+      "type": "function",
+      "name": "stream_process_output",
+      "filePath": "utils/notebook_progress.py",
+      "lineRange": [
+        45,
+        79
+      ],
+      "summary": "Stream stdout theo ký tự, cập nhật progress display tại chỗ và đồng thời ghi log đầy đủ.",
+      "tags": [
+        "function",
+        "progress-streaming",
+        "notebook"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/notebook_run.py",
+      "type": "file",
+      "name": "notebook_run.py",
+      "filePath": "utils/notebook_run.py",
+      "summary": "Quản lý vòng đời artifact của notebook bằng run ID có timezone, staging directory riêng và chỉ publish sau khi provenance đã được khởi tạo. Visual, console log và metadata được gom vào đúng immutable run directory.",
+      "tags": [
+        "notebook",
+        "artifact-management",
+        "provenance",
+        "reproducibility"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cổng `provenance.json` ngăn notebook ghi artifact vào output chưa được entry point khởi tạo."
+    },
+    {
+      "id": "function:utils/notebook_run.py:timestamped_run_id",
+      "type": "function",
+      "name": "timestamped_run_id",
+      "filePath": "utils/notebook_run.py",
+      "lineRange": [
+        18,
+        33
+      ],
+      "summary": "Tạo run ID an toàn cho filesystem từ prefix, local timezone, microsecond và seed tùy chọn.",
+      "tags": [
+        "function",
+        "artifact-management",
+        "provenance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_run.py:prepare_notebook_staging",
+      "type": "function",
+      "name": "prepare_notebook_staging",
+      "filePath": "utils/notebook_run.py",
+      "lineRange": [
+        36,
+        44
+      ],
+      "summary": "Tạo staging directory theo run dưới outputs/.notebook_staging mà chưa chiếm output chính thức.",
+      "tags": [
+        "function",
+        "artifact-management",
+        "provenance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_run.py:publish_notebook_artifacts",
+      "type": "function",
+      "name": "publish_notebook_artifacts",
+      "filePath": "utils/notebook_run.py",
+      "lineRange": [
+        47,
+        87
+      ],
+      "summary": "Chỉ sau khi có provenance, sao chép visual và ghi console/metadata vào immutable run directory.",
+      "tags": [
+        "function",
+        "artifact-management",
+        "provenance"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_timestamped_run_id_is_local_time_safe_and_precise",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_timestamped_run_id_is_local_time_safe_and_precise",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_publish_notebook_artifacts_requires_initialized_run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_publish_notebook_artifacts_requires_initialized_run",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_publish_notebook_artifacts_copies_visuals_and_log",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_publish_notebook_artifacts_copies_visuals_and_log",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_notebook_progress_recognizes_all_training_phase_labels",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_notebook_progress_recognizes_all_training_phase_labels",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_training_notebooks_forward_resolved_runtime_controls",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_training_notebooks_forward_resolved_runtime_controls",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_validate_landmark_manifest_layout_rejects_missing_artifact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_validate_landmark_manifest_layout_rejects_missing_artifact",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_anatomy_is_required_by_default_and_quick_presets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_anatomy_is_required_by_default_and_quick_presets",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_stage1_both_rejects_a_missing_phase",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_stage1_both_rejects_a_missing_phase",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_rafdb_notebook_exposes_gpu_safety_controls",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_rafdb_notebook_exposes_gpu_safety_controls",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "function:tests/test_notebook_helpers.py:test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:config/emotion_defaults.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:utils/notebook_landmarks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:utils/notebook_progress.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:utils/notebook_run.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:_sha256",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:_sha256",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:download_once",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:download_once",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:_cache_metadata_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:_cache_metadata_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:_read_json",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:_read_json",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:_nonempty_line_count",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:_nonempty_line_count",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:validate_landmark_manifest_layout",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:validate_landmark_manifest_layout",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:prepare_cached_landmarks",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "function:utils/notebook_landmarks.py:prepare_cached_landmarks",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/notebook_progress.py",
+      "target": "function:utils/notebook_progress.py:_is_progress_update",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_progress.py",
+      "target": "function:utils/notebook_progress.py:_is_progress_update",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_progress.py",
+      "target": "function:utils/notebook_progress.py:_progress_html",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_progress.py",
+      "target": "function:utils/notebook_progress.py:_progress_html",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_progress.py",
+      "target": "function:utils/notebook_progress.py:stream_process_output",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_progress.py",
+      "target": "function:utils/notebook_progress.py:stream_process_output",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_run.py",
+      "target": "function:utils/notebook_run.py:timestamped_run_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_run.py",
+      "target": "function:utils/notebook_run.py:timestamped_run_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_run.py",
+      "target": "function:utils/notebook_run.py:prepare_notebook_staging",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_run.py",
+      "target": "function:utils/notebook_run.py:prepare_notebook_staging",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_run.py",
+      "target": "function:utils/notebook_run.py:publish_notebook_artifacts",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_run.py",
+      "target": "function:utils/notebook_run.py:publish_notebook_artifacts",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:utils/notebook_landmarks.py:prepare_cached_landmarks",
+      "target": "function:utils/notebook_landmarks.py:_sha256",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:utils/notebook_landmarks.py:prepare_cached_landmarks",
+      "target": "function:utils/notebook_landmarks.py:_cache_metadata_path",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:utils/notebook_landmarks.py:prepare_cached_landmarks",
+      "target": "function:utils/notebook_landmarks.py:_read_json",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:utils/notebook_landmarks.py:prepare_cached_landmarks",
+      "target": "function:utils/notebook_landmarks.py:_nonempty_line_count",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:utils/notebook_progress.py:stream_process_output",
+      "target": "function:utils/notebook_progress.py:_is_progress_update",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:utils/notebook_progress.py:stream_process_output",
+      "target": "function:utils/notebook_progress.py:_progress_html",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_progress.py",
+      "target": "file:tests/test_notebook_helpers.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:utils/notebook_run.py",
+      "target": "file:tests/test_notebook_helpers.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "file:tests/test_notebook_helpers.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:config/emotion_defaults.py",
+      "target": "file:tests/test_notebook_helpers.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

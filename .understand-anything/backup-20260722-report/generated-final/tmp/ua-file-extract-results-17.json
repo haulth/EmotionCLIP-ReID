@@ -1,0 +1,2699 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "docs/report/fig/v1/emotionclip_reid_publication_pipeline.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 192,
+      "nonEmptyLines": 192,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/fig/v1/emotionclip_reid_two_stage_structure.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 180,
+      "nonEmptyLines": 180,
+      "metrics": {}
+    },
+    {
+      "path": "docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 283,
+      "nonEmptyLines": 259,
+      "functions": [
+        {
+          "name": "box",
+          "startLine": 30,
+          "endLine": 37,
+          "params": [
+            "fill",
+            "stroke",
+            "size",
+            "align",
+            "dashed"
+          ]
+        },
+        {
+          "name": "text_style",
+          "startLine": 40,
+          "endLine": 46,
+          "params": [
+            "size",
+            "color",
+            "bold",
+            "align"
+          ]
+        },
+        {
+          "name": "edge_style",
+          "startLine": 49,
+          "endLine": 55,
+          "params": [
+            "color",
+            "dashed"
+          ]
+        },
+        {
+          "name": "vertex",
+          "startLine": 86,
+          "endLine": 96,
+          "params": [
+            "cell_id",
+            "value",
+            "x",
+            "y",
+            "w",
+            "h",
+            "style"
+          ]
+        },
+        {
+          "name": "edge",
+          "startLine": 99,
+          "endLine": 113,
+          "params": [
+            "cell_id",
+            "source",
+            "target",
+            "color",
+            "value",
+            "dashed"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "box",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "text_style",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "edge_style",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "vertex",
+          "line": 86,
+          "isDefault": false
+        },
+        {
+          "name": "edge",
+          "line": 99,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "vertex",
+          "callee": "ET.SubElement",
+          "lineNumber": 87
+        },
+        {
+          "caller": "vertex",
+          "callee": "ET.SubElement",
+          "lineNumber": 92
+        },
+        {
+          "caller": "vertex",
+          "callee": "str",
+          "lineNumber": 95
+        },
+        {
+          "caller": "vertex",
+          "callee": "str",
+          "lineNumber": 95
+        },
+        {
+          "caller": "vertex",
+          "callee": "str",
+          "lineNumber": 95
+        },
+        {
+          "caller": "vertex",
+          "callee": "str",
+          "lineNumber": 95
+        },
+        {
+          "caller": "edge",
+          "callee": "ET.SubElement",
+          "lineNumber": 100
+        },
+        {
+          "caller": "edge",
+          "callee": "edge_style",
+          "lineNumber": 106
+        },
+        {
+          "caller": "edge",
+          "callee": "ET.SubElement",
+          "lineNumber": 113
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "docs/research_review/build_research_review.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1082,
+      "nonEmptyLines": 1027,
+      "functions": [
+        {
+          "name": "set_cell_shading",
+          "startLine": 609,
+          "endLine": 613,
+          "params": [
+            "cell",
+            "fill"
+          ]
+        },
+        {
+          "name": "set_cell_text",
+          "startLine": 616,
+          "endLine": 624,
+          "params": [
+            "cell",
+            "text",
+            "bold",
+            "color"
+          ]
+        },
+        {
+          "name": "build_excel",
+          "startLine": 627,
+          "endLine": 790,
+          "params": []
+        },
+        {
+          "name": "add_hyperlink",
+          "startLine": 793,
+          "endLine": 811,
+          "params": [
+            "paragraph",
+            "text",
+            "url"
+          ]
+        },
+        {
+          "name": "add_heading",
+          "startLine": 814,
+          "endLine": 819,
+          "params": [
+            "doc",
+            "text",
+            "level"
+          ]
+        },
+        {
+          "name": "add_body",
+          "startLine": 822,
+          "endLine": 829,
+          "params": [
+            "doc",
+            "text"
+          ]
+        },
+        {
+          "name": "build_docx",
+          "startLine": 832,
+          "endLine": 988,
+          "params": []
+        },
+        {
+          "name": "mx_cell",
+          "startLine": 991,
+          "endLine": 993,
+          "params": [
+            "id_",
+            "value",
+            "x",
+            "y",
+            "w",
+            "h",
+            "fill",
+            "stroke",
+            "font"
+          ]
+        },
+        {
+          "name": "mx_edge",
+          "startLine": 996,
+          "endLine": 998,
+          "params": [
+            "id_",
+            "source",
+            "target",
+            "label"
+          ]
+        },
+        {
+          "name": "build_drawio",
+          "startLine": 1001,
+          "endLine": 1035,
+          "params": []
+        },
+        {
+          "name": "verify_docx_render",
+          "startLine": 1038,
+          "endLine": 1061,
+          "params": []
+        },
+        {
+          "name": "main",
+          "startLine": 1064,
+          "endLine": 1078,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "set_cell_shading",
+          "line": 609,
+          "isDefault": false
+        },
+        {
+          "name": "set_cell_text",
+          "line": 616,
+          "isDefault": false
+        },
+        {
+          "name": "build_excel",
+          "line": 627,
+          "isDefault": false
+        },
+        {
+          "name": "add_hyperlink",
+          "line": 793,
+          "isDefault": false
+        },
+        {
+          "name": "add_heading",
+          "line": 814,
+          "isDefault": false
+        },
+        {
+          "name": "add_body",
+          "line": 822,
+          "isDefault": false
+        },
+        {
+          "name": "build_docx",
+          "line": 832,
+          "isDefault": false
+        },
+        {
+          "name": "mx_cell",
+          "line": 991,
+          "isDefault": false
+        },
+        {
+          "name": "mx_edge",
+          "line": 996,
+          "isDefault": false
+        },
+        {
+          "name": "build_drawio",
+          "line": 1001,
+          "isDefault": false
+        },
+        {
+          "name": "verify_docx_render",
+          "line": 1038,
+          "isDefault": false
+        },
+        {
+          "name": "main",
+          "line": 1064,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "set_cell_shading",
+          "callee": "cell._tc.get_or_add_tcPr",
+          "lineNumber": 610
+        },
+        {
+          "caller": "set_cell_shading",
+          "callee": "OxmlElement",
+          "lineNumber": 611
+        },
+        {
+          "caller": "set_cell_shading",
+          "callee": "shd.set",
+          "lineNumber": 612
+        },
+        {
+          "caller": "set_cell_shading",
+          "callee": "qn",
+          "lineNumber": 612
+        },
+        {
+          "caller": "set_cell_shading",
+          "callee": "tc_pr.append",
+          "lineNumber": 613
+        },
+        {
+          "caller": "set_cell_text",
+          "callee": "p.add_run",
+          "lineNumber": 619
+        },
+        {
+          "caller": "set_cell_text",
+          "callee": "str",
+          "lineNumber": 619
+        },
+        {
+          "caller": "set_cell_text",
+          "callee": "Pt",
+          "lineNumber": 621
+        },
+        {
+          "caller": "set_cell_text",
+          "callee": "RGBColor.from_string",
+          "lineNumber": 623
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Workbook",
+          "lineNumber": 628
+        },
+        {
+          "caller": "build_excel",
+          "callee": "ws.append",
+          "lineNumber": 648
+        },
+        {
+          "caller": "build_excel",
+          "callee": "ws.append",
+          "lineNumber": 666
+        },
+        {
+          "caller": "build_excel",
+          "callee": "ws.cell",
+          "lineNumber": 667
+        },
+        {
+          "caller": "build_excel",
+          "callee": "ws.cell",
+          "lineNumber": 668
+        },
+        {
+          "caller": "build_excel",
+          "callee": "PatternFill",
+          "lineNumber": 670
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Side",
+          "lineNumber": 678
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Font",
+          "lineNumber": 681
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 682
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Border",
+          "lineNumber": 683
+        },
+        {
+          "caller": "build_excel",
+          "callee": "range",
+          "lineNumber": 684
+        },
+        {
+          "caller": "build_excel",
+          "callee": "PatternFill",
+          "lineNumber": 686
+        },
+        {
+          "caller": "build_excel",
+          "callee": "range",
+          "lineNumber": 687
+        },
+        {
+          "caller": "build_excel",
+          "callee": "len",
+          "lineNumber": 687
+        },
+        {
+          "caller": "build_excel",
+          "callee": "ws.cell",
+          "lineNumber": 688
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 690
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Border",
+          "lineNumber": 691
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Font",
+          "lineNumber": 692
+        },
+        {
+          "caller": "build_excel",
+          "callee": "ws.cell",
+          "lineNumber": 693
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 693
+        },
+        {
+          "caller": "build_excel",
+          "callee": "ws.cell",
+          "lineNumber": 694
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 694
+        },
+        {
+          "caller": "build_excel",
+          "callee": "enumerate",
+          "lineNumber": 697
+        },
+        {
+          "caller": "build_excel",
+          "callee": "get_column_letter",
+          "lineNumber": 698
+        },
+        {
+          "caller": "build_excel",
+          "callee": "range",
+          "lineNumber": 700
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Table",
+          "lineNumber": 704
+        },
+        {
+          "caller": "build_excel",
+          "callee": "TableStyleInfo",
+          "lineNumber": 705
+        },
+        {
+          "caller": "build_excel",
+          "callee": "ws.add_table",
+          "lineNumber": 706
+        },
+        {
+          "caller": "build_excel",
+          "callee": "wb.create_sheet",
+          "lineNumber": 708
+        },
+        {
+          "caller": "build_excel",
+          "callee": "sm.append",
+          "lineNumber": 709
+        },
+        {
+          "caller": "build_excel",
+          "callee": "sm.append",
+          "lineNumber": 711
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Font",
+          "lineNumber": 714
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 715
+        },
+        {
+          "caller": "build_excel",
+          "callee": "sm.iter_rows",
+          "lineNumber": 716
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 718
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Border",
+          "lineNumber": 719
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Font",
+          "lineNumber": 720
+        },
+        {
+          "caller": "build_excel",
+          "callee": "enumerate",
+          "lineNumber": 721
+        },
+        {
+          "caller": "build_excel",
+          "callee": "get_column_letter",
+          "lineNumber": 722
+        },
+        {
+          "caller": "build_excel",
+          "callee": "range",
+          "lineNumber": 723
+        },
+        {
+          "caller": "build_excel",
+          "callee": "wb.create_sheet",
+          "lineNumber": 727
+        },
+        {
+          "caller": "build_excel",
+          "callee": "thesis.append",
+          "lineNumber": 728
+        },
+        {
+          "caller": "build_excel",
+          "callee": "thesis.append",
+          "lineNumber": 730
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Font",
+          "lineNumber": 733
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 734
+        },
+        {
+          "caller": "build_excel",
+          "callee": "thesis.iter_rows",
+          "lineNumber": 735
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 737
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Border",
+          "lineNumber": 738
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Font",
+          "lineNumber": 739
+        },
+        {
+          "caller": "build_excel",
+          "callee": "range",
+          "lineNumber": 742
+        },
+        {
+          "caller": "build_excel",
+          "callee": "wb.create_sheet",
+          "lineNumber": 745
+        },
+        {
+          "caller": "build_excel",
+          "callee": "critique.append",
+          "lineNumber": 746
+        },
+        {
+          "caller": "build_excel",
+          "callee": "critique.append",
+          "lineNumber": 748
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Font",
+          "lineNumber": 751
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 752
+        },
+        {
+          "caller": "build_excel",
+          "callee": "critique.iter_rows",
+          "lineNumber": 753
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 755
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Border",
+          "lineNumber": 756
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Font",
+          "lineNumber": 757
+        },
+        {
+          "caller": "build_excel",
+          "callee": "enumerate",
+          "lineNumber": 758
+        },
+        {
+          "caller": "build_excel",
+          "callee": "get_column_letter",
+          "lineNumber": 759
+        },
+        {
+          "caller": "build_excel",
+          "callee": "range",
+          "lineNumber": 760
+        },
+        {
+          "caller": "build_excel",
+          "callee": "wb.create_sheet",
+          "lineNumber": 764
+        },
+        {
+          "caller": "build_excel",
+          "callee": "gap.append",
+          "lineNumber": 773
+        },
+        {
+          "caller": "build_excel",
+          "callee": "gap.append",
+          "lineNumber": 775
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Font",
+          "lineNumber": 778
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 779
+        },
+        {
+          "caller": "build_excel",
+          "callee": "gap.iter_rows",
+          "lineNumber": 780
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Alignment",
+          "lineNumber": 782
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Border",
+          "lineNumber": 783
+        },
+        {
+          "caller": "build_excel",
+          "callee": "Font",
+          "lineNumber": 784
+        },
+        {
+          "caller": "build_excel",
+          "callee": "range",
+          "lineNumber": 787
+        },
+        {
+          "caller": "build_excel",
+          "callee": "wb.save",
+          "lineNumber": 790
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "part.relate_to",
+          "lineNumber": 795
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "OxmlElement",
+          "lineNumber": 796
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "hyperlink.set",
+          "lineNumber": 797
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "qn",
+          "lineNumber": 797
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "OxmlElement",
+          "lineNumber": 798
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "OxmlElement",
+          "lineNumber": 799
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "OxmlElement",
+          "lineNumber": 800
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "color.set",
+          "lineNumber": 801
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "qn",
+          "lineNumber": 801
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "r_pr.append",
+          "lineNumber": 802
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "OxmlElement",
+          "lineNumber": 803
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "underline.set",
+          "lineNumber": 804
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "qn",
+          "lineNumber": 804
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "r_pr.append",
+          "lineNumber": 805
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "new_run.append",
+          "lineNumber": 806
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "OxmlElement",
+          "lineNumber": 807
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "new_run.append",
+          "lineNumber": 809
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "hyperlink.append",
+          "lineNumber": 810
+        },
+        {
+          "caller": "add_hyperlink",
+          "callee": "paragraph._p.append",
+          "lineNumber": 811
+        },
+        {
+          "caller": "add_heading",
+          "callee": "doc.add_heading",
+          "lineNumber": 815
+        },
+        {
+          "caller": "add_heading",
+          "callee": "RGBColor",
+          "lineNumber": 818
+        },
+        {
+          "caller": "add_body",
+          "callee": "doc.add_paragraph",
+          "lineNumber": 823
+        },
+        {
+          "caller": "add_body",
+          "callee": "Pt",
+          "lineNumber": 824
+        },
+        {
+          "caller": "add_body",
+          "callee": "Pt",
+          "lineNumber": 828
+        },
+        {
+          "caller": "build_docx",
+          "callee": "Document",
+          "lineNumber": 833
+        },
+        {
+          "caller": "build_docx",
+          "callee": "Cm",
+          "lineNumber": 835
+        },
+        {
+          "caller": "build_docx",
+          "callee": "Cm",
+          "lineNumber": 836
+        },
+        {
+          "caller": "build_docx",
+          "callee": "Cm",
+          "lineNumber": 837
+        },
+        {
+          "caller": "build_docx",
+          "callee": "Cm",
+          "lineNumber": 838
+        },
+        {
+          "caller": "build_docx",
+          "callee": "doc.add_paragraph",
+          "lineNumber": 840
+        },
+        {
+          "caller": "build_docx",
+          "callee": "title.add_run",
+          "lineNumber": 842
+        },
+        {
+          "caller": "build_docx",
+          "callee": "Pt",
+          "lineNumber": 844
+        },
+        {
+          "caller": "build_docx",
+          "callee": "RGBColor",
+          "lineNumber": 846
+        },
+        {
+          "caller": "build_docx",
+          "callee": "doc.add_paragraph",
+          "lineNumber": 847
+        },
+        {
+          "caller": "build_docx",
+          "callee": "sub.add_run",
+          "lineNumber": 849
+        },
+        {
+          "caller": "build_docx",
+          "callee": "Pt",
+          "lineNumber": 851
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_heading",
+          "lineNumber": 854
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_body",
+          "lineNumber": 855
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_body",
+          "lineNumber": 862
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_body",
+          "lineNumber": 868
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_body",
+          "lineNumber": 872
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_heading",
+          "lineNumber": 916
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_body",
+          "lineNumber": 917
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_heading",
+          "lineNumber": 919
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_body",
+          "lineNumber": 920
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_body",
+          "lineNumber": 925
+        },
+        {
+          "caller": "build_docx",
+          "callee": "doc.add_page_break",
+          "lineNumber": 931
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_heading",
+          "lineNumber": 932
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_body",
+          "lineNumber": 933
+        },
+        {
+          "caller": "build_docx",
+          "callee": "doc.add_table",
+          "lineNumber": 937
+        },
+        {
+          "caller": "build_docx",
+          "callee": "enumerate",
+          "lineNumber": 941
+        },
+        {
+          "caller": "build_docx",
+          "callee": "set_cell_text",
+          "lineNumber": 942
+        },
+        {
+          "caller": "build_docx",
+          "callee": "set_cell_shading",
+          "lineNumber": 943
+        },
+        {
+          "caller": "build_docx",
+          "callee": "critique_table.add_row",
+          "lineNumber": 945
+        },
+        {
+          "caller": "build_docx",
+          "callee": "enumerate",
+          "lineNumber": 946
+        },
+        {
+          "caller": "build_docx",
+          "callee": "set_cell_text",
+          "lineNumber": 947
+        },
+        {
+          "caller": "build_docx",
+          "callee": "set_cell_shading",
+          "lineNumber": 949
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_heading",
+          "lineNumber": 951
+        },
+        {
+          "caller": "build_docx",
+          "callee": "doc.add_table",
+          "lineNumber": 952
+        },
+        {
+          "caller": "build_docx",
+          "callee": "enumerate",
+          "lineNumber": 956
+        },
+        {
+          "caller": "build_docx",
+          "callee": "set_cell_text",
+          "lineNumber": 957
+        },
+        {
+          "caller": "build_docx",
+          "callee": "set_cell_shading",
+          "lineNumber": 958
+        },
+        {
+          "caller": "build_docx",
+          "callee": "table.add_row",
+          "lineNumber": 960
+        },
+        {
+          "caller": "build_docx",
+          "callee": "enumerate",
+          "lineNumber": 961
+        },
+        {
+          "caller": "build_docx",
+          "callee": "set_cell_text",
+          "lineNumber": 962
+        },
+        {
+          "caller": "build_docx",
+          "callee": "set_cell_shading",
+          "lineNumber": 964
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_heading",
+          "lineNumber": 966
+        },
+        {
+          "caller": "build_docx",
+          "callee": "doc.add_paragraph",
+          "lineNumber": 975
+        },
+        {
+          "caller": "build_docx",
+          "callee": "p.add_run",
+          "lineNumber": 977
+        },
+        {
+          "caller": "build_docx",
+          "callee": "Pt",
+          "lineNumber": 977
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_heading",
+          "lineNumber": 979
+        },
+        {
+          "caller": "build_docx",
+          "callee": "doc.add_paragraph",
+          "lineNumber": 981
+        },
+        {
+          "caller": "build_docx",
+          "callee": "Pt",
+          "lineNumber": 982
+        },
+        {
+          "caller": "build_docx",
+          "callee": "para.add_run",
+          "lineNumber": 983
+        },
+        {
+          "caller": "build_docx",
+          "callee": "Pt",
+          "lineNumber": 984
+        },
+        {
+          "caller": "build_docx",
+          "callee": "add_hyperlink",
+          "lineNumber": 986
+        },
+        {
+          "caller": "build_docx",
+          "callee": "doc.save",
+          "lineNumber": 988
+        },
+        {
+          "caller": "mx_cell",
+          "callee": "html.escape(value).replace",
+          "lineNumber": 992
+        },
+        {
+          "caller": "mx_cell",
+          "callee": "html.escape",
+          "lineNumber": 992
+        },
+        {
+          "caller": "mx_edge",
+          "callee": "html.escape",
+          "lineNumber": 997
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_cell",
+          "lineNumber": 1004
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_cell",
+          "lineNumber": 1005
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_cell",
+          "lineNumber": 1006
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_cell",
+          "lineNumber": 1007
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_cell",
+          "lineNumber": 1008
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_cell",
+          "lineNumber": 1009
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_cell",
+          "lineNumber": 1010
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_cell",
+          "lineNumber": 1011
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_cell",
+          "lineNumber": 1012
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_edge",
+          "lineNumber": 1015
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_edge",
+          "lineNumber": 1016
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_edge",
+          "lineNumber": 1017
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_edge",
+          "lineNumber": 1018
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_edge",
+          "lineNumber": 1019
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_edge",
+          "lineNumber": 1020
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_edge",
+          "lineNumber": 1021
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_edge",
+          "lineNumber": 1022
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_edge",
+          "lineNumber": 1023
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "mx_edge",
+          "lineNumber": 1024
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "''.join",
+          "lineNumber": 1030
+        },
+        {
+          "caller": "build_drawio",
+          "callee": "DRAWIO.write_text",
+          "lineNumber": 1035
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "Path",
+          "lineNumber": 1039
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "soffice.exists",
+          "lineNumber": 1040
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "PDF_DIR.mkdir",
+          "lineNumber": 1042
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "PNG_DIR.mkdir",
+          "lineNumber": 1043
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "subprocess.run",
+          "lineNumber": 1044
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "str",
+          "lineNumber": 1045
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "str",
+          "lineNumber": 1045
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "str",
+          "lineNumber": 1045
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "pdf.exists",
+          "lineNumber": 1052
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "subprocess.run",
+          "lineNumber": 1054
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "str",
+          "lineNumber": 1055
+        },
+        {
+          "caller": "verify_docx_render",
+          "callee": "str",
+          "lineNumber": 1055
+        },
+        {
+          "caller": "main",
+          "callee": "build_excel",
+          "lineNumber": 1065
+        },
+        {
+          "caller": "main",
+          "callee": "build_docx",
+          "lineNumber": 1066
+        },
+        {
+          "caller": "main",
+          "callee": "build_drawio",
+          "lineNumber": 1067
+        },
+        {
+          "caller": "main",
+          "callee": "verify_docx_render",
+          "lineNumber": 1068
+        },
+        {
+          "caller": "main",
+          "callee": "str",
+          "lineNumber": 1070
+        },
+        {
+          "caller": "main",
+          "callee": "str",
+          "lineNumber": 1071
+        },
+        {
+          "caller": "main",
+          "callee": "str",
+          "lineNumber": 1072
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 1075
+        },
+        {
+          "caller": "main",
+          "callee": "(OUT / \"build_summary.json\").write_text",
+          "lineNumber": 1077
+        },
+        {
+          "caller": "main",
+          "callee": "json.dumps",
+          "lineNumber": 1077
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 1078
+        },
+        {
+          "caller": "main",
+          "callee": "json.dumps",
+          "lineNumber": 1078
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 12,
+        "functionCount": 12,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "docs/research_review/build_summary.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "sections": [
+        {
+          "heading": "xlsx",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "docx",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "drawio",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "docx_render_ok",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "docx_render_message",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "paper_count",
+          "level": 1,
+          "line": 7
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "docs/research_review/emotionclip_anatomy_research_gap_map.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 160,
+      "nonEmptyLines": 160,
+      "metrics": {}
+    },
+    {
+      "path": "docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 640,
+      "nonEmptyLines": 480,
+      "sections": [
+        {
+          "heading": "Phân tích codebase, training logs và research gaps của EmotionCLIP-ReID",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "1. Kết luận điều hành",
+          "level": 2,
+          "line": 11
+        },
+        {
+          "heading": "2. Phạm vi và độ tin cậy của audit",
+          "level": 2,
+          "line": 29
+        },
+        {
+          "heading": "3. Bản đồ kiến trúc hiện tại",
+          "level": 2,
+          "line": 54
+        },
+        {
+          "heading": "3.1 Phân tầng module",
+          "level": 3,
+          "line": 94
+        },
+        {
+          "heading": "3.2 Điểm thiết kế tốt",
+          "level": 3,
+          "line": 108
+        },
+        {
+          "heading": "4. Gap matrix theo code",
+          "level": 2,
+          "line": 117
+        },
+        {
+          "heading": "5. Phân tích dữ liệu và protocol",
+          "level": 2,
+          "line": 142
+        },
+        {
+          "heading": "5.1 Split thực tế",
+          "level": 3,
+          "line": 144
+        },
+        {
+          "heading": "5.2 Imbalance",
+          "level": 3,
+          "line": 182
+        },
+        {
+          "heading": "5.3 Leakage chưa được phát hiện",
+          "level": 3,
+          "line": 193
+        },
+        {
+          "heading": "6. Inventory và kết quả training",
+          "level": 2,
+          "line": 201
+        },
+        {
+          "heading": "6.1 FER-short",
+          "level": 3,
+          "line": 212
+        },
+        {
+          "heading": "6.2 RAF-short",
+          "level": 3,
+          "line": 229
+        },
+        {
+          "heading": "6.3 RAF-long",
+          "level": 3,
+          "line": 240
+        },
+        {
+          "heading": "6.4 Artifact và logging anomalies",
+          "level": 3,
+          "line": 262
+        },
+        {
+          "heading": "7. Phân tích sâu nhánh uncertainty",
+          "level": 2,
+          "line": 272
+        },
+        {
+          "heading": "7.1 Công thức hiện tại và vấn đề offset",
+          "level": 3,
+          "line": 274
+        },
+        {
+          "heading": "7.2 Diễn giải ECE đúng với log",
+          "level": 3,
+          "line": 301
+        },
+        {
+          "heading": "7.3 Đề xuất uncertainty có thể kiểm chứng",
+          "level": 3,
+          "line": 318
+        },
+        {
+          "heading": "8. Đối chiếu công bố khoa học và novelty",
+          "level": 2,
+          "line": 339
+        },
+        {
+          "heading": "8.1 Bản đồ overlap",
+          "level": 3,
+          "line": 341
+        },
+        {
+          "heading": "8.2 Kết luận novelty",
+          "level": 3,
+          "line": 360
+        },
+        {
+          "heading": "9. Research question đề xuất",
+          "level": 2,
+          "line": 378
+        },
+        {
+          "heading": "9.1 Hướng lõi khuyến nghị",
+          "level": 3,
+          "line": 380
+        },
+        {
+          "heading": "9.2 Hướng thực dụng, rủi ro thấp hơn",
+          "level": 3,
+          "line": 410
+        },
+        {
+          "heading": "9.3 Góc nhìn mới cần cân nhắc",
+          "level": 3,
+          "line": 420
+        },
+        {
+          "heading": "10. Roadmap ưu tiên",
+          "level": 2,
+          "line": 428
+        },
+        {
+          "heading": "P0 — Chặn rò rỉ và khóa provenance",
+          "level": 3,
+          "line": 430
+        },
+        {
+          "heading": "P1 — Thiết lập baseline ladder và compute budget",
+          "level": 3,
+          "line": 443
+        },
+        {
+          "heading": "P2 — Tối ưu schedule có causal evidence",
+          "level": 3,
+          "line": 463
+        },
+        {
+          "heading": "P3 — Imbalance và class conflict",
+          "level": 3,
+          "line": 475
+        },
+        {
+          "heading": "P4 — Core novelty",
+          "level": 3,
+          "line": 492
+        },
+        {
+          "heading": "P5 — Robustness và deployment",
+          "level": 3,
+          "line": 504
+        },
+        {
+          "heading": "11. Thiết kế thí nghiệm và tiêu chí quyết định",
+          "level": 2,
+          "line": 512
+        },
+        {
+          "heading": "11.1 Endpoints",
+          "level": 3,
+          "line": 514
+        },
+        {
+          "heading": "11.2 Statistics",
+          "level": 3,
+          "line": 526
+        },
+        {
+          "heading": "11.3 Go/no-go đề xuất",
+          "level": 3,
+          "line": 535
+        },
+        {
+          "heading": "12. Kế hoạch chỉnh sửa theo file",
+          "level": 2,
+          "line": 545
+        },
+        {
+          "heading": "13. Test gaps cụ thể",
+          "level": 2,
+          "line": 563
+        },
+        {
+          "heading": "14. Hàng đợi cập nhật emotionclip_reid_papers.xlsx",
+          "level": 2,
+          "line": 580
+        },
+        {
+          "heading": "14.1 Paper nên thêm hoặc xác minh chưa tồn tại",
+          "level": 3,
+          "line": 584
+        },
+        {
+          "heading": "14.2 Correction queue cho row hiện có",
+          "level": 3,
+          "line": 594
+        },
+        {
+          "heading": "15. Publication-readiness checklist",
+          "level": 2,
+          "line": 612
+        },
+        {
+          "heading": "16. Thứ tự hành động khuyến nghị",
+          "level": 2,
+          "line": 630
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 45
+      }
+    },
+    {
+      "path": "docs/research_review/emotionclip_reid_papers.backup_20260620.xlsx",
+      "language": "xlsx",
+      "fileCategory": "code",
+      "totalLines": 95,
+      "nonEmptyLines": 95,
+      "metrics": {}
+    },
+    {
+      "path": "docs/research_review/emotionclip_reid_papers.xlsx",
+      "language": "xlsx",
+      "fileCategory": "code",
+      "totalLines": 199,
+      "nonEmptyLines": 199,
+      "metrics": {}
+    },
+    {
+      "path": "docs/research_review/emotionclip_reid_related_work_gap_map.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 9,
+      "metrics": {}
+    },
+    {
+      "path": "docs/research_review/related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx",
+      "language": "docx",
+      "fileCategory": "code",
+      "totalLines": 142,
+      "nonEmptyLines": 142,
+      "metrics": {}
+    },
+    {
+      "path": "docs/SOTA/disfa_sota_benchmark.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 100,
+      "nonEmptyLines": 75,
+      "sections": [
+        {
+          "heading": "DISFA SOTA Benchmark",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Dataset And Protocol",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "AU Detection SOTA On DISFA",
+          "level": 2,
+          "line": 16
+        },
+        {
+          "heading": "Per-AU Detection Details",
+          "level": 2,
+          "line": 32
+        },
+        {
+          "heading": "AU Intensity Estimation On DISFA",
+          "level": 2,
+          "line": 43
+        },
+        {
+          "heading": "Recommended Report Wording",
+          "level": 2,
+          "line": 50
+        },
+        {
+          "heading": "Notes And Caveats",
+          "level": 2,
+          "line": 60
+        },
+        {
+          "heading": "Sources",
+          "level": 2,
+          "line": 67
+        },
+        {
+          "heading": "**5 dataset tương tự DISFA nhất** để tham chiếu cho AU detection / AU intensity:",
+          "level": 1,
+          "line": 79
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "path": "docs/Tài liệu tham khảo/EmotionCLIP-ReID_Data_Reference.docx",
+      "language": "docx",
+      "fileCategory": "code",
+      "totalLines": 182,
+      "nonEmptyLines": 182,
+      "metrics": {}
+    },
+    {
+      "path": "fig/emotionclip_reid_current_system.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 96,
+      "nonEmptyLines": 96,
+      "metrics": {}
+    },
+    {
+      "path": "fig/emotionclip_reid_publication_pipeline.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 190,
+      "nonEmptyLines": 190,
+      "metrics": {}
+    },
+    {
+      "path": "loss/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "loss/arcface.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 80,
+      "nonEmptyLines": 64,
+      "classes": [
+        {
+          "name": "ArcFace",
+          "startLine": 8,
+          "endLine": 50,
+          "methods": [
+            "__init__",
+            "reset_parameters",
+            "forward"
+          ],
+          "properties": []
+        },
+        {
+          "name": "CircleLoss",
+          "startLine": 52,
+          "endLine": 80,
+          "methods": [
+            "__init__",
+            "reset_parameters",
+            "__call__"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ArcFace",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "CircleLoss",
+          "line": 52,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super(ArcFace, self).__init__",
+          "lineNumber": 10
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 10
+        },
+        {
+          "caller": "__init__",
+          "callee": "math.cos",
+          "lineNumber": 15
+        },
+        {
+          "caller": "__init__",
+          "callee": "math.sin",
+          "lineNumber": 16
+        },
+        {
+          "caller": "__init__",
+          "callee": "math.cos",
+          "lineNumber": 18
+        },
+        {
+          "caller": "__init__",
+          "callee": "math.sin",
+          "lineNumber": 19
+        },
+        {
+          "caller": "__init__",
+          "callee": "Parameter",
+          "lineNumber": 21
+        },
+        {
+          "caller": "__init__",
+          "callee": "torch.Tensor",
+          "lineNumber": 21
+        },
+        {
+          "caller": "__init__",
+          "callee": "Parameter",
+          "lineNumber": 23
+        },
+        {
+          "caller": "__init__",
+          "callee": "torch.Tensor",
+          "lineNumber": 23
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.register_parameter",
+          "lineNumber": 25
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.reset_parameters",
+          "lineNumber": 26
+        },
+        {
+          "caller": "reset_parameters",
+          "callee": "nn.init.kaiming_uniform_",
+          "lineNumber": 29
+        },
+        {
+          "caller": "reset_parameters",
+          "callee": "math.sqrt",
+          "lineNumber": 29
+        },
+        {
+          "caller": "reset_parameters",
+          "callee": "nn.init._calculate_fan_in_and_fan_out",
+          "lineNumber": 31
+        },
+        {
+          "caller": "reset_parameters",
+          "callee": "math.sqrt",
+          "lineNumber": 32
+        },
+        {
+          "caller": "reset_parameters",
+          "callee": "nn.init.uniform_",
+          "lineNumber": 33
+        },
+        {
+          "caller": "forward",
+          "callee": "F.linear",
+          "lineNumber": 36
+        },
+        {
+          "caller": "forward",
+          "callee": "F.normalize",
+          "lineNumber": 36
+        },
+        {
+          "caller": "forward",
+          "callee": "F.normalize",
+          "lineNumber": 36
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.sqrt",
+          "lineNumber": 37
+        },
+        {
+          "caller": "forward",
+          "callee": "(1.0 - torch.pow(cosine, 2)).clamp",
+          "lineNumber": 37
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.pow",
+          "lineNumber": 37
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.where",
+          "lineNumber": 39
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.zeros",
+          "lineNumber": 42
+        },
+        {
+          "caller": "forward",
+          "callee": "cosine.size",
+          "lineNumber": 42
+        },
+        {
+          "caller": "forward",
+          "callee": "one_hot.scatter_",
+          "lineNumber": 43
+        },
+        {
+          "caller": "forward",
+          "callee": "label.view(-1, 1).long",
+          "lineNumber": 43
+        },
+        {
+          "caller": "forward",
+          "callee": "label.view",
+          "lineNumber": 43
+        },
+        {
+          "caller": "__init__",
+          "callee": "super(CircleLoss, self).__init__",
+          "lineNumber": 54
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 54
+        },
+        {
+          "caller": "__init__",
+          "callee": "Parameter",
+          "lineNumber": 55
+        },
+        {
+          "caller": "__init__",
+          "callee": "torch.Tensor",
+          "lineNumber": 55
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.reset_parameters",
+          "lineNumber": 59
+        },
+        {
+          "caller": "reset_parameters",
+          "callee": "nn.init.kaiming_uniform_",
+          "lineNumber": 63
+        },
+        {
+          "caller": "reset_parameters",
+          "callee": "math.sqrt",
+          "lineNumber": 63
+        },
+        {
+          "caller": "__call__",
+          "callee": "F.linear",
+          "lineNumber": 67
+        },
+        {
+          "caller": "__call__",
+          "callee": "F.normalize",
+          "lineNumber": 67
+        },
+        {
+          "caller": "__call__",
+          "callee": "F.normalize",
+          "lineNumber": 67
+        },
+        {
+          "caller": "__call__",
+          "callee": "torch.clamp_min",
+          "lineNumber": 68
+        },
+        {
+          "caller": "__call__",
+          "callee": "sim_mat.detach",
+          "lineNumber": 68
+        },
+        {
+          "caller": "__call__",
+          "callee": "torch.clamp_min",
+          "lineNumber": 69
+        },
+        {
+          "caller": "__call__",
+          "callee": "sim_mat.detach",
+          "lineNumber": 69
+        },
+        {
+          "caller": "__call__",
+          "callee": "F.one_hot",
+          "lineNumber": 76
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "loss/metric_learning.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 189,
+      "nonEmptyLines": 155,
+      "classes": [
+        {
+          "name": "ContrastiveLoss",
+          "startLine": 9,
+          "endLine": 42,
+          "methods": [
+            "__init__",
+            "forward"
+          ],
+          "properties": []
+        },
+        {
+          "name": "CircleLoss",
+          "startLine": 45,
+          "endLine": 73,
+          "methods": [
+            "__init__",
+            "reset_parameters",
+            "__call__"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Arcface",
+          "startLine": 76,
+          "endLine": 121,
+          "methods": [
+            "__init__",
+            "forward"
+          ],
+          "properties": []
+        },
+        {
+          "name": "Cosface",
+          "startLine": 124,
+          "endLine": 163,
+          "methods": [
+            "__init__",
+            "forward",
+            "__repr__"
+          ],
+          "properties": []
+        },
+        {
+          "name": "AMSoftmax",
+          "startLine": 166,
+          "endLine": 189,
+          "methods": [
+            "__init__",
+            "forward"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ContrastiveLoss",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "CircleLoss",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "Arcface",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "Cosface",
+          "line": 124,
+          "isDefault": false
+        },
+        {
+          "name": "AMSoftmax",
+          "line": 166,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super(ContrastiveLoss, self).__init__",
+          "lineNumber": 11
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 11
+        },
+        {
+          "caller": "forward",
+          "callee": "inputs.size",
+          "lineNumber": 15
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.matmul",
+          "lineNumber": 17
+        },
+        {
+          "caller": "forward",
+          "callee": "inputs.t",
+          "lineNumber": 17
+        },
+        {
+          "caller": "forward",
+          "callee": "list",
+          "lineNumber": 19
+        },
+        {
+          "caller": "forward",
+          "callee": "range",
+          "lineNumber": 22
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.masked_select",
+          "lineNumber": 23
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.masked_select",
+          "lineNumber": 26
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.masked_select",
+          "lineNumber": 27
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.sort",
+          "lineNumber": 29
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.sort",
+          "lineNumber": 30
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.masked_select",
+          "lineNumber": 32
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.sum",
+          "lineNumber": 36
+        },
+        {
+          "caller": "forward",
+          "callee": "len",
+          "lineNumber": 37
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.sum",
+          "lineNumber": 38
+        },
+        {
+          "caller": "forward",
+          "callee": "loss.append",
+          "lineNumber": 39
+        },
+        {
+          "caller": "forward",
+          "callee": "sum",
+          "lineNumber": 41
+        },
+        {
+          "caller": "__init__",
+          "callee": "super(CircleLoss, self).__init__",
+          "lineNumber": 47
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 47
+        },
+        {
+          "caller": "__init__",
+          "callee": "Parameter",
+          "lineNumber": 48
+        },
+        {
+          "caller": "__init__",
+          "callee": "torch.Tensor",
+          "lineNumber": 48
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.reset_parameters",
+          "lineNumber": 52
+        },
+        {
+          "caller": "reset_parameters",
+          "callee": "nn.init.kaiming_uniform_",
+          "lineNumber": 56
+        },
+        {
+          "caller": "reset_parameters",
+          "callee": "math.sqrt",
+          "lineNumber": 56
+        },
+        {
+          "caller": "__call__",
+          "callee": "F.linear",
+          "lineNumber": 60
+        },
+        {
+          "caller": "__call__",
+          "callee": "F.normalize",
+          "lineNumber": 60
+        },
+        {
+          "caller": "__call__",
+          "callee": "F.normalize",
+          "lineNumber": 60
+        },
+        {
+          "caller": "__call__",
+          "callee": "torch.clamp_min",
+          "lineNumber": 61
+        },
+        {
+          "caller": "__call__",
+          "callee": "sim_mat.detach",
+          "lineNumber": 61
+        },
+        {
+          "caller": "__call__",
+          "callee": "torch.clamp_min",
+          "lineNumber": 62
+        },
+        {
+          "caller": "__call__",
+          "callee": "sim_mat.detach",
+          "lineNumber": 62
+        },
+        {
+          "caller": "__call__",
+          "callee": "F.one_hot",
+          "lineNumber": 69
+        },
+        {
+          "caller": "__init__",
+          "callee": "super(Arcface, self).__init__",
+          "lineNumber": 86
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 86
+        },
+        {
+          "caller": "__init__",
+          "callee": "Parameter",
+          "lineNumber": 92
+        },
+        {
+          "caller": "__init__",
+          "callee": "torch.FloatTensor",
+          "lineNumber": 92
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.init.xavier_uniform_",
+          "lineNumber": 93
+        },
+        {
+          "caller": "__init__",
+          "callee": "math.cos",
+          "lineNumber": 96
+        },
+        {
+          "caller": "__init__",
+          "callee": "math.sin",
+          "lineNumber": 97
+        },
+        {
+          "caller": "__init__",
+          "callee": "math.cos",
+          "lineNumber": 98
+        },
+        {
+          "caller": "__init__",
+          "callee": "math.sin",
+          "lineNumber": 99
+        },
+        {
+          "caller": "forward",
+          "callee": "F.linear",
+          "lineNumber": 103
+        },
+        {
+          "caller": "forward",
+          "callee": "F.normalize",
+          "lineNumber": 103
+        },
+        {
+          "caller": "forward",
+          "callee": "F.normalize",
+          "lineNumber": 103
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.sqrt",
+          "lineNumber": 104
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.pow",
+          "lineNumber": 104
+        },
+        {
+          "caller": "forward",
+          "callee": "phi.type_as",
+          "lineNumber": 106
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.where",
+          "lineNumber": 108
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.where",
+          "lineNumber": 110
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.zeros",
+          "lineNumber": 113
+        },
+        {
+          "caller": "forward",
+          "callee": "cosine.size",
+          "lineNumber": 113
+        },
+        {
+          "caller": "forward",
+          "callee": "one_hot.scatter_",
+          "lineNumber": 114
+        },
+        {
+          "caller": "forward",
+          "callee": "label.view(-1, 1).long",
+          "lineNumber": 114
+        },
+        {
+          "caller": "forward",
+          "callee": "label.view",
+          "lineNumber": 114
+        },
+        {
+          "caller": "__init__",
+          "callee": "super(Cosface, self).__init__",
+          "lineNumber": 135
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 135
+        },
+        {
+          "caller": "__init__",
+          "callee": "Parameter",
+          "lineNumber": 140
+        },
+        {
+          "caller": "__init__",
+          "callee": "torch.FloatTensor",
+          "lineNumber": 140
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.init.xavier_uniform_",
+          "lineNumber": 141
+        },
+        {
+          "caller": "forward",
+          "callee": "F.linear",
+          "lineNumber": 145
+        },
+        {
+          "caller": "forward",
+          "callee": "F.normalize",
+          "lineNumber": 145
+        },
+        {
+          "caller": "forward",
+          "callee": "F.normalize",
+          "lineNumber": 145
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.zeros",
+          "lineNumber": 148
+        },
+        {
+          "caller": "forward",
+          "callee": "cosine.size",
+          "lineNumber": 148
+        },
+        {
+          "caller": "forward",
+          "callee": "one_hot.scatter_",
+          "lineNumber": 150
+        },
+        {
+          "caller": "forward",
+          "callee": "label.view(-1, 1).long",
+          "lineNumber": 150
+        },
+        {
+          "caller": "forward",
+          "callee": "label.view",
+          "lineNumber": 150
+        },
+        {
+          "caller": "__repr__",
+          "callee": "str",
+          "lineNumber": 160
+        },
+        {
+          "caller": "__repr__",
+          "callee": "str",
+          "lineNumber": 161
+        },
+        {
+          "caller": "__repr__",
+          "callee": "str",
+          "lineNumber": 162
+        },
+        {
+          "caller": "__repr__",
+          "callee": "str",
+          "lineNumber": 163
+        },
+        {
+          "caller": "__init__",
+          "callee": "super(AMSoftmax, self).__init__",
+          "lineNumber": 168
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 168
+        },
+        {
+          "caller": "__init__",
+          "callee": "torch.nn.Parameter",
+          "lineNumber": 172
+        },
+        {
+          "caller": "__init__",
+          "callee": "torch.randn",
+          "lineNumber": 172
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.CrossEntropyLoss",
+          "lineNumber": 173
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.init.xavier_normal_",
+          "lineNumber": 174
+        },
+        {
+          "caller": "forward",
+          "callee": "x.size",
+          "lineNumber": 177
+        },
+        {
+          "caller": "forward",
+          "callee": "lb.size",
+          "lineNumber": 177
+        },
+        {
+          "caller": "forward",
+          "callee": "x.size",
+          "lineNumber": 178
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.norm(x, p=2, dim=1, keepdim=True).clamp",
+          "lineNumber": 179
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.norm",
+          "lineNumber": 179
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.div",
+          "lineNumber": 180
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.norm(self.W, p=2, dim=0, keepdim=True).clamp",
+          "lineNumber": 181
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.norm",
+          "lineNumber": 181
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.div",
+          "lineNumber": 182
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.mm",
+          "lineNumber": 183
+        },
+        {
+          "caller": "forward",
+          "callee": "lb.view",
+          "lineNumber": 185
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.zeros(costh.size(), device='cuda').scatter_",
+          "lineNumber": 186
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.zeros",
+          "lineNumber": 186
+        },
+        {
+          "caller": "forward",
+          "callee": "costh.size",
+          "lineNumber": 186
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 5
+      }
+    },
+    {
+      "path": "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+      "language": "ipynb",
+      "fileCategory": "code",
+      "totalLines": 804,
+      "nonEmptyLines": 804,
+      "metrics": {}
+    },
+    {
+      "path": "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "language": "ipynb",
+      "fileCategory": "code",
+      "totalLines": 1510,
+      "nonEmptyLines": 1510,
+      "metrics": {}
+    },
+    {
+      "path": "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "language": "ipynb",
+      "fileCategory": "code",
+      "totalLines": 1344,
+      "nonEmptyLines": 1344,
+      "metrics": {}
+    },
+    {
+      "path": "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx",
+      "language": "xlsx",
+      "fileCategory": "code",
+      "totalLines": 205,
+      "nonEmptyLines": 204,
+      "metrics": {}
+    },
+    {
+      "path": "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "metrics": {}
+    },
+    {
+      "path": "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "metrics": {}
+    },
+    {
+      "path": "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 64,
+      "metrics": {}
+    }
+  ]
+}

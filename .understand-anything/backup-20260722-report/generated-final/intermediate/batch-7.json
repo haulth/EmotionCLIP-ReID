@@ -1,0 +1,82 @@
+{
+  "nodes": [
+    {
+      "id": "config:configs/VehicleID/cnn_base.yml",
+      "type": "config",
+      "name": "cnn_base.yml",
+      "filePath": "configs/VehicleID/cnn_base.yml",
+      "summary": "Cấu hình baseline VehicleID với backbone RN50, softmax-triplet sampling và augmentation chuẩn ReID. File đặt loss weights, batch size, optimizer, warmup/milestones và protocol CMC/mAP.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "rn50",
+        "baseline"
+      ],
+      "complexity": "simple",
+      "languageNotes": "YAML được merge vào cấu hình YACS; các trường DATASETS/OUTPUT_DIR được để dạng gợi ý để người chạy ghi đè."
+    },
+    {
+      "id": "config:configs/VehicleID/cnn_clipreid.yml",
+      "type": "config",
+      "name": "cnn_clipreid.yml",
+      "filePath": "configs/VehicleID/cnn_clipreid.yml",
+      "summary": "Cấu hình VehicleID cho RN50 theo quy trình CLIP-ReID hai giai đoạn: học prompt/text alignment ở Stage 1 rồi tối ưu ReID ở Stage 2. File đặt kích thước ảnh, identity sampler, loss weights, optimizer, warmup, lịch giảm learning rate và protocol đánh giá.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "rn50",
+        "clip-reid",
+        "two-stage"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML phân cấp SOLVER.STAGE1/STAGE2 để hai giai đoạn dùng batch size, learning rate và scheduler độc lập."
+    },
+    {
+      "id": "config:configs/VehicleID/vit_base.yml",
+      "type": "config",
+      "name": "vit_base.yml",
+      "filePath": "configs/VehicleID/vit_base.yml",
+      "summary": "Cấu hình baseline VehicleID với backbone ViT-B/16, softmax-triplet sampling và augmentation chuẩn ReID. File đặt loss weights, batch size, optimizer, warmup/milestones và protocol CMC/mAP.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "vit-b16",
+        "baseline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML được merge vào cấu hình YACS; các trường DATASETS/OUTPUT_DIR được để dạng gợi ý để người chạy ghi đè."
+    },
+    {
+      "id": "config:configs/VehicleID/vit_clipreid.yml",
+      "type": "config",
+      "name": "vit_clipreid.yml",
+      "filePath": "configs/VehicleID/vit_clipreid.yml",
+      "summary": "Cấu hình VehicleID cho ViT-B/16 theo quy trình CLIP-ReID hai giai đoạn: học prompt/text alignment ở Stage 1 rồi tối ưu ReID ở Stage 2. File đặt kích thước ảnh, identity sampler, loss weights, optimizer, warmup, lịch giảm learning rate và protocol đánh giá.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "vit-b16",
+        "clip-reid",
+        "two-stage"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML phân cấp SOLVER.STAGE1/STAGE2 để hai giai đoạn dùng batch size, learning rate và scheduler độc lập."
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:configs/VehicleID/cnn_base.yml",
+      "target": "config:configs/VehicleID/cnn_clipreid.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/VehicleID/vit_base.yml",
+      "target": "config:configs/VehicleID/vit_clipreid.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

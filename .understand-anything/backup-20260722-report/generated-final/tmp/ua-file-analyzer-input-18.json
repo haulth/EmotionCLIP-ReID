@@ -1,0 +1,42 @@
+{
+  "projectRoot": "E:\\Source\\EmotionCLIP-ReID",
+  "batchFiles": [
+    {
+      "path": "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+      "language": "drawio",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "processor/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "solver/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "utils/notebook_metrics.py",
+      "language": "python",
+      "sizeLines": 610,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio": [],
+    "processor/__init__.py": [],
+    "solver/__init__.py": [],
+    "utils/__init__.py": [],
+    "utils/notebook_metrics.py": []
+  }
+}

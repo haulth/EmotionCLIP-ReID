@@ -1,0 +1,133 @@
+{
+    "projectRoot":  "E:\\Source\\EmotionCLIP-ReID",
+    "batchFiles":  [
+                       {
+                           "path":  "datasets/bases.py",
+                           "language":  "python",
+                           "sizeLines":  84,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/dukemtmcreid.py",
+                           "language":  "python",
+                           "sizeLines":  108,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/make_dataloader.py",
+                           "language":  "python",
+                           "sizeLines":  108,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/make_dataloader_clipreid.py",
+                           "language":  "python",
+                           "sizeLines":  108,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/market1501.py",
+                           "language":  "python",
+                           "sizeLines":  83,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/msmt17.py",
+                           "language":  "python",
+                           "sizeLines":  80,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/occ_duke.py",
+                           "language":  "python",
+                           "sizeLines":  108,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/sampler.py",
+                           "language":  "python",
+                           "sizeLines":  67,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/sampler_ddp.py",
+                           "language":  "python",
+                           "sizeLines":  196,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/vehicleid.py",
+                           "language":  "python",
+                           "sizeLines":  155,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "datasets/veri.py",
+                           "language":  "python",
+                           "sizeLines":  116,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "utils/iotools.py",
+                           "language":  "python",
+                           "sizeLines":  39,
+                           "fileCategory":  "code"
+                       }
+                   ],
+    "batchImportData":  {
+                            "datasets/bases.py":  [
+
+                                                  ],
+                            "datasets/dukemtmcreid.py":  [
+                                                             "datasets/bases.py",
+                                                             "utils/iotools.py"
+                                                         ],
+                            "datasets/make_dataloader.py":  [
+                                                                "datasets/bases.py",
+                                                                "datasets/dukemtmcreid.py",
+                                                                "datasets/market1501.py",
+                                                                "datasets/msmt17.py",
+                                                                "datasets/occ_duke.py",
+                                                                "datasets/sampler_ddp.py",
+                                                                "datasets/sampler.py",
+                                                                "datasets/vehicleid.py",
+                                                                "datasets/veri.py"
+                                                            ],
+                            "datasets/make_dataloader_clipreid.py":  [
+                                                                         "datasets/bases.py",
+                                                                         "datasets/dukemtmcreid.py",
+                                                                         "datasets/market1501.py",
+                                                                         "datasets/msmt17.py",
+                                                                         "datasets/occ_duke.py",
+                                                                         "datasets/sampler_ddp.py",
+                                                                         "datasets/sampler.py",
+                                                                         "datasets/vehicleid.py",
+                                                                         "datasets/veri.py"
+                                                                     ],
+                            "datasets/market1501.py":  [
+                                                           "datasets/bases.py"
+                                                       ],
+                            "datasets/msmt17.py":  [
+                                                       "datasets/bases.py"
+                                                   ],
+                            "datasets/occ_duke.py":  [
+                                                         "datasets/bases.py",
+                                                         "utils/iotools.py"
+                                                     ],
+                            "datasets/sampler.py":  [
+
+                                                    ],
+                            "datasets/sampler_ddp.py":  [
+
+                                                        ],
+                            "datasets/vehicleid.py":  [
+                                                          "datasets/bases.py"
+                                                      ],
+                            "datasets/veri.py":  [
+                                                     "datasets/bases.py"
+                                                 ],
+                            "utils/iotools.py":  [
+
+                                                 ]
+                        }
+}

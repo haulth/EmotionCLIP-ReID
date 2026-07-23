@@ -1,0 +1,104 @@
+{
+  "nodes": [
+    {
+      "id": "document:docs/report/emotionclip_reid_feasibility_analysis.md",
+      "type": "document",
+      "name": "emotionclip_reid_feasibility_analysis.md",
+      "filePath": "docs/report/emotionclip_reid_feasibility_analysis.md",
+      "summary": "Phân tích khả thi toàn diện từ CLIP-ReID sang FER, đối chiếu nguồn tham khảo, hiện trạng code, nhánh AU/anatomy, dataset, rủi ro leakage, lộ trình triển khai và tiêu chí chấp nhận.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "báo-cáo",
+        "emotionclip-reid"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:docs/report/emotionclip_reid_model_proposal_report.md",
+      "type": "document",
+      "name": "emotionclip_reid_model_proposal_report.md",
+      "filePath": "docs/report/emotionclip_reid_model_proposal_report.md",
+      "summary": "Báo cáo đề xuất mô hình hai giai đoạn, nêu phần kế thừa từ CLIP-ReID, MER-CLIP, EA-CLIP và UA-FER, kiến trúc semantic anchoring, kế hoạch ablation và giới hạn claim.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "báo-cáo",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/report/emotionclip_reid_pipeline_diagram_script.md",
+      "type": "document",
+      "name": "emotionclip_reid_pipeline_diagram_script.md",
+      "filePath": "docs/report/emotionclip_reid_pipeline_diagram_script.md",
+      "summary": "Kịch bản thuyết minh sơ đồ pipeline, giải thích từng khối và luồng tensor của Stage 1 prompt/emotion anchor và Stage 2 visual adaptation, anatomy fusion, prediction và uncertainty.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "báo-cáo",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/report/emotionclip_reid_presentation_script.md",
+      "type": "document",
+      "name": "emotionclip_reid_presentation_script.md",
+      "filePath": "docs/report/emotionclip_reid_presentation_script.md",
+      "summary": "Kịch bản trình bày theo slide về bài toán, related work, research gap, phần đã triển khai, kiến trúc, kết quả, lỗi theo lớp và các cảnh báo tránh claim quá mức.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "báo-cáo",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/report/emotionclip_reid_research_gap_proposal_brief.md",
+      "type": "document",
+      "name": "emotionclip_reid_research_gap_proposal_brief.md",
+      "filePath": "docs/report/emotionclip_reid_research_gap_proposal_brief.md",
+      "summary": "Bản tóm tắt luận điểm nghiên cứu, các khoảng trống về local facial evidence, uncertainty và explainability, cùng hướng đề xuất two-stage EmotionCLIP-ReID.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "báo-cáo",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:docs/report/emotionclip_reid_model_proposal_report.md",
+      "target": "document:docs/report/emotionclip_reid_feasibility_analysis.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/report/emotionclip_reid_pipeline_diagram_script.md",
+      "target": "document:docs/report/emotionclip_reid_model_proposal_report.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/report/emotionclip_reid_presentation_script.md",
+      "target": "document:docs/report/emotionclip_reid_model_proposal_report.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/report/emotionclip_reid_research_gap_proposal_brief.md",
+      "target": "document:docs/report/emotionclip_reid_feasibility_analysis.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

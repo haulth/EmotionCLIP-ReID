@@ -1,0 +1,502 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "docs/report/emotionclip_reid_feasibility_analysis.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 569,
+      "nonEmptyLines": 401,
+      "sections": [
+        {
+          "heading": "Phân tích khả thi EmotionCLIP-ReID",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "1. Kết luận ngắn",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "2. Nguồn tham khảo và ý chính",
+          "level": 2,
+          "line": 19
+        },
+        {
+          "heading": "3. Hiện trạng codebase CLIP-ReID",
+          "level": 2,
+          "line": 27
+        },
+        {
+          "heading": "4. Mô hình khoa học hiện tại",
+          "level": 2,
+          "line": 42
+        },
+        {
+          "heading": "5. Mô hình đề xuất EmotionCLIP-ReID",
+          "level": 2,
+          "line": 62
+        },
+        {
+          "heading": "6. Phân loại khả thi triển khai",
+          "level": 2,
+          "line": 99
+        },
+        {
+          "heading": "Khả dụng trực tiếp",
+          "level": 3,
+          "line": 101
+        },
+        {
+          "heading": "Khả thi với thay đổi vừa phải",
+          "level": 3,
+          "line": 112
+        },
+        {
+          "heading": "Khả thi nhưng công sức cao/rủi ro cao",
+          "level": 3,
+          "line": 123
+        },
+        {
+          "heading": "Chưa triển khai được từ repo hiện tại",
+          "level": 3,
+          "line": 133
+        },
+        {
+          "heading": "7. Phân tích nhánh Action-Units hiện tại",
+          "level": 2,
+          "line": 142
+        },
+        {
+          "heading": "7.1. Chuẩn bị dữ liệu DISFA",
+          "level": 3,
+          "line": 146
+        },
+        {
+          "heading": "7.2. Dataset loader và rủi ro chia tập",
+          "level": 3,
+          "line": 178
+        },
+        {
+          "heading": "7.3. Chuyển CLIP-ReID thành AU classifier",
+          "level": 3,
+          "line": 203
+        },
+        {
+          "heading": "7.4. Hạn chế của suy luận cảm xúc hậu kỳ",
+          "level": 3,
+          "line": 234
+        },
+        {
+          "heading": "8. Thiết kế nhánh AU làm dữ kiện cho EmotionCLIP-ReID",
+          "level": 2,
+          "line": 257
+        },
+        {
+          "heading": "8.1. Kiến trúc đề xuất",
+          "level": 3,
+          "line": 261
+        },
+        {
+          "heading": "8.2. Fusion nên là soft learned fusion, không phải rule fusion",
+          "level": 3,
+          "line": 292
+        },
+        {
+          "heading": "8.3. Loss và dữ liệu huấn luyện",
+          "level": 3,
+          "line": 304
+        },
+        {
+          "heading": "8.4. Vai trò của AUExplainer trong hệ mới",
+          "level": 3,
+          "line": 331
+        },
+        {
+          "heading": "9. AU-based prompt khi có AU labels",
+          "level": 2,
+          "line": 353
+        },
+        {
+          "heading": "9.1. Prompt theo từng AU",
+          "level": 3,
+          "line": 357
+        },
+        {
+          "heading": "9.2. Không sinh prompt cho mọi tổ hợp AU",
+          "level": 3,
+          "line": 378
+        },
+        {
+          "heading": "9.3. Kết hợp prompt cảm xúc và prompt AU",
+          "level": 3,
+          "line": 408
+        },
+        {
+          "heading": "10. Dataset phù hợp cho hướng AU/micro-description",
+          "level": 2,
+          "line": 429
+        },
+        {
+          "heading": "10.1. Tầng 1 - Có cả emotion và AU",
+          "level": 3,
+          "line": 433
+        },
+        {
+          "heading": "10.2. Tầng 2 - AU-only để pretrain micro branch",
+          "level": 3,
+          "line": 446
+        },
+        {
+          "heading": "10.3. Tầng 3 - Emotion-only để train emotion branch hoặc pseudo-AU",
+          "level": 3,
+          "line": 464
+        },
+        {
+          "heading": "10.4. Khuyến nghị dataset cho giai đoạn triển khai",
+          "level": 3,
+          "line": 484
+        },
+        {
+          "heading": "11. Graph codebase bằng Grapuco",
+          "level": 2,
+          "line": 502
+        },
+        {
+          "heading": "12. Lộ trình triển khai đề xuất",
+          "level": 2,
+          "line": 535
+        },
+        {
+          "heading": "Bước 1 - FER baseline tối thiểu",
+          "level": 3,
+          "line": 537
+        },
+        {
+          "heading": "Bước 2 - Emotion prompt learning",
+          "level": 3,
+          "line": 541
+        },
+        {
+          "heading": "Bước 3 - Adapter nhẹ",
+          "level": 3,
+          "line": 545
+        },
+        {
+          "heading": "Bước 4 - Uncertainty",
+          "level": 3,
+          "line": 549
+        },
+        {
+          "heading": "Bước 5 - AU/micro-description",
+          "level": 3,
+          "line": 553
+        },
+        {
+          "heading": "Bước 6 - Đánh giá fusion và diễn giải",
+          "level": 3,
+          "line": 557
+        },
+        {
+          "heading": "13. Tiêu chí chấp nhận",
+          "level": 2,
+          "line": 561
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 39
+      }
+    },
+    {
+      "path": "docs/report/emotionclip_reid_model_proposal_report.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 130,
+      "nonEmptyLines": 82,
+      "sections": [
+        {
+          "heading": "Báo cáo đề xuất mô hình EmotionCLIP-ReID",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "1. Tóm tắt luận điểm",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "2. Nền tảng khoa học cần kế thừa",
+          "level": 2,
+          "line": 17
+        },
+        {
+          "heading": "CLIP-ReID",
+          "level": 3,
+          "line": 19
+        },
+        {
+          "heading": "MER-CLIP",
+          "level": 3,
+          "line": 23
+        },
+        {
+          "heading": "EA-CLIP",
+          "level": 3,
+          "line": 27
+        },
+        {
+          "heading": "UA-FER",
+          "level": 3,
+          "line": 31
+        },
+        {
+          "heading": "3. Mô hình đề xuất ở mức tổng thể",
+          "level": 2,
+          "line": 35
+        },
+        {
+          "heading": "4. Cấu trúc huấn luyện hai giai đoạn",
+          "level": 2,
+          "line": 47
+        },
+        {
+          "heading": "Stage 1: Học descriptor cảm xúc",
+          "level": 3,
+          "line": 51
+        },
+        {
+          "heading": "Stage 2: Fine-tune robust visual branch",
+          "level": 3,
+          "line": 65
+        },
+        {
+          "heading": "5. Phân loại khả thi triển khai",
+          "level": 2,
+          "line": 77
+        },
+        {
+          "heading": "6. Kế hoạch thí nghiệm đề xuất",
+          "level": 2,
+          "line": 86
+        },
+        {
+          "heading": "7. Phản biện học thuật",
+          "level": 2,
+          "line": 97
+        },
+        {
+          "heading": "8. Kết luận đề xuất",
+          "level": 2,
+          "line": 116
+        },
+        {
+          "heading": "9. Tài liệu tham khảo cục bộ",
+          "level": 2,
+          "line": 124
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 16
+      }
+    },
+    {
+      "path": "docs/report/emotionclip_reid_pipeline_diagram_script.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 180,
+      "nonEmptyLines": 99,
+      "sections": [
+        {
+          "heading": "Script trình bày sơ đồ EmotionCLIP-ReID v1 pipeline",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "1. Ý chính của sơ đồ",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "2. Phân tích từng khối trong Stage 1",
+          "level": 2,
+          "line": 13
+        },
+        {
+          "heading": "Stage 1: Prompt / Emotion Anchor Learning",
+          "level": 3,
+          "line": 15
+        },
+        {
+          "heading": "3. Luồng xử lý Stage 1 theo mũi tên",
+          "level": 2,
+          "line": 71
+        },
+        {
+          "heading": "4. Phân tích từng khối trong Stage 2",
+          "level": 2,
+          "line": 83
+        },
+        {
+          "heading": "Stage 2: Visual Adaptation and FER Training",
+          "level": 3,
+          "line": 85
+        },
+        {
+          "heading": "5. Luồng xử lý Stage 2 theo mũi tên",
+          "level": 2,
+          "line": 137
+        },
+        {
+          "heading": "6. Script nói khi trình bày sơ đồ",
+          "level": 2,
+          "line": 151
+        },
+        {
+          "heading": "7. Câu kết ngắn để chuyển slide",
+          "level": 2,
+          "line": 177
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 10
+      }
+    },
+    {
+      "path": "docs/report/emotionclip_reid_presentation_script.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 121,
+      "nonEmptyLines": 63,
+      "sections": [
+        {
+          "heading": "Script trình bày EmotionCLIP-ReID",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Slide 1 - EmotionCLIP-ReID",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "Slide 2 - Vấn đề cần giải quyết",
+          "level": 2,
+          "line": 11
+        },
+        {
+          "heading": "Slide 3 - Tổng hợp tài liệu: các nhánh hội tụ",
+          "level": 2,
+          "line": 19
+        },
+        {
+          "heading": "Slide 4 - Baseline: giá trị kế thừa và giới hạn",
+          "level": 2,
+          "line": 35
+        },
+        {
+          "heading": "Slide 5 - Khoảng trống khi chuyển baseline sang FER",
+          "level": 2,
+          "line": 43
+        },
+        {
+          "heading": "Slide 6 - Đề xuất hiện tại: two-stage semantic anchoring",
+          "level": 2,
+          "line": 51
+        },
+        {
+          "heading": "Slide 7 - Phần đã triển khai so với baseline",
+          "level": 2,
+          "line": 61
+        },
+        {
+          "heading": "Slide 8 - Kiến trúc hiện tại",
+          "level": 2,
+          "line": 71
+        },
+        {
+          "heading": "Slide 9 - Kết quả hiện tại",
+          "level": 2,
+          "line": 81
+        },
+        {
+          "heading": "Slide 10 - Lỗi theo lớp",
+          "level": 2,
+          "line": 91
+        },
+        {
+          "heading": "Slide 11 - Tự phản biện học thuật",
+          "level": 2,
+          "line": 101
+        },
+        {
+          "heading": "Ghi chú để tránh claim sai",
+          "level": 2,
+          "line": 115
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 13
+      }
+    },
+    {
+      "path": "docs/report/emotionclip_reid_research_gap_proposal_brief.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 28,
+      "nonEmptyLines": 18,
+      "sections": [
+        {
+          "heading": "EmotionCLIP-ReID - Research Gap & Proposal Brief",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Luận điểm",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "Research gaps",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Research problem",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "Proposal hướng hiện tại",
+          "level": 2,
+          "line": 24
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    }
+  ]
+}

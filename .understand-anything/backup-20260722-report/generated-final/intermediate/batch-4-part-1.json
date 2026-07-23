@@ -1,0 +1,804 @@
+{
+  "nodes": [
+    {
+      "id": "file:model/clip/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "model/clip/__init__.py",
+      "summary": "Package entry point tái xuất API tải mô hình và tokenize của backbone CLIP nội bộ.",
+      "tags": [
+        "mô-hình",
+        "clip",
+        "vision-language",
+        "pytorch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:model/clip/clip.py",
+      "type": "file",
+      "name": "clip.py",
+      "filePath": "model/clip/clip.py",
+      "summary": "Tiện ích quản lý model registry, tải weight, preprocessing, JIT và tokenize cho implementation CLIP được nhúng trong dự án.",
+      "tags": [
+        "mô-hình",
+        "clip",
+        "vision-language",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:model/clip/clip.py:_download",
+      "type": "function",
+      "name": "_download",
+      "filePath": "model/clip/clip.py",
+      "lineRange": [
+        43,
+        72
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý download trong clip.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/clip.py:_transform",
+      "type": "function",
+      "name": "_transform",
+      "filePath": "model/clip/clip.py",
+      "lineRange": [
+        75,
+        84
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý transform trong clip.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/clip.py:available_models",
+      "type": "function",
+      "name": "available_models",
+      "filePath": "model/clip/clip.py",
+      "lineRange": [
+        87,
+        89
+      ],
+      "summary": "Triển khai thao tác available models trong clip.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/clip.py:load",
+      "type": "function",
+      "name": "load",
+      "filePath": "model/clip/clip.py",
+      "lineRange": [
+        92,
+        188
+      ],
+      "summary": "Tải hoặc mở weight CLIP, dựng JIT/state-dict model và preprocessing tương ứng.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:model/clip/clip.py:tokenize",
+      "type": "function",
+      "name": "tokenize",
+      "filePath": "model/clip/clip.py",
+      "lineRange": [
+        191,
+        229
+      ],
+      "summary": "Mã hóa một hoặc nhiều chuỗi thành token tensor có context length cố định của CLIP.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:model/clip/model.py",
+      "type": "file",
+      "name": "model.py",
+      "filePath": "model/clip/model.py",
+      "summary": "Implementation PyTorch của CLIP gồm Modified ResNet/Vision Transformer, text Transformer, attention pooling và logic dựng model từ state dict với resize positional embedding.",
+      "tags": [
+        "mô-hình",
+        "clip",
+        "vision-language",
+        "pytorch"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Implementation PyTorch theo OpenAI CLIP, có nội suy positional embedding để phù hợp stride và kích thước ảnh ReID/FER."
+    },
+    {
+      "id": "function:model/clip/model.py:convert_weights",
+      "type": "function",
+      "name": "convert_weights",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        381,
+        402
+      ],
+      "summary": "Chuyển các lớp phù hợp của CLIP sang half precision như implementation gốc.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/model.py:build_model",
+      "type": "function",
+      "name": "build_model",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        405,
+        449
+      ],
+      "summary": "Suy luận kiến trúc từ state dict, dựng CLIP và nạp weight đã chuẩn hóa.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/model.py:resize_pos_embed",
+      "type": "function",
+      "name": "resize_pos_embed",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        452,
+        467
+      ],
+      "summary": "Nội suy positional embedding của visual transformer khi thay đổi lưới patch.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:Bottleneck",
+      "type": "class",
+      "name": "Bottleneck",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        10,
+        53
+      ],
+      "summary": "Residual bottleneck block của Modified ResNet trong CLIP visual encoder.",
+      "tags": [
+        "lớp",
+        "clip",
+        "pytorch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:AttentionPool2d",
+      "type": "class",
+      "name": "AttentionPool2d",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        56,
+        90
+      ],
+      "summary": "Pooling đặc trưng không gian bằng multi-head attention với positional embedding học được.",
+      "tags": [
+        "lớp",
+        "clip",
+        "pytorch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:ModifiedResNet",
+      "type": "class",
+      "name": "ModifiedResNet",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        92,
+        148
+      ],
+      "summary": "Backbone ResNet biến đổi theo CLIP, dùng three-convolution stem, anti-aliasing và attention pooling.",
+      "tags": [
+        "lớp",
+        "clip",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:model/clip/model.py:LayerNorm",
+      "type": "class",
+      "name": "LayerNorm",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        151,
+        157
+      ],
+      "summary": "LayerNorm tương thích mixed precision bằng cách tính ổn định ở float rồi trả về dtype gốc.",
+      "tags": [
+        "lớp",
+        "clip",
+        "pytorch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:QuickGELU",
+      "type": "class",
+      "name": "QuickGELU",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        160,
+        162
+      ],
+      "summary": "Hàm kích hoạt x·sigmoid(1.702x) dùng trong Transformer CLIP.",
+      "tags": [
+        "lớp",
+        "clip",
+        "pytorch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:ResidualAttentionBlock",
+      "type": "class",
+      "name": "ResidualAttentionBlock",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        165,
+        189
+      ],
+      "summary": "Block Transformer gồm self-attention, MLP và residual pre-norm.",
+      "tags": [
+        "lớp",
+        "clip",
+        "pytorch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:Transformer",
+      "type": "class",
+      "name": "Transformer",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        192,
+        200
+      ],
+      "summary": "Chuỗi ResidualAttentionBlock dùng cho encoder văn bản hoặc thị giác CLIP.",
+      "tags": [
+        "lớp",
+        "clip",
+        "pytorch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:VisionTransformer",
+      "type": "class",
+      "name": "VisionTransformer",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        203,
+        243
+      ],
+      "summary": "Visual Transformer biến ảnh thành patch tokens, cộng positional embedding và sinh global/local features.",
+      "tags": [
+        "lớp",
+        "clip",
+        "pytorch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/model.py:CLIP",
+      "type": "class",
+      "name": "CLIP",
+      "filePath": "model/clip/model.py",
+      "lineRange": [
+        246,
+        378
+      ],
+      "summary": "Mô hình contrastive vision-language hoàn chỉnh với image encoder, text encoder và learnable logit scale.",
+      "tags": [
+        "lớp",
+        "clip",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:model/clip/simple_tokenizer.py",
+      "type": "file",
+      "name": "simple_tokenizer.py",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "summary": "Tokenizer byte-pair encoding tương thích OpenAI CLIP, bao gồm ánh xạ byte Unicode, làm sạch văn bản, encode và decode.",
+      "tags": [
+        "mô-hình",
+        "clip",
+        "vision-language",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:model/clip/simple_tokenizer.py:default_bpe",
+      "type": "function",
+      "name": "default_bpe",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        24,
+        25
+      ],
+      "summary": "Triển khai thao tác default bpe trong simple_tokenizer.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/simple_tokenizer.py:bytes_to_unicode",
+      "type": "function",
+      "name": "bytes_to_unicode",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        29,
+        48
+      ],
+      "summary": "Triển khai thao tác bytes to unicode trong simple_tokenizer.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/simple_tokenizer.py:get_pairs",
+      "type": "function",
+      "name": "get_pairs",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        51,
+        60
+      ],
+      "summary": "Triển khai thao tác get pairs trong simple_tokenizer.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/simple_tokenizer.py:basic_clean",
+      "type": "function",
+      "name": "basic_clean",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        63,
+        66
+      ],
+      "summary": "Triển khai thao tác basic clean trong simple_tokenizer.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:model/clip/simple_tokenizer.py:whitespace_clean",
+      "type": "function",
+      "name": "whitespace_clean",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        69,
+        72
+      ],
+      "summary": "Triển khai thao tác whitespace clean trong simple_tokenizer.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:model/clip/simple_tokenizer.py:SimpleTokenizer",
+      "type": "class",
+      "name": "SimpleTokenizer",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "lineRange": [
+        75,
+        148
+      ],
+      "summary": "BPE tokenizer của CLIP với vocabulary/merge cache và API encode/decode.",
+      "tags": [
+        "lớp",
+        "clip",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:_download",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:_download",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:_transform",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:_transform",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:available_models",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:available_models",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:load",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:load",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:tokenize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "function:model/clip/clip.py:tokenize",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:convert_weights",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:convert_weights",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:build_model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:build_model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:resize_pos_embed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "function:model/clip/model.py:resize_pos_embed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:Bottleneck",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:Bottleneck",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:AttentionPool2d",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:AttentionPool2d",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:ModifiedResNet",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:ModifiedResNet",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:LayerNorm",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:LayerNorm",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:QuickGELU",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:QuickGELU",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:ResidualAttentionBlock",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:ResidualAttentionBlock",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:Transformer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:Transformer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:VisionTransformer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:VisionTransformer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:CLIP",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "class:model/clip/model.py:CLIP",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:default_bpe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:default_bpe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:bytes_to_unicode",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:bytes_to_unicode",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:get_pairs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:get_pairs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:basic_clean",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:basic_clean",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:whitespace_clean",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "function:model/clip/simple_tokenizer.py:whitespace_clean",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "class:model/clip/simple_tokenizer.py:SimpleTokenizer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:model/clip/simple_tokenizer.py",
+      "target": "class:model/clip/simple_tokenizer.py:SimpleTokenizer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:model/clip/__init__.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "file:model/clip/model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "file:tests/test_emotion_model_units.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

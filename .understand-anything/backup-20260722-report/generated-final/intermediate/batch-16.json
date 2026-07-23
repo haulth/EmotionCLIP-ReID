@@ -1,0 +1,415 @@
+{
+  "nodes": [
+    {
+      "id": "file:.codex/tmp/019f8a29-798f-7c12-a8ee-fdf1d43a6942/edit_paper.mjs",
+      "type": "file",
+      "name": "edit_paper.mjs",
+      "filePath": ".codex/tmp/019f8a29-798f-7c12-a8ee-fdf1d43a6942/edit_paper.mjs",
+      "summary": "Script thao tác workbook nghiên cứu: inspect/render các sheet, chèn paper số 89 về ULMFiT sau kiểm tra trùng lặp, cập nhật Research Log, export và xác minh workbook đầu ra.",
+      "tags": [
+        "spreadsheet-automation",
+        "literature-review",
+        "validation",
+        "artifact-generation"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JavaScript dùng top-level await và @oai/artifact-tool để đọc, render, chỉnh sửa rồi tái nhập XLSX nhằm kiểm tra hậu điều kiện."
+    },
+    {
+      "id": "file:config/defaults_base.py",
+      "type": "file",
+      "name": "defaults_base.py",
+      "filePath": "config/defaults_base.py",
+      "summary": "Định nghĩa cấu hình YACS nền cho pipeline ReID một-solver, gồm backbone, input augmentation, dataset, dataloader, optimizer, scheduler và chế độ test.",
+      "tags": [
+        "configuration",
+        "reid",
+        "yacs",
+        "training"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cấu hình được xây bằng cây CfgNode và gán giá trị mặc định theo namespace MODEL/INPUT/DATASETS/DATALOADER/SOLVER/TEST."
+    },
+    {
+      "id": "file:config/defaults.py",
+      "type": "file",
+      "name": "defaults.py",
+      "filePath": "config/defaults.py",
+      "summary": "Định nghĩa cấu hình YACS chính của CLIP-ReID với solver tách STAGE1/STAGE2, các tham số model/input/dataset và thiết lập đánh giá.",
+      "tags": [
+        "configuration",
+        "two-stage-training",
+        "clip-reid",
+        "yacs"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Hai CfgNode STAGE1 và STAGE2 mã hóa lịch tối ưu độc lập trong cùng cây cấu hình."
+    },
+    {
+      "id": "file:datasets/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "datasets/__init__.py",
+      "summary": "File khởi tạo package datasets hiện để trống và không re-export thành phần nào.",
+      "tags": [
+        "entry-point",
+        "package",
+        "datasets"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:datasets/keypoint_test.txt",
+      "type": "document",
+      "name": "keypoint_test.txt",
+      "filePath": "datasets/keypoint_test.txt",
+      "summary": "Danh sách keypoint cho ảnh test VeRi: mỗi dòng chứa đường dẫn ảnh, các cặp tọa độ với -1 biểu thị điểm thiếu và một nhãn số ở cuối.",
+      "tags": [
+        "keypoint-data",
+        "veri",
+        "test-split",
+        "landmark"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:datasets/keypoint_train.txt",
+      "type": "document",
+      "name": "keypoint_train.txt",
+      "filePath": "datasets/keypoint_train.txt",
+      "summary": "Danh sách keypoint cho ảnh train VeRi: mỗi dòng ánh xạ đường dẫn ảnh sang các cặp tọa độ, giá trị -1 cho điểm thiếu và một nhãn số cuối dòng.",
+      "tags": [
+        "keypoint-data",
+        "veri",
+        "train-split",
+        "landmark"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:datasets/preprocessing.py",
+      "type": "file",
+      "name": "preprocessing.py",
+      "filePath": "datasets/preprocessing.py",
+      "summary": "Cung cấp augmentation Random Erasing áp trực tiếp lên tensor ảnh, lấy mẫu diện tích/tỷ lệ ngẫu nhiên và tô vùng chữ nhật theo mean từng kênh.",
+      "tags": [
+        "data-augmentation",
+        "random-erasing",
+        "preprocessing",
+        "vision"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Implementation lặp tối đa 100 lần để tìm hình chữ nhật hợp lệ và hỗ trợ tensor một hoặc ba kênh."
+    },
+    {
+      "id": "class:datasets/preprocessing.py:RandomErasing",
+      "type": "class",
+      "name": "RandomErasing",
+      "filePath": "datasets/preprocessing.py",
+      "lineRange": [
+        5,
+        49
+      ],
+      "summary": "Augmentation callable xóa ngẫu nhiên một vùng chữ nhật hợp lệ của tensor ảnh theo xác suất, tỷ lệ diện tích và aspect ratio cấu hình.",
+      "tags": [
+        "data-augmentation",
+        "random-erasing",
+        "callable-class"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:docs/Docs_ref/EmotionCLIP-ReID_Data_Reference.docx",
+      "type": "file",
+      "name": "EmotionCLIP-ReID_Data_Reference.docx",
+      "filePath": "docs/Docs_ref/EmotionCLIP-ReID_Data_Reference.docx",
+      "summary": "Artifact báo cáo Word nhị phân EmotionCLIP-ReID_Data_Reference.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:docs/emotionclip_reid_proposed_emotionclip_reid_model.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_proposed_emotionclip_reid_model.drawio",
+      "filePath": "docs/emotionclip_reid_proposed_emotionclip_reid_model.drawio",
+      "summary": "Sơ đồ mô hình đề xuất nối face-safe preprocessing, CLIP ViT-B/16, expression-aware adapters và nhánh emotion/AU semantic descriptor cho huấn luyện và suy luận FER.",
+      "tags": [
+        "architecture-diagram",
+        "emotionclip-reid",
+        "semantic-descriptor",
+        "adapter"
+      ],
+      "complexity": "complex",
+      "languageNotes": "draw.io lưu đồ thị bằng mxGraph XML với nhãn HTML trong thuộc tính value."
+    },
+    {
+      "id": "file:docs/original_scientific_model_diagram.drawio",
+      "type": "file",
+      "name": "original_scientific_model_diagram.drawio",
+      "filePath": "docs/original_scientific_model_diagram.drawio",
+      "summary": "Sơ đồ học thuật của CLIP-ReID gốc, mô tả Stage I tối ưu prompt định danh bằng contrastive image-text và Stage II fine-tune ReID với text anchors.",
+      "tags": [
+        "architecture-diagram",
+        "clip-reid",
+        "two-stage-training",
+        "baseline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io dùng mxGraph XML để biểu diễn node, edge và công thức trong nhãn HTML."
+    },
+    {
+      "id": "file:docs/original_system_architecture.drawio",
+      "type": "file",
+      "name": "original_system_architecture.drawio",
+      "filePath": "docs/original_system_architecture.drawio",
+      "summary": "Sơ đồ kiến trúc hệ thống CLIP-ReID nguyên bản theo entrypoint, cấu hình/dữ liệu ReID, dual encoder/loss và training/inference; đồng thời đánh dấu chưa có AU-specific pipeline.",
+      "tags": [
+        "system-diagram",
+        "clip-reid",
+        "legacy-reid",
+        "baseline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io dùng mxGraph XML và các mxCell có nhãn mô tả từng tầng hệ thống."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_gvhd_research_gap_proposal_slides.pptx",
+      "type": "file",
+      "name": "emotionclip_reid_gvhd_research_gap_proposal_slides.pptx",
+      "filePath": "docs/report/emotionclip_reid_gvhd_research_gap_proposal_slides.pptx",
+      "summary": "Artifact slide PowerPoint nhị phân emotionclip_reid_gvhd_research_gap_proposal_slides.pptx; structural extraction chỉ xác nhận tệp và quy mô, không cung cấp nội dung slide đủ tin cậy để phân tích sâu.",
+      "tags": [
+        "office-artifact",
+        "presentation",
+        "report",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "PPTX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc slide."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_model_proposal_report.docx",
+      "type": "file",
+      "name": "emotionclip_reid_model_proposal_report.docx",
+      "filePath": "docs/report/emotionclip_reid_model_proposal_report.docx",
+      "summary": "Artifact báo cáo Word nhị phân emotionclip_reid_model_proposal_report.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_model_proposal_slides.pptx",
+      "type": "file",
+      "name": "emotionclip_reid_model_proposal_slides.pptx",
+      "filePath": "docs/report/emotionclip_reid_model_proposal_slides.pptx",
+      "summary": "Artifact slide PowerPoint nhị phân emotionclip_reid_model_proposal_slides.pptx; structural extraction chỉ xác nhận tệp và quy mô, không cung cấp nội dung slide đủ tin cậy để phân tích sâu.",
+      "tags": [
+        "office-artifact",
+        "presentation",
+        "report",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "PPTX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc slide."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_report_w2.docx",
+      "type": "file",
+      "name": "emotionclip_reid_report_w2.docx",
+      "filePath": "docs/report/emotionclip_reid_report_w2.docx",
+      "summary": "Artifact báo cáo Word nhị phân emotionclip_reid_report_w2.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_report_w3.docx",
+      "type": "file",
+      "name": "emotionclip_reid_report_w3.docx",
+      "filePath": "docs/report/emotionclip_reid_report_w3.docx",
+      "summary": "Artifact báo cáo Word nhị phân emotionclip_reid_report_w3.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_report_w4.docx",
+      "type": "file",
+      "name": "emotionclip_reid_report_w4.docx",
+      "filePath": "docs/report/emotionclip_reid_report_w4.docx",
+      "summary": "Artifact báo cáo Word nhị phân emotionclip_reid_report_w4.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid.pptx",
+      "type": "file",
+      "name": "emotionclip_reid.pptx",
+      "filePath": "docs/report/emotionclip_reid.pptx",
+      "summary": "Artifact slide PowerPoint nhị phân emotionclip_reid.pptx; structural extraction chỉ xác nhận tệp và quy mô, không cung cấp nội dung slide đủ tin cậy để phân tích sâu.",
+      "tags": [
+        "office-artifact",
+        "presentation",
+        "report",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "PPTX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc slide."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_context_gap_hub_map.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_context_gap_hub_map.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_context_gap_hub_map.drawio",
+      "summary": "Bản đồ research gap quy tụ VLM adaptation, language-guided ReID, AU/FACS, CLIP-FER, uncertainty và multimodal MER quanh bài toán emotion/AU semantic anchors.",
+      "tags": [
+        "research-gap",
+        "related-work",
+        "semantic-anchor",
+        "diagram"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Sơ đồ draw.io mã hóa một hub-and-spoke research map bằng mxGraph XML."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_current_system.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_current_system.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_current_system.drawio",
+      "summary": "Sơ đồ hệ thống EmotionCLIP-ReID hiện tại, phân biệt khối tái sử dụng/frozen, đã triển khai, trainable, loss/metric và optional từ CLIP–CoOp–CLIP-ReID sang FER.",
+      "tags": [
+        "current-architecture",
+        "emotionclip-reid",
+        "two-stage-training",
+        "diagram"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Sơ đồ draw.io dùng màu/nhãn để phân loại trạng thái các khối kiến trúc."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_proposal_pipeline.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_proposal_pipeline.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_proposal_pipeline.drawio",
+      "summary": "Sơ đồ giả thuyết đề xuất: Stage 1 học candidate emotion descriptors, Stage 2 dùng descriptor cố định để kiểm tra semantic anchoring qua adapter, alignment và calibration.",
+      "tags": [
+        "proposal",
+        "semantic-descriptor",
+        "ablation",
+        "diagram"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io biểu diễn pipeline và các claim cần metric/ablation bằng mxGraph XML."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_publication_pipeline_update.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_publication_pipeline_update.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_publication_pipeline_update.drawio",
+      "summary": "Sơ đồ publication pipeline v1 thực dụng, chỉ rõ Stage 1 học class-specific latent prompt tokens và Stage 2 dùng fixed emotion anchors, không diễn giải token như eye/mouth/AU descriptor.",
+      "tags": [
+        "publication-figure",
+        "prompt-learning",
+        "two-stage-training",
+        "fer"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Nhãn mxGraph làm rõ ranh giới giữa latent prompt token và anatomy descriptor."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_publication_pipeline.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_publication_pipeline.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_publication_pipeline.drawio",
+      "summary": "Sơ đồ pipeline học thuật tối giản cho Stage 1 semantic prompt optimization và dòng truyền fixed text descriptor sang Stage 2.",
+      "tags": [
+        "publication-figure",
+        "semantic-prompt",
+        "two-stage-training",
+        "objective"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io lưu node/edge và ký hiệu objective trong mxGraph XML."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_two_stage_structure.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_two_stage_structure.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_two_stage_structure.drawio",
+      "summary": "Sơ đồ kiến trúc anatomy-enabled hai giai đoạn: class-conditioned semantic prototypes, hybrid regional routing/geometry residual và reliability diagnostics tách biệt dưới protocol sealed test.",
+      "tags": [
+        "architecture-diagram",
+        "anatomy-routing",
+        "geometry-fusion",
+        "reliability"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Sơ đồ mxGraph dùng nhiều lớp chú giải cho frozen/trainable, feature/prototype, anatomy/quality và objective/reliability."
+    },
+    {
+      "id": "file:docs/report/fig/v1/emotionclip_reid_publication_pipeline_update.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_publication_pipeline_update.drawio",
+      "filePath": "docs/report/fig/v1/emotionclip_reid_publication_pipeline_update.drawio",
+      "summary": "Bản v1 của publication pipeline cập nhật, bổ sung anatomy artifact transform-aware, class geometry statistics và gated geometry residual ở Stage 1B trước Stage 2 adaptation.",
+      "tags": [
+        "publication-figure",
+        "anatomy",
+        "geometry-residual",
+        "two-stage-training"
+      ],
+      "complexity": "complex",
+      "languageNotes": "draw.io dùng mxGraph XML để biểu diễn shared contract và hai stage."
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:datasets/preprocessing.py",
+      "target": "class:datasets/preprocessing.py:RandomErasing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:datasets/preprocessing.py",
+      "target": "class:datasets/preprocessing.py:RandomErasing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "document:datasets/keypoint_train.txt",
+      "target": "document:datasets/keypoint_test.txt",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

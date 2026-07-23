@@ -1,0 +1,57 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "outputs/report_w4/emotionclip_outputs_summary.csv",
+      "language": "csv",
+      "fileCategory": "data",
+      "totalLines": 3,
+      "nonEmptyLines": 3,
+      "metrics": {}
+    },
+    {
+      "path": "outputs/report_w4/emotionclip_outputs_summary.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 83,
+      "nonEmptyLines": 83,
+      "sections": [
+        {
+          "heading": "fer2013",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "raf_db",
+          "level": 1,
+          "line": 38
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "outputs/report_w4/rafdb_training_history_extracted.csv",
+      "language": "csv",
+      "fileCategory": "data",
+      "totalLines": 51,
+      "nonEmptyLines": 51,
+      "metrics": {}
+    },
+    {
+      "path": "outputs/report_w4/rafdb_validation_history_extracted.csv",
+      "language": "csv",
+      "fileCategory": "data",
+      "totalLines": 31,
+      "nonEmptyLines": 31,
+      "metrics": {}
+    }
+  ]
+}

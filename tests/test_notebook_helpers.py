@@ -202,6 +202,16 @@ def test_notebook_cli_overrides_have_highest_precedence_and_source_provenance(tm
     assert sources["SOLVER.STAGE2.BASE_LR"] == "default"
 
 
+def test_stage2_rejects_a_negative_amp_overflow_budget():
+    with pytest.raises(ValueError, match="MAX_CONSECUTIVE_AMP_OVERFLOWS must be >= 0"):
+        load_emotion_cfg(
+            opts=[
+                "SOLVER.STAGE2.MAX_CONSECUTIVE_AMP_OVERFLOWS",
+                "-1",
+            ]
+        )
+
+
 def test_stage1_both_rejects_a_missing_phase():
     with pytest.raises(ValueError, match="requires BASE_EPOCHS > 0 and GEOMETRY_EPOCHS > 0"):
         load_emotion_cfg(
@@ -255,7 +265,9 @@ def test_rafdb_notebook_exposes_gpu_safety_controls():
     assert "CORRUPTION_RANKING_WARMUP_EPOCHS" in source
     assert "MAX_ABS_RAW_STRENGTH = 20.0" in source
     assert "STAGE2_LOG_PERIOD = 1" in source
+    assert "STAGE2_EARLY_STOPPING_ENABLED = False" in source
     assert "STAGE2_EARLY_STOPPING_PATIENCE = 20" in source
+    assert "EFFECTIVE_STAGE2_EARLY_STOPPING_PATIENCE" in source
     assert "NUM_WORKERS = 4" in source
     assert "PIN_MEMORY = True" in source
 
@@ -271,7 +283,19 @@ def test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt():
 
     assert "ANATOMY_PROMPT_MODE = 'quality'" in source
     assert "STAGE1_MODE = 'both'" in source
-    assert "STAGE1_GEOMETRY_EPOCHS = 10" in source
+    assert "STAGE1_GEOMETRY_EPOCHS = 50" in source
+    assert "STAGE1_WEIGHT = ''" in source
+    assert "MODEL.EMOTION.STAGE1_WEIGHT" in source
+    assert "STAGE2_BATCH_SIZE = 16" in source
+    assert "STAGE2_GRADIENT_ACCUMULATION_STEPS = 8" in source
+    assert "STAGE2_EFFECTIVE_BATCH_SIZE = 128" in source
+    assert "SOLVER.STAGE2.AMP_ENABLED" in source
+    assert "SOLVER.STAGE2.MAX_GRAD_NORM" in source
+    assert "SOLVER.STAGE2.MAX_CONSECUTIVE_AMP_OVERFLOWS" in source
+    assert "MAX_ABS_RAW_STRENGTH = 20.0" in source
+    assert "STAGE2_LOG_PERIOD = 1" in source
+    assert "STAGE2_EARLY_STOPPING_ENABLED = False" in source
+    assert "EFFECTIVE_STAGE2_EARLY_STOPPING_PATIENCE" in source
     assert "MODEL.ANATOMY_PROMPT.MODE" in source
     assert "GEOMETRY_EPOCHS'] > 0" in source
 

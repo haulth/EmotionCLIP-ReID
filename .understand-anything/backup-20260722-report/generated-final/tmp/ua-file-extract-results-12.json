@@ -1,0 +1,1427 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 20,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_1.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_10.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_11.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_12.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_13.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_14.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_15.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_16.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_17.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_18.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_19.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_2.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_20.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_21.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_22.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_23.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_24.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_25.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_26.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "outputs/RAF-DB/metrics_epoch_27.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3154,
+      "nonEmptyLines": 3154,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 79
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 81
+        },
+        {
+          "heading": "image_paths",
+          "level": 1,
+          "line": 82
+        },
+        {
+          "heading": "avg_confidence",
+          "level": 1,
+          "line": 3152
+        },
+        {
+          "heading": "avg_uncertainty",
+          "level": 1,
+          "line": 3153
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    }
+  ]
+}

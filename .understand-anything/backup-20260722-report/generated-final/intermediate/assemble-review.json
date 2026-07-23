@@ -1,0 +1,15 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "Merge report không ghi nhận correction hoặc issue không thể tự sửa; quy mô 614 nodes và 1064 edges nhất quán với input.",
+    "Đã xác nhận đủ 193 file-like nodes tương ứng một-một với 193 file trong scan-result.json; không có node thiếu ID, ID trùng, dangling edge, self-edge, edge trùng hoặc sai prefix type.",
+    "Toàn bộ 126 quan hệ trong importMap đã có imports edge tương ứng, direction=forward và không thiếu node nguồn/đích; không cần bổ sung cross-batch edge.",
+    "Không phát hiện unknown node type, unknown complexity, summary/tags rỗng, direction hoặc weight ngoài miền hợp lệ.",
+    "Không chỉnh sửa assembled-graph.json vì graph đã đạt các kiểm tra sanity và referential integrity của Phase 3."
+  ]
+}

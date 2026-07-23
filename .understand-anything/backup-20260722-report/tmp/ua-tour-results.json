@@ -1,0 +1,3491 @@
+{
+  "scriptCompleted": true,
+  "entryPointCandidates": [
+    {
+      "id": "document:README.md",
+      "score": 5,
+      "name": "README.md",
+      "summary": "Tài liệu tổng quan cho cả CLIP-ReID gốc và pipeline EmotionCLIP-ReID cho FER, bao quát cài đặt, chuẩn bị landmark/anatomy, huấn luyện hai giai đoạn, ablation, đánh giá sealed-test và tái lập artifact."
+    },
+    {
+      "id": "file:datasets/dukemtmcreid.py",
+      "score": 3,
+      "name": "dukemtmcreid.py",
+      "summary": "Xử lý dữ liệu trong dukemtmcreid.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    {
+      "id": "file:datasets/make_dataloader_clipreid.py",
+      "score": 3,
+      "name": "make_dataloader_clipreid.py",
+      "summary": "Xử lý dữ liệu trong make_dataloader_clipreid.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    {
+      "id": "file:datasets/make_dataloader.py",
+      "score": 3,
+      "name": "make_dataloader.py",
+      "summary": "Xử lý dữ liệu trong make_dataloader.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    {
+      "id": "file:datasets/market1501.py",
+      "score": 3,
+      "name": "market1501.py",
+      "summary": "Xử lý dữ liệu trong market1501.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    }
+  ],
+  "fanInRanking": [
+    {
+      "id": "file:datasets/anatomy.py",
+      "fanIn": 10,
+      "name": "anatomy.py"
+    },
+    {
+      "id": "file:datasets/emotion_manifest.py",
+      "fanIn": 9,
+      "name": "emotion_manifest.py"
+    },
+    {
+      "id": "file:datasets/bases.py",
+      "fanIn": 8,
+      "name": "bases.py"
+    },
+    {
+      "id": "function:config/emotion_defaults.py:load_emotion_cfg",
+      "fanIn": 7,
+      "name": "load_emotion_cfg"
+    },
+    {
+      "id": "function:model/clip/clip.py:_download",
+      "fanIn": 5,
+      "name": "_download"
+    },
+    {
+      "id": "function:model/clip/model.py:build_model",
+      "fanIn": 5,
+      "name": "build_model"
+    },
+    {
+      "id": "file:config/__init__.py",
+      "fanIn": 4,
+      "name": "__init__.py"
+    },
+    {
+      "id": "file:model/clip/clip.py",
+      "fanIn": 4,
+      "name": "clip.py"
+    },
+    {
+      "id": "file:model/clip/simple_tokenizer.py",
+      "fanIn": 4,
+      "name": "simple_tokenizer.py"
+    },
+    {
+      "id": "file:model/emotionclip_model.py",
+      "fanIn": 4,
+      "name": "emotionclip_model.py"
+    },
+    {
+      "id": "file:processor/processor_emotionclip.py",
+      "fanIn": 4,
+      "name": "processor_emotionclip.py"
+    },
+    {
+      "id": "file:tests/test_notebook_helpers.py",
+      "fanIn": 4,
+      "name": "test_notebook_helpers.py"
+    },
+    {
+      "id": "file:utils/logger.py",
+      "fanIn": 4,
+      "name": "logger.py"
+    },
+    {
+      "id": "function:utils/notebook_landmarks.py:validate_landmark_manifest_layout",
+      "fanIn": 4,
+      "name": "validate_landmark_manifest_layout"
+    },
+    {
+      "id": "function:utils/notebook_run.py:prepare_notebook_staging",
+      "fanIn": 4,
+      "name": "prepare_notebook_staging"
+    },
+    {
+      "id": "function:utils/notebook_run.py:publish_notebook_artifacts",
+      "fanIn": 4,
+      "name": "publish_notebook_artifacts"
+    },
+    {
+      "id": "file:config/emotion_defaults.py",
+      "fanIn": 3,
+      "name": "emotion_defaults.py"
+    },
+    {
+      "id": "file:model/clip/__init__.py",
+      "fanIn": 3,
+      "name": "__init__.py"
+    },
+    {
+      "id": "file:utils/meter.py",
+      "fanIn": 3,
+      "name": "meter.py"
+    },
+    {
+      "id": "function:config/emotion_defaults.py:get_default_emotion_cfg",
+      "fanIn": 3,
+      "name": "get_default_emotion_cfg"
+    }
+  ],
+  "fanOutRanking": [
+    {
+      "id": "file:processor/processor_emotionclip.py",
+      "fanOut": 81,
+      "name": "processor_emotionclip.py"
+    },
+    {
+      "id": "file:tests/test_emotion_model_units.py",
+      "fanOut": 49,
+      "name": "test_emotion_model_units.py"
+    },
+    {
+      "id": "file:utils/notebook_metrics.py",
+      "fanOut": 42,
+      "name": "notebook_metrics.py"
+    },
+    {
+      "id": "file:tests/test_emotion_processor_smoke.py",
+      "fanOut": 36,
+      "name": "test_emotion_processor_smoke.py"
+    },
+    {
+      "id": "file:model/emotionclip_model.py",
+      "fanOut": 35,
+      "name": "emotionclip_model.py"
+    },
+    {
+      "id": "file:datasets/anatomy.py",
+      "fanOut": 34,
+      "name": "anatomy.py"
+    },
+    {
+      "id": "file:tests/test_notebook_helpers.py",
+      "fanOut": 34,
+      "name": "test_notebook_helpers.py"
+    },
+    {
+      "id": "file:tests/test_emotion_manifest.py",
+      "fanOut": 32,
+      "name": "test_emotion_manifest.py"
+    },
+    {
+      "id": "file:tools/build_face_landmark_artifacts.py",
+      "fanOut": 31,
+      "name": "build_face_landmark_artifacts.py"
+    },
+    {
+      "id": "file:utils/fer_metrics.py",
+      "fanOut": 30,
+      "name": "fer_metrics.py"
+    },
+    {
+      "id": "file:train_emotionclip.py",
+      "fanOut": 27,
+      "name": "train_emotionclip.py"
+    },
+    {
+      "id": "file:datasets/emotion_manifest.py",
+      "fanOut": 25,
+      "name": "emotion_manifest.py"
+    },
+    {
+      "id": "file:model/clip/model.py",
+      "fanOut": 24,
+      "name": "model.py"
+    },
+    {
+      "id": "file:tests/test_train_emotionclip_parallel.py",
+      "fanOut": 20,
+      "name": "test_train_emotionclip_parallel.py"
+    },
+    {
+      "id": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "fanOut": 20,
+      "name": "convert_rafdb_to_emotion_jsonl.py"
+    },
+    {
+      "id": "file:tests/test_emotion_losses_metrics.py",
+      "fanOut": 18,
+      "name": "test_emotion_losses_metrics.py"
+    },
+    {
+      "id": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "fanOut": 18,
+      "name": "convert_fer2013_to_emotion_jsonl.py"
+    },
+    {
+      "id": "file:config/emotion_defaults.py",
+      "fanOut": 17,
+      "name": "emotion_defaults.py"
+    },
+    {
+      "id": "file:model/make_model_clipreid.py",
+      "fanOut": 17,
+      "name": "make_model_clipreid.py"
+    },
+    {
+      "id": "file:utils/notebook_landmarks.py",
+      "fanOut": 16,
+      "name": "notebook_landmarks.py"
+    }
+  ],
+  "bfsTraversal": {
+    "startNode": "file:train_emotionclip.py",
+    "order": [
+      "file:train_emotionclip.py",
+      "file:config/emotion_defaults.py",
+      "file:datasets/emotion_manifest.py",
+      "file:model/emotionclip_model.py",
+      "file:processor/processor_emotionclip.py",
+      "file:utils/run_artifacts.py",
+      "file:datasets/anatomy.py",
+      "file:model/clip/__init__.py",
+      "file:model/clip/clip.py",
+      "file:model/clip/simple_tokenizer.py",
+      "file:loss/emotion_losses.py",
+      "file:utils/fer_metrics.py",
+      "file:model/clip/model.py"
+    ],
+    "depthMap": {
+      "file:train_emotionclip.py": 0,
+      "file:config/emotion_defaults.py": 1,
+      "file:datasets/emotion_manifest.py": 1,
+      "file:model/emotionclip_model.py": 1,
+      "file:processor/processor_emotionclip.py": 1,
+      "file:utils/run_artifacts.py": 1,
+      "file:datasets/anatomy.py": 2,
+      "file:model/clip/__init__.py": 2,
+      "file:model/clip/clip.py": 2,
+      "file:model/clip/simple_tokenizer.py": 2,
+      "file:loss/emotion_losses.py": 2,
+      "file:utils/fer_metrics.py": 2,
+      "file:model/clip/model.py": 3
+    },
+    "byDepth": {
+      "0": [
+        "file:train_emotionclip.py"
+      ],
+      "1": [
+        "file:config/emotion_defaults.py",
+        "file:datasets/emotion_manifest.py",
+        "file:model/emotionclip_model.py",
+        "file:processor/processor_emotionclip.py",
+        "file:utils/run_artifacts.py"
+      ],
+      "2": [
+        "file:datasets/anatomy.py",
+        "file:model/clip/__init__.py",
+        "file:model/clip/clip.py",
+        "file:model/clip/simple_tokenizer.py",
+        "file:loss/emotion_losses.py",
+        "file:utils/fer_metrics.py"
+      ],
+      "3": [
+        "file:model/clip/model.py"
+      ]
+    }
+  },
+  "nonCodeFiles": {
+    "documentation": [
+      {
+        "id": "document:README.md",
+        "name": "README.md",
+        "type": "document",
+        "summary": "Tài liệu tổng quan cho cả CLIP-ReID gốc và pipeline EmotionCLIP-ReID cho FER, bao quát cài đặt, chuẩn bị landmark/anatomy, huấn luyện hai giai đoạn, ablation, đánh giá sealed-test và tái lập artifact."
+      },
+      {
+        "id": "document:outputs/fer2013/README_training_logs.md",
+        "name": "README_training_logs.md",
+        "type": "document",
+        "summary": "Tài liệu mô tả nguồn gốc và cấu trúc các log training FER2013 đã được trích xuất từ notebook, giúp đối chiếu các bảng loss, validation và uncertainty."
+      },
+      {
+        "id": "document:datasets/keypoint_test.txt",
+        "name": "keypoint_test.txt",
+        "type": "document",
+        "summary": "Danh sách annotation keypoint cho ảnh test VeRi, mỗi dòng lưu đường dẫn ảnh, các cặp tọa độ landmark với `-1` cho điểm thiếu và nhãn viewpoint ở cuối."
+      },
+      {
+        "id": "document:datasets/keypoint_train.txt",
+        "name": "keypoint_train.txt",
+        "type": "document",
+        "summary": "Danh sách annotation keypoint quy mô lớn cho ảnh train VeRi, mã hóa đường dẫn, tọa độ landmark quan sát được hoặc giá trị thiếu và nhãn viewpoint."
+      },
+      {
+        "id": "document:note_edit.md",
+        "name": "note_edit.md",
+        "type": "document",
+        "summary": "Ghi chú thiết kế mô tả Stage 1A học context token, Stage 1B học geometry residual khi prompt gốc bị đóng băng, rồi chuyển semantic prototype sang Stage 2 để routing và fusion theo anatomy từng ảnh."
+      }
+    ],
+    "infrastructure": [],
+    "data": [],
+    "config": [
+      {
+        "id": "config:environment_emotionclip_cuda.yml",
+        "name": "environment_emotionclip_cuda.yml",
+        "type": "config",
+        "summary": "Định nghĩa môi trường Conda `emotionclip` với Python 3.10, PyTorch dùng CUDA 12.1 và các dependency phục vụ dataset, MediaPipe, notebook và kiểm thử."
+      },
+      {
+        "id": "config:pytest.ini",
+        "name": "pytest.ini",
+        "type": "config",
+        "summary": "Cấu hình pytest giới hạn việc khám phá và chạy test trong thư mục `tests`."
+      },
+      {
+        "id": "config:configs/VehicleID/cnn_base.yml",
+        "name": "cnn_base.yml",
+        "type": "config",
+        "summary": "Cấu hình baseline VehicleID dùng RN50, loss softmax-triplet, ảnh vuông 256 và lịch Adam 120 epoch cho bài toán vehicle ReID."
+      },
+      {
+        "id": "config:configs/VehicleID/cnn_clipreid.yml",
+        "name": "cnn_clipreid.yml",
+        "type": "config",
+        "summary": "Cấu hình CLIP-ReID hai giai đoạn trên VehicleID với backbone RN50: Stage 1 học prompt batch lớn và Stage 2 tối ưu nhận dạng bằng softmax-triplet."
+      },
+      {
+        "id": "config:configs/VehicleID/vit_base.yml",
+        "name": "vit_base.yml",
+        "type": "config",
+        "summary": "Cấu hình baseline VehicleID dùng ViT-B/16, chuẩn hóa CLIP, ảnh 256×256 và learning rate nhỏ trong 60 epoch."
+      },
+      {
+        "id": "config:configs/VehicleID/vit_clipreid.yml",
+        "name": "vit_clipreid.yml",
+        "type": "config",
+        "summary": "Cấu hình CLIP-ReID hai giai đoạn dùng ViT-B/16 cho VehicleID, kết hợp ID, triplet và image-to-text loss với label smoothing."
+      },
+      {
+        "id": "config:configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+        "name": "vit_b16_emotionclip_fer2013_quick.yml",
+        "type": "config",
+        "summary": "Preset chạy nhanh EmotionCLIP ViT-B/16 trên FER2013 với ngân sách epoch và tài nguyên thu gọn, dùng để kiểm tra pipeline end-to-end trước khi huấn luyện đầy đủ."
+      },
+      {
+        "id": "config:configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+        "name": "vit_b16_emotionclip_hf_fer2013_quick.yml",
+        "type": "config",
+        "summary": "Preset chạy nhanh cho biến thể FER2013 lấy từ Hugging Face, cấu hình đường dẫn manifest và tham số huấn luyện thu gọn cho vòng lặp xác minh."
+      },
+      {
+        "id": "config:configs/person/cnn_base.yml",
+        "name": "cnn_base.yml",
+        "type": "config",
+        "summary": "Cấu hình baseline person ReID dùng RN50, ảnh 256×128, softmax-triplet và lịch Adam 120 epoch; để trống lựa chọn Market1501, DukeMTMC, Occ-Duke hoặc MSMT17."
+      },
+      {
+        "id": "config:configs/person/cnn_clipreid.yml",
+        "name": "cnn_clipreid.yml",
+        "type": "config",
+        "summary": "Cấu hình CLIP-ReID RN50 hai giai đoạn cho nhiều bộ dữ liệu person ReID, với prompt learning ở Stage 1 và tối ưu nhận dạng ở Stage 2."
+      },
+      {
+        "id": "config:configs/person/vit_base.yml",
+        "name": "vit_base.yml",
+        "type": "config",
+        "summary": "Cấu hình baseline person ReID dùng ViT-B/16, ảnh dọc 256×128 và learning rate 5e-6; có tùy chọn SIE camera đang tắt."
+      },
+      {
+        "id": "config:configs/person/vit_clipreid.yml",
+        "name": "vit_clipreid.yml",
+        "type": "config",
+        "summary": "Cấu hình CLIP-ReID ViT-B/16 hai giai đoạn cho person ReID, kết hợp ID, triplet và image-to-text loss trên các dataset phổ biến."
+      },
+      {
+        "id": "config:configs/veri/cnn_base.yml",
+        "name": "cnn_base.yml",
+        "type": "config",
+        "summary": "Cấu hình baseline VeRi vehicle ReID dùng RN50, ảnh 256×256, softmax-triplet và lịch Adam 120 epoch."
+      },
+      {
+        "id": "config:configs/veri/cnn_prom.yml",
+        "name": "cnn_prom.yml",
+        "type": "config",
+        "summary": "Cấu hình prompt-based CLIP-ReID hai giai đoạn dùng RN50 cho VeRi, với Stage 1 học prompt và Stage 2 tối ưu đặc trưng nhận dạng."
+      },
+      {
+        "id": "config:configs/veri/vit_base.yml",
+        "name": "vit_base.yml",
+        "type": "config",
+        "summary": "Cấu hình baseline VeRi dùng ViT-B/16 với chuẩn hóa CLIP, learning rate 5e-6 và các tùy chọn SIE camera/view đang tắt."
+      },
+      {
+        "id": "config:configs/veri/vit_prom.yml",
+        "name": "vit_prom.yml",
+        "type": "config",
+        "summary": "Cấu hình prompt-based CLIP-ReID ViT-B/16 hai giai đoạn cho VeRi, giảm trọng số ID và bổ sung image-to-text loss cùng tùy chọn SIE."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_1.json",
+        "name": "metrics_epoch_1.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 1, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_10.json",
+        "name": "metrics_epoch_10.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 10, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_11.json",
+        "name": "metrics_epoch_11.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 11, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_12.json",
+        "name": "metrics_epoch_12.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 12, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_13.json",
+        "name": "metrics_epoch_13.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 13, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_14.json",
+        "name": "metrics_epoch_14.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 14, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_15.json",
+        "name": "metrics_epoch_15.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 15, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_16.json",
+        "name": "metrics_epoch_16.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 16, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_17.json",
+        "name": "metrics_epoch_17.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 17, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_18.json",
+        "name": "metrics_epoch_18.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 18, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_19.json",
+        "name": "metrics_epoch_19.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 19, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_2.json",
+        "name": "metrics_epoch_2.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 2, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_20.json",
+        "name": "metrics_epoch_20.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 20, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_21.json",
+        "name": "metrics_epoch_21.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 21, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_22.json",
+        "name": "metrics_epoch_22.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 22, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_23.json",
+        "name": "metrics_epoch_23.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 23, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_24.json",
+        "name": "metrics_epoch_24.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 24, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_25.json",
+        "name": "metrics_epoch_25.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 25, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_26.json",
+        "name": "metrics_epoch_26.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 26, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_27.json",
+        "name": "metrics_epoch_27.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 27, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_28.json",
+        "name": "metrics_epoch_28.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 28, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_29.json",
+        "name": "metrics_epoch_29.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 29, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_3.json",
+        "name": "metrics_epoch_3.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 3, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_30.json",
+        "name": "metrics_epoch_30.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 30, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_4.json",
+        "name": "metrics_epoch_4.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 4, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_5.json",
+        "name": "metrics_epoch_5.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 5, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_6.json",
+        "name": "metrics_epoch_6.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 6, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_7.json",
+        "name": "metrics_epoch_7.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 7, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_8.json",
+        "name": "metrics_epoch_8.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 8, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/RAF-DB/metrics_epoch_9.json",
+        "name": "metrics_epoch_9.json",
+        "type": "config",
+        "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 9, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+      },
+      {
+        "id": "config:outputs/fer2013/accuracy_uce_summary.json",
+        "name": "accuracy_uce_summary.json",
+        "type": "config",
+        "summary": "Tổng hợp các epoch tốt nhất của FER2013 theo accuracy, balanced accuracy, macro-F1, ECE và UCE, kèm ghi chú về ý nghĩa metric."
+      },
+      {
+        "id": "config:outputs/fer2013/best_metrics_summary.json",
+        "name": "best_metrics_summary.json",
+        "type": "config",
+        "summary": "Snapshot đầy đủ của checkpoint FER2013 tốt nhất, gồm confusion matrix, F1 theo lớp, calibration và uncertainty-risk AUC."
+      },
+      {
+        "id": "config:outputs/fer2013/inference_sample_uncertainty.json",
+        "name": "inference_sample_uncertainty.json",
+        "type": "config",
+        "summary": "Ghi kết quả inference của một mẫu FER2013 với nhãn dự đoán, phân phối xác suất, uncertainty và độ tương đồng descriptor."
+      },
+      {
+        "id": "config:outputs/fer2013/uncertainty_summary.json",
+        "name": "uncertainty_summary.json",
+        "type": "config",
+        "summary": "Tổng hợp ngắn checkpoint FER2013 tốt nhất và các metric validation, calibration, uncertainty cùng kết quả inference mẫu."
+      },
+      {
+        "id": "config:outputs/report_w4/emotionclip_outputs_summary.json",
+        "name": "emotionclip_outputs_summary.json",
+        "type": "config",
+        "summary": "Tổng hợp có cấu trúc kết quả FER2013 và RAF-DB, liên kết các metric, lịch sử training và artifact phục vụ báo cáo tuần 4."
+      },
+      {
+        "id": "config:configs/emotion/vit_b16_emotionclip.yml",
+        "name": "vit_b16_emotionclip.yml",
+        "type": "config",
+        "summary": "Cấu hình huấn luyện đầy đủ cho EmotionCLIP ViT-B/16, bao quát backbone, anatomy prompt/fusion, dữ liệu, optimizer, lịch học, loss Stage 2 và tiêu chí đánh giá."
+      },
+      {
+        "id": "config:configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+        "name": "vit_b16_emotionclip_rafdb_quick.yml",
+        "type": "config",
+        "summary": "Preset chạy nhanh EmotionCLIP trên RAF-DB, bật các điều khiển anatomy và huấn luyện rút gọn để smoke-test dữ liệu cùng mô hình."
+      }
+    ]
+  },
+  "clusters": [],
+  "layers": {
+    "count": 8,
+    "list": [
+      {
+        "id": "layer:orchestration",
+        "name": "Điểm vào và điều phối huấn luyện",
+        "description": "Các entry point và processor lắp ghép cấu hình, dữ liệu, mô hình, vòng lặp train/eval và checkpoint cho EmotionCLIP-ReID."
+      },
+      {
+        "id": "layer:model",
+        "name": "Mô hình và biểu diễn",
+        "description": "Các kiến trúc CLIP, prompt learner, adapter biểu cảm, anatomy routing và đầu phân loại tạo nên biểu diễn của hệ thống."
+      },
+      {
+        "id": "layer:optimization",
+        "name": "Hàm mục tiêu và tối ưu hóa",
+        "description": "Các loss, optimizer và learning-rate scheduler kiểm soát mục tiêu học và động lực cập nhật tham số qua hai stage."
+      },
+      {
+        "id": "layer:data",
+        "name": "Dữ liệu và tiền xử lý",
+        "description": "Dataset, manifest, landmark/anatomy pipeline và công cụ chuyển đổi dữ liệu cung cấp batch đầu vào có kiểm soát chất lượng."
+      },
+      {
+        "id": "layer:utility",
+        "name": "Tiện ích dùng chung",
+        "description": "Metric, logging, theo dõi tiến độ, reranking và helper dùng xuyên suốt huấn luyện, notebook và đánh giá."
+      },
+      {
+        "id": "layer:config",
+        "name": "Cấu hình thí nghiệm",
+        "description": "Cấu hình mặc định, YAML thí nghiệm và thiết lập môi trường/pytest xác định biến thể mô hình cùng chế độ chạy tái lập."
+      },
+      {
+        "id": "layer:validation",
+        "name": "Kiểm thử và xác nhận",
+        "description": "Các test tự động kiểm tra loss, metric, model unit, data pipeline, notebook helper và tính đúng đắn của integration."
+      },
+      {
+        "id": "layer:experiment-artifacts",
+        "name": "Thực nghiệm, kết quả và tài liệu",
+        "description": "Notebook, tài liệu và output cấu hình/kết quả lưu dấu cách sử dụng cùng bằng chứng từ các lần thực nghiệm."
+      }
+    ]
+  },
+  "nodeSummaryIndex": {
+    "file:config/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Định nghĩa và kiểm tra cấu hình trong __init__.py, cung cấp mặc định an toàn cho pipeline EmotionCLIP."
+    },
+    "file:loss/center_loss.py": {
+      "name": "center_loss.py",
+      "type": "file",
+      "summary": "Cài đặt các hàm mất mát trong center_loss.py để tối ưu biểu diễn, phân loại và độ phân tách mẫu của mô hình."
+    },
+    "class:loss/center_loss.py:CenterLoss": {
+      "name": "CenterLoss",
+      "type": "class",
+      "summary": "Lớp CenterLoss đóng gói trạng thái và hành vi liên quan trong center_loss.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:loss/make_loss.py": {
+      "name": "make_loss.py",
+      "type": "file",
+      "summary": "Cài đặt các hàm mất mát trong make_loss.py để tối ưu biểu diễn, phân loại và độ phân tách mẫu của mô hình."
+    },
+    "function:loss/make_loss.py:make_loss": {
+      "name": "make_loss",
+      "type": "function",
+      "summary": "Tính toán hàm mất mát make_loss trong mô-đun make_loss.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:loss/softmax_loss.py": {
+      "name": "softmax_loss.py",
+      "type": "file",
+      "summary": "Cài đặt các hàm mất mát trong softmax_loss.py để tối ưu biểu diễn, phân loại và độ phân tách mẫu của mô hình."
+    },
+    "class:loss/softmax_loss.py:CrossEntropyLabelSmooth": {
+      "name": "CrossEntropyLabelSmooth",
+      "type": "class",
+      "summary": "Lớp CrossEntropyLabelSmooth đóng gói trạng thái và hành vi liên quan trong softmax_loss.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "class:loss/softmax_loss.py:LabelSmoothingCrossEntropy": {
+      "name": "LabelSmoothingCrossEntropy",
+      "type": "class",
+      "summary": "Lớp LabelSmoothingCrossEntropy đóng gói trạng thái và hành vi liên quan trong softmax_loss.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:loss/supcontrast.py": {
+      "name": "supcontrast.py",
+      "type": "file",
+      "summary": "Cài đặt các hàm mất mát trong supcontrast.py để tối ưu biểu diễn, phân loại và độ phân tách mẫu của mô hình."
+    },
+    "class:loss/supcontrast.py:SupConLoss": {
+      "name": "SupConLoss",
+      "type": "class",
+      "summary": "Lớp SupConLoss đóng gói trạng thái và hành vi liên quan trong supcontrast.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:loss/triplet_loss.py": {
+      "name": "triplet_loss.py",
+      "type": "file",
+      "summary": "Cài đặt các hàm mất mát trong triplet_loss.py để tối ưu biểu diễn, phân loại và độ phân tách mẫu của mô hình."
+    },
+    "function:loss/triplet_loss.py:normalize": {
+      "name": "normalize",
+      "type": "function",
+      "summary": "Thực hiện xử lý normalize trong mô-đun triplet_loss.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:loss/triplet_loss.py:euclidean_dist": {
+      "name": "euclidean_dist",
+      "type": "function",
+      "summary": "Thực hiện xử lý euclidean_dist trong mô-đun triplet_loss.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:loss/triplet_loss.py:cosine_dist": {
+      "name": "cosine_dist",
+      "type": "function",
+      "summary": "Thực hiện xử lý cosine_dist trong mô-đun triplet_loss.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:loss/triplet_loss.py:hard_example_mining": {
+      "name": "hard_example_mining",
+      "type": "function",
+      "summary": "Thực hiện xử lý hard_example_mining trong mô-đun triplet_loss.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "class:loss/triplet_loss.py:TripletLoss": {
+      "name": "TripletLoss",
+      "type": "class",
+      "summary": "Lớp TripletLoss đóng gói trạng thái và hành vi liên quan trong triplet_loss.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:processor/processor.py": {
+      "name": "processor.py",
+      "type": "file",
+      "summary": "Điều phối vòng lặp huấn luyện/đánh giá trong processor.py, bao gồm luồng dữ liệu, tối ưu hóa, ghi metric và checkpoint."
+    },
+    "function:processor/processor.py:do_train": {
+      "name": "do_train",
+      "type": "function",
+      "summary": "Thực thi logic huấn luyện do_train trong mô-đun processor.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:processor/processor.py:do_inference": {
+      "name": "do_inference",
+      "type": "function",
+      "summary": "Thực thi logic đánh giá do_inference trong mô-đun processor.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:processor/processor_clipreid_stage1.py": {
+      "name": "processor_clipreid_stage1.py",
+      "type": "file",
+      "summary": "Điều phối vòng lặp huấn luyện/đánh giá trong processor_clipreid_stage1.py, bao gồm luồng dữ liệu, tối ưu hóa, ghi metric và checkpoint."
+    },
+    "function:processor/processor_clipreid_stage1.py:do_train_stage1": {
+      "name": "do_train_stage1",
+      "type": "function",
+      "summary": "Thực thi logic huấn luyện do_train_stage1 trong mô-đun processor_clipreid_stage1.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:processor/processor_clipreid_stage2.py": {
+      "name": "processor_clipreid_stage2.py",
+      "type": "file",
+      "summary": "Điều phối vòng lặp huấn luyện/đánh giá trong processor_clipreid_stage2.py, bao gồm luồng dữ liệu, tối ưu hóa, ghi metric và checkpoint."
+    },
+    "function:processor/processor_clipreid_stage2.py:do_train_stage2": {
+      "name": "do_train_stage2",
+      "type": "function",
+      "summary": "Thực thi logic huấn luyện do_train_stage2 trong mô-đun processor_clipreid_stage2.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:processor/processor_clipreid_stage2.py:do_inference": {
+      "name": "do_inference",
+      "type": "function",
+      "summary": "Thực thi logic đánh giá do_inference trong mô-đun processor_clipreid_stage2.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:solver/cosine_lr.py": {
+      "name": "cosine_lr.py",
+      "type": "file",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong cosine_lr.py cho các giai đoạn huấn luyện."
+    },
+    "class:solver/cosine_lr.py:CosineLRScheduler": {
+      "name": "CosineLRScheduler",
+      "type": "class",
+      "summary": "Lớp CosineLRScheduler đóng gói trạng thái và hành vi liên quan trong cosine_lr.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:solver/lr_scheduler.py": {
+      "name": "lr_scheduler.py",
+      "type": "file",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong lr_scheduler.py cho các giai đoạn huấn luyện."
+    },
+    "class:solver/lr_scheduler.py:WarmupMultiStepLR": {
+      "name": "WarmupMultiStepLR",
+      "type": "class",
+      "summary": "Lớp WarmupMultiStepLR đóng gói trạng thái và hành vi liên quan trong lr_scheduler.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:solver/make_optimizer.py": {
+      "name": "make_optimizer.py",
+      "type": "file",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong make_optimizer.py cho các giai đoạn huấn luyện."
+    },
+    "function:solver/make_optimizer.py:make_optimizer": {
+      "name": "make_optimizer",
+      "type": "function",
+      "summary": "Thực hiện xử lý make_optimizer trong mô-đun make_optimizer.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:solver/make_optimizer_prompt.py": {
+      "name": "make_optimizer_prompt.py",
+      "type": "file",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong make_optimizer_prompt.py cho các giai đoạn huấn luyện."
+    },
+    "function:solver/make_optimizer_prompt.py:make_optimizer_1stage": {
+      "name": "make_optimizer_1stage",
+      "type": "function",
+      "summary": "Thực thi logic huấn luyện make_optimizer_1stage trong mô-đun make_optimizer_prompt.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:solver/make_optimizer_prompt.py:make_optimizer_2stage": {
+      "name": "make_optimizer_2stage",
+      "type": "function",
+      "summary": "Thực thi logic huấn luyện make_optimizer_2stage trong mô-đun make_optimizer_prompt.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:solver/scheduler.py": {
+      "name": "scheduler.py",
+      "type": "file",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong scheduler.py cho các giai đoạn huấn luyện."
+    },
+    "class:solver/scheduler.py:Scheduler": {
+      "name": "Scheduler",
+      "type": "class",
+      "summary": "Lớp Scheduler đóng gói trạng thái và hành vi liên quan trong scheduler.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:solver/scheduler_factory.py": {
+      "name": "scheduler_factory.py",
+      "type": "file",
+      "summary": "Cung cấp cơ chế optimizer hoặc learning-rate scheduler trong scheduler_factory.py cho các giai đoạn huấn luyện."
+    },
+    "function:solver/scheduler_factory.py:create_scheduler": {
+      "name": "create_scheduler",
+      "type": "function",
+      "summary": "Thực hiện xử lý create_scheduler trong mô-đun scheduler_factory.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:test.py": {
+      "name": "test.py",
+      "type": "file",
+      "summary": "Bộ kiểm thử xác minh hành vi và các điều kiện biên của test, giúp ngăn hồi quy trong pipeline EmotionCLIP-ReID."
+    },
+    "file:test_clipreid.py": {
+      "name": "test_clipreid.py",
+      "type": "file",
+      "summary": "Bộ kiểm thử xác minh hành vi và các điều kiện biên của test_clipreid, giúp ngăn hồi quy trong pipeline EmotionCLIP-ReID."
+    },
+    "file:train.py": {
+      "name": "train.py",
+      "type": "file",
+      "summary": "Điểm vào huấn luyện train.py, lắp ghép cấu hình, dữ liệu, mô hình, optimizer và các stage training."
+    },
+    "function:train.py:set_seed": {
+      "name": "set_seed",
+      "type": "function",
+      "summary": "Thực hiện xử lý set_seed trong mô-đun train.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:train_clipreid.py": {
+      "name": "train_clipreid.py",
+      "type": "file",
+      "summary": "Điểm vào huấn luyện train_clipreid.py, lắp ghép cấu hình, dữ liệu, mô hình, optimizer và các stage training."
+    },
+    "function:train_clipreid.py:set_seed": {
+      "name": "set_seed",
+      "type": "function",
+      "summary": "Thực hiện xử lý set_seed trong mô-đun train_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:utils/logger.py": {
+      "name": "logger.py",
+      "type": "file",
+      "summary": "Cung cấp các thành phần hỗ trợ trong logger.py cho pipeline EmotionCLIP-ReID."
+    },
+    "function:utils/logger.py:setup_logger": {
+      "name": "setup_logger",
+      "type": "function",
+      "summary": "Thực hiện xử lý setup_logger trong mô-đun logger.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:utils/meter.py": {
+      "name": "meter.py",
+      "type": "file",
+      "summary": "Cung cấp các thành phần hỗ trợ trong meter.py cho pipeline EmotionCLIP-ReID."
+    },
+    "class:utils/meter.py:AverageMeter": {
+      "name": "AverageMeter",
+      "type": "class",
+      "summary": "Lớp AverageMeter đóng gói trạng thái và hành vi liên quan trong meter.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:utils/metrics.py": {
+      "name": "metrics.py",
+      "type": "file",
+      "summary": "Tính toán metric đánh giá trong metrics.py, tổng hợp chất lượng dự đoán và độ tin cậy của mô hình."
+    },
+    "function:utils/metrics.py:euclidean_distance": {
+      "name": "euclidean_distance",
+      "type": "function",
+      "summary": "Thực hiện xử lý euclidean_distance trong mô-đun metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:utils/metrics.py:cosine_similarity": {
+      "name": "cosine_similarity",
+      "type": "function",
+      "summary": "Thực hiện xử lý cosine_similarity trong mô-đun metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:utils/metrics.py:eval_func": {
+      "name": "eval_func",
+      "type": "function",
+      "summary": "Thực thi logic đánh giá eval_func trong mô-đun metrics.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "class:utils/metrics.py:R1_mAP_eval": {
+      "name": "R1_mAP_eval",
+      "type": "class",
+      "summary": "Lớp R1_mAP_eval đóng gói trạng thái và hành vi liên quan trong metrics.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:utils/reranking.py": {
+      "name": "reranking.py",
+      "type": "file",
+      "summary": "Cung cấp các thành phần hỗ trợ trong reranking.py cho pipeline EmotionCLIP-ReID."
+    },
+    "function:utils/reranking.py:re_ranking": {
+      "name": "re_ranking",
+      "type": "function",
+      "summary": "Thực hiện xử lý re_ranking trong mô-đun reranking.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:datasets/anatomy.py": {
+      "name": "anatomy.py",
+      "type": "file",
+      "summary": "Chuyển landmark khuôn mặt và metadata chất lượng thành đặc trưng hình học theo vùng dùng bởi nhánh anatomy. Mô-đun xử lý phép biến đổi crop/flip, độ bất định và thống kê hình học theo lớp."
+    },
+    "function:datasets/anatomy.py:geometry_feature_definition_mask": {
+      "name": "geometry_feature_definition_mask",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `geometry_feature_definition_mask` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:apply_horizontal_flip_to_geometry": {
+      "name": "apply_horizontal_flip_to_geometry",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `apply_horizontal_flip_to_geometry` từ `values`, `validity`, `uncertainty` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:_load_anatomy_artifact_path": {
+      "name": "_load_anatomy_artifact_path",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_load_anatomy_artifact_path` từ `resolved_path`, `modified_time_ns`, `file_size` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:load_anatomy_artifact": {
+      "name": "load_anatomy_artifact",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `load_anatomy_artifact` từ `value` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:_coerce_score": {
+      "name": "_coerce_score",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_coerce_score` từ `value`, `default` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:_artifact_arrays": {
+      "name": "_artifact_arrays",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_artifact_arrays` từ `artifact` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:transform_normalized_landmarks": {
+      "name": "transform_normalized_landmarks",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `transform_normalized_landmarks` từ `coords`, `valid`, `original_size`, `output_size`, `horizontal_flip` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:_distance": {
+      "name": "_distance",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_distance` từ `coords`, `first`, `second` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:_region_indices": {
+      "name": "_region_indices",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_region_indices` từ `region`, `landmark_count` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:_feature": {
+      "name": "_feature",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_feature` từ `coords`, `valid`, `uncertainty`, `indices`, `fn` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:_polyline_curvature": {
+      "name": "_polyline_curvature",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_polyline_curvature` từ `coords`, `indices`, `scale` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:_geometry_features": {
+      "name": "_geometry_features",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_geometry_features` từ `coords`, `valid`, `uncertainty` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:_post_transform_crop_quality": {
+      "name": "_post_transform_crop_quality",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_post_transform_crop_quality` từ `coords`, `valid` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:_artifact_feature_uncertainty": {
+      "name": "_artifact_feature_uncertainty",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_artifact_feature_uncertainty` từ `artifact` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:empty_anatomy_inputs": {
+      "name": "empty_anatomy_inputs",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `empty_anatomy_inputs` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/anatomy.py:anatomy_to_model_inputs": {
+      "name": "anatomy_to_model_inputs",
+      "type": "function",
+      "summary": "Biến anatomy artifact thành tensor landmark, geometry, validity, uncertainty và quality đúng định dạng đầu vào mô hình."
+    },
+    "function:datasets/anatomy.py:fit_class_geometry_statistics": {
+      "name": "fit_class_geometry_statistics",
+      "type": "function",
+      "summary": "Ước lượng thống kê geometry theo lớp từ các mẫu hợp lệ, có trọng số uncertainty và ngưỡng số mẫu tối thiểu."
+    },
+    "file:datasets/emotion_manifest.py": {
+      "name": "emotion_manifest.py",
+      "type": "file",
+      "summary": "Nạp, chuẩn hóa và kiểm tra manifest dữ liệu cảm xúc, đồng thời xây dựng Dataset, transform an toàn cho khuôn mặt và các DataLoader tách biệt train/validation/test. Mô-đun còn đánh giá độ phủ anatomy và phát hiện rò rỉ split."
+    },
+    "function:datasets/emotion_manifest.py:normalize_emotion": {
+      "name": "normalize_emotion",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `normalize_emotion` từ `value` trong miền dataset và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/emotion_manifest.py:_resolve_image_path": {
+      "name": "_resolve_image_path",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_resolve_image_path` từ `path`, `root_dir` trong miền dataset và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/emotion_manifest.py:_sample_from_record": {
+      "name": "_sample_from_record",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_sample_from_record` từ `record`, `manifest_path`, `root_dir`, `line_no`, `logger` trong miền dataset và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/emotion_manifest.py:load_emotion_manifest": {
+      "name": "load_emotion_manifest",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `load_emotion_manifest` từ `manifest_path`, `root_dir`, `split`, `logger` trong miền dataset và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/emotion_manifest.py:validate_split_leakage": {
+      "name": "validate_split_leakage",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `validate_split_leakage` từ `samples`, `group_keys` trong miền dataset và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/emotion_manifest.py:summarize_anatomy_coverage": {
+      "name": "summarize_anatomy_coverage",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `summarize_anatomy_coverage` từ `samples`, `output_size` trong miền dataset và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/emotion_manifest.py:validate_anatomy_coverage": {
+      "name": "validate_anatomy_coverage",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `validate_anatomy_coverage` từ `cfg`, `report` trong miền dataset và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/emotion_manifest.py:emotion_collate_fn": {
+      "name": "emotion_collate_fn",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `emotion_collate_fn` từ `batch` trong miền dataset và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:datasets/emotion_manifest.py:make_emotion_dataloaders": {
+      "name": "make_emotion_dataloaders",
+      "type": "function",
+      "summary": "Xây dựng DataLoader train, validation và test từ manifest, giữ chính sách split và collate anatomy nhất quán."
+    },
+    "class:datasets/emotion_manifest.py:EmotionSample": {
+      "name": "EmotionSample",
+      "type": "class",
+      "summary": "Mô hình dữ liệu cho một mẫu cảm xúc, liên kết ảnh, nhãn, split, anatomy/AU và metadata nhận dạng chuỗi."
+    },
+    "class:datasets/emotion_manifest.py:FaceSafeTransform": {
+      "name": "FaceSafeTransform",
+      "type": "class",
+      "summary": "Áp dụng resize, crop, jitter và horizontal flip đồng bộ giữa ảnh với landmark để bảo toàn ngữ nghĩa khuôn mặt."
+    },
+    "class:datasets/emotion_manifest.py:EmotionManifestDataset": {
+      "name": "EmotionManifestDataset",
+      "type": "class",
+      "summary": "Dataset đọc mẫu từ manifest, nạp ảnh/anatomy và trả tensor đã biến đổi cho pipeline FER."
+    },
+    "file:loss/emotion_losses.py": {
+      "name": "emotion_losses.py",
+      "type": "file",
+      "summary": "Cài đặt các loss cho Stage 2 gồm evidential cross-entropy, KL Dirichlet, calibration độ tin cậy, giám sát routing và ranking giữa mẫu sạch với mẫu bị làm hỏng."
+    },
+    "function:loss/emotion_losses.py:dirichlet_kl_to_uniform": {
+      "name": "dirichlet_kl_to_uniform",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `dirichlet_kl_to_uniform` từ `alpha` trong miền loss và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:loss/emotion_losses.py:evidential_ce_loss": {
+      "name": "evidential_ce_loss",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `evidential_ce_loss` từ `alpha`, `targets`, `annealing_coef` trong miền loss và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:loss/emotion_losses.py:dirichlet_statistics": {
+      "name": "dirichlet_statistics",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `dirichlet_statistics` từ `alpha` trong miền loss và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:loss/emotion_losses.py:reliability_correctness_loss": {
+      "name": "reliability_correctness_loss",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `reliability_correctness_loss` từ `raw_strength`, `logits`, `targets` trong miền loss và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:loss/emotion_losses.py:reliability_ranking_loss": {
+      "name": "reliability_ranking_loss",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `reliability_ranking_loss` từ `clean_strength`, `shifted_strength`, `margin` trong miền loss và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:loss/emotion_losses.py:emotion_stage2_loss": {
+      "name": "emotion_stage2_loss",
+      "type": "function",
+      "summary": "Kết hợp classification, evidential uncertainty, gate/temperature, routing và reliability-ranking thành objective Stage 2."
+    },
+    "file:tests/test_anatomy_audit.py": {
+      "name": "test_anatomy_audit.py",
+      "type": "file",
+      "summary": "Kiểm thử công cụ audit hình học anatomy, đặc biệt việc quy đổi jitter landmark sang đúng đơn vị đặc trưng và phép đo signal-to-jitter."
+    },
+    "function:tests/test_anatomy_audit.py:_landmarks": {
+      "name": "_landmarks",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_landmarks` trong miền test và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tests/test_anatomy_audit.py:test_artifact_builder_propagates_jitter_into_feature_units": {
+      "name": "test_artifact_builder_propagates_jitter_into_feature_units",
+      "type": "function",
+      "summary": "Xác minh kịch bản `artifact_builder_propagates_jitter_into_feature_units` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_anatomy_audit.py:test_signal_to_jitter_compares_quantities_in_geometry_feature_units": {
+      "name": "test_signal_to_jitter_compares_quantities_in_geometry_feature_units",
+      "type": "function",
+      "summary": "Xác minh kịch bản `signal_to_jitter_compares_quantities_in_geometry_feature_units` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "file:tests/test_emotion_losses_metrics.py": {
+      "name": "test_emotion_losses_metrics.py",
+      "type": "file",
+      "summary": "Kiểm thử các loss evidential/reliability và metric FER, bao gồm tính bất biến, gradient, calibration và khả năng phân tách OOD bằng uncertainty."
+    },
+    "function:tests/test_emotion_losses_metrics.py:test_decoupled_dirichlet_is_offset_invariant_and_consistent": {
+      "name": "test_decoupled_dirichlet_is_offset_invariant_and_consistent",
+      "type": "function",
+      "summary": "Xác minh kịch bản `decoupled_dirichlet_is_offset_invariant_and_consistent` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_losses_metrics.py:test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax": {
+      "name": "test_decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax",
+      "type": "function",
+      "summary": "Xác minh kịch bản `decoupled_dirichlet_strength_is_monotonic_and_probabilities_are_softmax` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_losses_metrics.py:test_emotion_stage2_loss_has_gradients": {
+      "name": "test_emotion_stage2_loss_has_gradients",
+      "type": "function",
+      "summary": "Xác minh kịch bản `emotion_stage2_loss_has_gradients` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_losses_metrics.py:test_reliability_loss_does_not_backpropagate_to_classifier_logits": {
+      "name": "test_reliability_loss_does_not_backpropagate_to_classifier_logits",
+      "type": "function",
+      "summary": "Xác minh kịch bản `reliability_loss_does_not_backpropagate_to_classifier_logits` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_losses_metrics.py:test_fer_metrics_basic_values": {
+      "name": "test_fer_metrics_basic_values",
+      "type": "function",
+      "summary": "Xác minh kịch bản `fer_metrics_basic_values` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_losses_metrics.py:test_ood_metrics_reward_separated_uncertainty_scores": {
+      "name": "test_ood_metrics_reward_separated_uncertainty_scores",
+      "type": "function",
+      "summary": "Xác minh kịch bản `ood_metrics_reward_separated_uncertainty_scores` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_losses_metrics.py:test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients": {
+      "name": "test_stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients",
+      "type": "function",
+      "summary": "Xác minh kịch bản `stage2_routing_and_clean_corrupted_ranking_losses_receive_gradients` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "file:tests/test_emotion_manifest.py": {
+      "name": "test_emotion_manifest.py",
+      "type": "file",
+      "summary": "Kiểm thử chuẩn hóa nhãn, phân tách dữ liệu, chống leakage và phép biến đổi landmark trong manifest FER2013/RAF-DB. Bộ test cũng xác minh fallback rõ ràng khi anatomy bị thiếu."
+    },
+    "function:tests/test_emotion_manifest.py:_write_image": {
+      "name": "_write_image",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_write_image` từ `path` trong miền test và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tests/test_emotion_manifest.py:test_normalize_emotion_aliases": {
+      "name": "test_normalize_emotion_aliases",
+      "type": "function",
+      "summary": "Xác minh kịch bản `normalize_emotion_aliases` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:test_manifest_uses_string_label_when_id_mismatches": {
+      "name": "test_manifest_uses_string_label_when_id_mismatches",
+      "type": "function",
+      "summary": "Xác minh kịch bản `manifest_uses_string_label_when_id_mismatches` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:test_split_leakage_detects_video_overlap": {
+      "name": "test_split_leakage_detects_video_overlap",
+      "type": "function",
+      "summary": "Xác minh kịch bản `split_leakage_detects_video_overlap` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:test_dataloaders_keep_validation_and_test_separate": {
+      "name": "test_dataloaders_keep_validation_and_test_separate",
+      "type": "function",
+      "summary": "Xác minh kịch bản `dataloaders_keep_validation_and_test_separate` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:test_fer2013_official_splits_are_not_merged": {
+      "name": "test_fer2013_official_splits_are_not_merged",
+      "type": "function",
+      "summary": "Xác minh kịch bản `fer2013_official_splits_are_not_merged` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:test_rafdb_dev_split_is_deterministic_stratified_and_train_only": {
+      "name": "test_rafdb_dev_split_is_deterministic_stratified_and_train_only",
+      "type": "function",
+      "summary": "Xác minh kịch bản `rafdb_dev_split_is_deterministic_stratified_and_train_only` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:test_rafdb_full_official_train_mode_has_no_validation_selection": {
+      "name": "test_rafdb_full_official_train_mode_has_no_validation_selection",
+      "type": "function",
+      "summary": "Xác minh kịch bản `rafdb_full_official_train_mode_has_no_validation_selection` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:_face_mesh_artifact": {
+      "name": "_face_mesh_artifact",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_face_mesh_artifact` trong miền test và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tests/test_emotion_manifest.py:test_landmarks_follow_center_crop_and_horizontal_flip": {
+      "name": "test_landmarks_follow_center_crop_and_horizontal_flip",
+      "type": "function",
+      "summary": "Xác minh kịch bản `landmarks_follow_center_crop_and_horizontal_flip` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:test_landmarks_without_optional_confidence_scores_remain_usable": {
+      "name": "test_landmarks_without_optional_confidence_scores_remain_usable",
+      "type": "function",
+      "summary": "Xác minh kịch bản `landmarks_without_optional_confidence_scores_remain_usable` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:test_horizontal_flip_swaps_left_right_geometry_semantics": {
+      "name": "test_horizontal_flip_swaps_left_right_geometry_semantics",
+      "type": "function",
+      "summary": "Xác minh kịch bản `horizontal_flip_swaps_left_right_geometry_semantics` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing": {
+      "name": "test_normalized_geometry_is_invalid_when_scale_landmarks_are_missing",
+      "type": "function",
+      "summary": "Xác minh kịch bản `normalized_geometry_is_invalid_when_scale_landmarks_are_missing` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_manifest.py:test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback": {
+      "name": "test_dataset_missing_anatomy_uses_explicit_zero_quality_fallback",
+      "type": "function",
+      "summary": "Xác minh kịch bản `dataset_missing_anatomy_uses_explicit_zero_quality_fallback` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "file:tests/test_run_artifacts.py": {
+      "name": "test_run_artifacts.py",
+      "type": "file",
+      "summary": "Kiểm thử tính bất biến của thư mục run, metadata provenance và yêu cầu chỉ định run ID khi tra cứu artifact."
+    },
+    "function:tests/test_run_artifacts.py:test_run_directory_is_immutable_and_records_provenance": {
+      "name": "test_run_directory_is_immutable_and_records_provenance",
+      "type": "function",
+      "summary": "Xác minh kịch bản `run_directory_is_immutable_and_records_provenance` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_run_artifacts.py:test_artifact_lookup_requires_explicit_run_id": {
+      "name": "test_artifact_lookup_requires_explicit_run_id",
+      "type": "function",
+      "summary": "Xác minh kịch bản `artifact_lookup_requires_explicit_run_id` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "file:tools/audit_anatomy_geometry.py": {
+      "name": "audit_anatomy_geometry.py",
+      "type": "file",
+      "summary": "CLI audit chất lượng geometry feature từ anatomy artifact, tổng hợp phân phối tín hiệu và so sánh tín hiệu giữa lớp với nhiễu jitter đo được."
+    },
+    "function:tools/audit_anatomy_geometry.py:_parse_args": {
+      "name": "_parse_args",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_parse_args` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/audit_anatomy_geometry.py:_summary": {
+      "name": "_summary",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_summary` từ `values` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/audit_anatomy_geometry.py:_landmark_valid": {
+      "name": "_landmark_valid",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_landmark_valid` từ `landmark` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/audit_anatomy_geometry.py:_signal_to_jitter": {
+      "name": "_signal_to_jitter",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_signal_to_jitter` từ `values`, `validity`, `labels`, `feature_jitter`, `feature_jitter_validity` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/audit_anatomy_geometry.py:main": {
+      "name": "main",
+      "type": "function",
+      "summary": "Điều phối entry point cho cli audit chất lượng geometry feature từ anatomy artifact, tổng hợp phân phối tín hiệu và so sánh tín hiệu giữa lớp với nhiễu jitter đo được, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả."
+    },
+    "file:tools/build_face_landmark_artifacts.py": {
+      "name": "build_face_landmark_artifacts.py",
+      "type": "file",
+      "summary": "Tạo anatomy artifact từ ảnh bằng MediaPipe Face Landmarker, kèm pose, visibility/presence và ước lượng bất định qua jitter. Công cụ ghi tham chiếu artifact di động để manifest có thể tái sử dụng."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_parse_args": {
+      "name": "_parse_args",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_parse_args` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_load_mediapipe": {
+      "name": "_load_mediapipe",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_load_mediapipe` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_resolve_image_path": {
+      "name": "_resolve_image_path",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_resolve_image_path` từ `record`, `manifest`, `root_dir` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_artifact_path": {
+      "name": "_artifact_path",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_artifact_path` từ `image_path`, `artifact_root` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_shift_image": {
+      "name": "_shift_image",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_shift_image` từ `image`, `dx`, `dy` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_detect": {
+      "name": "_detect",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_detect` từ `landmarker`, `mp`, `image` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_pose_from_matrix": {
+      "name": "_pose_from_matrix",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_pose_from_matrix` từ `matrix` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_score": {
+      "name": "_score",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_score` từ `landmark`, `name`, `default` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_score_with_validity": {
+      "name": "_score_with_validity",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_score_with_validity` từ `landmark`, `name`, `default` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_jitter_offsets": {
+      "name": "_jitter_offsets",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_jitter_offsets` từ `repeats`, `pixels`, `rng` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_feature_jitter_from_observations": {
+      "name": "_feature_jitter_from_observations",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_feature_jitter_from_observations` từ `observations`, `landmarks`, `image_size` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_build_artifact": {
+      "name": "_build_artifact",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_build_artifact` từ `image`, `image_path`, `landmarker`, `mp`, `jitter_repeats`, `jitter_pixels`, `rng` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_file_sha256": {
+      "name": "_file_sha256",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_file_sha256` từ `path` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:_portable_artifact_reference": {
+      "name": "_portable_artifact_reference",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_portable_artifact_reference` từ `target`, `manifest` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/build_face_landmark_artifacts.py:main": {
+      "name": "main",
+      "type": "function",
+      "summary": "Điều phối entry point cho tạo anatomy artifact từ ảnh bằng mediapipe face landmarker, kèm pose, visibility/presence và ước lượng bất định qua jitter, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả."
+    },
+    "file:tools/convert_affwild2_to_emotion_jsonl.py": {
+      "name": "convert_affwild2_to_emotion_jsonl.py",
+      "type": "file",
+      "summary": "Chuyển annotation Aff-Wild2 theo frame thành manifest JSONL thống nhất cho pipeline EmotionCLIP, giữ thông tin video và split."
+    },
+    "function:tools/convert_affwild2_to_emotion_jsonl.py:iter_label_file": {
+      "name": "iter_label_file",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `iter_label_file` từ `path` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_affwild2_to_emotion_jsonl.py:main": {
+      "name": "main",
+      "type": "function",
+      "summary": "Điều phối entry point cho chuyển annotation aff-wild2 theo frame thành manifest jsonl thống nhất cho pipeline emotionclip, giữ thông tin video và split, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả."
+    },
+    "file:tools/convert_fer2013_to_emotion_jsonl.py": {
+      "name": "convert_fer2013_to_emotion_jsonl.py",
+      "type": "file",
+      "summary": "Chuyển FER2013 từ CSV pixel hoặc cây thư mục ảnh sang manifest JSONL, ánh xạ nhãn và bảo toàn official split khi có."
+    },
+    "function:tools/convert_fer2013_to_emotion_jsonl.py:row_value": {
+      "name": "row_value",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `row_value` từ `row`, `*names` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_fer2013_to_emotion_jsonl.py:split_from_usage": {
+      "name": "split_from_usage",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `split_from_usage` từ `value`, `default` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_fer2013_to_emotion_jsonl.py:emotion_from_label": {
+      "name": "emotion_from_label",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `emotion_from_label` từ `value` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_fer2013_to_emotion_jsonl.py:save_pixel_image": {
+      "name": "save_pixel_image",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `save_pixel_image` từ `pixel_text`, `output_path` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_fer2013_to_emotion_jsonl.py:convert_csv": {
+      "name": "convert_csv",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `convert_csv` từ `csv_path`, `images_root`, `output_path`, `default_split` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_fer2013_to_emotion_jsonl.py:iter_split_dirs": {
+      "name": "iter_split_dirs",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `iter_split_dirs` từ `image_dir`, `directory_test_split` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_fer2013_to_emotion_jsonl.py:convert_image_dir": {
+      "name": "convert_image_dir",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `convert_image_dir` từ `image_dir`, `output_path`, `copy_images_root`, `directory_test_split` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_fer2013_to_emotion_jsonl.py:write_records": {
+      "name": "write_records",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `write_records` từ `records`, `output_path` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_fer2013_to_emotion_jsonl.py:main": {
+      "name": "main",
+      "type": "function",
+      "summary": "Điều phối entry point cho chuyển fer2013 từ csv pixel hoặc cây thư mục ảnh sang manifest jsonl, ánh xạ nhãn và bảo toàn official split khi có, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả."
+    },
+    "file:tools/convert_raf_au_to_emotion_jsonl.py": {
+      "name": "convert_raf_au_to_emotion_jsonl.py",
+      "type": "file",
+      "summary": "Chuyển bảng Action Unit của RAF sang bản ghi JSONL bổ sung AU label và mô tả văn bản cho dữ liệu cảm xúc."
+    },
+    "function:tools/convert_raf_au_to_emotion_jsonl.py:parse_au_fields": {
+      "name": "parse_au_fields",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `parse_au_fields` từ `row` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_raf_au_to_emotion_jsonl.py:main": {
+      "name": "main",
+      "type": "function",
+      "summary": "Điều phối entry point cho chuyển bảng action unit của raf sang bản ghi jsonl bổ sung au label và mô tả văn bản cho dữ liệu cảm xúc, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả."
+    },
+    "file:tools/convert_rafdb_to_emotion_jsonl.py": {
+      "name": "convert_rafdb_to_emotion_jsonl.py",
+      "type": "file",
+      "summary": "Khám phá archive và label RAF-DB, phân giải ảnh aligned/original rồi tạo manifest JSONL với official split hoặc validation phân tầng xác định."
+    },
+    "function:tools/convert_rafdb_to_emotion_jsonl.py:_extract_archive": {
+      "name": "_extract_archive",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_extract_archive` từ `archive_path`, `output_dir` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_rafdb_to_emotion_jsonl.py:_find_label_files": {
+      "name": "_find_label_files",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_find_label_files` từ `root`, `relative_names` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_rafdb_to_emotion_jsonl.py:_image_candidates": {
+      "name": "_image_candidates",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_image_candidates` từ `image_name` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_rafdb_to_emotion_jsonl.py:_resolve_image": {
+      "name": "_resolve_image",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_resolve_image` từ `root`, `image_name`, `preferred_aligned`, `label_id`, `official_split` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_rafdb_to_emotion_jsonl.py:_official_split_from_name": {
+      "name": "_official_split_from_name",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_official_split_from_name` từ `image_name` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_rafdb_to_emotion_jsonl.py:_split_from_label_file": {
+      "name": "_split_from_label_file",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_split_from_label_file` từ `label_file` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_rafdb_to_emotion_jsonl.py:_read_label_file": {
+      "name": "_read_label_file",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_read_label_file` từ `label_file` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_rafdb_to_emotion_jsonl.py:select_stratified_validation_images": {
+      "name": "select_stratified_validation_images",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `select_stratified_validation_images` từ `rows`, `val_ratio`, `seed` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_rafdb_to_emotion_jsonl.py:convert_rafdb": {
+      "name": "convert_rafdb",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `convert_rafdb` từ `raf_root`, `output`, `root_dir`, `label_files`, `val_ratio`, `split_seed`, `preferred_aligned`, `allow_missing` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/convert_rafdb_to_emotion_jsonl.py:main": {
+      "name": "main",
+      "type": "function",
+      "summary": "Điều phối entry point cho khám phá archive và label raf-db, phân giải ảnh aligned/original rồi tạo manifest jsonl với official split hoặc validation phân tầng xác định, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả."
+    },
+    "file:tools/download_hf_emotion_dataset.py": {
+      "name": "download_hf_emotion_dataset.py",
+      "type": "file",
+      "summary": "Tải dataset cảm xúc từ Hugging Face, chuẩn hóa nhãn và split, lưu ảnh cục bộ rồi sinh manifest JSONL tương thích EmotionCLIP."
+    },
+    "function:tools/download_hf_emotion_dataset.py:normalize_emotion": {
+      "name": "normalize_emotion",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `normalize_emotion` từ `value`, `label_feature` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/download_hf_emotion_dataset.py:split_name": {
+      "name": "split_name",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `split_name` từ `source_split`, `test_as` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/download_hf_emotion_dataset.py:save_image": {
+      "name": "save_image",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `save_image` từ `image_obj`, `output_path` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/download_hf_emotion_dataset.py:iter_limited": {
+      "name": "iter_limited",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `iter_limited` từ `dataset_split`, `max_samples` trong miền data-pipeline và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tools/download_hf_emotion_dataset.py:main": {
+      "name": "main",
+      "type": "function",
+      "summary": "Điều phối entry point cho tải dataset cảm xúc từ hugging face, chuẩn hóa nhãn và split, lưu ảnh cục bộ rồi sinh manifest jsonl tương thích emotionclip, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả."
+    },
+    "file:utils/fer_metrics.py": {
+      "name": "fer_metrics.py",
+      "type": "file",
+      "summary": "Tính bộ metric FER và uncertainty gồm confusion matrix, macro/per-class F1, balanced accuracy, calibration, selective risk và OOD ranking."
+    },
+    "function:utils/fer_metrics.py:_safe_div": {
+      "name": "_safe_div",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_safe_div` từ `numerator`, `denominator` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:confusion_matrix": {
+      "name": "confusion_matrix",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `confusion_matrix` từ `labels`, `predictions`, `num_classes` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:per_class_f1": {
+      "name": "per_class_f1",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `per_class_f1` từ `matrix` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:balanced_accuracy": {
+      "name": "balanced_accuracy",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `balanced_accuracy` từ `matrix` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:expected_calibration_error": {
+      "name": "expected_calibration_error",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `expected_calibration_error` từ `labels`, `probabilities`, `n_bins` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:adaptive_calibration_error": {
+      "name": "adaptive_calibration_error",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `adaptive_calibration_error` từ `labels`, `probabilities`, `n_bins` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:classwise_calibration_error": {
+      "name": "classwise_calibration_error",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `classwise_calibration_error` từ `labels`, `probabilities`, `n_bins` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:negative_log_likelihood": {
+      "name": "negative_log_likelihood",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `negative_log_likelihood` từ `labels`, `probabilities` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:brier_score": {
+      "name": "brier_score",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `brier_score` từ `labels`, `probabilities` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:uncertainty_risk_auc": {
+      "name": "uncertainty_risk_auc",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `uncertainty_risk_auc` từ `labels`, `probabilities`, `uncertainty` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:excess_aurc": {
+      "name": "excess_aurc",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `excess_aurc` từ `labels`, `probabilities`, `uncertainty` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:risk_at_coverage": {
+      "name": "risk_at_coverage",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `risk_at_coverage` từ `labels`, `probabilities`, `uncertainty`, `coverage` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:_binary_ranking_metrics": {
+      "name": "_binary_ranking_metrics",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_binary_ranking_metrics` từ `targets`, `scores` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:ood_detection_metrics": {
+      "name": "ood_detection_metrics",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `ood_detection_metrics` từ `in_distribution_uncertainty`, `ood_uncertainty` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/fer_metrics.py:compute_fer_metrics": {
+      "name": "compute_fer_metrics",
+      "type": "function",
+      "summary": "Tổng hợp metric FER, calibration, uncertainty-risk và thống kê theo lớp từ nhãn, xác suất và uncertainty."
+    },
+    "file:utils/run_artifacts.py": {
+      "name": "run_artifacts.py",
+      "type": "file",
+      "summary": "Khởi tạo thư mục run bất biến và ghi provenance về Git, manifest, dependency cùng phần cứng; đồng thời phân giải artifact theo run ID rõ ràng."
+    },
+    "function:utils/run_artifacts.py:_sha256_bytes": {
+      "name": "_sha256_bytes",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_sha256_bytes` từ `value` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/run_artifacts.py:_git": {
+      "name": "_git",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_git` từ `args` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/run_artifacts.py:_manifest_hashes": {
+      "name": "_manifest_hashes",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_manifest_hashes` từ `path` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/run_artifacts.py:_dependency_versions": {
+      "name": "_dependency_versions",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_dependency_versions` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/run_artifacts.py:_hardware": {
+      "name": "_hardware",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_hardware` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:utils/run_artifacts.py:initialize_immutable_run": {
+      "name": "initialize_immutable_run",
+      "type": "function",
+      "summary": "Tạo run directory không ghi đè và lưu cấu hình cùng provenance dữ liệu, mã nguồn, dependency và phần cứng."
+    },
+    "function:utils/run_artifacts.py:artifact_dir": {
+      "name": "artifact_dir",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `artifact_dir` từ `output_root`, `run_id` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "file:datasets/bases.py": {
+      "name": "bases.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong bases.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "function:datasets/bases.py:read_image": {
+      "name": "read_image",
+      "type": "function",
+      "summary": "Thực hiện xử lý read_image trong mô-đun bases.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "class:datasets/bases.py:BaseDataset": {
+      "name": "BaseDataset",
+      "type": "class",
+      "summary": "Lớp BaseDataset đóng gói trạng thái và hành vi liên quan trong bases.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "class:datasets/bases.py:BaseImageDataset": {
+      "name": "BaseImageDataset",
+      "type": "class",
+      "summary": "Lớp BaseImageDataset đóng gói trạng thái và hành vi liên quan trong bases.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "class:datasets/bases.py:ImageDataset": {
+      "name": "ImageDataset",
+      "type": "class",
+      "summary": "Lớp ImageDataset đóng gói trạng thái và hành vi liên quan trong bases.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:datasets/dukemtmcreid.py": {
+      "name": "dukemtmcreid.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong dukemtmcreid.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "class:datasets/dukemtmcreid.py:DukeMTMCreID": {
+      "name": "DukeMTMCreID",
+      "type": "class",
+      "summary": "Lớp DukeMTMCreID đóng gói trạng thái và hành vi liên quan trong dukemtmcreid.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:datasets/make_dataloader.py": {
+      "name": "make_dataloader.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong make_dataloader.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "function:datasets/make_dataloader.py:train_collate_fn": {
+      "name": "train_collate_fn",
+      "type": "function",
+      "summary": "Thực thi logic huấn luyện train_collate_fn trong mô-đun make_dataloader.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:datasets/make_dataloader.py:val_collate_fn": {
+      "name": "val_collate_fn",
+      "type": "function",
+      "summary": "Thực hiện xử lý val_collate_fn trong mô-đun make_dataloader.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:datasets/make_dataloader.py:make_dataloader": {
+      "name": "make_dataloader",
+      "type": "function",
+      "summary": "Thực hiện xử lý make_dataloader trong mô-đun make_dataloader.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:datasets/make_dataloader_clipreid.py": {
+      "name": "make_dataloader_clipreid.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong make_dataloader_clipreid.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "function:datasets/make_dataloader_clipreid.py:train_collate_fn": {
+      "name": "train_collate_fn",
+      "type": "function",
+      "summary": "Thực thi logic huấn luyện train_collate_fn trong mô-đun make_dataloader_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:datasets/make_dataloader_clipreid.py:val_collate_fn": {
+      "name": "val_collate_fn",
+      "type": "function",
+      "summary": "Thực hiện xử lý val_collate_fn trong mô-đun make_dataloader_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:datasets/make_dataloader_clipreid.py:make_dataloader": {
+      "name": "make_dataloader",
+      "type": "function",
+      "summary": "Thực hiện xử lý make_dataloader trong mô-đun make_dataloader_clipreid.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:datasets/market1501.py": {
+      "name": "market1501.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong market1501.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "class:datasets/market1501.py:Market1501": {
+      "name": "Market1501",
+      "type": "class",
+      "summary": "Lớp Market1501 đóng gói trạng thái và hành vi liên quan trong market1501.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:datasets/msmt17.py": {
+      "name": "msmt17.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong msmt17.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "class:datasets/msmt17.py:MSMT17": {
+      "name": "MSMT17",
+      "type": "class",
+      "summary": "Lớp MSMT17 đóng gói trạng thái và hành vi liên quan trong msmt17.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:datasets/occ_duke.py": {
+      "name": "occ_duke.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong occ_duke.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "class:datasets/occ_duke.py:OCC_DukeMTMCreID": {
+      "name": "OCC_DukeMTMCreID",
+      "type": "class",
+      "summary": "Lớp OCC_DukeMTMCreID đóng gói trạng thái và hành vi liên quan trong occ_duke.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:datasets/sampler.py": {
+      "name": "sampler.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong sampler.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "class:datasets/sampler.py:RandomIdentitySampler": {
+      "name": "RandomIdentitySampler",
+      "type": "class",
+      "summary": "Lớp RandomIdentitySampler đóng gói trạng thái và hành vi liên quan trong sampler.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:datasets/sampler_ddp.py": {
+      "name": "sampler_ddp.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong sampler_ddp.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "function:datasets/sampler_ddp.py:_get_global_gloo_group": {
+      "name": "_get_global_gloo_group",
+      "type": "function",
+      "summary": "Thực hiện xử lý _get_global_gloo_group trong mô-đun sampler_ddp.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:datasets/sampler_ddp.py:_serialize_to_tensor": {
+      "name": "_serialize_to_tensor",
+      "type": "function",
+      "summary": "Thực hiện xử lý _serialize_to_tensor trong mô-đun sampler_ddp.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:datasets/sampler_ddp.py:_pad_to_largest_tensor": {
+      "name": "_pad_to_largest_tensor",
+      "type": "function",
+      "summary": "Thực hiện xử lý _pad_to_largest_tensor trong mô-đun sampler_ddp.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:datasets/sampler_ddp.py:all_gather": {
+      "name": "all_gather",
+      "type": "function",
+      "summary": "Thực hiện xử lý all_gather trong mô-đun sampler_ddp.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:datasets/sampler_ddp.py:shared_random_seed": {
+      "name": "shared_random_seed",
+      "type": "function",
+      "summary": "Thực hiện xử lý shared_random_seed trong mô-đun sampler_ddp.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "class:datasets/sampler_ddp.py:RandomIdentitySampler_DDP": {
+      "name": "RandomIdentitySampler_DDP",
+      "type": "class",
+      "summary": "Lớp RandomIdentitySampler_DDP đóng gói trạng thái và hành vi liên quan trong sampler_ddp.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:datasets/vehicleid.py": {
+      "name": "vehicleid.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong vehicleid.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "class:datasets/vehicleid.py:VehicleID": {
+      "name": "VehicleID",
+      "type": "class",
+      "summary": "Lớp VehicleID đóng gói trạng thái và hành vi liên quan trong vehicleid.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:datasets/veri.py": {
+      "name": "veri.py",
+      "type": "file",
+      "summary": "Xử lý dữ liệu trong veri.py, từ đọc manifest/ảnh và biến đổi đến đóng gói batch cho mô hình."
+    },
+    "class:datasets/veri.py:VeRi": {
+      "name": "VeRi",
+      "type": "class",
+      "summary": "Lớp VeRi đóng gói trạng thái và hành vi liên quan trong veri.py, phục vụ pipeline EmotionCLIP-ReID."
+    },
+    "file:utils/iotools.py": {
+      "name": "iotools.py",
+      "type": "file",
+      "summary": "Cung cấp các thành phần hỗ trợ trong iotools.py cho pipeline EmotionCLIP-ReID."
+    },
+    "function:utils/iotools.py:mkdir_if_missing": {
+      "name": "mkdir_if_missing",
+      "type": "function",
+      "summary": "Thực hiện xử lý mkdir_if_missing trong mô-đun iotools.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:utils/iotools.py:check_isfile": {
+      "name": "check_isfile",
+      "type": "function",
+      "summary": "Thực hiện xử lý check_isfile trong mô-đun iotools.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:utils/iotools.py:read_json": {
+      "name": "read_json",
+      "type": "function",
+      "summary": "Thực hiện xử lý read_json trong mô-đun iotools.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "function:utils/iotools.py:write_json": {
+      "name": "write_json",
+      "type": "function",
+      "summary": "Thực hiện xử lý write_json trong mô-đun iotools.py, với đầu vào/đầu ra phục vụ luồng xử lý chính."
+    },
+    "file:model/clip/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Điểm vào package CLIP, tái xuất API tải mô hình và token hóa từ module triển khai chính."
+    },
+    "file:model/clip/clip.py": {
+      "name": "clip.py",
+      "type": "file",
+      "summary": "Cung cấp API tải checkpoint CLIP, kiểm tra SHA-256, dựng preprocessing ảnh và mã hóa prompt thành tensor token."
+    },
+    "function:model/clip/clip.py:_download": {
+      "name": "_download",
+      "type": "function",
+      "summary": "Tải checkpoint CLIP vào cache, tái sử dụng file hợp lệ và xác minh SHA-256 trước lẫn sau khi tải."
+    },
+    "function:model/clip/clip.py:_transform": {
+      "name": "_transform",
+      "type": "function",
+      "summary": "Tạo pipeline resize, center crop, chuyển RGB, tensor hóa và chuẩn hóa ảnh theo thống kê CLIP."
+    },
+    "function:model/clip/clip.py:available_models": {
+      "name": "available_models",
+      "type": "function",
+      "summary": "Trả về danh sách tên backbone CLIP có URL checkpoint được đăng ký."
+    },
+    "function:model/clip/clip.py:load": {
+      "name": "load",
+      "type": "function",
+      "summary": "Nạp CLIP từ tên model hoặc đường dẫn checkpoint, xử lý JIT/state_dict và điều chỉnh graph theo device cùng dtype."
+    },
+    "function:model/clip/clip.py:tokenize": {
+      "name": "tokenize",
+      "type": "function",
+      "summary": "Mã hóa một hay nhiều chuỗi thành tensor token CLIP cố định chiều dài, kèm SOT/EOT, padding và tùy chọn truncate."
+    },
+    "file:model/clip/simple_tokenizer.py": {
+      "name": "simple_tokenizer.py",
+      "type": "file",
+      "summary": "Triển khai byte-pair encoding tương thích CLIP, gồm chuẩn hóa văn bản, ánh xạ byte-Unicode và encode/decode theo vocabulary nén."
+    },
+    "function:model/clip/simple_tokenizer.py:default_bpe": {
+      "name": "default_bpe",
+      "type": "function",
+      "summary": "Trả đường dẫn vocabulary BPE nén đi kèm package và cache kết quả."
+    },
+    "function:model/clip/simple_tokenizer.py:bytes_to_unicode": {
+      "name": "bytes_to_unicode",
+      "type": "function",
+      "summary": "Tạo ánh xạ đảo được từ 256 byte sang ký tự Unicode an toàn cho vocabulary BPE."
+    },
+    "function:model/clip/simple_tokenizer.py:get_pairs": {
+      "name": "get_pairs",
+      "type": "function",
+      "summary": "Liệt kê các cặp symbol kề nhau của một token để phục vụ vòng lặp merge BPE."
+    },
+    "function:model/clip/simple_tokenizer.py:basic_clean": {
+      "name": "basic_clean",
+      "type": "function",
+      "summary": "Sửa lỗi văn bản, giải mã HTML entity hai lần và loại bỏ khoảng trắng biên."
+    },
+    "function:model/clip/simple_tokenizer.py:whitespace_clean": {
+      "name": "whitespace_clean",
+      "type": "function",
+      "summary": "Chuẩn hóa mọi chuỗi whitespace liên tiếp thành một dấu cách rồi trim."
+    },
+    "class:model/clip/simple_tokenizer.py:SimpleTokenizer": {
+      "name": "SimpleTokenizer",
+      "type": "class",
+      "summary": "Nạp merge rules và vocabulary CLIP, cache kết quả BPE, đồng thời cung cấp encode/decode byte-level có fallback regex."
+    },
+    "file:model/make_model.py": {
+      "name": "make_model.py",
+      "type": "file",
+      "summary": "Dựng baseline CLIP-ReID từ visual encoder CLIP, hai classifier/BatchNorm neck và SIE embedding theo camera hoặc view."
+    },
+    "function:model/make_model.py:weights_init_kaiming": {
+      "name": "weights_init_kaiming",
+      "type": "function",
+      "summary": "Khởi tạo Linear, Conv và BatchNorm bằng quy tắc Kaiming cùng bias thích hợp."
+    },
+    "function:model/make_model.py:weights_init_classifier": {
+      "name": "weights_init_classifier",
+      "type": "function",
+      "summary": "Khởi tạo classifier Linear với phân phối chuẩn nhỏ và bias bằng không khi có."
+    },
+    "function:model/make_model.py:make_model": {
+      "name": "make_model",
+      "type": "function",
+      "summary": "Factory tạo instance build_transformer từ cấu hình và metadata camera/view."
+    },
+    "function:model/make_model.py:load_clip_to_cpu": {
+      "name": "load_clip_to_cpu",
+      "type": "function",
+      "summary": "Tải checkpoint backbone CLIP, giải nén JIT hoặc state_dict và dựng model trên CPU."
+    },
+    "class:model/make_model.py:build_transformer": {
+      "name": "build_transformer",
+      "type": "class",
+      "summary": "Baseline ReID bọc visual encoder CLIP, SIE camera/view, hai BatchNorm neck và hai classifier cho đặc trưng gốc lẫn projected."
+    },
+    "file:model/make_model_clipreid.py": {
+      "name": "make_model_clipreid.py",
+      "type": "file",
+      "summary": "Dựng biến thể CLIP-ReID có prompt learner và text encoder, đồng thời hỗ trợ nhánh phân loại thị giác và trích đặc trưng ảnh/văn bản."
+    },
+    "function:model/make_model_clipreid.py:weights_init_kaiming": {
+      "name": "weights_init_kaiming",
+      "type": "function",
+      "summary": "Khởi tạo Linear, Conv và BatchNorm cho các neck ReID theo Kaiming."
+    },
+    "function:model/make_model_clipreid.py:weights_init_classifier": {
+      "name": "weights_init_classifier",
+      "type": "function",
+      "summary": "Khởi tạo trọng số classifier ReID với độ lệch chuẩn nhỏ và bias bằng không."
+    },
+    "function:model/make_model_clipreid.py:make_model": {
+      "name": "make_model",
+      "type": "function",
+      "summary": "Factory dựng mô hình build_transformer cho cấu hình CLIP-ReID."
+    },
+    "function:model/make_model_clipreid.py:load_clip_to_cpu": {
+      "name": "load_clip_to_cpu",
+      "type": "function",
+      "summary": "Tải và dựng CLIP backbone từ checkpoint trên CPU với độ phân giải patch tùy chỉnh."
+    },
+    "class:model/make_model_clipreid.py:TextEncoder": {
+      "name": "TextEncoder",
+      "type": "class",
+      "summary": "Mã hóa prompt embedding bằng text Transformer CLIP và lấy vector tại token EOT."
+    },
+    "class:model/make_model_clipreid.py:build_transformer": {
+      "name": "build_transformer",
+      "type": "class",
+      "summary": "Mô hình CLIP-ReID kết hợp visual backbone, SIE, classifier/BN neck và nhánh prompt-text cho học đối sánh ảnh-văn bản."
+    },
+    "class:model/make_model_clipreid.py:PromptLearner": {
+      "name": "PromptLearner",
+      "type": "class",
+      "summary": "Học bốn context vector riêng cho từng identity và ghép chúng với prefix/suffix token của prompt người hoặc phương tiện."
+    },
+    "file:utils/notebook_landmarks.py": {
+      "name": "notebook_landmarks.py",
+      "type": "file",
+      "summary": "Cung cấp tải model landmark theo cơ chế download-once, kiểm tra manifest/artifact cùng thư mục và cache preprocessing dựa trên hash cùng schema version."
+    },
+    "function:utils/notebook_landmarks.py:_sha256": {
+      "name": "_sha256",
+      "type": "function",
+      "summary": "Tính SHA-256 của file theo từng chunk 1 MiB để nhận diện nội dung mà không nạp toàn bộ vào bộ nhớ."
+    },
+    "function:utils/notebook_landmarks.py:download_once": {
+      "name": "download_once",
+      "type": "function",
+      "summary": "Tải model theo kiểu atomic qua file tạm, bỏ qua đích hợp lệ và dọn file dở dang khi lỗi."
+    },
+    "function:utils/notebook_landmarks.py:_cache_metadata_path": {
+      "name": "_cache_metadata_path",
+      "type": "function",
+      "summary": "Suy ra đường dẫn sidecar metadata cache từ output manifest."
+    },
+    "function:utils/notebook_landmarks.py:_read_json": {
+      "name": "_read_json",
+      "type": "function",
+      "summary": "Đọc JSON object theo hướng chịu lỗi và trả mapping rỗng khi file hỏng hoặc không đúng dạng."
+    },
+    "function:utils/notebook_landmarks.py:_nonempty_line_count": {
+      "name": "_nonempty_line_count",
+      "type": "function",
+      "summary": "Đếm số record không rỗng trong file manifest dạng JSONL."
+    },
+    "function:utils/notebook_landmarks.py:validate_landmark_manifest_layout": {
+      "name": "validate_landmark_manifest_layout",
+      "type": "function",
+      "summary": "Kiểm tra manifest landmark không rỗng, nằm cùng data directory và mọi tham chiếu tương đối đều tồn tại bên trong phạm vi dữ liệu."
+    },
+    "function:utils/notebook_landmarks.py:prepare_cached_landmarks": {
+      "name": "prepare_cached_landmarks",
+      "type": "function",
+      "summary": "Tính signature preprocessing, dùng fast-path khi cache hợp lệ hoặc chạy builder landmark, ghi log và sidecar metadata cho lần sau."
+    },
+    "file:utils/notebook_progress.py": {
+      "name": "notebook_progress.py",
+      "type": "file",
+      "summary": "Đọc luồng stdout của subprocess theo ký tự, nhận diện dòng tiến độ Stage 1/2 và cập nhật progress HTML trong notebook đồng thời ghi log."
+    },
+    "function:utils/notebook_progress.py:_is_progress_update": {
+      "name": "_is_progress_update",
+      "type": "function",
+      "summary": "Nhận diện một dòng stdout có khớp định dạng cập nhật tiến độ huấn luyện Stage 1/2 hay không."
+    },
+    "function:utils/notebook_progress.py:_progress_html": {
+      "name": "_progress_html",
+      "type": "function",
+      "summary": "Chuyển dòng tiến độ thành thanh HTML đã escape, hoặc giữ nguyên text khi không có IPython hay không khớp pattern."
+    },
+    "function:utils/notebook_progress.py:stream_process_output": {
+      "name": "stream_process_output",
+      "type": "function",
+      "summary": "Đọc stdout subprocess theo ký tự để xử lý cả carriage return và newline, cập nhật display tiến độ, in dòng thường và ghi log."
+    },
+    "file:utils/notebook_run.py": {
+      "name": "notebook_run.py",
+      "type": "file",
+      "summary": "Quản lý run id, staging và xuất bản artifact notebook vào output run đã có provenance, gồm visuals, console log và metadata UTC."
+    },
+    "function:utils/notebook_run.py:timestamped_run_id": {
+      "name": "timestamped_run_id",
+      "type": "function",
+      "summary": "Tạo run id theo local time có timezone và microsecond, tùy chọn seed, đồng thời chặn prefix không an toàn."
+    },
+    "function:utils/notebook_run.py:prepare_notebook_staging": {
+      "name": "prepare_notebook_staging",
+      "type": "function",
+      "summary": "Tạo thư mục staging riêng theo run dưới outputs/.notebook_staging mà chưa chiếm output directory cuối."
+    },
+    "function:utils/notebook_run.py:publish_notebook_artifacts": {
+      "name": "publish_notebook_artifacts",
+      "type": "function",
+      "summary": "Chỉ publish sau khi có provenance, sao chép visuals, ghi console log và notebook_run.json chứa metadata cùng thời điểm UTC."
+    },
+    "document:README.md": {
+      "name": "README.md",
+      "type": "document",
+      "summary": "Tài liệu tổng quan cho cả CLIP-ReID gốc và pipeline EmotionCLIP-ReID cho FER, bao quát cài đặt, chuẩn bị landmark/anatomy, huấn luyện hai giai đoạn, ablation, đánh giá sealed-test và tái lập artifact."
+    },
+    "config:environment_emotionclip_cuda.yml": {
+      "name": "environment_emotionclip_cuda.yml",
+      "type": "config",
+      "summary": "Định nghĩa môi trường Conda `emotionclip` với Python 3.10, PyTorch dùng CUDA 12.1 và các dependency phục vụ dataset, MediaPipe, notebook và kiểm thử."
+    },
+    "config:pytest.ini": {
+      "name": "pytest.ini",
+      "type": "config",
+      "summary": "Cấu hình pytest giới hạn việc khám phá và chạy test trong thư mục `tests`."
+    },
+    "config:configs/VehicleID/cnn_base.yml": {
+      "name": "cnn_base.yml",
+      "type": "config",
+      "summary": "Cấu hình baseline VehicleID dùng RN50, loss softmax-triplet, ảnh vuông 256 và lịch Adam 120 epoch cho bài toán vehicle ReID."
+    },
+    "config:configs/VehicleID/cnn_clipreid.yml": {
+      "name": "cnn_clipreid.yml",
+      "type": "config",
+      "summary": "Cấu hình CLIP-ReID hai giai đoạn trên VehicleID với backbone RN50: Stage 1 học prompt batch lớn và Stage 2 tối ưu nhận dạng bằng softmax-triplet."
+    },
+    "config:configs/VehicleID/vit_base.yml": {
+      "name": "vit_base.yml",
+      "type": "config",
+      "summary": "Cấu hình baseline VehicleID dùng ViT-B/16, chuẩn hóa CLIP, ảnh 256×256 và learning rate nhỏ trong 60 epoch."
+    },
+    "config:configs/VehicleID/vit_clipreid.yml": {
+      "name": "vit_clipreid.yml",
+      "type": "config",
+      "summary": "Cấu hình CLIP-ReID hai giai đoạn dùng ViT-B/16 cho VehicleID, kết hợp ID, triplet và image-to-text loss với label smoothing."
+    },
+    "config:configs/emotion/vit_b16_emotionclip_fer2013_quick.yml": {
+      "name": "vit_b16_emotionclip_fer2013_quick.yml",
+      "type": "config",
+      "summary": "Preset chạy nhanh EmotionCLIP ViT-B/16 trên FER2013 với ngân sách epoch và tài nguyên thu gọn, dùng để kiểm tra pipeline end-to-end trước khi huấn luyện đầy đủ."
+    },
+    "config:configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml": {
+      "name": "vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "type": "config",
+      "summary": "Preset chạy nhanh cho biến thể FER2013 lấy từ Hugging Face, cấu hình đường dẫn manifest và tham số huấn luyện thu gọn cho vòng lặp xác minh."
+    },
+    "config:configs/person/cnn_base.yml": {
+      "name": "cnn_base.yml",
+      "type": "config",
+      "summary": "Cấu hình baseline person ReID dùng RN50, ảnh 256×128, softmax-triplet và lịch Adam 120 epoch; để trống lựa chọn Market1501, DukeMTMC, Occ-Duke hoặc MSMT17."
+    },
+    "config:configs/person/cnn_clipreid.yml": {
+      "name": "cnn_clipreid.yml",
+      "type": "config",
+      "summary": "Cấu hình CLIP-ReID RN50 hai giai đoạn cho nhiều bộ dữ liệu person ReID, với prompt learning ở Stage 1 và tối ưu nhận dạng ở Stage 2."
+    },
+    "config:configs/person/vit_base.yml": {
+      "name": "vit_base.yml",
+      "type": "config",
+      "summary": "Cấu hình baseline person ReID dùng ViT-B/16, ảnh dọc 256×128 và learning rate 5e-6; có tùy chọn SIE camera đang tắt."
+    },
+    "config:configs/person/vit_clipreid.yml": {
+      "name": "vit_clipreid.yml",
+      "type": "config",
+      "summary": "Cấu hình CLIP-ReID ViT-B/16 hai giai đoạn cho person ReID, kết hợp ID, triplet và image-to-text loss trên các dataset phổ biến."
+    },
+    "config:configs/veri/cnn_base.yml": {
+      "name": "cnn_base.yml",
+      "type": "config",
+      "summary": "Cấu hình baseline VeRi vehicle ReID dùng RN50, ảnh 256×256, softmax-triplet và lịch Adam 120 epoch."
+    },
+    "config:configs/veri/cnn_prom.yml": {
+      "name": "cnn_prom.yml",
+      "type": "config",
+      "summary": "Cấu hình prompt-based CLIP-ReID hai giai đoạn dùng RN50 cho VeRi, với Stage 1 học prompt và Stage 2 tối ưu đặc trưng nhận dạng."
+    },
+    "config:configs/veri/vit_base.yml": {
+      "name": "vit_base.yml",
+      "type": "config",
+      "summary": "Cấu hình baseline VeRi dùng ViT-B/16 với chuẩn hóa CLIP, learning rate 5e-6 và các tùy chọn SIE camera/view đang tắt."
+    },
+    "config:configs/veri/vit_prom.yml": {
+      "name": "vit_prom.yml",
+      "type": "config",
+      "summary": "Cấu hình prompt-based CLIP-ReID ViT-B/16 hai giai đoạn cho VeRi, giảm trọng số ID và bổ sung image-to-text loss cùng tùy chọn SIE."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_1.json": {
+      "name": "metrics_epoch_1.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 1, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_10.json": {
+      "name": "metrics_epoch_10.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 10, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_11.json": {
+      "name": "metrics_epoch_11.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 11, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_12.json": {
+      "name": "metrics_epoch_12.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 12, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_13.json": {
+      "name": "metrics_epoch_13.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 13, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_14.json": {
+      "name": "metrics_epoch_14.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 14, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_15.json": {
+      "name": "metrics_epoch_15.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 15, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_16.json": {
+      "name": "metrics_epoch_16.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 16, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_17.json": {
+      "name": "metrics_epoch_17.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 17, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_18.json": {
+      "name": "metrics_epoch_18.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 18, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_19.json": {
+      "name": "metrics_epoch_19.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 19, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_2.json": {
+      "name": "metrics_epoch_2.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 2, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_20.json": {
+      "name": "metrics_epoch_20.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 20, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_21.json": {
+      "name": "metrics_epoch_21.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 21, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_22.json": {
+      "name": "metrics_epoch_22.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 22, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_23.json": {
+      "name": "metrics_epoch_23.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 23, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_24.json": {
+      "name": "metrics_epoch_24.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 24, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_25.json": {
+      "name": "metrics_epoch_25.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 25, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_26.json": {
+      "name": "metrics_epoch_26.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 26, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_27.json": {
+      "name": "metrics_epoch_27.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 27, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_28.json": {
+      "name": "metrics_epoch_28.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 28, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_29.json": {
+      "name": "metrics_epoch_29.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 29, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_3.json": {
+      "name": "metrics_epoch_3.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 3, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_30.json": {
+      "name": "metrics_epoch_30.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 30, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_4.json": {
+      "name": "metrics_epoch_4.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 4, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_5.json": {
+      "name": "metrics_epoch_5.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 5, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_6.json": {
+      "name": "metrics_epoch_6.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 6, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_7.json": {
+      "name": "metrics_epoch_7.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 7, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_8.json": {
+      "name": "metrics_epoch_8.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 8, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "config:outputs/RAF-DB/metrics_epoch_9.json": {
+      "name": "metrics_epoch_9.json",
+      "type": "config",
+      "summary": "Lưu snapshot đánh giá validation RAF-DB tại epoch 9, gồm accuracy, balanced accuracy, macro-F1, F1 theo lớp, confusion matrix, calibration ECE và chỉ số uncertainty-risk. Tệp còn giữ danh sách ảnh và thống kê confidence/uncertainty để truy vết kết quả."
+    },
+    "document:outputs/fer2013/README_training_logs.md": {
+      "name": "README_training_logs.md",
+      "type": "document",
+      "summary": "Tài liệu mô tả nguồn gốc và cấu trúc các log training FER2013 đã được trích xuất từ notebook, giúp đối chiếu các bảng loss, validation và uncertainty."
+    },
+    "config:outputs/fer2013/accuracy_uce_summary.json": {
+      "name": "accuracy_uce_summary.json",
+      "type": "config",
+      "summary": "Tổng hợp các epoch tốt nhất của FER2013 theo accuracy, balanced accuracy, macro-F1, ECE và UCE, kèm ghi chú về ý nghĩa metric."
+    },
+    "config:outputs/fer2013/best_metrics_summary.json": {
+      "name": "best_metrics_summary.json",
+      "type": "config",
+      "summary": "Snapshot đầy đủ của checkpoint FER2013 tốt nhất, gồm confusion matrix, F1 theo lớp, calibration và uncertainty-risk AUC."
+    },
+    "config:outputs/fer2013/inference_sample_uncertainty.json": {
+      "name": "inference_sample_uncertainty.json",
+      "type": "config",
+      "summary": "Ghi kết quả inference của một mẫu FER2013 với nhãn dự đoán, phân phối xác suất, uncertainty và độ tương đồng descriptor."
+    },
+    "file:outputs/fer2013/training_epoch_losses.csv": {
+      "name": "training_epoch_losses.csv",
+      "type": "file",
+      "summary": "Chuỗi loss training FER2013 được tổng hợp theo epoch để theo dõi xu hướng hội tụ ở cấp vòng lặp."
+    },
+    "file:outputs/fer2013/training_step_losses.csv": {
+      "name": "training_step_losses.csv",
+      "type": "file",
+      "summary": "Log loss chi tiết theo từng optimization step của FER2013, phục vụ phát hiện dao động, divergence và NaN trong training."
+    },
+    "config:outputs/fer2013/uncertainty_summary.json": {
+      "name": "uncertainty_summary.json",
+      "type": "config",
+      "summary": "Tổng hợp ngắn checkpoint FER2013 tốt nhất và các metric validation, calibration, uncertainty cùng kết quả inference mẫu."
+    },
+    "file:outputs/fer2013/validation_accuracy.csv": {
+      "name": "validation_accuracy.csv",
+      "type": "file",
+      "summary": "Lịch sử validation accuracy của FER2013 theo epoch để chọn checkpoint và đánh giá tiến trình học."
+    },
+    "file:outputs/fer2013/validation_metrics.csv": {
+      "name": "validation_metrics.csv",
+      "type": "file",
+      "summary": "Lịch sử metric validation FER2013 theo epoch, bao phủ accuracy, balanced accuracy, macro-F1 và các chỉ số uncertainty/calibration."
+    },
+    "file:outputs/fer2013/validation_uncertainty.csv": {
+      "name": "validation_uncertainty.csv",
+      "type": "file",
+      "summary": "Bảng uncertainty validation FER2013 rút gọn, dùng làm nguồn đối chiếu cho báo cáo độ tin cậy."
+    },
+    "file:outputs/report_w4/emotionclip_outputs_summary.csv": {
+      "name": "emotionclip_outputs_summary.csv",
+      "type": "file",
+      "summary": "Bảng tóm tắt cực gọn các output chính của EmotionCLIP-ReID cho FER2013 và RAF-DB để đưa vào báo cáo tuần 4."
+    },
+    "config:outputs/report_w4/emotionclip_outputs_summary.json": {
+      "name": "emotionclip_outputs_summary.json",
+      "type": "config",
+      "summary": "Tổng hợp có cấu trúc kết quả FER2013 và RAF-DB, liên kết các metric, lịch sử training và artifact phục vụ báo cáo tuần 4."
+    },
+    "file:outputs/report_w4/rafdb_training_history_extracted.csv": {
+      "name": "rafdb_training_history_extracted.csv",
+      "type": "file",
+      "summary": "Lịch sử training RAF-DB đã trích xuất theo epoch, dùng để phân tích loss, hội tụ và so sánh với validation."
+    },
+    "file:outputs/report_w4/rafdb_validation_history_extracted.csv": {
+      "name": "rafdb_validation_history_extracted.csv",
+      "type": "file",
+      "summary": "Lịch sử validation RAF-DB đã trích xuất theo epoch, phục vụ chọn checkpoint và lập biểu đồ hiệu năng."
+    },
+    "file:config/defaults_base.py": {
+      "name": "defaults_base.py",
+      "type": "file",
+      "summary": "Khai báo cây cấu hình YACS nền cho CLIP-ReID một giai đoạn, gồm backbone, input, dataset, dataloader, optimizer, scheduler, loss và thiết lập đánh giá."
+    },
+    "file:config/defaults.py": {
+      "name": "defaults.py",
+      "type": "file",
+      "summary": "Khai báo cấu hình YACS cho quy trình CLIP-ReID hai giai đoạn, tách riêng hyperparameter Stage 1 học descriptor và Stage 2 fine-tuning cùng các tùy chọn test."
+    },
+    "file:datasets/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Đánh dấu thư mục `datasets` là Python package; hiện không re-export symbol hay thực thi logic khởi tạo."
+    },
+    "document:datasets/keypoint_test.txt": {
+      "name": "keypoint_test.txt",
+      "type": "document",
+      "summary": "Danh sách annotation keypoint cho ảnh test VeRi, mỗi dòng lưu đường dẫn ảnh, các cặp tọa độ landmark với `-1` cho điểm thiếu và nhãn viewpoint ở cuối."
+    },
+    "document:datasets/keypoint_train.txt": {
+      "name": "keypoint_train.txt",
+      "type": "document",
+      "summary": "Danh sách annotation keypoint quy mô lớn cho ảnh train VeRi, mã hóa đường dẫn, tọa độ landmark quan sát được hoặc giá trị thiếu và nhãn viewpoint."
+    },
+    "file:datasets/preprocessing.py": {
+      "name": "preprocessing.py",
+      "type": "file",
+      "summary": "Cung cấp phép tăng cường Random Erasing, chọn ngẫu nhiên một vùng chữ nhật theo diện tích và tỉ lệ khung hình rồi ghi đè pixel ảnh tensor."
+    },
+    "class:datasets/preprocessing.py:RandomErasing": {
+      "name": "RandomErasing",
+      "type": "class",
+      "summary": "Biến đổi augmentation có xác suất, thử tối đa 100 vùng chữ nhật và ghi giá trị mean theo kênh lên tensor ảnh khi vùng hợp lệ."
+    },
+    "file:loss/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Entry point tối giản của package loss, đưa lớp `ArcFace` từ module `arcface` vào namespace package."
+    },
+    "file:loss/arcface.py": {
+      "name": "arcface.py",
+      "type": "file",
+      "summary": "Hiện thực hai classification head theo angular margin là ArcFace và CircleLoss, chuẩn hóa feature/weight rồi tạo class logits có margin cho metric learning."
+    },
+    "class:loss/arcface.py:ArcFace": {
+      "name": "ArcFace",
+      "type": "class",
+      "summary": "PyTorch head áp additive angular margin lên cosine logits, dùng weight chuẩn hóa và scale đầu ra cho classification theo ArcFace."
+    },
+    "class:loss/arcface.py:CircleLoss": {
+      "name": "CircleLoss",
+      "type": "class",
+      "summary": "PyTorch head tạo positive/negative class logits thích nghi theo Circle Loss từ cosine similarity đã chuẩn hóa."
+    },
+    "file:loss/metric_learning.py": {
+      "name": "metric_learning.py",
+      "type": "file",
+      "summary": "Tập hợp các loss/head metric learning gồm contrastive, CircleLoss, ArcFace, CosFace và AM-Softmax để huấn luyện embedding phân biệt lớp."
+    },
+    "class:loss/metric_learning.py:ContrastiveLoss": {
+      "name": "ContrastiveLoss",
+      "type": "class",
+      "summary": "Tính contrastive loss từ ma trận similarity trong batch, phạt positive pair xa nhau và negative pair vượt margin."
+    },
+    "class:loss/metric_learning.py:CircleLoss": {
+      "name": "CircleLoss",
+      "type": "class",
+      "summary": "Sinh Circle Loss logits từ feature và class weight chuẩn hóa với hệ số scale cùng margin cho positive/negative class."
+    },
+    "class:loss/metric_learning.py:Arcface": {
+      "name": "Arcface",
+      "type": "class",
+      "summary": "Hiện thực ArcFace hỗ trợ easy-margin và label smoothing, thay cosine của lớp đúng bằng giá trị có angular margin trước khi scale."
+    },
+    "class:loss/metric_learning.py:Cosface": {
+      "name": "Cosface",
+      "type": "class",
+      "summary": "Hiện thực CosFace bằng cách trừ cosine margin cho lớp mục tiêu rồi scale logits để tăng độ tách biệt embedding."
+    },
+    "class:loss/metric_learning.py:AMSoftmax": {
+      "name": "AMSoftmax",
+      "type": "class",
+      "summary": "Tạo AM-Softmax logits từ feature và weight L2-normalized, trừ additive margin ở lớp mục tiêu rồi nhân scale."
+    },
+    "file:notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb": {
+      "name": "emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+      "type": "file",
+      "summary": "Notebook JupyterHub độc lập để tải MediaPipe model, tạo và cache anatomy artifact cho FER2013/RAF-DB, audit coverage và xuất biểu đồ cùng preview trước huấn luyện."
+    },
+    "file:outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx": {
+      "name": "emotionclip_reid_papers.xlsx",
+      "type": "file",
+      "summary": "Bảng tính artifact tổng hợp các paper liên quan đến EmotionCLIP-ReID để phục vụ khảo sát tài liệu và đối chiếu hướng nghiên cứu."
+    },
+    "file:outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio": {
+      "name": "emotionclip_reid_w4_functional_change_map.drawio",
+      "type": "file",
+      "summary": "Sơ đồ Draw.io phân loại các khối chức năng mới và phần mở rộng ở W4, từ dataset, prompt, adapter và alignment đến uncertainty, metric và checkpoint selection."
+    },
+    "file:outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio": {
+      "name": "emotionclip_reid_w4_model_architecture.drawio",
+      "type": "file",
+      "summary": "Sơ đồ kiến trúc EmotionCLIP-ReID v1 trình bày nhánh visual, semantic descriptor, fusion classifier/global/local và đầu ra evidential uncertainty cùng metric đánh giá."
+    },
+    "file:outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio": {
+      "name": "emotionclip_reid_w4_two_stage_training.drawio",
+      "type": "file",
+      "summary": "Sơ đồ chi tiết luồng huấn luyện hai giai đoạn: Stage 1 học emotion descriptor với encoder đóng băng và Stage 2 fine-tune model bằng classification, alignment và uncertainty loss."
+    },
+    "file:outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio": {
+      "name": "emotionclip_reid_w4_uncertainty_detail.drawio",
+      "type": "file",
+      "summary": "Sơ đồ diễn giải đường đi từ fused logits qua Dirichlet evidence đến probability, uncertainty, evidential loss, ECE và uncertainty-risk AUC."
+    },
+    "file:processor/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Đánh dấu `processor` là Python package; file hiện rỗng và không công bố API cấp package."
+    },
+    "file:solver/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Đánh dấu `solver` là Python package; file hiện không chứa logic khởi tạo hay re-export."
+    },
+    "file:utils/__init__.py": {
+      "name": "__init__.py",
+      "type": "file",
+      "summary": "Đánh dấu `utils` là Python package; namespace cấp package được giữ trống để các helper được import từ module cụ thể."
+    },
+    "file:utils/notebook_metrics.py": {
+      "name": "notebook_metrics.py",
+      "type": "file",
+      "summary": "Cung cấp lớp tiện ích hoàn chỉnh cho notebook để tìm và nạp metric JSON/CSV/log, chọn epoch, in báo cáo và vẽ validation curve, training curve, confusion matrix cùng per-class F1."
+    },
+    "function:utils/notebook_metrics.py:metric_epoch": {
+      "name": "metric_epoch",
+      "type": "function",
+      "summary": "Trích số epoch từ tên tệp metric và trả `-1` nếu tên không khớp mẫu."
+    },
+    "function:utils/notebook_metrics.py:unique_paths": {
+      "name": "unique_paths",
+      "type": "function",
+      "summary": "Chuẩn hóa nhiều giá trị thành `Path`, loại phần tử rỗng và khử trùng lặp trong khi giữ nguyên thứ tự."
+    },
+    "function:utils/notebook_metrics.py:_to_float": {
+      "name": "_to_float",
+      "type": "function",
+      "summary": "Chuyển giá trị metric sang float hữu hạn, bỏ qua giá trị rỗng, NaN, vô cực hoặc không parse được."
+    },
+    "function:utils/notebook_metrics.py:_read_json": {
+      "name": "_read_json",
+      "type": "function",
+      "summary": "Đọc và giải mã một tệp JSON UTF-8 thành dictionary."
+    },
+    "function:utils/notebook_metrics.py:_first_existing": {
+      "name": "_first_existing",
+      "type": "function",
+      "summary": "Trả về path tồn tại đầu tiên trong danh sách candidate đã chuẩn hóa hoặc `None` khi không có."
+    },
+    "function:utils/notebook_metrics.py:_best_epoch_from_uncertainty": {
+      "name": "_best_epoch_from_uncertainty",
+      "type": "function",
+      "summary": "Đọc artifact uncertainty đầu tiên khả dụng và suy ra epoch tốt nhất từ các khóa tương thích."
+    },
+    "function:utils/notebook_metrics.py:_finalize_metric_bundle": {
+      "name": "_finalize_metric_bundle",
+      "type": "function",
+      "summary": "Sắp xếp lịch sử metric và đóng gói latest/best epoch, payload theo epoch cùng provenance nguồn thành cấu trúc dùng chung."
+    },
+    "function:utils/notebook_metrics.py:_load_json_metrics": {
+      "name": "_load_json_metrics",
+      "type": "function",
+      "summary": "Tìm `metrics_epoch_*.json`, nạp metric theo epoch và tạo bundle ưu tiên định dạng artifact JSON mới."
+    },
+    "function:utils/notebook_metrics.py:_load_csv_metrics": {
+      "name": "_load_csv_metrics",
+      "type": "function",
+      "summary": "Nạp lịch sử metric từ CSV và ghép summary/uncertainty artifact làm fallback tương thích với output cũ."
+    },
+    "function:utils/notebook_metrics.py:load_validation_metrics": {
+      "name": "load_validation_metrics",
+      "type": "function",
+      "summary": "Nạp validation metrics bằng chiến lược ưu tiên per-epoch JSON rồi mới chuyển sang CSV và summary fallback."
+    },
+    "function:utils/notebook_metrics.py:print_validation_summary": {
+      "name": "print_validation_summary",
+      "type": "function",
+      "summary": "In nguồn metric, chỉ số latest epoch, best macro-F1 và per-class F1 theo định dạng thân thiện với notebook."
+    },
+    "function:utils/notebook_metrics.py:_finite_xy": {
+      "name": "_finite_xy",
+      "type": "function",
+      "summary": "Lọc lịch sử metric thành các cặp epoch/value hữu hạn cho một khóa biểu đồ."
+    },
+    "function:utils/notebook_metrics.py:_format_epoch_axis": {
+      "name": "_format_epoch_axis",
+      "type": "function",
+      "summary": "Định dạng trục epoch của Matplotlib để dùng tick nguyên và khoảng nhìn hợp lý cho một hoặc nhiều epoch."
+    },
+    "function:utils/notebook_metrics.py:_plot_metric_lines": {
+      "name": "_plot_metric_lines",
+      "type": "function",
+      "summary": "Vẽ nhiều chuỗi metric lên một axes, đánh dấu best epoch và xử lý trạng thái không có dữ liệu."
+    },
+    "function:utils/notebook_metrics.py:_pick_payload": {
+      "name": "_pick_payload",
+      "type": "function",
+      "summary": "Chọn payload latest, best hoặc theo epoch mới nhất có đủ các khóa metric bắt buộc."
+    },
+    "function:utils/notebook_metrics.py:plot_validation_metric_curves": {
+      "name": "plot_validation_metric_curves",
+      "type": "function",
+      "summary": "Tạo dashboard validation 2x2 cho accuracy/F1, confidence/uncertainty, calibration/risk và per-class F1 rồi lưu PNG vào result directory."
+    },
+    "function:utils/notebook_metrics.py:_parse_log_training_history": {
+      "name": "_parse_log_training_history",
+      "type": "function",
+      "summary": "Parse dòng log kết thúc epoch của Stage 1/2 thành lịch sử metric số có cấu trúc."
+    },
+    "function:utils/notebook_metrics.py:_parse_csv_training_history": {
+      "name": "_parse_csv_training_history",
+      "type": "function",
+      "summary": "Parse CSV lịch sử huấn luyện thành các bản ghi Stage/epoch và chuẩn hóa các trường loss, accuracy, confidence, uncertainty, learning rate và thời gian."
+    },
+    "function:utils/notebook_metrics.py:load_training_history": {
+      "name": "load_training_history",
+      "type": "function",
+      "summary": "Tìm và nạp training history từ nhiều tên log ưu tiên, sau đó fallback sang các CSV candidate và trả kèm path nguồn."
+    },
+    "function:utils/notebook_metrics.py:plot_training_metric_curves": {
+      "name": "plot_training_metric_curves",
+      "type": "function",
+      "summary": "Ghép epoch của nhiều stage thành global epoch rồi vẽ các chuỗi loss, alignment, uncertainty, accuracy, learning rate và thời gian huấn luyện."
+    },
+    "function:utils/notebook_metrics.py:plot_confusion_matrix_and_f1": {
+      "name": "plot_confusion_matrix_and_f1",
+      "type": "function",
+      "summary": "Chuẩn hóa confusion matrix theo hàng, hiển thị count và tỷ lệ dự đoán, vẽ per-class F1 rồi lưu biểu đồ PNG."
+    },
+    "file:config/emotion_defaults.py": {
+      "name": "emotion_defaults.py",
+      "type": "file",
+      "summary": "Định nghĩa cấu hình mặc định, cơ chế hợp nhất override và các kiểm tra bất biến cho toàn bộ pipeline EmotionCLIP hai giai đoạn. Tệp cũng theo dõi nguồn gốc từng giá trị cấu hình để việc huấn luyện có thể tái lập."
+    },
+    "function:config/emotion_defaults.py:anatomy_requirement_reasons": {
+      "name": "anatomy_requirement_reasons",
+      "type": "function",
+      "summary": "Xác định các lý do cấu hình hiện tại bắt buộc phải có anatomy artifact, giúp lỗi dữ liệu được phát hiện trước khi chạy."
+    },
+    "function:config/emotion_defaults.py:get_default_emotion_cfg": {
+      "name": "get_default_emotion_cfg",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `get_default_emotion_cfg` trong miền configuration và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:config/emotion_defaults.py:_deep_update": {
+      "name": "_deep_update",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_deep_update` từ `base`, `update` trong miền configuration và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:config/emotion_defaults.py:_coerce_value": {
+      "name": "_coerce_value",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_coerce_value` từ `value` trong miền configuration và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:config/emotion_defaults.py:_set_by_dotted_key": {
+      "name": "_set_by_dotted_key",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_set_by_dotted_key` từ `cfg`, `dotted_key`, `value` trong miền configuration và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:config/emotion_defaults.py:_mark_source": {
+      "name": "_mark_source",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_mark_source` từ `sources`, `prefix`, `value`, `source` trong miền configuration và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:config/emotion_defaults.py:validate_emotion_cfg": {
+      "name": "validate_emotion_cfg",
+      "type": "function",
+      "summary": "Kiểm tra các bất biến và tổ hợp tham số của cấu hình EmotionCLIP, từ stage training đến anatomy, loss và lựa chọn checkpoint."
+    },
+    "function:config/emotion_defaults.py:load_emotion_cfg": {
+      "name": "load_emotion_cfg",
+      "type": "function",
+      "summary": "Nạp cấu hình mặc định, YAML và CLI override theo thứ tự ưu tiên, đồng thời có thể trả về provenance của từng giá trị."
+    },
+    "file:infer_emotionclip.py": {
+      "name": "infer_emotionclip.py",
+      "type": "file",
+      "summary": "Cung cấp CLI suy luận EmotionCLIP: nạp cấu hình và checkpoint, chuẩn bị ảnh cùng anatomy artifact, chạy mô hình và xuất phân phối cảm xúc kèm độ bất định."
+    },
+    "function:infer_emotionclip.py:main": {
+      "name": "main",
+      "type": "function",
+      "summary": "Điều phối entry point cho cung cấp cli suy luận emotionclip: nạp cấu hình và checkpoint, chuẩn bị ảnh cùng anatomy artifact, chạy mô hình và xuất phân phối cảm xúc kèm độ bất định, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả."
+    },
+    "file:processor/processor_emotionclip.py": {
+      "name": "processor_emotionclip.py",
+      "type": "file",
+      "summary": "Điều phối huấn luyện và đánh giá EmotionCLIP ở cả Stage 1 lẫn Stage 2, gồm AMP, gradient accumulation, corruption-based reliability, checkpoint và early stopping. Tệp thực thi nhiều guardrail để dừng an toàn khi loss, output hoặc tham số trở nên không hữu hạn."
+    },
+    "function:processor/processor_emotionclip.py:_batch_to_device": {
+      "name": "_batch_to_device",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_batch_to_device` từ `batch`, `device` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_as_bool": {
+      "name": "_as_bool",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_as_bool` từ `value` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_progress_enabled": {
+      "name": "_progress_enabled",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_progress_enabled` từ `cfg` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_progress": {
+      "name": "_progress",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_progress` từ `iterable`, `cfg`, `**kwargs` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_batch_accuracy": {
+      "name": "_batch_accuracy",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_batch_accuracy` từ `logits`, `labels` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_batch_confidence": {
+      "name": "_batch_confidence",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_batch_confidence` từ `probabilities` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_batch_uncertainty": {
+      "name": "_batch_uncertainty",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_batch_uncertainty` từ `uncertainty` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_tensor_diagnostic": {
+      "name": "_tensor_diagnostic",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_tensor_diagnostic` từ `tensor` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_model_output_error": {
+      "name": "_model_output_error",
+      "type": "function",
+      "summary": "Kiểm tra output của mô hình có hữu hạn và thỏa các bất biến xác suất, confidence, uncertainty trước khi cập nhật optimizer."
+    },
+    "function:processor/processor_emotionclip.py:_write_training_failure": {
+      "name": "_write_training_failure",
+      "type": "function",
+      "summary": "Ghi artifact chẩn đoán khi huấn luyện thất bại, gồm loss, output, tham số và batch liên quan."
+    },
+    "function:processor/processor_emotionclip.py:_losses_are_finite": {
+      "name": "_losses_are_finite",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_losses_are_finite` từ `losses` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_make_grad_scaler": {
+      "name": "_make_grad_scaler",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_make_grad_scaler` từ `enabled` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_trainable_parameters": {
+      "name": "_trainable_parameters",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_trainable_parameters` từ `model` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_nonfinite_parameter_names": {
+      "name": "_nonfinite_parameter_names",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_nonfinite_parameter_names` từ `model` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_forward_batch": {
+      "name": "_forward_batch",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_forward_batch` từ `model`, `batch`, `text_features` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:corrupt_images_for_reliability": {
+      "name": "corrupt_images_for_reliability",
+      "type": "function",
+      "summary": "Tạo ảnh nhiễu hoặc bị che khuất để huấn luyện tín hiệu reliability và trả lại mask occlusion khi cần."
+    },
+    "function:processor/processor_emotionclip.py:corrupt_anatomy_for_reliability": {
+      "name": "corrupt_anatomy_for_reliability",
+      "type": "function",
+      "summary": "Làm mất hiệu lực bằng chứng anatomy tương ứng với vùng ảnh bị che để tránh supervision mâu thuẫn."
+    },
+    "function:processor/processor_emotionclip.py:_format_log_value": {
+      "name": "_format_log_value",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_format_log_value` từ `value` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:log_training_event": {
+      "name": "log_training_event",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `log_training_event` từ `logger`, `event` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_csv_value": {
+      "name": "_csv_value",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_csv_value` từ `value` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_append_csv_row": {
+      "name": "_append_csv_row",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_append_csv_row` từ `path`, `columns`, `row` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_artifact_path": {
+      "name": "_artifact_path",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_artifact_path` từ `cfg`, `key`, `default_name` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_record_training_epoch": {
+      "name": "_record_training_epoch",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_record_training_epoch` từ `cfg`, `row` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_record_validation_epoch": {
+      "name": "_record_validation_epoch",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_record_validation_epoch` từ `cfg`, `row` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:log_run_config": {
+      "name": "log_run_config",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `log_run_config` từ `logger`, `cfg`, `config_file`, `opts` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:unwrap_model": {
+      "name": "unwrap_model",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `unwrap_model` từ `model` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:get_shared_text_features": {
+      "name": "get_shared_text_features",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `get_shared_text_features` từ `model`, `**kwargs` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_model_signature": {
+      "name": "_model_signature",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_model_signature` từ `model` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:_checkpoint_payload": {
+      "name": "_checkpoint_payload",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_checkpoint_payload` từ `model`, `epoch`, `stage`, `metrics` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:parameter_report": {
+      "name": "parameter_report",
+      "type": "function",
+      "summary": "Tổng hợp số lượng và tên nhóm tham số trainable/frozen để kiểm tra đúng phạm vi cập nhật theo stage."
+    },
+    "function:processor/processor_emotionclip.py:save_checkpoint": {
+      "name": "save_checkpoint",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `save_checkpoint` từ `model`, `output_dir`, `name`, `epoch`, `stage`, `metrics` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:load_emotion_checkpoint": {
+      "name": "load_emotion_checkpoint",
+      "type": "function",
+      "summary": "Nạp checkpoint với kiểm tra schema, stage, chữ ký mô hình và mức đầy đủ của nhánh anatomy trước khi tiếp tục hoặc suy luận."
+    },
+    "function:processor/processor_emotionclip.py:precompute_stage1_features": {
+      "name": "precompute_stage1_features",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `precompute_stage1_features` từ `model`, `loader`, `device` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:evaluate_stage1_prompt_model": {
+      "name": "evaluate_stage1_prompt_model",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `evaluate_stage1_prompt_model` từ `cfg`, `model`, `cached`, `use_geometry` trong miền training-loop và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:processor/processor_emotionclip.py:do_train_emotion_stage1": {
+      "name": "do_train_emotion_stage1",
+      "type": "function",
+      "summary": "Huấn luyện prompt nền và geometry residual theo các phase Stage 1, đánh giá validation và quản lý checkpoint được chọn."
+    },
+    "function:processor/processor_emotionclip.py:evaluate_emotion_model": {
+      "name": "evaluate_emotion_model",
+      "type": "function",
+      "summary": "Chạy suy luận trên một DataLoader và tổng hợp metric phân loại, calibration, uncertainty cùng phân tích nhánh khi được yêu cầu."
+    },
+    "function:processor/processor_emotionclip.py:evaluate_sealed_test": {
+      "name": "evaluate_sealed_test",
+      "type": "function",
+      "summary": "Đánh giá test set chỉ định bằng checkpoint đã chọn và ghi rõ split dùng cho model selection để tránh leakage."
+    },
+    "function:processor/processor_emotionclip.py:do_train_emotion_stage2": {
+      "name": "do_train_emotion_stage2",
+      "type": "function",
+      "summary": "Thực thi vòng lặp Stage 2 với AMP, tích lũy gradient, corruption ranking, kiểm tra non-finite, validation và early stopping."
+    },
+    "class:processor/processor_emotionclip.py:EmotionDataParallel": {
+      "name": "EmotionDataParallel",
+      "type": "class",
+      "summary": "Bọc DataParallel với scatter/gather chuyên biệt cho batch anatomy và các output dùng chung giữa GPU."
+    },
+    "file:tests/test_emotion_model_units.py": {
+      "name": "test_emotion_model_units.py",
+      "type": "file",
+      "summary": "Kiểm thử cấp đơn vị cho prompt learner, adapter, fusion, router và các quy tắc đóng băng tham số theo stage của EmotionCLIP. Các test bảo vệ tính đúng đắn của fallback khi chất lượng anatomy thấp hoặc vùng bị thiếu."
+    },
+    "function:tests/test_emotion_model_units.py:test_position_embedding_noop_is_silent_when_grid_is_unchanged": {
+      "name": "test_position_embedding_noop_is_silent_when_grid_is_unchanged",
+      "type": "function",
+      "summary": "Xác minh kịch bản `position_embedding_noop_is_silent_when_grid_is_unchanged` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_emotion_prompt_learner_shapes": {
+      "name": "test_emotion_prompt_learner_shapes",
+      "type": "function",
+      "summary": "Xác minh kịch bản `emotion_prompt_learner_shapes` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_expression_adapter_zero_initialized_residual": {
+      "name": "test_expression_adapter_zero_initialized_residual",
+      "type": "function",
+      "summary": "Xác minh kịch bản `expression_adapter_zero_initialized_residual` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients": {
+      "name": "test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients",
+      "type": "function",
+      "summary": "Xác minh kịch bản `fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes": {
+      "name": "test_simplex_and_sample_dependent_fusion_are_valid_ablation_modes",
+      "type": "function",
+      "summary": "Xác minh kịch bản `simplex_and_sample_dependent_fusion_are_valid_ablation_modes` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_train_last_blocks_validation": {
+      "name": "test_train_last_blocks_validation",
+      "type": "function",
+      "summary": "Xác minh kịch bản `train_last_blocks_validation` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:_stage_test_model": {
+      "name": "_stage_test_model",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_stage_test_model` từ `last_blocks` trong miền test và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tests/test_emotion_model_units.py:test_stage1_phases_train_base_then_geometry_residual_exclusively": {
+      "name": "test_stage1_phases_train_base_then_geometry_residual_exclusively",
+      "type": "function",
+      "summary": "Xác minh kịch bản `stage1_phases_train_base_then_geometry_residual_exclusively` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_adapter_only_stage2_trainable_parameter_whitelist": {
+      "name": "test_adapter_only_stage2_trainable_parameter_whitelist",
+      "type": "function",
+      "summary": "Xác minh kịch bản `adapter_only_stage2_trainable_parameter_whitelist` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:_router_anatomy": {
+      "name": "_router_anatomy",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_router_anatomy` từ `quality` trong miền test và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tests/test_emotion_model_units.py:test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality": {
+      "name": "test_hybrid_router_is_exact_free_attention_fallback_at_zero_quality",
+      "type": "function",
+      "summary": "Xác minh kịch bản `hybrid_router_is_exact_free_attention_fallback_at_zero_quality` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_routing_supervision_is_only_active_for_hybrid_ablation": {
+      "name": "test_routing_supervision_is_only_active_for_hybrid_ablation",
+      "type": "function",
+      "summary": "Xác minh kịch bản `routing_supervision_is_only_active_for_hybrid_ablation` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_geometry_fusion_zero_init_does_not_change_visual_regions": {
+      "name": "test_geometry_fusion_zero_init_does_not_change_visual_regions",
+      "type": "function",
+      "summary": "Xác minh kịch bản `geometry_fusion_zero_init_does_not_change_visual_regions` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_unconditional_cross_attention_has_missing_region_visual_fallback": {
+      "name": "test_unconditional_cross_attention_has_missing_region_visual_fallback",
+      "type": "function",
+      "summary": "Xác minh kịch bản `unconditional_cross_attention_has_missing_region_visual_fallback` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_reliable_region_disagreement_requires_two_quality_regions": {
+      "name": "test_reliable_region_disagreement_requires_two_quality_regions",
+      "type": "function",
+      "summary": "Xác minh kịch bản `reliable_region_disagreement_requires_two_quality_regions` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_prompt_geometry_and_class_statistics_are_zero_init_and_robust": {
+      "name": "test_prompt_geometry_and_class_statistics_are_zero_init_and_robust",
+      "type": "function",
+      "summary": "Xác minh kịch bản `prompt_geometry_and_class_statistics_are_zero_init_and_robust` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_class_quality_ignores_reserved_padding_slots": {
+      "name": "test_class_quality_ignores_reserved_padding_slots",
+      "type": "function",
+      "summary": "Xác minh kịch bản `class_quality_ignores_reserved_padding_slots` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_model_units.py:test_full_emotionclip_constructor_and_anatomy_forward_integration": {
+      "name": "test_full_emotionclip_constructor_and_anatomy_forward_integration",
+      "type": "function",
+      "summary": "Xác minh kịch bản `full_emotionclip_constructor_and_anatomy_forward_integration` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "class:tests/test_emotion_model_units.py:_DummyBlock": {
+      "name": "_DummyBlock",
+      "type": "class",
+      "summary": "Residual block giả lập dùng để kiểm tra chính sách mở khóa các block cuối."
+    },
+    "class:tests/test_emotion_model_units.py:_Stage1Prompt": {
+      "name": "_Stage1Prompt",
+      "type": "class",
+      "summary": "Prompt module giả lập dùng để kiểm tra phân tách tham số trainable giữa các phase Stage 1."
+    },
+    "class:tests/test_emotion_model_units.py:_TinyResidualBlock": {
+      "name": "_TinyResidualBlock",
+      "type": "class",
+      "summary": "Residual block tối giản hỗ trợ test backbone thị giác thu gọn."
+    },
+    "class:tests/test_emotion_model_units.py:_TinyVisual": {
+      "name": "_TinyVisual",
+      "type": "class",
+      "summary": "Backbone thị giác tối giản dùng để kiểm thử tích hợp model mà không cần CLIP đầy đủ."
+    },
+    "class:tests/test_emotion_model_units.py:_TinyClip": {
+      "name": "_TinyClip",
+      "type": "class",
+      "summary": "Mô hình CLIP giả lập gọn nhẹ dùng trong kiểm thử constructor và forward integration."
+    },
+    "file:tests/test_emotion_processor_smoke.py": {
+      "name": "test_emotion_processor_smoke.py",
+      "type": "file",
+      "summary": "Chạy smoke test CPU cho processor Stage 1/2 và các guardrail huấn luyện như gradient accumulation, warmup reliability, early stopping, checkpoint schema và lỗi non-finite."
+    },
+    "function:tests/test_emotion_processor_smoke.py:_loader": {
+      "name": "_loader",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_loader` trong miền test và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_processor_stage1_stage2_cpu_smoke": {
+      "name": "test_processor_stage1_stage2_cpu_smoke",
+      "type": "function",
+      "summary": "Xác minh kịch bản `processor_stage1_stage2_cpu_smoke` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_stage2_gradient_accumulation_controls_optimizer_steps": {
+      "name": "test_stage2_gradient_accumulation_controls_optimizer_steps",
+      "type": "function",
+      "summary": "Xác minh kịch bản `stage2_gradient_accumulation_controls_optimizer_steps` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_stage2_defers_corruption_ranking_until_after_warmup": {
+      "name": "test_stage2_defers_corruption_ranking_until_after_warmup",
+      "type": "function",
+      "summary": "Xác minh kịch bản `stage2_defers_corruption_ranking_until_after_warmup` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_stage2_nonfinite_loss_fails_before_optimizer_step": {
+      "name": "test_stage2_nonfinite_loss_fails_before_optimizer_step",
+      "type": "function",
+      "summary": "Xác minh kịch bản `stage2_nonfinite_loss_fails_before_optimizer_step` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed": {
+      "name": "test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed",
+      "type": "function",
+      "summary": "Xác minh kịch bản `stage2_nonfinite_parameter_after_optimizer_step_fails_closed` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_stage2_early_stopping_uses_validation_patience": {
+      "name": "test_stage2_early_stopping_uses_validation_patience",
+      "type": "function",
+      "summary": "Xác minh kịch bản `stage2_early_stopping_uses_validation_patience` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_small_learning_rates_use_scientific_log_format": {
+      "name": "test_small_learning_rates_use_scientific_log_format",
+      "type": "function",
+      "summary": "Xác minh kịch bản `small_learning_rates_use_scientific_log_format` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_stage1_validation_writes_and_selects_prompt_checkpoint": {
+      "name": "test_stage1_validation_writes_and_selects_prompt_checkpoint",
+      "type": "function",
+      "summary": "Xác minh kịch bản `stage1_validation_writes_and_selects_prompt_checkpoint` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_stage1b_fails_closed_when_geometry_statistics_are_missing": {
+      "name": "test_stage1b_fails_closed_when_geometry_statistics_are_missing",
+      "type": "function",
+      "summary": "Xác minh kịch bản `stage1b_fails_closed_when_geometry_statistics_are_missing` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_fixed_epoch_training_skips_model_selection_and_test_is_explicit": {
+      "name": "test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
+      "type": "function",
+      "summary": "Xác minh kịch bản `fixed_epoch_training_skips_model_selection_and_test_is_explicit` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_checkpoint_schema_preserves_current_derived_prompt_buffers": {
+      "name": "test_checkpoint_schema_preserves_current_derived_prompt_buffers",
+      "type": "function",
+      "summary": "Xác minh kịch bản `checkpoint_schema_preserves_current_derived_prompt_buffers` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference": {
+      "name": "test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference",
+      "type": "function",
+      "summary": "Xác minh kịch bản `checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_emotion_processor_smoke.py:test_corruption_invalidates_occluded_anatomy_evidence": {
+      "name": "test_corruption_invalidates_occluded_anatomy_evidence",
+      "type": "function",
+      "summary": "Xác minh kịch bản `corruption_invalidates_occluded_anatomy_evidence` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "class:tests/test_emotion_processor_smoke.py:TinyEmotionModel": {
+      "name": "TinyEmotionModel",
+      "type": "class",
+      "summary": "Test double nhỏ mô phỏng API theo stage của EmotionCLIP để smoke-test processor trên CPU."
+    },
+    "class:tests/test_emotion_processor_smoke.py:_CheckpointPrompt": {
+      "name": "_CheckpointPrompt",
+      "type": "class",
+      "summary": "Test double tối giản cho prompt learner và các buffer cần được bảo toàn trong checkpoint."
+    },
+    "class:tests/test_emotion_processor_smoke.py:_CheckpointModel": {
+      "name": "_CheckpointModel",
+      "type": "class",
+      "summary": "Test double tối giản dùng để kiểm tra schema, tính đầy đủ và khả năng nạp checkpoint."
+    },
+    "file:tests/test_train_emotionclip_parallel.py": {
+      "name": "test_train_emotionclip_parallel.py",
+      "type": "file",
+      "summary": "Kiểm thử lựa chọn GPU, giới hạn topology multi-GPU và hành vi gather/unwrap của lớp song song hóa EmotionCLIP. Bộ test cũng kiểm tra bất biến confidence và text feature dùng chung."
+    },
+    "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_accepts_two_cuda_indices": {
+      "name": "test_parse_gpu_ids_accepts_two_cuda_indices",
+      "type": "function",
+      "summary": "Xác minh kịch bản `parse_gpu_ids_accepts_two_cuda_indices` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_train_emotionclip_parallel.py:test_production_training_rejects_single_process_multi_gpu": {
+      "name": "test_production_training_rejects_single_process_multi_gpu",
+      "type": "function",
+      "summary": "Xác minh kịch bản `production_training_rejects_single_process_multi_gpu` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_rejects_invalid_lists": {
+      "name": "test_parse_gpu_ids_rejects_invalid_lists",
+      "type": "function",
+      "summary": "Xác minh kịch bản `parse_gpu_ids_rejects_invalid_lists` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_train_emotionclip_parallel.py:test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel": {
+      "name": "test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+      "type": "function",
+      "summary": "Xác minh kịch bản `unwrap_model_preserves_plain_model_and_unwraps_data_parallel` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly": {
+      "name": "test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+      "type": "function",
+      "summary": "Xác minh kịch bản `emotion_data_parallel_gathers_batch_and_shared_outputs_correctly` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_divergent_shared_temperatures": {
+      "name": "test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+      "type": "function",
+      "summary": "Xác minh kịch bản `emotion_data_parallel_rejects_divergent_shared_temperatures` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_multi_gpu_construction": {
+      "name": "test_emotion_data_parallel_rejects_multi_gpu_construction",
+      "type": "function",
+      "summary": "Xác minh kịch bản `emotion_data_parallel_rejects_multi_gpu_construction` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_train_emotionclip_parallel.py:test_model_output_invariant_rejects_impossible_confidence": {
+      "name": "test_model_output_invariant_rejects_impossible_confidence",
+      "type": "function",
+      "summary": "Xác minh kịch bản `model_output_invariant_rejects_impossible_confidence` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "function:tests/test_train_emotionclip_parallel.py:test_shared_text_features_are_built_from_unwrapped_model": {
+      "name": "test_shared_text_features_are_built_from_unwrapped_model",
+      "type": "function",
+      "summary": "Xác minh kịch bản `shared_text_features_are_built_from_unwrapped_model` và bảo vệ hành vi tương ứng khỏi hồi quy."
+    },
+    "file:train_emotionclip.py": {
+      "name": "train_emotionclip.py",
+      "type": "file",
+      "summary": "Entry point huấn luyện EmotionCLIP: hợp nhất cấu hình, thiết lập seed/device/logging, dựng dữ liệu và mô hình, sau đó chạy Stage 1/Stage 2 cùng đánh giá sealed test. Tệp lưu cấu hình hiệu lực và provenance của run để tái lập kết quả."
+    },
+    "function:train_emotionclip.py:set_seed": {
+      "name": "set_seed",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `set_seed` từ `seed` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:train_emotionclip.py:setup_logging": {
+      "name": "setup_logging",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `setup_logging` từ `output_dir` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:train_emotionclip.py:_flatten_config": {
+      "name": "_flatten_config",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_flatten_config` từ `prefix`, `value` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:train_emotionclip.py:_csv_value": {
+      "name": "_csv_value",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `_csv_value` từ `value` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:train_emotionclip.py:save_train_config_csv": {
+      "name": "save_train_config_csv",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `save_train_config_csv` từ `cfg`, `config_file`, `opts` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:train_emotionclip.py:save_effective_config": {
+      "name": "save_effective_config",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `save_effective_config` từ `cfg`, `config_sources` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:train_emotionclip.py:trainable_parameters": {
+      "name": "trainable_parameters",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `trainable_parameters` từ `model` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:train_emotionclip.py:parse_gpu_ids": {
+      "name": "parse_gpu_ids",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `parse_gpu_ids` từ `gpus` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:train_emotionclip.py:validate_gpu_topology": {
+      "name": "validate_gpu_topology",
+      "type": "function",
+      "summary": "Thực hiện phép xử lý `validate_gpu_topology` từ `gpu_ids` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline."
+    },
+    "function:train_emotionclip.py:configure_device": {
+      "name": "configure_device",
+      "type": "function",
+      "summary": "Xác thực yêu cầu GPU và chọn thiết bị CUDA/CPU phù hợp với cấu hình runtime."
+    },
+    "function:train_emotionclip.py:main": {
+      "name": "main",
+      "type": "function",
+      "summary": "Điều phối entry point cho entry point huấn luyện emotionclip: hợp nhất cấu hình, thiết lập seed/device/logging, dựng dữ liệu và mô hình, sau đó chạy stage 1/stage 2 cùng đánh giá sealed test, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả."
+    },
+    "file:model/clip/model.py": {
+      "name": "model.py",
+      "type": "file",
+      "summary": "Định nghĩa kiến trúc CLIP tùy biến cho ReID/FER, gồm visual backbone ResNet hoặc ViT, text Transformer và logic dựng mô hình từ checkpoint với nội suy positional embedding."
+    },
+    "class:model/clip/model.py:Bottleneck": {
+      "name": "Bottleneck",
+      "type": "class",
+      "summary": "Residual bottleneck dùng average pooling khi giảm mẫu để tạo khối ResNet chống aliasing."
+    },
+    "class:model/clip/model.py:AttentionPool2d": {
+      "name": "AttentionPool2d",
+      "type": "class",
+      "summary": "Biến feature map 2D thành chuỗi token và dùng multi-head attention để tạo biểu diễn toàn cục có projection."
+    },
+    "class:model/clip/model.py:ModifiedResNet": {
+      "name": "ModifiedResNet",
+      "type": "class",
+      "summary": "Visual backbone ResNet sửa đổi với stem ba convolution, anti-aliasing và attention pooling, trả ba mức đặc trưng."
+    },
+    "class:model/clip/model.py:LayerNorm": {
+      "name": "LayerNorm",
+      "type": "class",
+      "summary": "Bọc PyTorch LayerNorm để tính toán ở float32 rồi trả kết quả về dtype đầu vào, ổn định cho fp16."
+    },
+    "class:model/clip/model.py:QuickGELU": {
+      "name": "QuickGELU",
+      "type": "class",
+      "summary": "Cài đặt activation QuickGELU theo công thức sigmoid xấp xỉ dùng trong CLIP."
+    },
+    "class:model/clip/model.py:ResidualAttentionBlock": {
+      "name": "ResidualAttentionBlock",
+      "type": "class",
+      "summary": "Khối Transformer residual gồm self-attention, MLP và điểm gắn emotion adapter tùy chọn sau MLP."
+    },
+    "class:model/clip/model.py:Transformer": {
+      "name": "Transformer",
+      "type": "class",
+      "summary": "Xếp chồng các ResidualAttentionBlock và chuyển tiếp chuỗi token qua toàn bộ stack."
+    },
+    "class:model/clip/model.py:VisionTransformer": {
+      "name": "VisionTransformer",
+      "type": "class",
+      "summary": "Patch hóa ảnh, thêm class/SIE embedding và trả token từ block áp chót, block cuối cùng cùng không gian projection CLIP."
+    },
+    "class:model/clip/model.py:CLIP": {
+      "name": "CLIP",
+      "type": "class",
+      "summary": "Mô hình dual encoder CLIP hoàn chỉnh, khởi tạo visual/text backbone, causal mask và tính cosine logits hai chiều ảnh-văn bản."
+    },
+    "function:model/clip/model.py:convert_weights": {
+      "name": "convert_weights",
+      "type": "function",
+      "summary": "Duyệt các layer và chuyển trọng số convolution, linear, attention cùng projection sang kiểu float để đồng nhất checkpoint."
+    },
+    "function:model/clip/model.py:build_model": {
+      "name": "build_model",
+      "type": "function",
+      "summary": "Suy luận cấu hình CLIP từ state_dict, dựng backbone, resize positional embedding và nạp trọng số ở chế độ eval."
+    },
+    "function:model/clip/model.py:resize_pos_embed": {
+      "name": "resize_pos_embed",
+      "type": "function",
+      "summary": "Nội suy bilinear phần grid của positional embedding sang độ phân giải patch mới, giữ nguyên class token."
+    },
+    "file:model/emotionclip_model.py": {
+      "name": "emotionclip_model.py",
+      "type": "file",
+      "summary": "Định nghĩa mô hình EmotionCLIP hai giai đoạn, kết hợp prompt cảm xúc, adapter thị giác, định tuyến patch theo giải phẫu, hợp nhất ba nhánh và ước lượng độ tin cậy Dirichlet."
+    },
+    "function:model/emotionclip_model.py:decoupled_dirichlet": {
+      "name": "decoupled_dirichlet",
+      "type": "function",
+      "summary": "Tạo tham số Dirichlet từ xác suất lớp và strength tách biệt, trả mean, alpha và uncertainty mà không phụ thuộc offset logit."
+    },
+    "class:model/emotionclip_model.py:QuickGELU": {
+      "name": "QuickGELU",
+      "type": "class",
+      "summary": "Activation QuickGELU nhẹ dùng trong các head và adapter của EmotionCLIP."
+    },
+    "class:model/emotionclip_model.py:ExpressionAdapter": {
+      "name": "ExpressionAdapter",
+      "type": "class",
+      "summary": "Adapter bottleneck residual cho từng visual Transformer block, với lớp up projection zero-init để khởi đầu như no-op."
+    },
+    "class:model/emotionclip_model.py:EmotionTextEncoder": {
+      "name": "EmotionTextEncoder",
+      "type": "class",
+      "summary": "Mã hóa prompt embedding bằng text Transformer CLIP và lấy embedding tại EOT qua text projection."
+    },
+    "class:model/emotionclip_model.py:AnatomyPromptResidual": {
+      "name": "AnatomyPromptResidual",
+      "type": "class",
+      "summary": "Biến thống kê median, scale, validity, uncertainty và quality theo lớp/vùng thành residual cho ba context token giải phẫu, hỗ trợ nhiều ablation mode."
+    },
+    "class:model/emotionclip_model.py:EmotionPromptLearner": {
+      "name": "EmotionPromptLearner",
+      "type": "class",
+      "summary": "Học context token theo lớp cảm xúc, ghép prefix/suffix cố định và tùy chọn cộng residual hình học vào các token theo vai trò giải phẫu."
+    },
+    "function:model/emotionclip_model.py:load_clip_to_cpu": {
+      "name": "load_clip_to_cpu",
+      "type": "function",
+      "summary": "Tải checkpoint CLIP về CPU rồi dựng model với lưới patch và stride được chỉ định."
+    },
+    "function:model/emotionclip_model.py:install_expression_adapters": {
+      "name": "install_expression_adapters",
+      "type": "function",
+      "summary": "Gắn một ExpressionAdapter vào mỗi residual block của visual Transformer và trả số adapter đã cài."
+    },
+    "function:model/emotionclip_model.py:_set_requires_grad": {
+      "name": "_set_requires_grad",
+      "type": "function",
+      "summary": "Bật hoặc tắt requires_grad cho toàn bộ tham số của một module."
+    },
+    "function:model/emotionclip_model.py:normalized_fusion_prior": {
+      "name": "normalized_fusion_prior",
+      "type": "function",
+      "summary": "Kiểm tra ba trọng số nhánh là hữu hạn, dương rồi chuẩn hóa thành prior trên simplex."
+    },
+    "function:model/emotionclip_model.py:validate_train_last_blocks": {
+      "name": "validate_train_last_blocks",
+      "type": "function",
+      "summary": "Ràng buộc số visual block cuối được fine-tune nằm trong phạm vi hợp lệ."
+    },
+    "class:model/emotionclip_model.py:BranchFusion": {
+      "name": "BranchFusion",
+      "type": "class",
+      "summary": "Chuẩn hóa thang đo và hợp nhất logits classifier, global và local bằng gate fixed, simplex hoặc phụ thuộc mẫu, kèm regularization gate/temperature."
+    },
+    "class:model/emotionclip_model.py:RegionPatchRouter": {
+      "name": "RegionPatchRouter",
+      "type": "class",
+      "summary": "Trộn attention học tự do với Gaussian mask từ landmark theo quality để gom patch thành đặc trưng ba vùng giải phẫu và sinh routing loss."
+    },
+    "class:model/emotionclip_model.py:AnatomyRegionFusion": {
+      "name": "AnatomyRegionFusion",
+      "type": "class",
+      "summary": "Kết hợp đặc trưng patch theo vùng với geometry encoder hoặc landmark cross-attention, tính region logits, importance và disagreement JSD có điều kiện chất lượng."
+    },
+    "class:model/emotionclip_model.py:EmotionCLIPModel": {
+      "name": "EmotionCLIPModel",
+      "type": "class",
+      "summary": "Điều phối toàn bộ FER pipeline hai giai đoạn: prompt/anatomy Stage 1, adapter và các head Stage 2, rồi hợp nhất logits và ước lượng uncertainty Dirichlet."
+    },
+    "file:tests/test_notebook_helpers.py": {
+      "name": "test_notebook_helpers.py",
+      "type": "file",
+      "summary": "Kiểm thử hợp đồng của helper notebook, cấu hình FER và nội dung notebook/preset: provenance run, progress, landmark portability, ưu tiên override, pha Stage 1 và an toàn GPU."
+    },
+    "function:tests/test_notebook_helpers.py:test_timestamped_run_id_is_local_time_safe_and_precise": {
+      "name": "test_timestamped_run_id_is_local_time_safe_and_precise",
+      "type": "function",
+      "summary": "Xác minh run id dùng local time có timezone, microsecond, seed và ký tự an toàn cho filesystem."
+    },
+    "function:tests/test_notebook_helpers.py:test_publish_notebook_artifacts_requires_initialized_run": {
+      "name": "test_publish_notebook_artifacts_requires_initialized_run",
+      "type": "function",
+      "summary": "Xác minh không thể publish artifact nếu output run chưa có provenance.json."
+    },
+    "function:tests/test_notebook_helpers.py:test_publish_notebook_artifacts_copies_visuals_and_log": {
+      "name": "test_publish_notebook_artifacts_copies_visuals_and_log",
+      "type": "function",
+      "summary": "Xác minh publish sao chép visual, ghi console log và metadata vào đúng run đã khởi tạo."
+    },
+    "function:tests/test_notebook_helpers.py:test_notebook_progress_recognizes_all_training_phase_labels": {
+      "name": "test_notebook_progress_recognizes_all_training_phase_labels",
+      "type": "function",
+      "summary": "Kiểm thử regex progress nhận diện đầy đủ nhãn Stage 1, các phase con và Stage 2."
+    },
+    "function:tests/test_notebook_helpers.py:test_notebook_progress_html_keeps_stage1_phase_in_single_display": {
+      "name": "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+      "type": "function",
+      "summary": "Xác minh progress HTML giữ nhãn phase Stage 1 trên một display cập nhật được."
+    },
+    "function:tests/test_notebook_helpers.py:test_training_notebooks_forward_resolved_runtime_controls": {
+      "name": "test_training_notebooks_forward_resolved_runtime_controls",
+      "type": "function",
+      "summary": "Kiểm tra notebook huấn luyện chuyển các runtime control đã resolve vào lệnh gọi entry point."
+    },
+    "function:tests/test_notebook_helpers.py:test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts": {
+      "name": "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+      "type": "function",
+      "summary": "Xác minh validator chấp nhận manifest cùng thư mục dữ liệu với landmark_path tương đối và artifact tồn tại."
+    },
+    "function:tests/test_notebook_helpers.py:test_validate_landmark_manifest_layout_rejects_missing_artifact": {
+      "name": "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+      "type": "function",
+      "summary": "Xác minh validator báo lỗi khi manifest tham chiếu artifact landmark không tồn tại."
+    },
+    "function:tests/test_notebook_helpers.py:test_rafdb_notebooks_share_explicit_colocated_landmark_paths": {
+      "name": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+      "type": "function",
+      "summary": "Kiểm tra các notebook RAF-DB dùng chung đường dẫn landmark tường minh và colocated."
+    },
+    "function:tests/test_notebook_helpers.py:test_anatomy_is_required_by_default_and_quick_presets": {
+      "name": "test_anatomy_is_required_by_default_and_quick_presets",
+      "type": "function",
+      "summary": "Xác minh anatomy được yêu cầu trong cấu hình mặc định và các quick preset liên quan."
+    },
+    "function:tests/test_notebook_helpers.py:test_notebook_cli_overrides_have_highest_precedence_and_source_provenance": {
+      "name": "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+      "type": "function",
+      "summary": "Xác minh CLI override có ưu tiên cao nhất và nguồn cấu hình được ghi vào provenance."
+    },
+    "function:tests/test_notebook_helpers.py:test_stage1_both_rejects_a_missing_phase": {
+      "name": "test_stage1_both_rejects_a_missing_phase",
+      "type": "function",
+      "summary": "Xác minh cấu hình Stage 1 both bị từ chối khi thiếu một phase bắt buộc."
+    },
+    "function:tests/test_notebook_helpers.py:test_stage1_geometry_rejects_an_inactive_prompt_conditioner": {
+      "name": "test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+      "type": "function",
+      "summary": "Xác minh Stage 1 geometry bị từ chối khi prompt conditioner hình học không hoạt động."
+    },
+    "function:tests/test_notebook_helpers.py:test_rafdb_notebook_exposes_gpu_safety_controls": {
+      "name": "test_rafdb_notebook_exposes_gpu_safety_controls",
+      "type": "function",
+      "summary": "Kiểm tra notebook RAF-DB công khai các control an toàn topology và lựa chọn GPU."
+    },
+    "function:tests/test_notebook_helpers.py:test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt": {
+      "name": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+      "type": "function",
+      "summary": "Xác minh notebook Hugging Face FER2013 và preset bật Stage 1B geometry prompt nhất quán."
+    },
+    "document:note_edit.md": {
+      "name": "note_edit.md",
+      "type": "document",
+      "summary": "Ghi chú thiết kế mô tả Stage 1A học context token, Stage 1B học geometry residual khi prompt gốc bị đóng băng, rồi chuyển semantic prototype sang Stage 2 để routing và fusion theo anatomy từng ảnh."
+    },
+    "config:configs/emotion/vit_b16_emotionclip.yml": {
+      "name": "vit_b16_emotionclip.yml",
+      "type": "config",
+      "summary": "Cấu hình huấn luyện đầy đủ cho EmotionCLIP ViT-B/16, bao quát backbone, anatomy prompt/fusion, dữ liệu, optimizer, lịch học, loss Stage 2 và tiêu chí đánh giá."
+    },
+    "config:configs/emotion/vit_b16_emotionclip_rafdb_quick.yml": {
+      "name": "vit_b16_emotionclip_rafdb_quick.yml",
+      "type": "config",
+      "summary": "Preset chạy nhanh EmotionCLIP trên RAF-DB, bật các điều khiển anatomy và huấn luyện rút gọn để smoke-test dữ liệu cùng mô hình."
+    },
+    "file:notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb": {
+      "name": "emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "type": "file",
+      "summary": "Runbook JupyterHub tái lập cho FER2013, kiểm tra manifest anatomy, cấu hình huấn luyện EmotionCLIP-ReID hai giai đoạn, quản lý run bất biến và trực quan hóa metric validation/training."
+    },
+    "file:notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb": {
+      "name": "emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "type": "file",
+      "summary": "Runbook JupyterHub cho RAF-DB, chuyển đổi official split, giữ test sealed, kiểm tra anatomy coverage, cấu hình Stage 1/2 và tổng hợp metric theo từng run có provenance."
+    }
+  },
+  "totalNodes": 558,
+  "totalEdges": 968
+}

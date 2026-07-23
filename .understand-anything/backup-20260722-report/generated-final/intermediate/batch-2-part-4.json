@@ -1,0 +1,1293 @@
+{
+  "nodes": [
+    {
+      "id": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "type": "file",
+      "name": "convert_fer2013_to_emotion_jsonl.py",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "summary": "Chuyển FER2013 từ CSV pixel hoặc cây thư mục ảnh thành ảnh chuẩn và manifest JSONL với ánh xạ split/nhãn chính thức.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tools/convert_fer2013_to_emotion_jsonl.py:row_value",
+      "type": "function",
+      "name": "row_value",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "lineRange": [
+        62,
+        68
+      ],
+      "summary": "Triển khai thao tác row value trong convert_fer2013_to_emotion_jsonl.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_fer2013_to_emotion_jsonl.py:split_from_usage",
+      "type": "function",
+      "name": "split_from_usage",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "lineRange": [
+        71,
+        77
+      ],
+      "summary": "Triển khai thao tác split from usage trong convert_fer2013_to_emotion_jsonl.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_fer2013_to_emotion_jsonl.py:emotion_from_label",
+      "type": "function",
+      "name": "emotion_from_label",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "lineRange": [
+        80,
+        94
+      ],
+      "summary": "Triển khai thao tác emotion from label trong convert_fer2013_to_emotion_jsonl.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_fer2013_to_emotion_jsonl.py:save_pixel_image",
+      "type": "function",
+      "name": "save_pixel_image",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "lineRange": [
+        97,
+        110
+      ],
+      "summary": "Lưu pixel image theo định dạng ổn định của pipeline.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_fer2013_to_emotion_jsonl.py:convert_csv",
+      "type": "function",
+      "name": "convert_csv",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "lineRange": [
+        113,
+        132
+      ],
+      "summary": "Chuyển đổi csv sang hợp đồng dữ liệu mà pipeline EmotionCLIP-ReID sử dụng.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_fer2013_to_emotion_jsonl.py:iter_split_dirs",
+      "type": "function",
+      "name": "iter_split_dirs",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "lineRange": [
+        135,
+        144
+      ],
+      "summary": "Triển khai thao tác iter split dirs trong convert_fer2013_to_emotion_jsonl.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_fer2013_to_emotion_jsonl.py:convert_image_dir",
+      "type": "function",
+      "name": "convert_image_dir",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "lineRange": [
+        147,
+        172
+      ],
+      "summary": "Chuyển đổi image dir sang hợp đồng dữ liệu mà pipeline EmotionCLIP-ReID sử dụng.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_fer2013_to_emotion_jsonl.py:write_records",
+      "type": "function",
+      "name": "write_records",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "lineRange": [
+        175,
+        179
+      ],
+      "summary": "Triển khai thao tác write records trong convert_fer2013_to_emotion_jsonl.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_fer2013_to_emotion_jsonl.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "lineRange": [
+        182,
+        227
+      ],
+      "summary": "Điểm vào CLI điều phối chuyển FER2013 từ CSV pixel hoặc cây thư mục ảnh thành ảnh chuẩn và manifest JSONL với ánh xạ split/nhãn chính thức.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tools/convert_raf_au_to_emotion_jsonl.py",
+      "type": "file",
+      "name": "convert_raf_au_to_emotion_jsonl.py",
+      "filePath": "tools/convert_raf_au_to_emotion_jsonl.py",
+      "summary": "Bổ sung nhãn Action Unit của RAF vào bản ghi manifest để phục vụ nhánh anatomy/AU và phân tích vi mô.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/convert_raf_au_to_emotion_jsonl.py:parse_au_fields",
+      "type": "function",
+      "name": "parse_au_fields",
+      "filePath": "tools/convert_raf_au_to_emotion_jsonl.py",
+      "lineRange": [
+        13,
+        21
+      ],
+      "summary": "Triển khai thao tác parse au fields trong convert_raf_au_to_emotion_jsonl.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_raf_au_to_emotion_jsonl.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/convert_raf_au_to_emotion_jsonl.py",
+      "lineRange": [
+        24,
+        65
+      ],
+      "summary": "Điểm vào CLI điều phối bổ sung nhãn Action Unit của RAF vào bản ghi manifest để phục vụ nhánh anatomy/AU và phân tích vi mô.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "type": "file",
+      "name": "convert_rafdb_to_emotion_jsonl.py",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "summary": "Giải nén, tìm nhãn và chuyển RAF-DB thành manifest; hỗ trợ official train/test cùng validation stratified xác định bởi seed.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tools/convert_rafdb_to_emotion_jsonl.py:_extract_archive",
+      "type": "function",
+      "name": "_extract_archive",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "lineRange": [
+        56,
+        79
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý extract archive trong convert_rafdb_to_emotion_jsonl.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_rafdb_to_emotion_jsonl.py:_find_label_files",
+      "type": "function",
+      "name": "_find_label_files",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "lineRange": [
+        82,
+        98
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý find label files trong convert_rafdb_to_emotion_jsonl.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_rafdb_to_emotion_jsonl.py:_image_candidates",
+      "type": "function",
+      "name": "_image_candidates",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "lineRange": [
+        101,
+        110
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý image candidates trong convert_rafdb_to_emotion_jsonl.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_rafdb_to_emotion_jsonl.py:_resolve_image",
+      "type": "function",
+      "name": "_resolve_image",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "lineRange": [
+        113,
+        140
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý resolve image trong convert_rafdb_to_emotion_jsonl.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_rafdb_to_emotion_jsonl.py:_official_split_from_name",
+      "type": "function",
+      "name": "_official_split_from_name",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "lineRange": [
+        143,
+        149
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý official split from name trong convert_rafdb_to_emotion_jsonl.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_rafdb_to_emotion_jsonl.py:_split_from_label_file",
+      "type": "function",
+      "name": "_split_from_label_file",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "lineRange": [
+        152,
+        158
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý split from label file trong convert_rafdb_to_emotion_jsonl.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_rafdb_to_emotion_jsonl.py:_read_label_file",
+      "type": "function",
+      "name": "_read_label_file",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "lineRange": [
+        161,
+        192
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý read label file trong convert_rafdb_to_emotion_jsonl.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_rafdb_to_emotion_jsonl.py:select_stratified_validation_images",
+      "type": "function",
+      "name": "select_stratified_validation_images",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "lineRange": [
+        195,
+        218
+      ],
+      "summary": "Triển khai thao tác select stratified validation images trong convert_rafdb_to_emotion_jsonl.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_rafdb_to_emotion_jsonl.py:convert_rafdb",
+      "type": "function",
+      "name": "convert_rafdb",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "lineRange": [
+        221,
+        308
+      ],
+      "summary": "Chuyển đổi rafdb sang hợp đồng dữ liệu mà pipeline EmotionCLIP-ReID sử dụng.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/convert_rafdb_to_emotion_jsonl.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "lineRange": [
+        311,
+        359
+      ],
+      "summary": "Điểm vào CLI điều phối giải nén, tìm nhãn và chuyển RAF-DB thành manifest; hỗ trợ official train/test cùng validation stratified xác định bởi seed.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tools/download_hf_emotion_dataset.py",
+      "type": "file",
+      "name": "download_hf_emotion_dataset.py",
+      "filePath": "tools/download_hf_emotion_dataset.py",
+      "summary": "Tải dataset cảm xúc từ Hugging Face, chuẩn hóa nhãn/split, lưu ảnh cục bộ và tạo manifest JSONL có giới hạn mẫu tùy chọn.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/download_hf_emotion_dataset.py:normalize_emotion",
+      "type": "function",
+      "name": "normalize_emotion",
+      "filePath": "tools/download_hf_emotion_dataset.py",
+      "lineRange": [
+        48,
+        62
+      ],
+      "summary": "Chuẩn hóa ID hoặc alias nhãn về bảy emotion canonical và ID ổn định.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/download_hf_emotion_dataset.py:split_name",
+      "type": "function",
+      "name": "split_name",
+      "filePath": "tools/download_hf_emotion_dataset.py",
+      "lineRange": [
+        65,
+        77
+      ],
+      "summary": "Triển khai thao tác split name trong download_hf_emotion_dataset.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/download_hf_emotion_dataset.py:save_image",
+      "type": "function",
+      "name": "save_image",
+      "filePath": "tools/download_hf_emotion_dataset.py",
+      "lineRange": [
+        80,
+        86
+      ],
+      "summary": "Lưu image theo định dạng ổn định của pipeline.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/download_hf_emotion_dataset.py:iter_limited",
+      "type": "function",
+      "name": "iter_limited",
+      "filePath": "tools/download_hf_emotion_dataset.py",
+      "lineRange": [
+        89,
+        96
+      ],
+      "summary": "Triển khai thao tác iter limited trong download_hf_emotion_dataset.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/download_hf_emotion_dataset.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/download_hf_emotion_dataset.py",
+      "lineRange": [
+        99,
+        172
+      ],
+      "summary": "Điểm vào CLI điều phối tải dataset cảm xúc từ Hugging Face, chuẩn hóa nhãn/split, lưu ảnh cục bộ và tạo manifest JSONL có giới hạn mẫu tùy chọn.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:train_emotionclip.py",
+      "type": "file",
+      "name": "train_emotionclip.py",
+      "filePath": "train_emotionclip.py",
+      "summary": "Entry point huấn luyện EmotionCLIP-ReID: hợp nhất cấu hình, cố định seed, thiết lập GPU an toàn, dựng dữ liệu/mô hình và điều phối Stage 1, Stage 2 cùng sealed test và immutable run.",
+      "tags": [
+        "entry-point",
+        "pipeline",
+        "fer",
+        "cli"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:train_emotionclip.py:set_seed",
+      "type": "function",
+      "name": "set_seed",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        29,
+        34
+      ],
+      "summary": "Triển khai thao tác set seed trong train_emotionclip.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:setup_logging",
+      "type": "function",
+      "name": "setup_logging",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        37,
+        46
+      ],
+      "summary": "Triển khai thao tác setup logging trong train_emotionclip.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:_flatten_config",
+      "type": "function",
+      "name": "_flatten_config",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        49,
+        55
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý flatten config trong train_emotionclip.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:_csv_value",
+      "type": "function",
+      "name": "_csv_value",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        58,
+        63
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý csv value trong train_emotionclip.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:save_train_config_csv",
+      "type": "function",
+      "name": "save_train_config_csv",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        66,
+        91
+      ],
+      "summary": "Lưu train config csv theo định dạng ổn định của pipeline.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:save_effective_config",
+      "type": "function",
+      "name": "save_effective_config",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        94,
+        103
+      ],
+      "summary": "Lưu effective config theo định dạng ổn định của pipeline.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:trainable_parameters",
+      "type": "function",
+      "name": "trainable_parameters",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        106,
+        107
+      ],
+      "summary": "Triển khai thao tác trainable parameters trong train_emotionclip.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:parse_gpu_ids",
+      "type": "function",
+      "name": "parse_gpu_ids",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        110,
+        121
+      ],
+      "summary": "Triển khai thao tác parse gpu ids trong train_emotionclip.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:validate_gpu_topology",
+      "type": "function",
+      "name": "validate_gpu_topology",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        124,
+        137
+      ],
+      "summary": "Xác thực gpu topology và báo lỗi sớm khi contract đầu vào bị vi phạm.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:configure_device",
+      "type": "function",
+      "name": "configure_device",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        140,
+        168
+      ],
+      "summary": "Triển khai thao tác configure device trong train_emotionclip.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        171,
+        422
+      ],
+      "summary": "Điểm vào CLI điều phối entry point huấn luyện EmotionCLIP-ReID: hợp nhất cấu hình, cố định seed, thiết lập GPU an toàn, dựng dữ liệu/mô hình và điều phối Stage 1, Stage 2 cùng sealed test và immutable run.",
+      "tags": [
+        "hàm",
+        "clip",
+        "python"
+      ],
+      "complexity": "complex"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:row_value",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:row_value",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:split_from_usage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:split_from_usage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:emotion_from_label",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:emotion_from_label",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:save_pixel_image",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:save_pixel_image",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:convert_csv",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:convert_csv",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:iter_split_dirs",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:iter_split_dirs",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:convert_image_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:convert_image_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:write_records",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:write_records",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "function:tools/convert_fer2013_to_emotion_jsonl.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_raf_au_to_emotion_jsonl.py",
+      "target": "function:tools/convert_raf_au_to_emotion_jsonl.py:parse_au_fields",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_raf_au_to_emotion_jsonl.py",
+      "target": "function:tools/convert_raf_au_to_emotion_jsonl.py:parse_au_fields",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_raf_au_to_emotion_jsonl.py",
+      "target": "function:tools/convert_raf_au_to_emotion_jsonl.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_raf_au_to_emotion_jsonl.py",
+      "target": "function:tools/convert_raf_au_to_emotion_jsonl.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_extract_archive",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_extract_archive",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_find_label_files",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_find_label_files",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_image_candidates",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_image_candidates",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_resolve_image",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_resolve_image",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_official_split_from_name",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_official_split_from_name",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_split_from_label_file",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_split_from_label_file",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_read_label_file",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:_read_label_file",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:select_stratified_validation_images",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:select_stratified_validation_images",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:convert_rafdb",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:convert_rafdb",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "function:tools/convert_rafdb_to_emotion_jsonl.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "function:tools/download_hf_emotion_dataset.py:normalize_emotion",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "function:tools/download_hf_emotion_dataset.py:normalize_emotion",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "function:tools/download_hf_emotion_dataset.py:split_name",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "function:tools/download_hf_emotion_dataset.py:split_name",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "function:tools/download_hf_emotion_dataset.py:save_image",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "function:tools/download_hf_emotion_dataset.py:save_image",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "function:tools/download_hf_emotion_dataset.py:iter_limited",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "function:tools/download_hf_emotion_dataset.py:iter_limited",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "function:tools/download_hf_emotion_dataset.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "function:tools/download_hf_emotion_dataset.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:set_seed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:set_seed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:setup_logging",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:setup_logging",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_flatten_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_flatten_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_csv_value",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_csv_value",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:save_train_config_csv",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:save_train_config_csv",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:save_effective_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:save_effective_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:trainable_parameters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:trainable_parameters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:parse_gpu_ids",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:parse_gpu_ids",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:validate_gpu_topology",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:validate_gpu_topology",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:configure_device",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:configure_device",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_raf_au_to_emotion_jsonl.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:config/emotion_defaults.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:utils/run_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "file:tests/test_emotion_manifest.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "file:tests/test_emotion_manifest.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "file:tests/test_emotion_manifest.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:tests/test_train_emotionclip_parallel.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

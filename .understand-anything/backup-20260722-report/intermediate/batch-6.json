@@ -1,0 +1,57 @@
+{
+  "nodes": [
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Tài liệu tổng quan cho cả CLIP-ReID gốc và pipeline EmotionCLIP-ReID cho FER, bao quát cài đặt, chuẩn bị landmark/anatomy, huấn luyện hai giai đoạn, ablation, đánh giá sealed-test và tái lập artifact.",
+      "tags": ["tài-liệu", "hướng-dẫn", "clip-reid", "fer", "tái-lập"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:environment_emotionclip_cuda.yml",
+      "type": "config",
+      "name": "environment_emotionclip_cuda.yml",
+      "filePath": "environment_emotionclip_cuda.yml",
+      "summary": "Định nghĩa môi trường Conda `emotionclip` với Python 3.10, PyTorch dùng CUDA 12.1 và các dependency phục vụ dataset, MediaPipe, notebook và kiểm thử.",
+      "tags": ["configuration", "conda", "cuda", "dependency-management"],
+      "complexity": "simple",
+      "languageNotes": "YAML kết hợp dependency Conda và một nhóm package cài qua pip."
+    },
+    {
+      "id": "document:note_edit.md",
+      "type": "document",
+      "name": "note_edit.md",
+      "filePath": "note_edit.md",
+      "summary": "Ghi chú thiết kế mô tả Stage 1A học context token, Stage 1B học geometry residual khi prompt gốc bị đóng băng, rồi chuyển semantic prototype sang Stage 2 để routing và fusion theo anatomy từng ảnh.",
+      "tags": ["tài-liệu", "thiết-kế", "two-stage", "prompt-learning", "anatomy"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:pytest.ini",
+      "type": "config",
+      "name": "pytest.ini",
+      "filePath": "pytest.ini",
+      "summary": "Cấu hình pytest giới hạn việc khám phá và chạy test trong thư mục `tests`.",
+      "tags": ["configuration", "pytest", "test"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:README.md",
+      "target": "config:environment_emotionclip_cuda.yml",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:note_edit.md",
+      "target": "document:README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

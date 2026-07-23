@@ -1,0 +1,282 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2026.2.2)  23 JUL 2026 08:33
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**\documentclass{article}\usepackage{amsmath,amssymb}\begin{document}\[\begin{a
+ligned} \mathbf{h} &= \operatorname{Dropout}\!\left(    \operatorname{QuickGELU
+}\!\left(    \mathbf{W}_{\mathrm{down}}\mathbf{x}    + \mathbf{b}_{\mathrm{down
+}}    \right)\right), \\ \operatorname{Adapter}(\mathbf{x}) &= \mathbf{W}_{\mat
+hrm{up}}\mathbf{h}    + \mathbf{b}_{\mathrm{up}}, \\ \mathbf{x}' &= \mathbf{x}+
+\operatorname{Adapter}(\mathbf{x}). \end{aligned} \tag{1}\] \[\begin{aligned} \
+mathcal{P}^{\mathrm{base}}_c &= \mathcal{P}_{\mathrm{pre}} \oplus \bigl[ \mathb
+f{v}_{c,0}, \mathbf{v}_{c,1}, \mathbf{v}_{c,2}, \mathbf{v}_{c,3} \bigr] \oplus 
+\mathcal{P}_{\mathrm{suf}}(c), \\ \mathcal{P}^{\mathrm{geo}}_c &= \mathcal{P}_{
+\mathrm{pre}} \oplus \bigl[ \mathbf{v}_{c,0}, \mathbf{v}_{c,1}+\Delta\mathbf{p}
+_{c,\mathrm{upper}}, \mathbf{v}_{c,2}+\Delta\mathbf{p}_{c,\mathrm{middle}}, \ma
+thbf{v}_{c,3}+\Delta\mathbf{p}_{c,\mathrm{lower}} \bigr] \oplus \mathcal{P}_{\m
+athrm{suf}}(c), \\ &\hspace{8em}c\in\{1,\ldots,K\}. \end{aligned} \tag{2}\] \[\
+ell^{(1)}_{i,c} = \gamma\,\widehat{\mathbf{z}}_i^{\top}\widehat{\mathbf{t}}_c, 
+\qquad \mathcal{L}_{\mathrm{S1A}} = -\frac{1}{B}\sum_{i=1}^{B} \log \frac{\exp\
+!\left(\ell^{(1)}_{i,y_i}\right)} {\sum_{c=1}^{K}\exp\!\left(\ell^{(1)}_{i,c}\r
+ight)}. \tag{3}\] \[\mathbf{g}_{c,r} = \left[ \mathbf{m}_{c,r}\odot\mathbf{v}_{
+c,r} \;\middle\|\; \log\!\left(\mathbf{1}+\mathbf{d}_{c,r}\right)\odot\mathbf{v
+}_{c,r} \;\middle\|\; \mathbf{v}_{c,r} \;\middle\|\; \mathbf{u}_{c,r}\odot\math
+bf{v}_{c,r} \right], \tag{4}\] \[\Delta\mathbf{p}_{c,r} = \sigma(a_r)\,q_{c,r}\
+, \tanh\!\left(f_r\!\left(\mathbf{g}_{c,r}\right)\right), \qquad r\in\{\mathrm{
+upper},\mathrm{middle},\mathrm{lower}\}. \tag{5}\] \[\begin{aligned} \mathcal{L
+}_{\mathrm{shift}} &= \frac{1}{KRD} \sum_{c=1}^{K}\sum_{r=1}^{R} \left\|\Delta\
+mathbf{p}_{c,r}\right\|_2^2, \\ \mathcal{L}_{\mathrm{sem}} &= 1-\frac{1}{K}\sum
+_{c=1}^{K} \cos\!\left( \widehat{\mathbf{t}}_c, \widehat{\mathbf{t}}^{\mathrm{b
+ase}}_c \right), \\ \mathcal{L}_{\mathrm{S1B}} &= \mathcal{L}_{\mathrm{CE}}^{(1
+)} +\lambda_{\mathrm{shift}}\mathcal{L}_{\mathrm{shift}} +\lambda_{\mathrm{sem}
+}\mathcal{L}_{\mathrm{sem}}. \end{aligned} \tag{6}\] \[\begin{aligned} s^{\math
+rm{cls}}_{i,c} &= \left(\mathbf{W}_{\mathrm{cls}}\mathbf{z}^{g}_i +\mathbf{b}_{
+\mathrm{cls}}\right)_c, \\ s^{\mathrm{global}}_{i,c} &= \left(\widehat{\mathbf{
+z}}^{g}_i\right)^{\top} \widehat{\mathbf{t}}_c, \\ s^{\mathrm{local}}_{i,c} &= 
+\sum_{r=1}^{R}\pi_{i,r}\, \widehat{\mathbf{h}}_{i,r}^{\top}\widehat{\mathbf{t}}
+_c, \qquad \sum_{r=1}^{R}\pi_{i,r}=1. \end{aligned} \tag{7}\] \[\begin{aligned}
+ \widetilde{s}^{\,b}_{i,c} &= \frac{s^{b}_{i,c}}{\tau_b}, \qquad \tau_b = \tau_
+{\min} +(\tau_{\max}-\tau_{\min})\sigma(\theta_b), \\ \mathbf{w}_i &= \begin{ca
+ses} \boldsymbol{\pi}, & \texttt{fixed}, \\ \operatorname{softmax}(\mathbf{a}),
+ & \texttt{simplex}, \\ \operatorname{softmax}\!\left(g(\mathbf{z}^{g}_i)\right
+), & \texttt{sample\_dependent}, \end{cases} \\ &\hspace{1.4em}w_{i,b}\ge 0, \q
+quad \sum_{b\in\mathcal{B}}w_{i,b}=1, \\ s_{i,c} &= \sum_{b\in\mathcal{B}} w_{i
+,b}\widetilde{s}^{\,b}_{i,c}, \\ s^{\mathrm{align}}_{i,c} &= \frac{1}{2} \left(
+ \widetilde{s}^{\,\mathrm{global}}_{i,c} +\widetilde{s}^{\,\mathrm{local}}_{i,c
+} \right). \end{aligned} \tag{8}\] \[A^{\mathrm{free}}_{i,r,p} = \operatorname{
+softmax}_{p}\!\left( \frac{\mathbf{q}_r^{\top}\mathbf{W}_k\mathbf{z}_{i,p}} {\s
+qrt{D}} \right). \tag{9}\] \[\begin{aligned} G_{i,r,j,p} &= \exp\!\left[ -\frac
+{ \left\|\boldsymbol{\ell}_{i,r,j}-\mathbf{c}_p\right\|_2^2 }{ 2\sigma^2\left(1
++u_{i,r,j}\right)^2 } \right], \\ \widetilde{A}^{\mathrm{anat}}_{i,r,p} &= \sum
+_j m_{i,r,j}\omega_{i,r,j}G_{i,r,j,p}, \\ A^{\mathrm{anat}}_{i,r,p} &= \frac{ \
+widetilde{A}^{\mathrm{anat}}_{i,r,p} }{ \max\!\left( \varepsilon_{\mathrm{a}}, 
+\sum_{p'}\widetilde{A}^{\mathrm{anat}}_{i,r,p'} \right) }. \end{aligned} \tag{1
+0}\] \[\begin{aligned} A^{\mathrm{hyb}}_{i,r,p} &= \rho_{i,r}A^{\mathrm{anat}}_
+{i,r,p} +\left(1-\rho_{i,r}\right)A^{\mathrm{free}}_{i,r,p}, \\ \mathbf{z}^{r}_
+{i,r} &= \sum_{p}A^{\mathrm{hyb}}_{i,r,p}\mathbf{z}_{i,p}. \end{aligned} \tag{1
+1}\] \[\mathcal{L}_{\mathrm{route}} = -\frac{ \sum_{i,r}\rho_{i,r} \log\!\left[
+ \max\!\left( \varepsilon_{\mathrm{o}}, \sum_p A^{\mathrm{free}}_{i,r,p} \opera
+torname{sg}\!\left(A^{\mathrm{anat}}_{i,r,p}\right) \right) \right] }{ \max\!\l
+eft(1,\sum_{i,r}\rho_{i,r}\right) }, \tag{12}\] \[\mathbf{h}_{i,r} = \operatorn
+ame{LN}_r\!\left[ \mathbf{z}^{r}_{i,r} +\sigma(a_r)\rho_{i,r} \tanh\!\left(f_r(
+\mathbf{g}_{i,r})\right) \right]. \tag{13}\] \[\pi_{i,r} = \operatorname{softma
+x}_{r}\!\left( g_{\phi}\!\left([ \mathbf{h}_{i,r}\|\rho_{i,r} ] \right) \right)
+, \qquad s^{\mathrm{local}}_{i,c} = \sum_{r=1}^{R} \pi_{i,r} \widehat{\mathbf{h
+}}_{i,r}^{\top} \widehat{\mathbf{t}}_c. \tag{14}\] \[\begin{aligned} D_{\mathrm
+{JSD},i} &= H\!\left(\bar{\mathbf{p}}_i\right) - \sum_{r=1}^{R} \bar{\omega}_{i
+,r}H\!\left(\mathbf{p}_{i,r}\right), \qquad H(\mathbf{p})=-\sum_{c=1}^{K}p_c\lo
+g p_c, \\ v_i^{\mathrm{JSD}} &= \mathbb{1}\!\left[ \sum_r\rho_{i,r}\ge q_{\min}
+ \right] \mathbb{1}\!\left[ \sum_r\mathbb{1}(\rho_{i,r}>0)\ge R_{\min} \right],
+ \\ d_i^{\mathrm{region}} &= v_i^{\mathrm{JSD}}\max\!\left(0,D_{\mathrm{JSD},i}
+\right). \end{aligned} \tag{15}\] \[\mathbf{c}_i = \left[ \operatorname{sg}(\ma
+thbf{z}^{g}_i) \;\middle\|\; \boldsymbol{\rho}_i \;\middle\|\; \rho_i^{\min} \;
+\middle\|\; \rho_i^{\mathrm{mean}} \;\middle\|\; \rho_i^{\mathrm{valid}} \;\mid
+dle\|\; q_i^{\mathrm{pose}} \;\middle\|\; q_i^{\mathrm{crop}} \right] \in\mathb
+b{R}^{520}. \tag{16}\] \[\begin{aligned} \widetilde{r}_i &=h_{\psi}(\mathbf{c}_
+i), \\ r_i &=R_{\max}\tanh\!\left( \frac{\widetilde{r}_i}{R_{\max}} \right), \\
+ S_i &=\min\!\left\{ S_{\max}, K+\operatorname{softplus}(r_i) \right\}, \\ \mat
+hbf{p}_i &=\operatorname{softmax}(\mathbf{s}_i), \\ \alpha_{i,c} &=1+p_{i,c}(S_
+i-K), \\ \widehat{p}^{\mathrm{Dir}}_{i,c} &=\frac{\alpha_{i,c}}{S_i}, \\ u_i &=
+\frac{K}{S_i}. \end{aligned} \tag{17}\] \[\mathcal{L}_{\mathrm{cls}} = -\frac{1
+}{B}\sum_{i=1}^{B} \log\operatorname{softmax}(\mathbf{s}_i)_{y_i}, \qquad \math
+cal{L}_{\mathrm{align}} = -\frac{1}{B}\sum_{i=1}^{B} \log\operatorname{softmax}
+(\mathbf{s}^{\mathrm{align}}_i)_{y_i}. \tag{18}\] \[t_i = \mathbb{1}\!\left[ \a
+rg\max_c \operatorname{sg}(s_{i,c})=y_i \right], \qquad \mathcal{L}_{\mathrm{re
+l}} = -\frac{1}{B}\sum_{i=1}^{B} \left[ t_i\log\sigma(r_i) +(1-t_i)\log(1-\sigm
+a(r_i)) \right]. \tag{19}\] \[\mathcal{L}_{\mathrm{rank}} = \frac{1}{B}\sum_{i=
+1}^{B} \max\!\left( 0, m+r_i^{\mathrm{corr}}-r_i^{\mathrm{clean}} \right), \tag
+{20}\] \[\begin{aligned} \mathcal{L}_{\mathrm{S2}} ={}& \mathcal{L}_{\mathrm{cl
+s}} +\beta_{\mathrm{align}}\mathcal{L}_{\mathrm{align}} +\lambda_{\mathrm{rel}}
+a_t\mathcal{L}_{\mathrm{rel}} \\ &+\lambda_{\mathrm{gate}}\mathcal{L}_{\mathrm{
+gate}} +\lambda_{\tau}\mathcal{L}_{\mathrm{temp}} +\lambda_{\mathrm{route}}\mat
+hcal{L}_{\mathrm{route}} +\lambda_{\mathrm{rank}}\mathcal{L}_{\mathrm{rank}}. \
+end{aligned} \tag{21}\] \[\mathcal{L}_{\mathrm{gate}} = D_{\mathrm{KL}}\!\left(
+ \overline{\mathbf{w}}\,\|\,\boldsymbol{\pi} \right), \qquad \mathcal{L}_{\math
+rm{temp}} = \frac{1}{|\mathcal{B}|} \sum_{b\in\mathcal{B}} \left( \log\tau_b-\l
+og\tau_b^{(0)} \right)^2, \tag{22}\] \[\begin{aligned} \widetilde{\boldsymbol{\
+alpha}}_i &= \mathbf{y}_i +(\mathbf{1}-\mathbf{y}_i)\odot\boldsymbol{\alpha}_i,
+ \\ \mathcal{L}_{\mathrm{EDL}} &= \frac{1}{B}\sum_{i=1}^{B} \left[ \sum_{c=1}^{
+K}y_{i,c} \bigl(\psi(S_i)-\psi(\alpha_{i,c})\bigr) +a_tD_{\mathrm{KL}}\!\left( 
+\operatorname{Dir}(\widetilde{\boldsymbol{\alpha}}_i) \,\|\, \operatorname{Dir}
+(\mathbf{1}) \right) \right]. \end{aligned} \tag{23}\] \[\begin{aligned} \opera
+torname{Accuracy} &= \frac{1}{N}\sum_{i=1}^{N} \mathbb{1}(\widehat{y}_i=y_i), \
+\ \operatorname{BalancedAcc} &= \frac{1}{K}\sum_{c=1}^{K} \frac{\mathrm{TP}_c}{
+\mathrm{TP}_c+\mathrm{FN}_c}, \\ \operatorname{MacroF1} &= \frac{1}{K}\sum_{c=1
+}^{K} \frac{2P_cR_c}{P_c+R_c}, \\ P_c &= \frac{\mathrm{TP}_c}{\mathrm{TP}_c+\ma
+thrm{FP}_c}, \qquad R_c = \frac{\mathrm{TP}_c}{\mathrm{TP}_c+\mathrm{FN}_c}. \e
+nd{aligned} \tag{24}\] \[\operatorname{ECE} = \sum_{m=1}^{M} \frac{|\mathcal{B}
+_m|}{N} \left| \operatorname{acc}(\mathcal{B}_m) - \operatorname{conf}(\mathcal
+{B}_m) \right|. \tag{25}\] \[\operatorname{AURC} = \int_{0}^{1}R(\kappa)\,\math
+rm{d}\kappa, \tag{26}\]\end{document}
+(e:/latex/2025/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(e:/latex/2025/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(e:/latex/2025/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2025/07/09 v2.17z AMS math features
+\@mathmargin=\skip51
+
+For additional information on amsmath, use the `?' option.
+(e:/latex/2025/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2024/11/17 v2.01 AMS text
+
+(e:/latex/2025/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks17
+\ex@=\dimen149
+))
+(e:/latex/2025/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen150
+)
+(e:/latex/2025/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count283
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count284
+\leftroot@=\count285
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count286
+\DOTSCASE@=\count287
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen151
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count288
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count289
+\dotsspace@=\muskip17
+\c@parentequation=\count290
+\dspbrk@lvl=\count291
+\tag@help=\toks18
+\row@=\count292
+\column@=\count293
+\maxfields@=\count294
+\andhelp@=\toks19
+\eqnshift@=\dimen152
+\alignsep@=\dimen153
+\tagshift@=\dimen154
+\tagwidth@=\dimen155
+\totwidth@=\dimen156
+\lineht@=\dimen157
+\@envbody=\toks20
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks21
+LaTeX Info: Redefining \[ on input line 2950.
+LaTeX Info: Redefining \] on input line 2951.
+)
+(e:/latex/2025/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(e:/latex/2025/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(e:/latex/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count295
+)
+No file report_formula_qa.aux.
+\openout1 = `report_formula_qa.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 0.
+LaTeX Font Info:    ... okay on input line 0.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 0.
+LaTeX Font Info:    ... okay on input line 0.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 0.
+LaTeX Font Info:    ... okay on input line 0.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 0.
+LaTeX Font Info:    ... okay on input line 0.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 0.
+LaTeX Font Info:    ... okay on input line 0.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 0.
+LaTeX Font Info:    ... okay on input line 0.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 0.
+LaTeX Font Info:    ... okay on input line 0.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 0.
+(e:/latex/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 0.
+
+(e:/latex/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (17.39993pt too wide) detected at line 0
+[][]
+ []
+
+[1
+
+{e:/latex/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (32.47987pt too wide) detected at line 0
+\OML/cmm/m/it/10 t[] \OT1/cmr/m/n/10 = \U/msb/m/n/10 1  [] \OML/cmm/m/it/10 ;  
+\OMS/cmsy/m/n/10 L[] \OT1/cmr/m/n/10 = \OMS/cmsy/m/n/10 ^^@[] [] [] \OML/cmm/m/
+it/10 :
+ []
+
+[2] [3] (./report_formula_qa.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+ 
+Here is how much of TeX's memory you used:
+ 1695 strings out of 467533
+ 23374 string characters out of 5424711
+ 454759 words of memory out of 5000000
+ 30642 multiletter control sequences out of 15000+600000
+ 632681 words of font info for 60 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 55i,17n,65p,8521b,277s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<e:/latex/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><e:/latex/2
+025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><e:/latex/2025/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><e:/latex/2025/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi5.pfb><e:/latex/2025/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmmi7.pfb><e:/latex/2025/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmmib10.pfb><e:/latex/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+<e:/latex/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><e:/latex/202
+5/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><e:/latex/2025/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy5.pfb><e:/latex/2025/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy7.pfb><e:/latex/2025/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt10.pfb><e:/latex/2025/texmf-dist/fonts/type1/public/amsfonts/symbo
+ls/msbm10.pfb>
+Output written on report_formula_qa.pdf (3 pages, 159148 bytes).
+PDF statistics:
+ 79 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

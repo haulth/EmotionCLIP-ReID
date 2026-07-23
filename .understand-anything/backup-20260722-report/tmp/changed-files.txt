@@ -1,0 +1,15 @@
+config/emotion_defaults.py
+configs/emotion/vit_b16_emotionclip.yml
+configs/emotion/vit_b16_emotionclip_rafdb_quick.yml
+infer_emotionclip.py
+model/clip/model.py
+model/emotionclip_model.py
+note_edit.md
+notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb
+notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb
+processor/processor_emotionclip.py
+tests/test_emotion_model_units.py
+tests/test_emotion_processor_smoke.py
+tests/test_notebook_helpers.py
+tests/test_train_emotionclip_parallel.py
+train_emotionclip.py

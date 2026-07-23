@@ -400,6 +400,7 @@ _RUN_HISTORY_COLUMNS = [
     "gate_collapse_rate",
     "images_per_second",
     "optimizer_steps",
+    "amp_overflows",
     "gradient_accumulation_steps",
     "peak_vram_allocated_mb",
     "peak_vram_reserved_mb",
@@ -469,6 +470,9 @@ _TRAIN_EPOCH_COLUMNS = [
     "gate_entropy",
     "gate_collapse_rate",
     "images_per_second",
+    "optimizer_steps",
+    "amp_overflows",
+    "gradient_accumulation_steps",
     "peak_vram_allocated_mb",
     "peak_vram_reserved_mb",
     "lr",
@@ -1495,6 +1499,9 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
     amp_enabled = bool(stage_cfg.get("AMP_ENABLED", True)) and device.type == "cuda"
     max_grad_norm = float(stage_cfg.get("MAX_GRAD_NORM", 1.0))
     fail_on_nonfinite = bool(stage_cfg.get("FAIL_ON_NONFINITE", True))
+    max_consecutive_amp_overflows = max(
+        0, int(stage_cfg.get("MAX_CONSECUTIVE_AMP_OVERFLOWS", 8))
+    )
     scaler = _make_grad_scaler(amp_enabled)
     anneal_epochs = max(
         1,
@@ -1522,6 +1529,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         effective_batch_size=int(stage_cfg.get("IMS_PER_BATCH", 1)) * accumulation_steps,
         amp_enabled=amp_enabled,
         max_grad_norm=max_grad_norm,
+        max_consecutive_amp_overflows=max_consecutive_amp_overflows,
         steps_per_epoch=len(train_loader),
         lr=optimizer.param_groups[0]["lr"],
         beta_align=beta_align,
@@ -1537,6 +1545,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         parameter_groups=params["groups"],
         selection_split="val" if val_loader is not None else "fixed_epoch_no_validation",
     )
+    consecutive_amp_overflows = 0
     for epoch in range(1, max_epochs + 1):
         start_time = time.time()
         model.train()
@@ -1568,6 +1577,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
         samples_seen = 0
         steps = 0
         optimizer_steps = 0
+        amp_overflows = 0
         last_grad_norm = 0.0
         anneal = min(1.0, epoch / anneal_epochs)
         effective_reliability_ranking = (
@@ -1670,6 +1680,28 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     error_if_nonfinite=False,
                 )
                 if not bool(torch.isfinite(grad_norm)):
+                    if amp_enabled:
+                        scale_before = float(scaler.get_scale())
+                        optimizer.zero_grad(set_to_none=True)
+                        # unscale_ recorded the overflow. update() consumes that
+                        # state and backs the scale off without applying the step.
+                        scaler.update()
+                        scale_after = float(scaler.get_scale())
+                        consecutive_amp_overflows += 1
+                        amp_overflows += 1
+                        if consecutive_amp_overflows <= max_consecutive_amp_overflows:
+                            logger.warning(
+                                "AMP gradient overflow recovered at epoch=%s batch=%s; "
+                                "optimizer step skipped, scale %.1f -> %.1f, consecutive=%s/%s",
+                                epoch,
+                                batch_index,
+                                scale_before,
+                                scale_after,
+                                consecutive_amp_overflows,
+                                max_consecutive_amp_overflows,
+                            )
+                            continue
+
                     failure_path = _write_training_failure(
                         output_dir,
                         epoch=epoch,
@@ -1688,7 +1720,8 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     if fail_on_nonfinite:
                         raise FloatingPointError(message)
                     logger.error("%s; optimizer step skipped", message)
-                    scaler.update()
+                    if not amp_enabled:
+                        scaler.update()
                     continue
                 scaler.step(optimizer)
                 nonfinite_parameters = _nonfinite_parameter_names(model)
@@ -1710,6 +1743,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
                     )
                 scaler.update()
                 optimizer.zero_grad(set_to_none=True)
+                consecutive_amp_overflows = 0
                 optimizer_steps += 1
                 last_grad_norm = float(grad_norm.detach().cpu())
             batch_loss = float(losses["loss"].detach().cpu())
@@ -1873,6 +1907,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             "gate_collapse_rate": total_gate_collapse / max(steps, 1),
             "images_per_second": samples_seen / max(epoch_time, 1e-12),
             "optimizer_steps": optimizer_steps,
+            "amp_overflows": amp_overflows,
             "gradient_accumulation_steps": accumulation_steps,
             "peak_vram_allocated_mb": peak_vram_allocated_mb,
             "peak_vram_reserved_mb": peak_vram_reserved_mb,
@@ -1903,6 +1938,7 @@ def do_train_emotion_stage2(cfg, model, train_loader, val_loader, optimizer, sch
             images_per_second=epoch_metrics["images_per_second"],
             peak_vram_allocated_mb=epoch_metrics["peak_vram_allocated_mb"],
             optimizer_steps=epoch_metrics["optimizer_steps"],
+            amp_overflows=epoch_metrics["amp_overflows"],
             gradient_accumulation_steps=epoch_metrics["gradient_accumulation_steps"],
             lr=epoch_metrics["lr"],
             time_sec=epoch_metrics["time_sec"],

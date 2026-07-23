@@ -118,6 +118,9 @@ _DEFAULT = {
             "AMP_ENABLED": True,
             "MAX_GRAD_NORM": 1.0,
             "FAIL_ON_NONFINITE": True,
+            # A finite AMP loss can occasionally overflow during scaled backward.
+            # Let GradScaler back off before treating repeated overflows as fatal.
+            "MAX_CONSECUTIVE_AMP_OVERFLOWS": 8,
             "EARLY_STOPPING_PATIENCE": 20,
             "MAX_EPOCHS": 30,
             "BASE_LR": 5.0e-6,
@@ -299,6 +302,8 @@ def validate_emotion_cfg(cfg: MutableMapping[str, Any]) -> None:
         raise ValueError("SOLVER.STAGE2.GRADIENT_ACCUMULATION_STEPS must be > 0")
     if float(stage2_cfg.get("MAX_GRAD_NORM", 1.0)) <= 0:
         raise ValueError("SOLVER.STAGE2.MAX_GRAD_NORM must be > 0")
+    if int(stage2_cfg.get("MAX_CONSECUTIVE_AMP_OVERFLOWS", 8)) < 0:
+        raise ValueError("SOLVER.STAGE2.MAX_CONSECUTIVE_AMP_OVERFLOWS must be >= 0")
     if int(stage2_cfg.get("EARLY_STOPPING_PATIENCE", 0)) < 0:
         raise ValueError("SOLVER.STAGE2.EARLY_STOPPING_PATIENCE must be >= 0")
     corruption_cfg = stage2_cfg.get("CORRUPTION", {})

@@ -1,0 +1,223 @@
+{
+  "nodes": [
+    {
+      "id": "document:outputs/fer2013/README_training_logs.md",
+      "type": "document",
+      "name": "README_training_logs.md",
+      "filePath": "outputs/fer2013/README_training_logs.md",
+      "summary": "Tài liệu truy vết quá trình trích xuất log FER2013 từ notebook, liệt kê quy mô log, số dòng theo step/epoch/validation và các metric tốt nhất của run ngắn.",
+      "tags": [
+        "documentation",
+        "training-log",
+        "fer2013",
+        "provenance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:outputs/fer2013/accuracy_uce_summary.json",
+      "type": "config",
+      "name": "accuracy_uce_summary.json",
+      "filePath": "outputs/fer2013/accuracy_uce_summary.json",
+      "summary": "Tóm tắt các epoch tốt nhất của FER2013 theo accuracy, balanced accuracy, Macro-F1 và ECE; trường UCE được ghi rõ chỉ là alias của ECE vì run không log UCE riêng.",
+      "tags": [
+        "metric-summary",
+        "calibration",
+        "fer2013",
+        "experiment-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:outputs/fer2013/best_metrics_summary.json",
+      "type": "config",
+      "name": "best_metrics_summary.json",
+      "filePath": "outputs/fer2013/best_metrics_summary.json",
+      "summary": "Lưu snapshot đánh giá FER2013 tại checkpoint tốt nhất theo Macro-F1: accuracy 0,7059, balanced accuracy 0,6832, Macro-F1 0,6864, ECE 0,3746 cùng confusion matrix và per-class F1 trên 7.178 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "fer2013",
+        "classification",
+        "calibration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:outputs/fer2013/inference_sample_uncertainty.json",
+      "type": "config",
+      "name": "inference_sample_uncertainty.json",
+      "filePath": "outputs/fer2013/inference_sample_uncertainty.json",
+      "summary": "Lưu một kết quả suy luận FER2013 cấp mẫu với nhãn neutral, phân bố xác suất bảy lớp, uncertainty 0,5080 và similarity theo từng emotion descriptor.",
+      "tags": [
+        "inference-output",
+        "uncertainty",
+        "fer2013",
+        "semantic-similarity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:outputs/fer2013/training_epoch_losses.csv:training_epoch_losses",
+      "type": "table",
+      "name": "training_epoch_losses.csv",
+      "filePath": "outputs/fer2013/training_epoch_losses.csv",
+      "summary": "Bảng loss và thời gian huấn luyện FER2013 theo stage và epoch, gồm 50 bản ghi cho hai giai đoạn.",
+      "tags": [
+        "training-history",
+        "loss",
+        "fer2013",
+        "experiment-output"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:outputs/fer2013/training_step_losses.csv:training_step_losses",
+      "type": "table",
+      "name": "training_step_losses.csv",
+      "filePath": "outputs/fer2013/training_step_losses.csv",
+      "summary": "Bảng chi tiết loss FER2013 theo stage, epoch và step, gồm 1.760 bản ghi dùng để phân tích đường học trong từng epoch.",
+      "tags": [
+        "training-history",
+        "step-metrics",
+        "loss",
+        "fer2013"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:outputs/fer2013/uncertainty_summary.json",
+      "type": "config",
+      "name": "uncertainty_summary.json",
+      "filePath": "outputs/fer2013/uncertainty_summary.json",
+      "summary": "Tổng hợp evidence uncertainty có sẵn của FER2013 tại checkpoint epoch 24, bao gồm risk AUC 0,2255, ECE 0,3746 và uncertainty của một mẫu; file cũng nêu rõ không có avg uncertainty theo epoch.",
+      "tags": [
+        "uncertainty",
+        "metric-summary",
+        "fer2013",
+        "limitation-note"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:outputs/fer2013/validation_accuracy.csv:validation_accuracy",
+      "type": "table",
+      "name": "validation_accuracy.csv",
+      "filePath": "outputs/fer2013/validation_accuracy.csv",
+      "summary": "Bảng accuracy, balanced accuracy và Macro-F1 của FER2013 theo 30 epoch validation, tách riêng khỏi metric calibration.",
+      "tags": [
+        "validation-history",
+        "fer2013",
+        "classification",
+        "experiment-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "type": "table",
+      "name": "validation_metrics.csv",
+      "filePath": "outputs/fer2013/validation_metrics.csv",
+      "summary": "Bảng validation FER2013 theo 30 epoch với accuracy, balanced accuracy, Macro-F1 và ECE, là nguồn của các bản tóm tắt best/lowest metric.",
+      "tags": [
+        "validation-history",
+        "calibration",
+        "fer2013",
+        "experiment-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:outputs/fer2013/validation_uncertainty.csv:validation_uncertainty",
+      "type": "table",
+      "name": "validation_uncertainty.csv",
+      "filePath": "outputs/fer2013/validation_uncertainty.csv",
+      "summary": "Bảng một dòng ghi uncertainty-risk AUC và các metric của checkpoint FER2013 epoch 24; ghi chú xác nhận notebook không có uncertainty trung bình theo epoch.",
+      "tags": [
+        "validation-output",
+        "uncertainty",
+        "fer2013",
+        "provenance"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:outputs/fer2013/README_training_logs.md",
+      "target": "table:outputs/fer2013/training_epoch_losses.csv:training_epoch_losses",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:outputs/fer2013/README_training_logs.md",
+      "target": "table:outputs/fer2013/training_step_losses.csv:training_step_losses",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:outputs/fer2013/README_training_logs.md",
+      "target": "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:outputs/fer2013/README_training_logs.md",
+      "target": "config:outputs/fer2013/best_metrics_summary.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:outputs/fer2013/README_training_logs.md",
+      "target": "config:outputs/fer2013/uncertainty_summary.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/fer2013/accuracy_uce_summary.json",
+      "target": "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/fer2013/best_metrics_summary.json",
+      "target": "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/fer2013/inference_sample_uncertainty.json",
+      "target": "config:outputs/fer2013/uncertainty_summary.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/fer2013/uncertainty_summary.json",
+      "target": "config:outputs/fer2013/best_metrics_summary.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "table:outputs/fer2013/validation_accuracy.csv:validation_accuracy",
+      "target": "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "table:outputs/fer2013/validation_uncertainty.csv:validation_uncertainty",
+      "target": "config:outputs/fer2013/uncertainty_summary.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

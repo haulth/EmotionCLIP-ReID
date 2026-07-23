@@ -1,0 +1,65 @@
+{
+  "nodes": [
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip.yml",
+      "summary": "Cấu hình huấn luyện đầy đủ cho EmotionCLIP ViT-B/16, bao quát backbone, anatomy prompt/fusion, dữ liệu, optimizer, lịch học, loss Stage 2 và tiêu chí đánh giá.",
+      "tags": [
+        "configuration",
+        "vit-b16",
+        "training-controls",
+        "emotionclip"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML được chia theo các khối MODEL, INPUT, DATASETS, DATALOADER, SOLVER, TEST và TRAIN để cấu hình toàn bộ pipeline."
+    },
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip_fer2013_quick.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+      "summary": "Preset chạy nhanh EmotionCLIP ViT-B/16 trên FER2013 với ngân sách epoch và tài nguyên thu gọn, dùng để kiểm tra pipeline end-to-end trước khi huấn luyện đầy đủ.",
+      "tags": [
+        "configuration",
+        "fer2013",
+        "quick-run",
+        "training-controls"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML được chia theo các khối MODEL, INPUT, DATASETS, DATALOADER, SOLVER, TEST và TRAIN để cấu hình toàn bộ pipeline."
+    },
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "summary": "Preset chạy nhanh cho biến thể FER2013 lấy từ Hugging Face, cấu hình đường dẫn manifest và tham số huấn luyện thu gọn cho vòng lặp xác minh.",
+      "tags": [
+        "configuration",
+        "fer2013",
+        "hugging-face",
+        "quick-run"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML được chia theo các khối MODEL, INPUT, DATASETS, DATALOADER, SOLVER, TEST và TRAIN để cấu hình toàn bộ pipeline."
+    },
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip_rafdb_quick.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+      "summary": "Preset chạy nhanh EmotionCLIP trên RAF-DB, bật các điều khiển anatomy và huấn luyện rút gọn để smoke-test dữ liệu cùng mô hình.",
+      "tags": [
+        "configuration",
+        "raf-db",
+        "quick-run",
+        "training-controls"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML được chia theo các khối MODEL, INPUT, DATASETS, DATALOADER, SOLVER, TEST và TRAIN để cấu hình toàn bộ pipeline."
+    }
+  ],
+  "edges": []
+}

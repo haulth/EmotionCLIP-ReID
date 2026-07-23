@@ -1,0 +1,187 @@
+{
+    "projectRoot":  "E:\\Source\\EmotionCLIP-ReID",
+    "batchFiles":  [
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_1.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_10.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_11.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_12.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_13.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_14.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_15.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_16.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_17.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_18.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_19.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_2.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_20.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_21.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_22.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_23.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_24.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_25.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_26.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/RAF-DB/metrics_epoch_27.json",
+                           "language":  "json",
+                           "sizeLines":  3153,
+                           "fileCategory":  "config"
+                       }
+                   ],
+    "batchImportData":  {
+                            "outputs/RAF-DB/metrics_epoch_1.json":  [
+
+                                                                    ],
+                            "outputs/RAF-DB/metrics_epoch_10.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_11.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_12.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_13.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_14.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_15.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_16.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_17.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_18.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_19.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_2.json":  [
+
+                                                                    ],
+                            "outputs/RAF-DB/metrics_epoch_20.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_21.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_22.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_23.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_24.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_25.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_26.json":  [
+
+                                                                     ],
+                            "outputs/RAF-DB/metrics_epoch_27.json":  [
+
+                                                                     ]
+                        }
+}

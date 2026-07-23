@@ -1,0 +1,231 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "configs/emotion/vit_b16_emotionclip.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 122,
+      "nonEmptyLines": 115,
+      "sections": [
+        {
+          "heading": "MODEL",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "INPUT",
+          "level": 1,
+          "line": 50
+        },
+        {
+          "heading": "DATASETS",
+          "level": 1,
+          "line": 58
+        },
+        {
+          "heading": "DATALOADER",
+          "level": 1,
+          "line": 68
+        },
+        {
+          "heading": "SOLVER",
+          "level": 1,
+          "line": 72
+        },
+        {
+          "heading": "TEST",
+          "level": 1,
+          "line": 111
+        },
+        {
+          "heading": "TRAIN",
+          "level": 1,
+          "line": 118
+        },
+        {
+          "heading": "OUTPUT_DIR",
+          "level": 1,
+          "line": 122
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 82,
+      "nonEmptyLines": 75,
+      "sections": [
+        {
+          "heading": "MODEL",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "INPUT",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "DATASETS",
+          "level": 1,
+          "line": 32
+        },
+        {
+          "heading": "DATALOADER",
+          "level": 1,
+          "line": 42
+        },
+        {
+          "heading": "SOLVER",
+          "level": 1,
+          "line": 46
+        },
+        {
+          "heading": "TEST",
+          "level": 1,
+          "line": 72
+        },
+        {
+          "heading": "TRAIN",
+          "level": 1,
+          "line": 78
+        },
+        {
+          "heading": "OUTPUT_DIR",
+          "level": 1,
+          "line": 82
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 82,
+      "nonEmptyLines": 75,
+      "sections": [
+        {
+          "heading": "MODEL",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "INPUT",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "DATASETS",
+          "level": 1,
+          "line": 32
+        },
+        {
+          "heading": "DATALOADER",
+          "level": 1,
+          "line": 42
+        },
+        {
+          "heading": "SOLVER",
+          "level": 1,
+          "line": 46
+        },
+        {
+          "heading": "TEST",
+          "level": 1,
+          "line": 72
+        },
+        {
+          "heading": "TRAIN",
+          "level": 1,
+          "line": 78
+        },
+        {
+          "heading": "OUTPUT_DIR",
+          "level": 1,
+          "line": 82
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 90,
+      "nonEmptyLines": 83,
+      "sections": [
+        {
+          "heading": "MODEL",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "INPUT",
+          "level": 1,
+          "line": 24
+        },
+        {
+          "heading": "DATASETS",
+          "level": 1,
+          "line": 32
+        },
+        {
+          "heading": "DATALOADER",
+          "level": 1,
+          "line": 42
+        },
+        {
+          "heading": "SOLVER",
+          "level": 1,
+          "line": 46
+        },
+        {
+          "heading": "TEST",
+          "level": 1,
+          "line": 80
+        },
+        {
+          "heading": "TRAIN",
+          "level": 1,
+          "line": 86
+        },
+        {
+          "heading": "OUTPUT_DIR",
+          "level": 1,
+          "line": 90
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    }
+  ]
+}

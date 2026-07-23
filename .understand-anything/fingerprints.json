@@ -1,8 +1,38 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "c930a88395e1d3ba8e39ffde19d3980aabbe57ab",
-  "generatedAt": "2026-07-21T04:31:47.540Z",
+  "gitCommitHash": "cffe8839e00543557ba7ec3114e22a419de41c52",
+  "generatedAt": "2026-07-22T15:26:59.463Z",
   "files": {
+    ".codex/tmp/019f8a29-798f-7c12-a8ee-fdf1d43a6942/edit_paper.mjs": {
+      "filePath": ".codex/tmp/019f8a29-798f-7c12-a8ee-fdf1d43a6942/edit_paper.mjs",
+      "contentHash": "3911dd8612d10838486b15c91b187e16c3851af55281ec65ef4e22b5b3cf5e6d",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "node:fs/promises",
+          "specifiers": [
+            "fs"
+          ]
+        },
+        {
+          "source": "node:path",
+          "specifiers": [
+            "path"
+          ]
+        },
+        {
+          "source": "@oai/artifact-tool",
+          "specifiers": [
+            "FileBlob",
+            "SpreadsheetFile"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 217,
+      "hasStructuralAnalysis": true
+    },
     "config/__init__.py": {
       "filePath": "config/__init__.py",
       "contentHash": "f800c2e7ed866dca2cd2fdeca4b1eceffab51c14a6249cdb647fff99b4d9af0c",
@@ -49,7 +79,7 @@
     },
     "config/emotion_defaults.py": {
       "filePath": "config/emotion_defaults.py",
-      "contentHash": "42254e4c8e06c0e40603a7e60500c258a978c1d7e30b7f0bb750671e23f644fe",
+      "contentHash": "1c859d0c72e7b97f7ee0ed60b996eedf7edc2b9bc19cdb40888b90f63e2de5d2",
       "functions": [
         {
           "name": "anatomy_requirement_reasons",
@@ -98,23 +128,35 @@
           "lineCount": 6
         },
         {
+          "name": "_mark_source",
+          "params": [
+            "sources",
+            "prefix",
+            "value",
+            "source"
+          ],
+          "returnType": "None",
+          "exported": true,
+          "lineCount": 13
+        },
+        {
           "name": "validate_emotion_cfg",
           "params": [
             "cfg"
           ],
           "returnType": "None",
           "exported": true,
-          "lineCount": 16
+          "lineCount": 74
         },
         {
           "name": "load_emotion_cfg",
           "params": [
             "config_file",
-            "opts"
+            "opts",
+            "return_sources"
           ],
-          "returnType": "Dict[str, Any]",
           "exported": true,
-          "lineCount": 14
+          "lineCount": 30
         }
       ],
       "classes": [],
@@ -154,10 +196,11 @@
         "_deep_update",
         "_coerce_value",
         "_set_by_dotted_key",
+        "_mark_source",
         "validate_emotion_cfg",
         "load_emotion_cfg"
       ],
-      "totalLines": 255,
+      "totalLines": 360,
       "hasStructuralAnalysis": true
     },
     "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml": {
@@ -182,17 +225,17 @@
     },
     "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml": {
       "filePath": "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
-      "contentHash": "fe9ff86ba477ff04a48ca7162d08b2c385b92eaacd29da205d83de191e1e84fb",
+      "contentHash": "05dd163bf8fc8793f8b9d58f89ea34dc31e9453c0bbe36a2cb70fc0fbcc41945",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 81,
+      "totalLines": 91,
       "hasStructuralAnalysis": true
     },
     "configs/emotion/vit_b16_emotionclip.yml": {
       "filePath": "configs/emotion/vit_b16_emotionclip.yml",
-      "contentHash": "4281d98ce1479f51823ec12a01df57ceb332495029abe92743f41ba7cd3ea88b",
+      "contentHash": "a1dcdc4c829f88418eaa6bb2cbc60db306393a66cd544aa527b48438998a9e25",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -1743,6 +1786,676 @@
       "totalLines": 117,
       "hasStructuralAnalysis": true
     },
+    "docs/Docs_ref/EmotionCLIP-ReID_Data_Reference.docx": {
+      "filePath": "docs/Docs_ref/EmotionCLIP-ReID_Data_Reference.docx",
+      "contentHash": "c5f427658274269268670104cd3490a95cad159eeda63eba2907fedb333a3d02",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 182,
+      "hasStructuralAnalysis": false
+    },
+    "docs/emotionclip_reid_proposed_emotionclip_reid_model.drawio": {
+      "filePath": "docs/emotionclip_reid_proposed_emotionclip_reid_model.drawio",
+      "contentHash": "5d8df96de6b07cf05215343b17b19bb5d93a8650045eb45b056b4cde53064d7a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 202,
+      "hasStructuralAnalysis": false
+    },
+    "docs/original_scientific_model_diagram.drawio": {
+      "filePath": "docs/original_scientific_model_diagram.drawio",
+      "contentHash": "0aa7ebf3009d6723e5a27404ab14b9b585a07852b649b4a191c28cc6f9110567",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 143,
+      "hasStructuralAnalysis": false
+    },
+    "docs/original_system_architecture.drawio": {
+      "filePath": "docs/original_system_architecture.drawio",
+      "contentHash": "dcc77a9278f6c8b9186e0ca259e4755b60fbc0423870d96460a98ebb20bfe170",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 101,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/emotionclip_reid_feasibility_analysis.md": {
+      "filePath": "docs/report/emotionclip_reid_feasibility_analysis.md",
+      "contentHash": "87e95feeab0f068f5d61cdd50136fc570b00b04a96df4f4582410f8b6b60eba3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 570,
+      "hasStructuralAnalysis": true
+    },
+    "docs/report/emotionclip_reid_gvhd_research_gap_proposal_slides.pptx": {
+      "filePath": "docs/report/emotionclip_reid_gvhd_research_gap_proposal_slides.pptx",
+      "contentHash": "499970ae7d78567481d4821f11b03734a8aef2fd37ea385e194c0a0a97867347",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1429,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/emotionclip_reid_model_proposal_report.docx": {
+      "filePath": "docs/report/emotionclip_reid_model_proposal_report.docx",
+      "contentHash": "5a3e75f747fea5dad5b2fbffb347579ad2b195bf709c84061f3d5e434f37f76d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1571,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/emotionclip_reid_model_proposal_report.md": {
+      "filePath": "docs/report/emotionclip_reid_model_proposal_report.md",
+      "contentHash": "9f8f623e192efed2d313fe565201516864b978ede27bb9d24dfabef747feea89",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 131,
+      "hasStructuralAnalysis": true
+    },
+    "docs/report/emotionclip_reid_model_proposal_slides.pptx": {
+      "filePath": "docs/report/emotionclip_reid_model_proposal_slides.pptx",
+      "contentHash": "f71ece5b7f48c2326c1591a83744e645dfd80e06b0bd40496521f717254e8ff9",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1798,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/emotionclip_reid_pipeline_diagram_script.md": {
+      "filePath": "docs/report/emotionclip_reid_pipeline_diagram_script.md",
+      "contentHash": "4808ef70a8fe5eddb0b0122d48dd957cb31b9e60fe12974d96c7d8715c3bc4a3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 181,
+      "hasStructuralAnalysis": true
+    },
+    "docs/report/emotionclip_reid_presentation_script.md": {
+      "filePath": "docs/report/emotionclip_reid_presentation_script.md",
+      "contentHash": "ff1a65c1912598240f82fc051b8cbc994d9d35ef5f593f5c4dc838ed9e9816f0",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 122,
+      "hasStructuralAnalysis": true
+    },
+    "docs/report/emotionclip_reid_report_w2.docx": {
+      "filePath": "docs/report/emotionclip_reid_report_w2.docx",
+      "contentHash": "bc6f58f519f917c560da1a3d2eda466e2f5b13f619511dff3454d79d949d8d37",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1195,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/emotionclip_reid_report_w3.docx": {
+      "filePath": "docs/report/emotionclip_reid_report_w3.docx",
+      "contentHash": "80d0138a6f428c812425952521270bd5e43881e6cd45a30faf720c94390381ee",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 1627,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/emotionclip_reid_report_w4.docx": {
+      "filePath": "docs/report/emotionclip_reid_report_w4.docx",
+      "contentHash": "62f5255313fc3eda092428c2f53cae69b71878d12912851950a2960e520c9557",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 2417,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/emotionclip_reid_research_gap_proposal_brief.md": {
+      "filePath": "docs/report/emotionclip_reid_research_gap_proposal_brief.md",
+      "contentHash": "c0e98e29063fcd0fbe5d774381589fded910efb607db50ea9c692e049ca3391c",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 29,
+      "hasStructuralAnalysis": true
+    },
+    "docs/report/emotionclip_reid.pptx": {
+      "filePath": "docs/report/emotionclip_reid.pptx",
+      "contentHash": "d251361775a5f48672c1b49973b739f2963500e6d8d1de56e3bea93866f7228a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 5090,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/fig/emotionclip_reid_context_gap_hub_map.drawio": {
+      "filePath": "docs/report/fig/emotionclip_reid_context_gap_hub_map.drawio",
+      "contentHash": "3bda079488405c5cd9848f7ce251e650ee4234a7d59ec9f752cb01bc9f6f6aaa",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/fig/emotionclip_reid_current_system.drawio": {
+      "filePath": "docs/report/fig/emotionclip_reid_current_system.drawio",
+      "contentHash": "2c31e031cdcbb460d890d9b4f31205f8f0da73287daaf704a69edbbc8b658bbb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 97,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/fig/emotionclip_reid_proposal_pipeline.drawio": {
+      "filePath": "docs/report/fig/emotionclip_reid_proposal_pipeline.drawio",
+      "contentHash": "334d8c9cbd732caa21323300437a1884e9be81abf2ac4b2358a1d1eb272c2376",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 110,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/fig/emotionclip_reid_publication_pipeline_update.drawio": {
+      "filePath": "docs/report/fig/emotionclip_reid_publication_pipeline_update.drawio",
+      "contentHash": "92efd4d44adf731f518fd67bbf36948f6da3b714a925e528e4dd7b0be34aac2f",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 331,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/fig/emotionclip_reid_publication_pipeline.drawio": {
+      "filePath": "docs/report/fig/emotionclip_reid_publication_pipeline.drawio",
+      "contentHash": "d3fd1be568abc9e04dcaf39fe2e08d7746bbd674c8f90054fe9cd6b3514e5eee",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 192,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/fig/emotionclip_reid_two_stage_structure.drawio": {
+      "filePath": "docs/report/fig/emotionclip_reid_two_stage_structure.drawio",
+      "contentHash": "8bddeb78f5abab21a8459d421e71c80a6e1d72f39860e9a6401987624efc3f7d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 317,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/fig/v1/emotionclip_reid_publication_pipeline_update.drawio": {
+      "filePath": "docs/report/fig/v1/emotionclip_reid_publication_pipeline_update.drawio",
+      "contentHash": "fb079d9ded95647f1cdc59ed21ea99b7a95d0d6b10378d5631578cea1625aebc",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 217,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/fig/v1/emotionclip_reid_publication_pipeline.drawio": {
+      "filePath": "docs/report/fig/v1/emotionclip_reid_publication_pipeline.drawio",
+      "contentHash": "d3fd1be568abc9e04dcaf39fe2e08d7746bbd674c8f90054fe9cd6b3514e5eee",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 192,
+      "hasStructuralAnalysis": false
+    },
+    "docs/report/fig/v1/emotionclip_reid_two_stage_structure.drawio": {
+      "filePath": "docs/report/fig/v1/emotionclip_reid_two_stage_structure.drawio",
+      "contentHash": "10dd5c2bd6a1f1d26c62d56b2a74f2b2662971a19c3bda33aa44efad55268f09",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 180,
+      "hasStructuralAnalysis": false
+    },
+    "docs/research_review/build_emotionclip_anatomy_gap_map.py": {
+      "filePath": "docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "contentHash": "e2df42af54da16a4e5951353869cfc96a40f3c0f5c8f4e3a6a53dc8d10a8eb5a",
+      "functions": [
+        {
+          "name": "box",
+          "params": [
+            "fill",
+            "stroke",
+            "size",
+            "align",
+            "dashed"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "text_style",
+          "params": [
+            "size",
+            "color",
+            "bold",
+            "align"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "edge_style",
+          "params": [
+            "color",
+            "dashed"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
+        {
+          "name": "vertex",
+          "params": [
+            "cell_id",
+            "value",
+            "x",
+            "y",
+            "w",
+            "h",
+            "style"
+          ],
+          "exported": true,
+          "lineCount": 11
+        },
+        {
+          "name": "edge",
+          "params": [
+            "cell_id",
+            "source",
+            "target",
+            "color",
+            "value",
+            "dashed"
+          ],
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "xml.dom",
+          "specifiers": [
+            "minidom"
+          ]
+        },
+        {
+          "source": "xml.etree",
+          "specifiers": [
+            "ET"
+          ]
+        }
+      ],
+      "exports": [
+        "box",
+        "text_style",
+        "edge_style",
+        "vertex",
+        "edge"
+      ],
+      "totalLines": 284,
+      "hasStructuralAnalysis": true
+    },
+    "docs/research_review/build_research_review.py": {
+      "filePath": "docs/research_review/build_research_review.py",
+      "contentHash": "734a8c64225eba0036dd7acc0f41369ad9a58bf67c1596aad03e870fc444a54c",
+      "functions": [
+        {
+          "name": "set_cell_shading",
+          "params": [
+            "cell",
+            "fill"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "set_cell_text",
+          "params": [
+            "cell",
+            "text",
+            "bold",
+            "color"
+          ],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "build_excel",
+          "params": [],
+          "exported": true,
+          "lineCount": 164
+        },
+        {
+          "name": "add_hyperlink",
+          "params": [
+            "paragraph",
+            "text",
+            "url"
+          ],
+          "exported": true,
+          "lineCount": 19
+        },
+        {
+          "name": "add_heading",
+          "params": [
+            "doc",
+            "text",
+            "level"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "add_body",
+          "params": [
+            "doc",
+            "text"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "build_docx",
+          "params": [],
+          "exported": true,
+          "lineCount": 157
+        },
+        {
+          "name": "mx_cell",
+          "params": [
+            "id_",
+            "value",
+            "x",
+            "y",
+            "w",
+            "h",
+            "fill",
+            "stroke",
+            "font"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "mx_edge",
+          "params": [
+            "id_",
+            "source",
+            "target",
+            "label"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "build_drawio",
+          "params": [],
+          "exported": true,
+          "lineCount": 35
+        },
+        {
+          "name": "verify_docx_render",
+          "params": [],
+          "exported": true,
+          "lineCount": 24
+        },
+        {
+          "name": "main",
+          "params": [],
+          "exported": true,
+          "lineCount": 15
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "html",
+          "specifiers": [
+            "html"
+          ]
+        },
+        {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
+          "source": "os",
+          "specifiers": [
+            "os"
+          ]
+        },
+        {
+          "source": "subprocess",
+          "specifiers": [
+            "subprocess"
+          ]
+        },
+        {
+          "source": "pathlib",
+          "specifiers": [
+            "Path"
+          ]
+        },
+        {
+          "source": "docx",
+          "specifiers": [
+            "Document"
+          ]
+        },
+        {
+          "source": "docx.enum.section",
+          "specifiers": [
+            "WD_ORIENT"
+          ]
+        },
+        {
+          "source": "docx.enum.table",
+          "specifiers": [
+            "WD_ALIGN_VERTICAL",
+            "WD_TABLE_ALIGNMENT"
+          ]
+        },
+        {
+          "source": "docx.enum.text",
+          "specifiers": [
+            "WD_ALIGN_PARAGRAPH"
+          ]
+        },
+        {
+          "source": "docx.oxml",
+          "specifiers": [
+            "OxmlElement"
+          ]
+        },
+        {
+          "source": "docx.oxml.ns",
+          "specifiers": [
+            "qn"
+          ]
+        },
+        {
+          "source": "docx.shared",
+          "specifiers": [
+            "Cm",
+            "Pt",
+            "RGBColor"
+          ]
+        },
+        {
+          "source": "openpyxl",
+          "specifiers": [
+            "Workbook"
+          ]
+        },
+        {
+          "source": "openpyxl.styles",
+          "specifiers": [
+            "Alignment",
+            "Font",
+            "PatternFill",
+            "Border",
+            "Side"
+          ]
+        },
+        {
+          "source": "openpyxl.utils",
+          "specifiers": [
+            "get_column_letter"
+          ]
+        },
+        {
+          "source": "openpyxl.worksheet.table",
+          "specifiers": [
+            "Table",
+            "TableStyleInfo"
+          ]
+        }
+      ],
+      "exports": [
+        "set_cell_shading",
+        "set_cell_text",
+        "build_excel",
+        "add_hyperlink",
+        "add_heading",
+        "add_body",
+        "build_docx",
+        "mx_cell",
+        "mx_edge",
+        "build_drawio",
+        "verify_docx_render",
+        "main"
+      ],
+      "totalLines": 1083,
+      "hasStructuralAnalysis": true
+    },
+    "docs/research_review/build_summary.json": {
+      "filePath": "docs/research_review/build_summary.json",
+      "contentHash": "8229cd67a5a7e65881b358806b4e498332c9ef6948e11e23703cd5ec358ec780",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 8,
+      "hasStructuralAnalysis": true
+    },
+    "docs/research_review/emotionclip_anatomy_research_gap_map.drawio": {
+      "filePath": "docs/research_review/emotionclip_anatomy_research_gap_map.drawio",
+      "contentHash": "06475176344eee14def1da695c055343f270affa34fecfe0ed74959790054d83",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 160,
+      "hasStructuralAnalysis": false
+    },
+    "docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md": {
+      "filePath": "docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "contentHash": "2938feeb78a7230a9c33731dcf489b273ea8cb5963be3c13b087f83a21e84d1b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 641,
+      "hasStructuralAnalysis": true
+    },
+    "docs/research_review/emotionclip_reid_papers.backup_20260620.xlsx": {
+      "filePath": "docs/research_review/emotionclip_reid_papers.backup_20260620.xlsx",
+      "contentHash": "e37ac8b1ad5360bb8b6cec63d43b330d4d218b9932e33388614b3b2356d14096",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 95,
+      "hasStructuralAnalysis": false
+    },
+    "docs/research_review/emotionclip_reid_papers.xlsx": {
+      "filePath": "docs/research_review/emotionclip_reid_papers.xlsx",
+      "contentHash": "d5508c85cdc6a7c14857601eef10293c469159c1212b41f754a2e5b78a4b4e3a",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 199,
+      "hasStructuralAnalysis": false
+    },
+    "docs/research_review/emotionclip_reid_related_work_gap_map.drawio": {
+      "filePath": "docs/research_review/emotionclip_reid_related_work_gap_map.drawio",
+      "contentHash": "3635b83035cf8c511869341eed5d50c8b24e0315758d5c8799eca8e40c0a57cb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 9,
+      "hasStructuralAnalysis": false
+    },
+    "docs/research_review/related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx": {
+      "filePath": "docs/research_review/related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx",
+      "contentHash": "20e24f1000cc260ac6e3a7bd7e1883f98dc00f632cc6e468123c5e4762abd7a1",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 142,
+      "hasStructuralAnalysis": false
+    },
+    "docs/SOTA/disfa_sota_benchmark.md": {
+      "filePath": "docs/SOTA/disfa_sota_benchmark.md",
+      "contentHash": "be3e1d06db16d2ea01ff65fb0fa82a9d00f2d1554a03d568d1989ceb9e758960",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 101,
+      "hasStructuralAnalysis": true
+    },
+    "docs/Tài liệu tham khảo/EmotionCLIP-ReID_Data_Reference.docx": {
+      "filePath": "docs/Tài liệu tham khảo/EmotionCLIP-ReID_Data_Reference.docx",
+      "contentHash": "c5f427658274269268670104cd3490a95cad159eeda63eba2907fedb333a3d02",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 182,
+      "hasStructuralAnalysis": false
+    },
     "environment_emotionclip_cuda.yml": {
       "filePath": "environment_emotionclip_cuda.yml",
       "contentHash": "7d0fabaa183cde790b1e00fb761b6640802cc0a12b349a0920a55742f0878fd6",
@@ -1753,15 +2466,35 @@
       "totalLines": 22,
       "hasStructuralAnalysis": true
     },
+    "fig/emotionclip_reid_current_system.drawio": {
+      "filePath": "fig/emotionclip_reid_current_system.drawio",
+      "contentHash": "2c31e031cdcbb460d890d9b4f31205f8f0da73287daaf704a69edbbc8b658bbb",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 97,
+      "hasStructuralAnalysis": false
+    },
+    "fig/emotionclip_reid_publication_pipeline.drawio": {
+      "filePath": "fig/emotionclip_reid_publication_pipeline.drawio",
+      "contentHash": "4787b214ce80d7979f4f563c7eb62d783741045fd15f7593dfc74b88216f8d65",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 190,
+      "hasStructuralAnalysis": false
+    },
     "infer_emotionclip.py": {
       "filePath": "infer_emotionclip.py",
-      "contentHash": "296b2d7fb906087b296f8057540beaebfbf5e3b4ef9c9bbceedc365f626e7921",
+      "contentHash": "0d3532d5d1762a1f7915fb9b63cb795493219428997941f59181ee0a2046565e",
       "functions": [
         {
           "name": "main",
           "params": [],
           "exported": true,
-          "lineCount": 125
+          "lineCount": 126
         }
       ],
       "classes": [],
@@ -1827,7 +2560,7 @@
       "exports": [
         "main"
       ],
-      "totalLines": 143,
+      "totalLines": 144,
       "hasStructuralAnalysis": true
     },
     "loss/__init__.py": {
@@ -2529,7 +3262,7 @@
     },
     "model/clip/model.py": {
       "filePath": "model/clip/model.py",
-      "contentHash": "73d6f5e31d54cdcae18473bbfe22c35a8d0f7612a1f5e8d9728ca3361e93e6ff",
+      "contentHash": "7baf2445468ed1cc4ba026812419a95eba5585fb73aeb2d89a468401305da5b0",
       "functions": [
         {
           "name": "convert_weights",
@@ -2559,7 +3292,7 @@
             "width"
           ],
           "exported": true,
-          "lineCount": 17
+          "lineCount": 16
         }
       ],
       "classes": [
@@ -2718,7 +3451,7 @@
         "build_model",
         "resize_pos_embed"
       ],
-      "totalLines": 469,
+      "totalLines": 468,
       "hasStructuralAnalysis": true
     },
     "model/clip/simple_tokenizer.py": {
@@ -2815,7 +3548,7 @@
     },
     "model/emotionclip_model.py": {
       "filePath": "model/emotionclip_model.py",
-      "contentHash": "17fbb62655f9ec15609396f7bcaf44819504513d2d62cbdb8cd7862fa46d33ae",
+      "contentHash": "5134864523e51d836f473d9c5ecefb0707d9044daa53b335935122a1ada56b32",
       "functions": [
         {
           "name": "decoupled_dirichlet",
@@ -2957,7 +3690,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 84
+          "lineCount": 86
         },
         {
           "name": "AnatomyRegionFusion",
@@ -2986,7 +3719,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 388
+          "lineCount": 407
         }
       ],
       "imports": [
@@ -3082,7 +3815,7 @@
         "AnatomyRegionFusion",
         "EmotionCLIPModel"
       ],
-      "totalLines": 1165,
+      "totalLines": 1186,
       "hasStructuralAnalysis": true
     },
     "model/make_model_clipreid.py": {
@@ -3323,12 +4056,12 @@
     },
     "note_edit.md": {
       "filePath": "note_edit.md",
-      "contentHash": "dae66d642119e5e26d4d61563f9d2c78ab605b7349de9b57567c7c534429711b",
+      "contentHash": "cbebe1236733a6588cc148d7b126a5d44eaa610a7153dbfedf5cc7ea76dc1667",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 74,
+      "totalLines": 351,
       "hasStructuralAnalysis": true
     },
     "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb": {
@@ -3343,22 +4076,22 @@
     },
     "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb": {
       "filePath": "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
-      "contentHash": "af2e340ed1df96029dfb1bf27ddce440513442e57fa4a206f7d0cd3863b8d8ca",
+      "contentHash": "01139531bce7e69bd714ed966263dcea4e12802b72c428a00bbce84c44238114",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 1481,
+      "totalLines": 1652,
       "hasStructuralAnalysis": false
     },
     "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb": {
       "filePath": "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
-      "contentHash": "3e1c2679befbdcd91bb73861c390e15bd8bc35ebb289df4da197c512d6c2a766",
+      "contentHash": "38fd874e5c6ddae09457bd96e78a7be206f8cc12bb87f1d5530e8b594eb26314",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 1415,
+      "totalLines": 1345,
       "hasStructuralAnalysis": false
     },
     "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx": {
@@ -4060,7 +4793,7 @@
     },
     "processor/processor_emotionclip.py": {
       "filePath": "processor/processor_emotionclip.py",
-      "contentHash": "53388831602f23da1c2be6b337f46e3fc1e8bc9d8c3b6d34a02780770715857b",
+      "contentHash": "15774d5e369f70ced51d5383e3345aa06f506de845feae714330e75a2f686e5d",
       "functions": [
         {
           "name": "_batch_to_device",
@@ -4129,6 +4862,74 @@
           "lineCount": 2
         },
         {
+          "name": "_tensor_diagnostic",
+          "params": [
+            "tensor"
+          ],
+          "returnType": "Dict[str, Any]",
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "_model_output_error",
+          "params": [
+            "outputs",
+            "model"
+          ],
+          "returnType": "Optional[str]",
+          "exported": true,
+          "lineCount": 56
+        },
+        {
+          "name": "_write_training_failure",
+          "params": [
+            "output_dir",
+            "epoch",
+            "batch_index",
+            "reason",
+            "losses",
+            "outputs",
+            "model",
+            "batch"
+          ],
+          "returnType": "str",
+          "exported": true,
+          "lineCount": 63
+        },
+        {
+          "name": "_losses_are_finite",
+          "params": [
+            "losses"
+          ],
+          "returnType": "bool",
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "_make_grad_scaler",
+          "params": [
+            "enabled"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "_trainable_parameters",
+          "params": [
+            "model"
+          ],
+          "exported": true,
+          "lineCount": 2
+        },
+        {
+          "name": "_nonfinite_parameter_names",
+          "params": [
+            "model"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
           "name": "_forward_batch",
           "params": [
             "model",
@@ -4166,7 +4967,7 @@
           ],
           "returnType": "str",
           "exported": true,
-          "lineCount": 4
+          "lineCount": 6
         },
         {
           "name": "log_training_event",
@@ -4239,7 +5040,7 @@
           ],
           "returnType": "None",
           "exported": true,
-          "lineCount": 59
+          "lineCount": 67
         },
         {
           "name": "unwrap_model",
@@ -4265,7 +5066,7 @@
           ],
           "returnType": "Dict[str, Any]",
           "exported": true,
-          "lineCount": 25
+          "lineCount": 26
         },
         {
           "name": "_checkpoint_payload",
@@ -4310,7 +5111,7 @@
             "allow_untrained_stage2"
           ],
           "exported": true,
-          "lineCount": 122
+          "lineCount": 125
         },
         {
           "name": "precompute_stage1_features",
@@ -4346,7 +5147,7 @@
             "val_loader"
           ],
           "exported": true,
-          "lineCount": 256
+          "lineCount": 329
         },
         {
           "name": "evaluate_emotion_model",
@@ -4385,20 +5186,21 @@
             "scheduler"
           ],
           "exported": true,
-          "lineCount": 363
+          "lineCount": 531
         }
       ],
       "classes": [
         {
           "name": "EmotionDataParallel",
           "methods": [
+            "__init__",
             "scatter",
             "_output_device",
             "gather"
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 77
+          "lineCount": 106
         }
       ],
       "imports": [
@@ -4465,6 +5267,12 @@
           ]
         },
         {
+          "source": "torch.nn.parallel.scatter_gather",
+          "specifiers": [
+            "parallel_gather"
+          ]
+        },
+        {
           "source": "datasets.anatomy",
           "specifiers": [
             "ANATOMY_DESCRIPTOR_VERSION",
@@ -4492,6 +5300,13 @@
         "_batch_accuracy",
         "_batch_confidence",
         "_batch_uncertainty",
+        "_tensor_diagnostic",
+        "_model_output_error",
+        "_write_training_failure",
+        "_losses_are_finite",
+        "_make_grad_scaler",
+        "_trainable_parameters",
+        "_nonfinite_parameter_names",
         "_forward_batch",
         "corrupt_images_for_reliability",
         "corrupt_anatomy_for_reliability",
@@ -4518,7 +5333,7 @@
         "evaluate_sealed_test",
         "do_train_emotion_stage2"
       ],
-      "totalLines": 1543,
+      "totalLines": 1994,
       "hasStructuralAnalysis": true
     },
     "processor/processor.py": {
@@ -5322,8 +6137,16 @@
     },
     "tests/test_emotion_model_units.py": {
       "filePath": "tests/test_emotion_model_units.py",
-      "contentHash": "d0d88d33d8fb48d9b3d226d2b765739a05772390c2ab420fb26d4a0bf68fb405",
+      "contentHash": "584c23624883a4fd2080a6e00c2983d907f36810174e66e7f01bd2a290e3d57d",
       "functions": [
+        {
+          "name": "test_position_embedding_noop_is_silent_when_grid_is_unchanged",
+          "params": [
+            "capsys"
+          ],
+          "exported": true,
+          "lineCount": 7
+        },
         {
           "name": "test_emotion_prompt_learner_shapes",
           "params": [],
@@ -5430,7 +6253,7 @@
             "monkeypatch"
           ],
           "exported": true,
-          "lineCount": 29
+          "lineCount": 36
         }
       ],
       "classes": [
@@ -5495,6 +6318,12 @@
           ]
         },
         {
+          "source": "model.clip.model",
+          "specifiers": [
+            "resize_pos_embed"
+          ]
+        },
+        {
           "source": "datasets.anatomy",
           "specifiers": [
             "empty_anatomy_inputs",
@@ -5523,6 +6352,7 @@
         }
       ],
       "exports": [
+        "test_position_embedding_noop_is_silent_when_grid_is_unchanged",
         "test_emotion_prompt_learner_shapes",
         "test_expression_adapter_zero_initialized_residual",
         "test_fixed_fusion_has_simplex_gate_bounded_temperatures_and_gradients",
@@ -5546,12 +6376,12 @@
         "_TinyClip",
         "test_full_emotionclip_constructor_and_anatomy_forward_integration"
       ],
-      "totalLines": 349,
+      "totalLines": 366,
       "hasStructuralAnalysis": true
     },
     "tests/test_emotion_processor_smoke.py": {
       "filePath": "tests/test_emotion_processor_smoke.py",
-      "contentHash": "79b5c09e91730f1a7990b937d524b6f30afd6478a13840cf90de0bb0015077d7",
+      "contentHash": "3417e52c32b7e2c7189fa02642d03c4b61dc999feb7d5c54c16c0caada3c67b9",
       "functions": [
         {
           "name": "_loader",
@@ -5566,6 +6396,52 @@
           ],
           "exported": true,
           "lineCount": 28
+        },
+        {
+          "name": "test_stage2_gradient_accumulation_controls_optimizer_steps",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "test_stage2_defers_corruption_ranking_until_after_warmup",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 38
+        },
+        {
+          "name": "test_stage2_nonfinite_loss_fails_before_optimizer_step",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 43
+        },
+        {
+          "name": "test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 33
+        },
+        {
+          "name": "test_stage2_early_stopping_uses_validation_patience",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 34
+        },
+        {
+          "name": "test_small_learning_rates_use_scientific_log_format",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
         },
         {
           "name": "test_stage1_validation_writes_and_selects_prompt_checkpoint",
@@ -5648,6 +6524,12 @@
       ],
       "imports": [
         {
+          "source": "json",
+          "specifiers": [
+            "json"
+          ]
+        },
+        {
           "source": "os",
           "specifiers": [
             "os"
@@ -5674,7 +6556,8 @@
             "do_train_emotion_stage2",
             "evaluate_sealed_test",
             "load_emotion_checkpoint",
-            "save_checkpoint"
+            "save_checkpoint",
+            "_format_log_value"
           ]
         },
         {
@@ -5689,6 +6572,12 @@
         "TinyEmotionModel",
         "_loader",
         "test_processor_stage1_stage2_cpu_smoke",
+        "test_stage2_gradient_accumulation_controls_optimizer_steps",
+        "test_stage2_defers_corruption_ranking_until_after_warmup",
+        "test_stage2_nonfinite_loss_fails_before_optimizer_step",
+        "test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed",
+        "test_stage2_early_stopping_uses_validation_patience",
+        "test_small_learning_rates_use_scientific_log_format",
         "test_stage1_validation_writes_and_selects_prompt_checkpoint",
         "test_stage1b_fails_closed_when_geometry_statistics_are_missing",
         "test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
@@ -5698,12 +6587,12 @@
         "test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference",
         "test_corruption_invalidates_occluded_anatomy_evidence"
       ],
-      "totalLines": 319,
+      "totalLines": 517,
       "hasStructuralAnalysis": true
     },
     "tests/test_notebook_helpers.py": {
       "filePath": "tests/test_notebook_helpers.py",
-      "contentHash": "e00303eb9f35047412d05544442e44ef9d19eac500ec6cf29923978fd47058af",
+      "contentHash": "5fc24c69019da48784533624f2f3637005801dfdb08a76baabbde64efda3f21e",
       "functions": [
         {
           "name": "test_timestamped_run_id_is_local_time_safe_and_precise",
@@ -5778,6 +6667,32 @@
           "params": [],
           "exported": true,
           "lineCount": 20
+        },
+        {
+          "name": "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+          "params": [
+            "tmp_path"
+          ],
+          "exported": true,
+          "lineCount": 21
+        },
+        {
+          "name": "test_stage1_both_rejects_a_missing_phase",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
+        },
+        {
+          "name": "test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+          "params": [],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
+          "name": "test_rafdb_notebook_exposes_gpu_safety_controls",
+          "params": [],
+          "exported": true,
+          "lineCount": 26
         },
         {
           "name": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
@@ -5860,9 +6775,13 @@
         "test_validate_landmark_manifest_layout_rejects_missing_artifact",
         "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
         "test_anatomy_is_required_by_default_and_quick_presets",
+        "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+        "test_stage1_both_rejects_a_missing_phase",
+        "test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+        "test_rafdb_notebook_exposes_gpu_safety_controls",
         "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt"
       ],
-      "totalLines": 206,
+      "totalLines": 287,
       "hasStructuralAnalysis": true
     },
     "tests/test_run_artifacts.py": {
@@ -5917,13 +6836,19 @@
     },
     "tests/test_train_emotionclip_parallel.py": {
       "filePath": "tests/test_train_emotionclip_parallel.py",
-      "contentHash": "1291b0c5621ee53ebd9b1f80f97a057f0de7f1dbe9d65c148a92d0d6a8a73008",
+      "contentHash": "e6e64cab44200f67f7fbb8bac4ca68825fbdedf08e3467ba10ff1aab97aea008",
       "functions": [
         {
           "name": "test_parse_gpu_ids_accepts_two_cuda_indices",
           "params": [],
           "exported": true,
           "lineCount": 3
+        },
+        {
+          "name": "test_production_training_rejects_single_process_multi_gpu",
+          "params": [],
+          "exported": true,
+          "lineCount": 4
         },
         {
           "name": "test_parse_gpu_ids_rejects_invalid_lists",
@@ -5944,6 +6869,24 @@
           "params": [],
           "exported": true,
           "lineCount": 23
+        },
+        {
+          "name": "test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+          "params": [],
+          "exported": true,
+          "lineCount": 9
+        },
+        {
+          "name": "test_emotion_data_parallel_rejects_multi_gpu_construction",
+          "params": [],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "test_model_output_invariant_rejects_impossible_confidence",
+          "params": [],
+          "exported": true,
+          "lineCount": 12
         },
         {
           "name": "test_shared_text_features_are_built_from_unwrapped_model",
@@ -5970,6 +6913,7 @@
           "source": "processor.processor_emotionclip",
           "specifiers": [
             "EmotionDataParallel",
+            "_model_output_error",
             "get_shared_text_features",
             "unwrap_model"
           ]
@@ -5977,18 +6921,23 @@
         {
           "source": "train_emotionclip",
           "specifiers": [
-            "parse_gpu_ids"
+            "parse_gpu_ids",
+            "validate_gpu_topology"
           ]
         }
       ],
       "exports": [
         "test_parse_gpu_ids_accepts_two_cuda_indices",
+        "test_production_training_rejects_single_process_multi_gpu",
         "test_parse_gpu_ids_rejects_invalid_lists",
         "test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
         "test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+        "test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+        "test_emotion_data_parallel_rejects_multi_gpu_construction",
+        "test_model_output_invariant_rejects_impossible_confidence",
         "test_shared_text_features_are_built_from_unwrapped_model"
       ],
-      "totalLines": 70,
+      "totalLines": 107,
       "hasStructuralAnalysis": true
     },
     "tools/audit_anatomy_geometry.py": {
@@ -7020,7 +7969,7 @@
     },
     "train_emotionclip.py": {
       "filePath": "train_emotionclip.py",
-      "contentHash": "5e42969e9501774d56b0042b7945c04315c4b5058c0fa7892435cb8c96163599",
+      "contentHash": "e5d7402e5acd8ff35f81368997028918b74241fa518049b3d2bfa1a466950182",
       "functions": [
         {
           "name": "set_seed",
@@ -7067,6 +8016,15 @@
           "lineCount": 26
         },
         {
+          "name": "save_effective_config",
+          "params": [
+            "cfg",
+            "config_sources"
+          ],
+          "exported": true,
+          "lineCount": 10
+        },
+        {
           "name": "trainable_parameters",
           "params": [
             "model"
@@ -7083,6 +8041,14 @@
           "lineCount": 12
         },
         {
+          "name": "validate_gpu_topology",
+          "params": [
+            "gpu_ids"
+          ],
+          "exported": true,
+          "lineCount": 14
+        },
+        {
           "name": "configure_device",
           "params": [
             "cfg",
@@ -7095,7 +8061,7 @@
           "name": "main",
           "params": [],
           "exported": true,
-          "lineCount": 219
+          "lineCount": 252
         }
       ],
       "classes": [],
@@ -7162,6 +8128,12 @@
           ]
         },
         {
+          "source": "yaml",
+          "specifiers": [
+            "yaml"
+          ]
+        },
+        {
           "source": "config.emotion_defaults",
           "specifiers": [
             "load_emotion_cfg"
@@ -7184,7 +8156,6 @@
           "specifiers": [
             "do_train_emotion_stage1",
             "do_train_emotion_stage2",
-            "EmotionDataParallel",
             "evaluate_sealed_test",
             "load_emotion_checkpoint",
             "log_run_config",
@@ -7205,12 +8176,14 @@
         "_flatten_config",
         "_csv_value",
         "save_train_config_csv",
+        "save_effective_config",
         "trainable_parameters",
         "parse_gpu_ids",
+        "validate_gpu_topology",
         "configure_device",
         "main"
       ],
-      "totalLines": 366,
+      "totalLines": 427,
       "hasStructuralAnalysis": true
     },
     "train.py": {

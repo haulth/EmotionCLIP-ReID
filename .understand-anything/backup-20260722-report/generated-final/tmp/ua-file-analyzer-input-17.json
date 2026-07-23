@@ -1,0 +1,232 @@
+{
+    "projectRoot":  "E:\\Source\\EmotionCLIP-ReID",
+    "batchFiles":  [
+                       {
+                           "path":  "docs/report/fig/v1/emotionclip_reid_publication_pipeline.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  191,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "docs/report/fig/v1/emotionclip_reid_two_stage_structure.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  179,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "docs/research_review/build_emotionclip_anatomy_gap_map.py",
+                           "language":  "python",
+                           "sizeLines":  283,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "docs/research_review/build_research_review.py",
+                           "language":  "python",
+                           "sizeLines":  1082,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "docs/research_review/build_summary.json",
+                           "language":  "json",
+                           "sizeLines":  7,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "docs/research_review/emotionclip_anatomy_research_gap_map.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  159,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+                           "language":  "markdown",
+                           "sizeLines":  640,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "docs/research_review/emotionclip_reid_papers.backup_20260620.xlsx",
+                           "language":  "xlsx",
+                           "sizeLines":  94,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "docs/research_review/emotionclip_reid_papers.xlsx",
+                           "language":  "xlsx",
+                           "sizeLines":  198,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "docs/research_review/emotionclip_reid_related_work_gap_map.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  8,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "docs/research_review/related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx",
+                           "language":  "docx",
+                           "sizeLines":  141,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "docs/SOTA/disfa_sota_benchmark.md",
+                           "language":  "markdown",
+                           "sizeLines":  100,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "docs/Tài liệu tham khảo/EmotionCLIP-ReID_Data_Reference.docx",
+                           "language":  "docx",
+                           "sizeLines":  181,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "fig/emotionclip_reid_current_system.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  96,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "fig/emotionclip_reid_publication_pipeline.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  189,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/__init__.py",
+                           "language":  "python",
+                           "sizeLines":  0,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/arcface.py",
+                           "language":  "python",
+                           "sizeLines":  79,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/metric_learning.py",
+                           "language":  "python",
+                           "sizeLines":  188,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+                           "language":  "ipynb",
+                           "sizeLines":  804,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+                           "language":  "ipynb",
+                           "sizeLines":  1501,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+                           "language":  "ipynb",
+                           "sizeLines":  1344,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx",
+                           "language":  "xlsx",
+                           "sizeLines":  204,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  8,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  8,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio",
+                           "language":  "drawio",
+                           "sizeLines":  63,
+                           "fileCategory":  "code"
+                       }
+                   ],
+    "batchImportData":  {
+                            "docs/report/fig/v1/emotionclip_reid_publication_pipeline.drawio":  [
+
+                                                                                                ],
+                            "docs/report/fig/v1/emotionclip_reid_two_stage_structure.drawio":  [
+
+                                                                                               ],
+                            "docs/research_review/build_emotionclip_anatomy_gap_map.py":  [
+
+                                                                                          ],
+                            "docs/research_review/build_research_review.py":  [
+
+                                                                              ],
+                            "docs/research_review/build_summary.json":  [
+
+                                                                        ],
+                            "docs/research_review/emotionclip_anatomy_research_gap_map.drawio":  [
+
+                                                                                                 ],
+                            "docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md":  [
+
+                                                                                                 ],
+                            "docs/research_review/emotionclip_reid_papers.backup_20260620.xlsx":  [
+
+                                                                                                  ],
+                            "docs/research_review/emotionclip_reid_papers.xlsx":  [
+
+                                                                                  ],
+                            "docs/research_review/emotionclip_reid_related_work_gap_map.drawio":  [
+
+                                                                                                  ],
+                            "docs/research_review/related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx":  [
+
+                                                                                                                      ],
+                            "docs/SOTA/disfa_sota_benchmark.md":  [
+
+                                                                  ],
+                            "docs/Tài liệu tham khảo/EmotionCLIP-ReID_Data_Reference.docx":  [
+
+                                                                                             ],
+                            "fig/emotionclip_reid_current_system.drawio":  [
+
+                                                                           ],
+                            "fig/emotionclip_reid_publication_pipeline.drawio":  [
+
+                                                                                 ],
+                            "loss/__init__.py":  [
+                                                     "loss/arcface.py"
+                                                 ],
+                            "loss/arcface.py":  [
+
+                                                ],
+                            "loss/metric_learning.py":  [
+
+                                                        ],
+                            "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb":  [
+
+                                                                                            ],
+                            "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb":  [
+
+                                                                                    ],
+                            "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb":  [
+
+                                                                                  ],
+                            "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx":  [
+
+                                                                                                          ],
+                            "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio":  [
+
+                                                                                                   ],
+                            "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio":  [
+
+                                                                                                ],
+                            "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio":  [
+
+                                                                                                ]
+                        }
+}

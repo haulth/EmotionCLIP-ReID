@@ -1,0 +1,118 @@
+[
+  {
+    "order": 1,
+    "title": "Tổng quan dự án",
+    "description": "Bắt đầu từ README để nắm mục tiêu của EmotionCLIP-ReID, quy trình chuẩn bị landmark/anatomy và cách huấn luyện hai giai đoạn cho nhận dạng biểu cảm. Tài liệu này cũng đặt các bước đánh giá sealed-test và tái lập artifact vào đúng bối cảnh trước khi đi sâu vào mã nguồn.",
+    "nodeIds": [
+      "document:README.md"
+    ]
+  },
+  {
+    "order": 2,
+    "title": "Cấu hình và điểm vào",
+    "description": "Từ bức tranh tổng quan, entry point hợp nhất mặc định, YAML và override dòng lệnh rồi thiết lập seed, thiết bị, dữ liệu và mô hình cho toàn bộ run. Preset đầy đủ cho ViT-B/16 cho thấy các lựa chọn về anatomy, optimizer, loss và tiêu chí đánh giá được truyền vào pipeline như thế nào, còn mô-đun mặc định kiểm tra các bất biến trước khi huấn luyện.",
+    "nodeIds": [
+      "file:train_emotionclip.py",
+      "file:config/emotion_defaults.py",
+      "config:configs/emotion/vit_b16_emotionclip.yml"
+    ],
+    "languageLesson": "Cấu hình phân tầng nên có thứ tự ưu tiên rõ ràng và lưu provenance của từng giá trị; điều này giúp phân biệt tham số thực sự có hiệu lực với giá trị chỉ xuất hiện trong một tệp cấu hình."
+  },
+  {
+    "order": 3,
+    "title": "Dữ liệu khuôn mặt",
+    "description": "Sau khi cấu hình được cố định, lớp dữ liệu đọc và kiểm tra manifest, tách train/validation/test, đồng thời phát hiện rò rỉ split và thiếu phủ anatomy. FaceSafeTransform giữ ảnh và landmark đồng bộ qua crop, resize, jitter và lật ngang, vì sai lệch hình học ở đây sẽ lan trực tiếp tới nhánh định tuyến vùng ở các bước sau.",
+    "nodeIds": [
+      "file:datasets/emotion_manifest.py",
+      "class:datasets/emotion_manifest.py:EmotionManifestDataset",
+      "class:datasets/emotion_manifest.py:FaceSafeTransform"
+    ]
+  },
+  {
+    "order": 4,
+    "title": "Học prompt Stage 1",
+    "description": "Stage 1A học context token theo lớp cảm xúc, sau đó Stage 1B chỉ học geometry residual trong khi prompt nền được đóng băng. Text encoder biến các prompt này thành semantic prototype dùng để so khớp với ảnh; processor chịu trách nhiệm đánh giá validation và chọn checkpoint prompt trước khi chuyển stage.",
+    "nodeIds": [
+      "document:note_edit.md",
+      "class:model/emotionclip_model.py:EmotionPromptLearner",
+      "class:model/emotionclip_model.py:EmotionTextEncoder",
+      "function:processor/processor_emotionclip.py:do_train_emotion_stage1"
+    ]
+  },
+  {
+    "order": 5,
+    "title": "Chuyển sang Stage 2",
+    "description": "Dựa trên prototype từ Stage 1, EmotionCLIPModel chuyển sang tối ưu biểu diễn ảnh, các head và uncertainty trong Stage 2. Backbone CLIP cung cấp đặc trưng toàn cục và patch, còn ExpressionAdapter chèn residual bottleneck zero-init để mở rộng khả năng thích nghi mà vẫn khởi đầu gần hành vi backbone ban đầu.",
+    "nodeIds": [
+      "class:model/emotionclip_model.py:EmotionCLIPModel",
+      "file:model/clip/model.py",
+      "class:model/emotionclip_model.py:ExpressionAdapter"
+    ],
+    "languageLesson": "Zero initialization ở nhánh residual khiến adapter ban đầu gần như no-op; đây là mẫu thiết kế giúp fine-tuning bắt đầu từ hàm đã học thay vì tạo một nhiễu lớn ngay khi đổi stage."
+  },
+  {
+    "order": 6,
+    "title": "Định tuyến giải phẫu",
+    "description": "Từ các patch của backbone, RegionPatchRouter trộn attention học được với Gaussian mask theo landmark để gom bằng chứng cho ba vùng khuôn mặt. AnatomyRegionFusion kết hợp các vùng này với geometry hoặc cross-attention, đồng thời sinh region logits, importance và disagreement có điều kiện theo chất lượng anatomy.",
+    "nodeIds": [
+      "class:model/emotionclip_model.py:RegionPatchRouter",
+      "class:model/emotionclip_model.py:AnatomyRegionFusion",
+      "file:datasets/anatomy.py"
+    ]
+  },
+  {
+    "order": 7,
+    "title": "Hợp nhất ba nhánh",
+    "description": "Sau khi có classifier logits, global similarity và local anatomy logits, BranchFusion chuẩn hóa nhiệt độ rồi hợp nhất chúng bằng gate fixed, simplex hoặc phụ thuộc từng mẫu. Đây là điểm nối quan trọng giữa biểu diễn Stage 1 và các nhánh mới của Stage 2, vì thang đo và trọng số của từng nhánh quyết định trực tiếp phân phối dự đoán cuối cùng.",
+    "nodeIds": [
+      "class:model/emotionclip_model.py:BranchFusion",
+      "class:model/emotionclip_model.py:EmotionCLIPModel"
+    ]
+  },
+  {
+    "order": 8,
+    "title": "Mục tiêu Stage 2",
+    "description": "Logits đã hợp nhất đi vào objective gồm classification, evidential uncertainty, regularization gate/nhiệt độ, routing supervision và reliability ranking trên ảnh bị làm hỏng. Việc đọc các thành phần cùng nhau cho thấy một cập nhật optimizer có thể tác động đồng thời lên độ chính xác, calibration và cấu trúc vùng, nên cần theo dõi cả loss thô lẫn loss đã nhân trọng số.",
+    "nodeIds": [
+      "file:loss/emotion_losses.py",
+      "function:loss/emotion_losses.py:emotion_stage2_loss",
+      "function:loss/emotion_losses.py:reliability_correctness_loss",
+      "function:loss/emotion_losses.py:reliability_ranking_loss"
+    ],
+    "languageLesson": "Evidential learning biểu diễn dự đoán bằng tham số Dirichlet thay vì chỉ softmax; tổng evidence điều khiển uncertainty, còn KL và annealing giúp tránh mô hình tự tin quá sớm."
+  },
+  {
+    "order": 9,
+    "title": "Vòng lặp huấn luyện",
+    "description": "Processor hiện thực Stage 2 bằng AMP, gradient accumulation, corruption warmup, kiểm tra non-finite, validation định kỳ và early stopping. Nó cũng ghi báo cáo tham số trainable, tạo checkpoint có schema và nạp lại checkpoint với kiểm tra chữ ký mô hình, nhờ đó nối objective ở bước trước với một quy trình cập nhật có guardrail.",
+    "nodeIds": [
+      "file:processor/processor_emotionclip.py",
+      "function:processor/processor_emotionclip.py:do_train_emotion_stage2",
+      "function:processor/processor_emotionclip.py:parameter_report",
+      "function:processor/processor_emotionclip.py:save_checkpoint",
+      "function:processor/processor_emotionclip.py:load_emotion_checkpoint"
+    ]
+  },
+  {
+    "order": 10,
+    "title": "Đánh giá và artifact",
+    "description": "Sau mỗi epoch, mô-đun metric tổng hợp accuracy, balanced accuracy, macro/per-class F1, calibration và uncertainty-risk thay vì chỉ nhìn một con số tổng quát. Snapshot RAF-DB lưu cả confusion matrix, confidence và uncertainty theo mẫu, tạo cầu nối từ log huấn luyện tới việc chẩn đoán lớp thiểu số, độ tự tin và checkpoint được chọn.",
+    "nodeIds": [
+      "function:processor/processor_emotionclip.py:evaluate_emotion_model",
+      "file:utils/fer_metrics.py",
+      "function:utils/fer_metrics.py:compute_fer_metrics",
+      "config:outputs/RAF-DB/metrics_epoch_1.json",
+      "document:outputs/fer2013/README_training_logs.md"
+    ]
+  },
+  {
+    "order": 11,
+    "title": "Lưới an toàn kiểm thử",
+    "description": "Cuối tour, các unit test bảo vệ prompt, adapter, router, fusion và chính sách đóng băng tham số, còn smoke test kiểm tra hai stage, tích lũy gradient, warmup, checkpoint và lỗi non-finite trên CPU. Nhóm test song song hóa bổ sung các bất biến về thiết bị, confidence và text feature dùng chung; cùng nhau chúng xác nhận tính đúng đắn cơ học của pipeline trước khi đánh giá chất lượng học trên dữ liệu thật.",
+    "nodeIds": [
+      "file:tests/test_emotion_model_units.py",
+      "file:tests/test_emotion_processor_smoke.py",
+      "file:tests/test_train_emotionclip_parallel.py"
+    ]
+  }
+]

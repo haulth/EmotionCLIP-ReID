@@ -1,0 +1,1983 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "tests/test_notebook_helpers.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 286,
+      "nonEmptyLines": 242,
+      "functions": [
+        {
+          "name": "test_timestamped_run_id_is_local_time_safe_and_precise",
+          "startLine": 18,
+          "endLine": 22,
+          "params": []
+        },
+        {
+          "name": "test_publish_notebook_artifacts_requires_initialized_run",
+          "startLine": 25,
+          "endLine": 28,
+          "params": [
+            "tmp_path"
+          ]
+        },
+        {
+          "name": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "startLine": 31,
+          "endLine": 49,
+          "params": [
+            "tmp_path"
+          ]
+        },
+        {
+          "name": "test_notebook_progress_recognizes_all_training_phase_labels",
+          "startLine": 60,
+          "endLine": 61,
+          "params": [
+            "line"
+          ]
+        },
+        {
+          "name": "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+          "startLine": 64,
+          "endLine": 74,
+          "params": [
+            "monkeypatch"
+          ]
+        },
+        {
+          "name": "test_training_notebooks_forward_resolved_runtime_controls",
+          "startLine": 84,
+          "endLine": 105,
+          "params": [
+            "notebook_name"
+          ]
+        },
+        {
+          "name": "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+          "startLine": 107,
+          "endLine": 120,
+          "params": [
+            "tmp_path"
+          ]
+        },
+        {
+          "name": "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+          "startLine": 123,
+          "endLine": 133,
+          "params": [
+            "tmp_path"
+          ]
+        },
+        {
+          "name": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+          "startLine": 136,
+          "endLine": 157,
+          "params": []
+        },
+        {
+          "name": "test_anatomy_is_required_by_default_and_quick_presets",
+          "startLine": 160,
+          "endLine": 179,
+          "params": []
+        },
+        {
+          "name": "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+          "startLine": 182,
+          "endLine": 202,
+          "params": [
+            "tmp_path"
+          ]
+        },
+        {
+          "name": "test_stage1_both_rejects_a_missing_phase",
+          "startLine": 205,
+          "endLine": 216,
+          "params": []
+        },
+        {
+          "name": "test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+          "startLine": 219,
+          "endLine": 232,
+          "params": []
+        },
+        {
+          "name": "test_rafdb_notebook_exposes_gpu_safety_controls",
+          "startLine": 235,
+          "endLine": 260,
+          "params": []
+        },
+        {
+          "name": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "startLine": 263,
+          "endLine": 286,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "test_timestamped_run_id_is_local_time_safe_and_precise",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "test_publish_notebook_artifacts_requires_initialized_run",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "test_notebook_progress_recognizes_all_training_phase_labels",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "test_training_notebooks_forward_resolved_runtime_controls",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+          "line": 107,
+          "isDefault": false
+        },
+        {
+          "name": "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+          "line": 123,
+          "isDefault": false
+        },
+        {
+          "name": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+          "line": 136,
+          "isDefault": false
+        },
+        {
+          "name": "test_anatomy_is_required_by_default_and_quick_presets",
+          "line": 160,
+          "isDefault": false
+        },
+        {
+          "name": "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+          "line": 182,
+          "isDefault": false
+        },
+        {
+          "name": "test_stage1_both_rejects_a_missing_phase",
+          "line": 205,
+          "isDefault": false
+        },
+        {
+          "name": "test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+          "line": 219,
+          "isDefault": false
+        },
+        {
+          "name": "test_rafdb_notebook_exposes_gpu_safety_controls",
+          "line": 235,
+          "isDefault": false
+        },
+        {
+          "name": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "line": 263,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "test_timestamped_run_id_is_local_time_safe_and_precise",
+          "callee": "datetime",
+          "lineNumber": 19
+        },
+        {
+          "caller": "test_timestamped_run_id_is_local_time_safe_and_precise",
+          "callee": "timezone",
+          "lineNumber": 19
+        },
+        {
+          "caller": "test_timestamped_run_id_is_local_time_safe_and_precise",
+          "callee": "timedelta",
+          "lineNumber": 19
+        },
+        {
+          "caller": "test_timestamped_run_id_is_local_time_safe_and_precise",
+          "callee": "timestamped_run_id",
+          "lineNumber": 20
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_requires_initialized_run",
+          "callee": "prepare_notebook_staging",
+          "lineNumber": 26
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_requires_initialized_run",
+          "callee": "pytest.raises",
+          "lineNumber": 27
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_requires_initialized_run",
+          "callee": "publish_notebook_artifacts",
+          "lineNumber": 28
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "prepare_notebook_staging",
+          "lineNumber": 32
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "(staging / \"visuals\" / \"distribution.png\").write_bytes",
+          "lineNumber": 33
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "output.mkdir",
+          "lineNumber": 35
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "(output / \"provenance.json\").write_text",
+          "lineNumber": 36
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "publish_notebook_artifacts",
+          "lineNumber": 38
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "(output / \"visuals\" / \"distribution.png\").read_bytes",
+          "lineNumber": 45
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "(output / \"notebook_console.log\").read_text",
+          "lineNumber": 46
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "json.loads",
+          "lineNumber": 47
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "(output / \"notebook_run.json\").read_text",
+          "lineNumber": 47
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "str",
+          "lineNumber": 49
+        },
+        {
+          "caller": "test_publish_notebook_artifacts_copies_visuals_and_log",
+          "callee": "output.resolve",
+          "lineNumber": 49
+        },
+        {
+          "caller": "test_notebook_progress_recognizes_all_training_phase_labels",
+          "callee": "_is_progress_update",
+          "lineNumber": 61
+        },
+        {
+          "caller": "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+          "callee": "monkeypatch.setattr",
+          "lineNumber": 69
+        },
+        {
+          "caller": "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+          "callee": "_progress_html",
+          "lineNumber": 70
+        },
+        {
+          "caller": "test_notebook_progress_html_keeps_stage1_phase_in_single_display",
+          "callee": "getattr",
+          "lineNumber": 71
+        },
+        {
+          "caller": "test_training_notebooks_forward_resolved_runtime_controls",
+          "callee": "Path(__file__).resolve",
+          "lineNumber": 85
+        },
+        {
+          "caller": "test_training_notebooks_forward_resolved_runtime_controls",
+          "callee": "Path",
+          "lineNumber": 85
+        },
+        {
+          "caller": "test_training_notebooks_forward_resolved_runtime_controls",
+          "callee": "json.loads",
+          "lineNumber": 86
+        },
+        {
+          "caller": "test_training_notebooks_forward_resolved_runtime_controls",
+          "callee": "(repo_root / \"notebooks\" / notebook_name).read_text",
+          "lineNumber": 86
+        },
+        {
+          "caller": "test_training_notebooks_forward_resolved_runtime_controls",
+          "callee": "\"\\n\".join",
+          "lineNumber": 87
+        },
+        {
+          "caller": "test_training_notebooks_forward_resolved_runtime_controls",
+          "callee": "\"\".join",
+          "lineNumber": 87
+        },
+        {
+          "caller": "test_training_notebooks_forward_resolved_runtime_controls",
+          "callee": "cell.get",
+          "lineNumber": 87
+        },
+        {
+          "caller": "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+          "callee": "artifact_dir.mkdir",
+          "lineNumber": 110
+        },
+        {
+          "caller": "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+          "callee": "(artifact_dir / \"sample.json\").write_text",
+          "lineNumber": 111
+        },
+        {
+          "caller": "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+          "callee": "manifest.write_text",
+          "lineNumber": 113
+        },
+        {
+          "caller": "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+          "callee": "json.dumps",
+          "lineNumber": 114
+        },
+        {
+          "caller": "test_validate_landmark_manifest_layout_accepts_colocated_relative_artifacts",
+          "callee": "validate_landmark_manifest_layout",
+          "lineNumber": 118
+        },
+        {
+          "caller": "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+          "callee": "data_dir.mkdir",
+          "lineNumber": 125
+        },
+        {
+          "caller": "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+          "callee": "manifest.write_text",
+          "lineNumber": 127
+        },
+        {
+          "caller": "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+          "callee": "json.dumps",
+          "lineNumber": 128
+        },
+        {
+          "caller": "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+          "callee": "pytest.raises",
+          "lineNumber": 132
+        },
+        {
+          "caller": "test_validate_landmark_manifest_layout_rejects_missing_artifact",
+          "callee": "validate_landmark_manifest_layout",
+          "lineNumber": 133
+        },
+        {
+          "caller": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+          "callee": "Path(__file__).resolve",
+          "lineNumber": 137
+        },
+        {
+          "caller": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+          "callee": "Path",
+          "lineNumber": 137
+        },
+        {
+          "caller": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+          "callee": "json.loads",
+          "lineNumber": 143
+        },
+        {
+          "caller": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+          "callee": "(repo_root / \"notebooks\" / notebook_name).read_text",
+          "lineNumber": 143
+        },
+        {
+          "caller": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+          "callee": "\"\\n\".join",
+          "lineNumber": 144
+        },
+        {
+          "caller": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+          "callee": "\"\".join",
+          "lineNumber": 145
+        },
+        {
+          "caller": "test_rafdb_notebooks_share_explicit_colocated_landmark_paths",
+          "callee": "cell.get",
+          "lineNumber": 145
+        },
+        {
+          "caller": "test_anatomy_is_required_by_default_and_quick_presets",
+          "callee": "get_default_emotion_cfg",
+          "lineNumber": 161
+        },
+        {
+          "caller": "test_anatomy_is_required_by_default_and_quick_presets",
+          "callee": "Path(__file__).resolve",
+          "lineNumber": 168
+        },
+        {
+          "caller": "test_anatomy_is_required_by_default_and_quick_presets",
+          "callee": "Path",
+          "lineNumber": 168
+        },
+        {
+          "caller": "test_anatomy_is_required_by_default_and_quick_presets",
+          "callee": "load_emotion_cfg",
+          "lineNumber": 174
+        },
+        {
+          "caller": "test_anatomy_is_required_by_default_and_quick_presets",
+          "callee": "str",
+          "lineNumber": 174
+        },
+        {
+          "caller": "test_anatomy_is_required_by_default_and_quick_presets",
+          "callee": "cfg[\"DATASETS\"][\"MANIFEST\"].endswith",
+          "lineNumber": 179
+        },
+        {
+          "caller": "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+          "callee": "config_path.write_text",
+          "lineNumber": 184
+        },
+        {
+          "caller": "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+          "callee": "load_emotion_cfg",
+          "lineNumber": 188
+        },
+        {
+          "caller": "test_notebook_cli_overrides_have_highest_precedence_and_source_provenance",
+          "callee": "str",
+          "lineNumber": 189
+        },
+        {
+          "caller": "test_stage1_both_rejects_a_missing_phase",
+          "callee": "pytest.raises",
+          "lineNumber": 206
+        },
+        {
+          "caller": "test_stage1_both_rejects_a_missing_phase",
+          "callee": "load_emotion_cfg",
+          "lineNumber": 207
+        },
+        {
+          "caller": "test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+          "callee": "pytest.raises",
+          "lineNumber": 220
+        },
+        {
+          "caller": "test_stage1_geometry_rejects_an_inactive_prompt_conditioner",
+          "callee": "load_emotion_cfg",
+          "lineNumber": 221
+        },
+        {
+          "caller": "test_rafdb_notebook_exposes_gpu_safety_controls",
+          "callee": "Path(__file__).resolve",
+          "lineNumber": 236
+        },
+        {
+          "caller": "test_rafdb_notebook_exposes_gpu_safety_controls",
+          "callee": "Path",
+          "lineNumber": 236
+        },
+        {
+          "caller": "test_rafdb_notebook_exposes_gpu_safety_controls",
+          "callee": "json.loads",
+          "lineNumber": 237
+        },
+        {
+          "caller": "test_rafdb_notebook_exposes_gpu_safety_controls",
+          "callee": "(repo_root / \"notebooks\" / \"emotionclip_reid_jupyterhub_rafdb.ipynb\").read_text",
+          "lineNumber": 238
+        },
+        {
+          "caller": "test_rafdb_notebook_exposes_gpu_safety_controls",
+          "callee": "\"\\n\".join",
+          "lineNumber": 242
+        },
+        {
+          "caller": "test_rafdb_notebook_exposes_gpu_safety_controls",
+          "callee": "\"\".join",
+          "lineNumber": 242
+        },
+        {
+          "caller": "test_rafdb_notebook_exposes_gpu_safety_controls",
+          "callee": "cell.get",
+          "lineNumber": 242
+        },
+        {
+          "caller": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "callee": "Path(__file__).resolve",
+          "lineNumber": 264
+        },
+        {
+          "caller": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "callee": "Path",
+          "lineNumber": 264
+        },
+        {
+          "caller": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "callee": "json.loads",
+          "lineNumber": 265
+        },
+        {
+          "caller": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "callee": "(repo_root / \"notebooks\" / \"emotionclip_reid_jupyterhub_fer2013.ipynb\").read_text",
+          "lineNumber": 266
+        },
+        {
+          "caller": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "callee": "\"\\n\".join",
+          "lineNumber": 270
+        },
+        {
+          "caller": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "callee": "\"\".join",
+          "lineNumber": 270
+        },
+        {
+          "caller": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "callee": "cell.get",
+          "lineNumber": 270
+        },
+        {
+          "caller": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "callee": "load_emotion_cfg",
+          "lineNumber": 282
+        },
+        {
+          "caller": "test_hf_fer2013_notebook_and_presets_enable_stage1b_geometry_prompt",
+          "callee": "str",
+          "lineNumber": 282
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 15,
+        "functionCount": 15,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "utils/notebook_landmarks.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 298,
+      "nonEmptyLines": 270,
+      "functions": [
+        {
+          "name": "_sha256",
+          "startLine": 24,
+          "endLine": 29,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "download_once",
+          "startLine": 32,
+          "endLine": 53,
+          "params": [
+            "url",
+            "destination"
+          ]
+        },
+        {
+          "name": "_cache_metadata_path",
+          "startLine": 56,
+          "endLine": 57,
+          "params": [
+            "output_manifest"
+          ]
+        },
+        {
+          "name": "_read_json",
+          "startLine": 60,
+          "endLine": 65,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "_nonempty_line_count",
+          "startLine": 68,
+          "endLine": 70,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "validate_landmark_manifest_layout",
+          "startLine": 73,
+          "endLine": 153,
+          "params": [
+            "manifest",
+            "data_dir"
+          ]
+        },
+        {
+          "name": "prepare_cached_landmarks",
+          "startLine": 156,
+          "endLine": 298,
+          "params": [
+            "repo_root",
+            "manifest",
+            "output_manifest",
+            "artifact_root",
+            "model_path",
+            "root_dir",
+            "jitter_repeats",
+            "jitter_pixels",
+            "seed",
+            "force_rebuild",
+            "python_executable",
+            "log_path"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_sha256",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "download_once",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "_cache_metadata_path",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "_read_json",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "_nonempty_line_count",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "validate_landmark_manifest_layout",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "prepare_cached_landmarks",
+          "line": 156,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_sha256",
+          "callee": "hashlib.sha256",
+          "lineNumber": 25
+        },
+        {
+          "caller": "_sha256",
+          "callee": "path.open",
+          "lineNumber": 26
+        },
+        {
+          "caller": "_sha256",
+          "callee": "iter",
+          "lineNumber": 27
+        },
+        {
+          "caller": "_sha256",
+          "callee": "handle.read",
+          "lineNumber": 27
+        },
+        {
+          "caller": "_sha256",
+          "callee": "digest.update",
+          "lineNumber": 28
+        },
+        {
+          "caller": "_sha256",
+          "callee": "digest.hexdigest",
+          "lineNumber": 29
+        },
+        {
+          "caller": "download_once",
+          "callee": "Path(destination).expanduser().resolve",
+          "lineNumber": 35
+        },
+        {
+          "caller": "download_once",
+          "callee": "Path(destination).expanduser",
+          "lineNumber": 35
+        },
+        {
+          "caller": "download_once",
+          "callee": "Path",
+          "lineNumber": 35
+        },
+        {
+          "caller": "download_once",
+          "callee": "destination.is_file",
+          "lineNumber": 36
+        },
+        {
+          "caller": "download_once",
+          "callee": "destination.stat",
+          "lineNumber": 36
+        },
+        {
+          "caller": "download_once",
+          "callee": "destination.parent.mkdir",
+          "lineNumber": 38
+        },
+        {
+          "caller": "download_once",
+          "callee": "destination.with_name",
+          "lineNumber": 39
+        },
+        {
+          "caller": "download_once",
+          "callee": "urllib.request.urlopen",
+          "lineNumber": 41
+        },
+        {
+          "caller": "download_once",
+          "callee": "temporary.open",
+          "lineNumber": 41
+        },
+        {
+          "caller": "download_once",
+          "callee": "response.read",
+          "lineNumber": 43
+        },
+        {
+          "caller": "download_once",
+          "callee": "output.write",
+          "lineNumber": 46
+        },
+        {
+          "caller": "download_once",
+          "callee": "temporary.stat",
+          "lineNumber": 47
+        },
+        {
+          "caller": "download_once",
+          "callee": "RuntimeError",
+          "lineNumber": 48
+        },
+        {
+          "caller": "download_once",
+          "callee": "os.replace",
+          "lineNumber": 49
+        },
+        {
+          "caller": "download_once",
+          "callee": "temporary.exists",
+          "lineNumber": 51
+        },
+        {
+          "caller": "download_once",
+          "callee": "temporary.unlink",
+          "lineNumber": 52
+        },
+        {
+          "caller": "_cache_metadata_path",
+          "callee": "output_manifest.with_suffix",
+          "lineNumber": 57
+        },
+        {
+          "caller": "_read_json",
+          "callee": "json.loads",
+          "lineNumber": 62
+        },
+        {
+          "caller": "_read_json",
+          "callee": "path.read_text",
+          "lineNumber": 62
+        },
+        {
+          "caller": "_read_json",
+          "callee": "isinstance",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_nonempty_line_count",
+          "callee": "path.open",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_nonempty_line_count",
+          "callee": "sum",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_nonempty_line_count",
+          "callee": "line.strip",
+          "lineNumber": 70
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "Path(manifest).expanduser().resolve",
+          "lineNumber": 85
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "Path(manifest).expanduser",
+          "lineNumber": 85
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "Path",
+          "lineNumber": 85
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "Path(data_dir).expanduser().resolve",
+          "lineNumber": 86
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "Path(data_dir).expanduser",
+          "lineNumber": 86
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "Path",
+          "lineNumber": 86
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "manifest.is_file",
+          "lineNumber": 87
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "FileNotFoundError",
+          "lineNumber": 88
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "ValueError",
+          "lineNumber": 90
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "manifest.open",
+          "lineNumber": 100
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "enumerate",
+          "lineNumber": 101
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "line.strip",
+          "lineNumber": 102
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "json.loads",
+          "lineNumber": 105
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "str(record.get(\"landmark_path\") or \"\").strip",
+          "lineNumber": 106
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "str",
+          "lineNumber": 106
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "record.get",
+          "lineNumber": 106
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "missing_references.append",
+          "lineNumber": 108
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "Path",
+          "lineNumber": 110
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "int",
+          "lineNumber": 111
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "reference_path.is_absolute",
+          "lineNumber": 111
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "reference_path.resolve",
+          "lineNumber": 113
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "reference_path.is_absolute",
+          "lineNumber": 114
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "(manifest.parent / reference_path).resolve",
+          "lineNumber": 115
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "artifact.relative_to",
+          "lineNumber": 118
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "outside_data_dir.append",
+          "lineNumber": 120
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "str",
+          "lineNumber": 120
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "artifact.is_file",
+          "lineNumber": 122
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "missing_artifacts.append",
+          "lineNumber": 123
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "str",
+          "lineNumber": 123
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "ValueError",
+          "lineNumber": 126
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "ValueError",
+          "lineNumber": 128
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "len",
+          "lineNumber": 129
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "ValueError",
+          "lineNumber": 133
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "len",
+          "lineNumber": 134
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "FileNotFoundError",
+          "lineNumber": 138
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "len",
+          "lineNumber": 139
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "ValueError",
+          "lineNumber": 143
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "str",
+          "lineNumber": 148
+        },
+        {
+          "caller": "validate_landmark_manifest_layout",
+          "callee": "str",
+          "lineNumber": 149
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(repo_root).expanduser().resolve",
+          "lineNumber": 173
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(repo_root).expanduser",
+          "lineNumber": 173
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path",
+          "lineNumber": 173
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(manifest).expanduser().resolve",
+          "lineNumber": 174
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(manifest).expanduser",
+          "lineNumber": 174
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path",
+          "lineNumber": 174
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(output_manifest).expanduser().resolve",
+          "lineNumber": 175
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(output_manifest).expanduser",
+          "lineNumber": 175
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path",
+          "lineNumber": 175
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(artifact_root).expanduser().resolve",
+          "lineNumber": 176
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(artifact_root).expanduser",
+          "lineNumber": 176
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path",
+          "lineNumber": 176
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(model_path).expanduser().resolve",
+          "lineNumber": 177
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(model_path).expanduser",
+          "lineNumber": 177
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path",
+          "lineNumber": 177
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(root_dir).expanduser().resolve",
+          "lineNumber": 178
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(root_dir).expanduser",
+          "lineNumber": 178
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path",
+          "lineNumber": 178
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "required.is_file",
+          "lineNumber": 181
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "FileNotFoundError",
+          "lineNumber": 182
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "_nonempty_line_count",
+          "lineNumber": 184
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "_sha256",
+          "lineNumber": 187
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "_sha256",
+          "lineNumber": 188
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 189
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "int",
+          "lineNumber": 190
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "int",
+          "lineNumber": 191
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "int",
+          "lineNumber": 192
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "_cache_metadata_path",
+          "lineNumber": 195
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "_read_json",
+          "lineNumber": 196
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "sum",
+          "lineNumber": 197
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "artifact_root.glob",
+          "lineNumber": 197
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "path.is_file",
+          "lineNumber": 197
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "artifact_root.exists",
+          "lineNumber": 197
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "bool",
+          "lineNumber": 198
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "output_manifest.is_file",
+          "lineNumber": 200
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "cached.get",
+          "lineNumber": 201
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "cached.get",
+          "lineNumber": 202
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "_sha256",
+          "lineNumber": 202
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(log_path).expanduser().resolve",
+          "lineNumber": 207
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(log_path).expanduser",
+          "lineNumber": 207
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path",
+          "lineNumber": 207
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "log_path.parent.mkdir",
+          "lineNumber": 208
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "log_path.write_text",
+          "lineNumber": 209
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "json.dumps",
+          "lineNumber": 210
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 213
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 214
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 217
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 227
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 228
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 231
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 236
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 238
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 240
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 242
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 244
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 246
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 248
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "int",
+          "lineNumber": 248
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 250
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "int",
+          "lineNumber": 250
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 252
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "int",
+          "lineNumber": 252
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "command.append",
+          "lineNumber": 255
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "subprocess.run",
+          "lineNumber": 257
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(log_path).expanduser().resolve",
+          "lineNumber": 259
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path(log_path).expanduser",
+          "lineNumber": 259
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "Path",
+          "lineNumber": 259
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "log_path.parent.mkdir",
+          "lineNumber": 260
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "subprocess.run",
+          "lineNumber": 261
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "log_path.write_text",
+          "lineNumber": 268
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "print",
+          "lineNumber": 273
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "subprocess.CalledProcessError",
+          "lineNumber": 275
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "sum",
+          "lineNumber": 282
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "artifact_root.glob",
+          "lineNumber": 282
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "path.is_file",
+          "lineNumber": 282
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 284
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "datetime.now",
+          "lineNumber": 284
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "_sha256",
+          "lineNumber": 286
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "metadata_path.write_text",
+          "lineNumber": 290
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "json.dumps",
+          "lineNumber": 290
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 293
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 294
+        },
+        {
+          "caller": "prepare_cached_landmarks",
+          "callee": "str",
+          "lineNumber": 297
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "utils/notebook_progress.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 79,
+      "nonEmptyLines": 64,
+      "functions": [
+        {
+          "name": "_is_progress_update",
+          "startLine": 21,
+          "endLine": 22,
+          "params": [
+            "text"
+          ]
+        },
+        {
+          "name": "_progress_html",
+          "startLine": 25,
+          "endLine": 42,
+          "params": [
+            "text"
+          ]
+        },
+        {
+          "name": "stream_process_output",
+          "startLine": 45,
+          "endLine": 79,
+          "params": [
+            "process",
+            "log_handle"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_is_progress_update",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "_progress_html",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "stream_process_output",
+          "line": 45,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_is_progress_update",
+          "callee": "bool",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_is_progress_update",
+          "callee": "_PROGRESS_RE.search",
+          "lineNumber": 22
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "_PROGRESS_RE.search",
+          "lineNumber": 26
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "int",
+          "lineNumber": 29
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "match.group",
+          "lineNumber": 29
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "max",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "int",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "match.group",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "min",
+          "lineNumber": 31
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "html.escape",
+          "lineNumber": 32
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "match.group(1).strip",
+          "lineNumber": 32
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "match.group",
+          "lineNumber": 32
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "html.escape",
+          "lineNumber": 33
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "text.strip",
+          "lineNumber": 33
+        },
+        {
+          "caller": "_progress_html",
+          "callee": "HTML",
+          "lineNumber": 34
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "display",
+          "lineNumber": 48
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "HTML",
+          "lineNumber": 48
+        },
+        {
+          "caller": "emit",
+          "callee": "print",
+          "lineNumber": 53
+        },
+        {
+          "caller": "emit",
+          "callee": "log_handle.write",
+          "lineNumber": 55
+        },
+        {
+          "caller": "emit",
+          "callee": "log_handle.flush",
+          "lineNumber": 56
+        },
+        {
+          "caller": "handle",
+          "callee": "chunks.append",
+          "lineNumber": 61
+        },
+        {
+          "caller": "handle",
+          "callee": "_is_progress_update",
+          "lineNumber": 62
+        },
+        {
+          "caller": "handle",
+          "callee": "progress_display.update",
+          "lineNumber": 64
+        },
+        {
+          "caller": "handle",
+          "callee": "_progress_html",
+          "lineNumber": 64
+        },
+        {
+          "caller": "handle",
+          "callee": "emit",
+          "lineNumber": 66
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "iter",
+          "lineNumber": 69
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "process.stdout.read",
+          "lineNumber": 69
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "handle",
+          "lineNumber": 71
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "\"\".join",
+          "lineNumber": 71
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "buffer.clear",
+          "lineNumber": 72
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "handle",
+          "lineNumber": 74
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "\"\".join",
+          "lineNumber": 74
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "buffer.clear",
+          "lineNumber": 75
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "buffer.append",
+          "lineNumber": 77
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "handle",
+          "lineNumber": 78
+        },
+        {
+          "caller": "stream_process_output",
+          "callee": "\"\".join",
+          "lineNumber": 78
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "utils/notebook_run.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 87,
+      "nonEmptyLines": 73,
+      "functions": [
+        {
+          "name": "timestamped_run_id",
+          "startLine": 18,
+          "endLine": 33,
+          "params": [
+            "prefix",
+            "seed",
+            "now"
+          ]
+        },
+        {
+          "name": "prepare_notebook_staging",
+          "startLine": 36,
+          "endLine": 44,
+          "params": [
+            "repo_root",
+            "run_id"
+          ]
+        },
+        {
+          "name": "publish_notebook_artifacts",
+          "startLine": 47,
+          "endLine": 87,
+          "params": [
+            "output_dir",
+            "staging_dir",
+            "console_text",
+            "metadata"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "timestamped_run_id",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "prepare_notebook_staging",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "publish_notebook_artifacts",
+          "line": 47,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "timestamped_run_id",
+          "callee": "str(prefix).strip().lower().replace",
+          "lineNumber": 25
+        },
+        {
+          "caller": "timestamped_run_id",
+          "callee": "str(prefix).strip().lower",
+          "lineNumber": 25
+        },
+        {
+          "caller": "timestamped_run_id",
+          "callee": "str(prefix).strip",
+          "lineNumber": 25
+        },
+        {
+          "caller": "timestamped_run_id",
+          "callee": "str",
+          "lineNumber": 25
+        },
+        {
+          "caller": "timestamped_run_id",
+          "callee": "any",
+          "lineNumber": 26
+        },
+        {
+          "caller": "timestamped_run_id",
+          "callee": "ValueError",
+          "lineNumber": 27
+        },
+        {
+          "caller": "timestamped_run_id",
+          "callee": "datetime.now().astimezone",
+          "lineNumber": 28
+        },
+        {
+          "caller": "timestamped_run_id",
+          "callee": "datetime.now",
+          "lineNumber": 28
+        },
+        {
+          "caller": "timestamped_run_id",
+          "callee": "ValueError",
+          "lineNumber": 30
+        },
+        {
+          "caller": "timestamped_run_id",
+          "callee": "started_at.strftime",
+          "lineNumber": 31
+        },
+        {
+          "caller": "timestamped_run_id",
+          "callee": "int",
+          "lineNumber": 32
+        },
+        {
+          "caller": "prepare_notebook_staging",
+          "callee": "str(run_id).strip",
+          "lineNumber": 39
+        },
+        {
+          "caller": "prepare_notebook_staging",
+          "callee": "str",
+          "lineNumber": 39
+        },
+        {
+          "caller": "prepare_notebook_staging",
+          "callee": "Path",
+          "lineNumber": 40
+        },
+        {
+          "caller": "prepare_notebook_staging",
+          "callee": "ValueError",
+          "lineNumber": 41
+        },
+        {
+          "caller": "prepare_notebook_staging",
+          "callee": "Path(repo_root).expanduser().resolve",
+          "lineNumber": 42
+        },
+        {
+          "caller": "prepare_notebook_staging",
+          "callee": "Path(repo_root).expanduser",
+          "lineNumber": 42
+        },
+        {
+          "caller": "prepare_notebook_staging",
+          "callee": "Path",
+          "lineNumber": 42
+        },
+        {
+          "caller": "prepare_notebook_staging",
+          "callee": "(staging / \"visuals\").mkdir",
+          "lineNumber": 43
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "Path(output_dir).expanduser().resolve",
+          "lineNumber": 56
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "Path(output_dir).expanduser",
+          "lineNumber": 56
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "Path",
+          "lineNumber": 56
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "Path(staging_dir).expanduser().resolve",
+          "lineNumber": 57
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "Path(staging_dir).expanduser",
+          "lineNumber": 57
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "Path",
+          "lineNumber": 57
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "(output / \"provenance.json\").is_file",
+          "lineNumber": 58
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "FileNotFoundError",
+          "lineNumber": 59
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "visual_dir.mkdir",
+          "lineNumber": 64
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "staged_visuals.is_dir",
+          "lineNumber": 67
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "sorted",
+          "lineNumber": 68
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "staged_visuals.iterdir",
+          "lineNumber": 68
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "source.is_file",
+          "lineNumber": 69
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "shutil.copy2",
+          "lineNumber": 72
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "copied.append",
+          "lineNumber": 73
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "str",
+          "lineNumber": 73
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "console_path.write_text",
+          "lineNumber": 76
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "datetime.now(timezone.utc).isoformat",
+          "lineNumber": 78
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "datetime.now",
+          "lineNumber": 78
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "str",
+          "lineNumber": 79
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "str",
+          "lineNumber": 80
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "str",
+          "lineNumber": 81
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "dict",
+          "lineNumber": 83
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "metadata_path.write_text",
+          "lineNumber": 86
+        },
+        {
+          "caller": "publish_notebook_artifacts",
+          "callee": "json.dumps",
+          "lineNumber": 86
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    }
+  ]
+}

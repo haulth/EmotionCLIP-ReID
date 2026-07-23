@@ -1,0 +1,1623 @@
+{
+  "nodes": [
+    {
+      "id": "file:tests/test_emotion_processor_smoke.py",
+      "type": "file",
+      "name": "test_emotion_processor_smoke.py",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "summary": "Chạy smoke test CPU cho processor Stage 1/2 và các guardrail huấn luyện như gradient accumulation, warmup reliability, early stopping, checkpoint schema và lỗi non-finite.",
+      "tags": [
+        "test",
+        "training-loop",
+        "checkpoint",
+        "numerical-safety"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mô-đun Python có nhiều hàm cấp mô-đun; các bất biến và cấu hình được truyền rõ ràng qua tham số thay vì dựa vào trạng thái ẩn."
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:_loader",
+      "type": "function",
+      "name": "_loader",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        80,
+        91
+      ],
+      "summary": "Thực hiện phép xử lý `_loader` trong miền test và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "test",
+        "loading"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_processor_stage1_stage2_cpu_smoke",
+      "type": "function",
+      "name": "test_processor_stage1_stage2_cpu_smoke",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        94,
+        121
+      ],
+      "summary": "Xác minh kịch bản `processor_stage1_stage2_cpu_smoke` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_stage2_gradient_accumulation_controls_optimizer_steps",
+      "type": "function",
+      "name": "test_stage2_gradient_accumulation_controls_optimizer_steps",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        124,
+        156
+      ],
+      "summary": "Xác minh kịch bản `stage2_gradient_accumulation_controls_optimizer_steps` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_stage2_defers_corruption_ranking_until_after_warmup",
+      "type": "function",
+      "name": "test_stage2_defers_corruption_ranking_until_after_warmup",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        159,
+        196
+      ],
+      "summary": "Xác minh kịch bản `stage2_defers_corruption_ranking_until_after_warmup` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_stage2_nonfinite_loss_fails_before_optimizer_step",
+      "type": "function",
+      "name": "test_stage2_nonfinite_loss_fails_before_optimizer_step",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        199,
+        241
+      ],
+      "summary": "Xác minh kịch bản `stage2_nonfinite_loss_fails_before_optimizer_step` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed",
+      "type": "function",
+      "name": "test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        244,
+        276
+      ],
+      "summary": "Xác minh kịch bản `stage2_nonfinite_parameter_after_optimizer_step_fails_closed` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_stage2_early_stopping_uses_validation_patience",
+      "type": "function",
+      "name": "test_stage2_early_stopping_uses_validation_patience",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        279,
+        312
+      ],
+      "summary": "Xác minh kịch bản `stage2_early_stopping_uses_validation_patience` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_small_learning_rates_use_scientific_log_format",
+      "type": "function",
+      "name": "test_small_learning_rates_use_scientific_log_format",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        315,
+        317
+      ],
+      "summary": "Xác minh kịch bản `small_learning_rates_use_scientific_log_format` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_stage1_validation_writes_and_selects_prompt_checkpoint",
+      "type": "function",
+      "name": "test_stage1_validation_writes_and_selects_prompt_checkpoint",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        320,
+        342
+      ],
+      "summary": "Xác minh kịch bản `stage1_validation_writes_and_selects_prompt_checkpoint` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_stage1b_fails_closed_when_geometry_statistics_are_missing",
+      "type": "function",
+      "name": "test_stage1b_fails_closed_when_geometry_statistics_are_missing",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        345,
+        366
+      ],
+      "summary": "Xác minh kịch bản `stage1b_fails_closed_when_geometry_statistics_are_missing` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
+      "type": "function",
+      "name": "test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        369,
+        410
+      ],
+      "summary": "Xác minh kịch bản `fixed_epoch_training_skips_model_selection_and_test_is_explicit` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_checkpoint_schema_preserves_current_derived_prompt_buffers",
+      "type": "function",
+      "name": "test_checkpoint_schema_preserves_current_derived_prompt_buffers",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        441,
+        461
+      ],
+      "summary": "Xác minh kịch bản `checkpoint_schema_preserves_current_derived_prompt_buffers` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference",
+      "type": "function",
+      "name": "test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        464,
+        495
+      ],
+      "summary": "Xác minh kịch bản `checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_emotion_processor_smoke.py:test_corruption_invalidates_occluded_anatomy_evidence",
+      "type": "function",
+      "name": "test_corruption_invalidates_occluded_anatomy_evidence",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        498,
+        516
+      ],
+      "summary": "Xác minh kịch bản `corruption_invalidates_occluded_anatomy_evidence` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_emotion_processor_smoke.py:TinyEmotionModel",
+      "type": "class",
+      "name": "TinyEmotionModel",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        20,
+        77
+      ],
+      "summary": "Test double nhỏ mô phỏng API theo stage của EmotionCLIP để smoke-test processor trên CPU.",
+      "tags": [
+        "class",
+        "test",
+        "test-double"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:tests/test_emotion_processor_smoke.py:_CheckpointPrompt",
+      "type": "class",
+      "name": "_CheckpointPrompt",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        413,
+        422
+      ],
+      "summary": "Test double tối giản cho prompt learner và các buffer cần được bảo toàn trong checkpoint.",
+      "tags": [
+        "class",
+        "test",
+        "test-double"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:tests/test_emotion_processor_smoke.py:_CheckpointModel",
+      "type": "class",
+      "name": "_CheckpointModel",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "lineRange": [
+        425,
+        438
+      ],
+      "summary": "Test double tối giản dùng để kiểm tra schema, tính đầy đủ và khả năng nạp checkpoint.",
+      "tags": [
+        "class",
+        "test",
+        "test-double"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_run_artifacts.py",
+      "type": "file",
+      "name": "test_run_artifacts.py",
+      "filePath": "tests/test_run_artifacts.py",
+      "summary": "Kiểm thử tính bất biến của thư mục run, metadata provenance và yêu cầu chỉ định run ID khi tra cứu artifact.",
+      "tags": [
+        "test",
+        "artifacts",
+        "provenance",
+        "reproducibility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_run_artifacts.py:test_run_directory_is_immutable_and_records_provenance",
+      "type": "function",
+      "name": "test_run_directory_is_immutable_and_records_provenance",
+      "filePath": "tests/test_run_artifacts.py",
+      "lineRange": [
+        8,
+        33
+      ],
+      "summary": "Xác minh kịch bản `run_directory_is_immutable_and_records_provenance` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_run_artifacts.py:test_artifact_lookup_requires_explicit_run_id",
+      "type": "function",
+      "name": "test_artifact_lookup_requires_explicit_run_id",
+      "filePath": "tests/test_run_artifacts.py",
+      "lineRange": [
+        36,
+        38
+      ],
+      "summary": "Xác minh kịch bản `artifact_lookup_requires_explicit_run_id` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_train_emotionclip_parallel.py",
+      "type": "file",
+      "name": "test_train_emotionclip_parallel.py",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "summary": "Kiểm thử lựa chọn GPU, giới hạn topology multi-GPU và hành vi gather/unwrap của lớp song song hóa EmotionCLIP. Bộ test cũng kiểm tra bất biến confidence và text feature dùng chung.",
+      "tags": [
+        "test",
+        "multi-gpu",
+        "data-parallel",
+        "validation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_accepts_two_cuda_indices",
+      "type": "function",
+      "name": "test_parse_gpu_ids_accepts_two_cuda_indices",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        13,
+        15
+      ],
+      "summary": "Xác minh kịch bản `parse_gpu_ids_accepts_two_cuda_indices` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_production_training_rejects_single_process_multi_gpu",
+      "type": "function",
+      "name": "test_production_training_rejects_single_process_multi_gpu",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        18,
+        21
+      ],
+      "summary": "Xác minh kịch bản `production_training_rejects_single_process_multi_gpu` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_rejects_invalid_lists",
+      "type": "function",
+      "name": "test_parse_gpu_ids_rejects_invalid_lists",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        25,
+        27
+      ],
+      "summary": "Xác minh kịch bản `parse_gpu_ids_rejects_invalid_lists` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+      "type": "function",
+      "name": "test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        30,
+        33
+      ],
+      "summary": "Xác minh kịch bản `unwrap_model_preserves_plain_model_and_unwraps_data_parallel` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+      "type": "function",
+      "name": "test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        36,
+        58
+      ],
+      "summary": "Xác minh kịch bản `emotion_data_parallel_gathers_batch_and_shared_outputs_correctly` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+      "type": "function",
+      "name": "test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        61,
+        69
+      ],
+      "summary": "Xác minh kịch bản `emotion_data_parallel_rejects_divergent_shared_temperatures` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_multi_gpu_construction",
+      "type": "function",
+      "name": "test_emotion_data_parallel_rejects_multi_gpu_construction",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        72,
+        74
+      ],
+      "summary": "Xác minh kịch bản `emotion_data_parallel_rejects_multi_gpu_construction` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_model_output_invariant_rejects_impossible_confidence",
+      "type": "function",
+      "name": "test_model_output_invariant_rejects_impossible_confidence",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        77,
+        88
+      ],
+      "summary": "Xác minh kịch bản `model_output_invariant_rejects_impossible_confidence` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_shared_text_features_are_built_from_unwrapped_model",
+      "type": "function",
+      "name": "test_shared_text_features_are_built_from_unwrapped_model",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        91,
+        106
+      ],
+      "summary": "Xác minh kịch bản `shared_text_features_are_built_from_unwrapped_model` và bảo vệ hành vi tương ứng khỏi hồi quy.",
+      "tags": [
+        "function",
+        "test",
+        "regression"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tools/audit_anatomy_geometry.py",
+      "type": "file",
+      "name": "audit_anatomy_geometry.py",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "summary": "CLI audit chất lượng geometry feature từ anatomy artifact, tổng hợp phân phối tín hiệu và so sánh tín hiệu giữa lớp với nhiễu jitter đo được.",
+      "tags": [
+        "cli",
+        "anatomy",
+        "quality-audit",
+        "statistics"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mô-đun Python có nhiều hàm cấp mô-đun; các bất biến và cấu hình được truyền rõ ràng qua tham số thay vì dựa vào trạng thái ẩn."
+    },
+    {
+      "id": "function:tools/audit_anatomy_geometry.py:_parse_args",
+      "type": "function",
+      "name": "_parse_args",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "lineRange": [
+        29,
+        38
+      ],
+      "summary": "Thực hiện phép xử lý `_parse_args` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/audit_anatomy_geometry.py:_summary",
+      "type": "function",
+      "name": "_summary",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "lineRange": [
+        41,
+        53
+      ],
+      "summary": "Thực hiện phép xử lý `_summary` từ `values` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/audit_anatomy_geometry.py:_landmark_valid",
+      "type": "function",
+      "name": "_landmark_valid",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "lineRange": [
+        56,
+        62
+      ],
+      "summary": "Thực hiện phép xử lý `_landmark_valid` từ `landmark` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "geometry"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/audit_anatomy_geometry.py:_signal_to_jitter",
+      "type": "function",
+      "name": "_signal_to_jitter",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "lineRange": [
+        65,
+        121
+      ],
+      "summary": "Thực hiện phép xử lý `_signal_to_jitter` từ `values`, `validity`, `labels`, `feature_jitter`, `feature_jitter_validity` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "augmentation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/audit_anatomy_geometry.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "lineRange": [
+        124,
+        264
+      ],
+      "summary": "Điều phối entry point cho cli audit chất lượng geometry feature từ anatomy artifact, tổng hợp phân phối tín hiệu và so sánh tín hiệu giữa lớp với nhiễu jitter đo được, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả.",
+      "tags": [
+        "function",
+        "anatomy",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/build_face_landmark_artifacts.py",
+      "type": "file",
+      "name": "build_face_landmark_artifacts.py",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "summary": "Tạo anatomy artifact từ ảnh bằng MediaPipe Face Landmarker, kèm pose, visibility/presence và ước lượng bất định qua jitter. Công cụ ghi tham chiếu artifact di động để manifest có thể tái sử dụng.",
+      "tags": [
+        "cli",
+        "landmarks",
+        "mediapipe",
+        "artifact-generation"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mô-đun Python có nhiều hàm cấp mô-đun; các bất biến và cấu hình được truyền rõ ràng qua tham số thay vì dựa vào trạng thái ẩn."
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_parse_args",
+      "type": "function",
+      "name": "_parse_args",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        34,
+        48
+      ],
+      "summary": "Thực hiện phép xử lý `_parse_args` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_load_mediapipe",
+      "type": "function",
+      "name": "_load_mediapipe",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        51,
+        61
+      ],
+      "summary": "Thực hiện phép xử lý `_load_mediapipe` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "loading"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_resolve_image_path",
+      "type": "function",
+      "name": "_resolve_image_path",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        64,
+        69
+      ],
+      "summary": "Thực hiện phép xử lý `_resolve_image_path` từ `record`, `manifest`, `root_dir` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_artifact_path",
+      "type": "function",
+      "name": "_artifact_path",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        72,
+        75
+      ],
+      "summary": "Thực hiện phép xử lý `_artifact_path` từ `image_path`, `artifact_root` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_shift_image",
+      "type": "function",
+      "name": "_shift_image",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        78,
+        85
+      ],
+      "summary": "Thực hiện phép xử lý `_shift_image` từ `image`, `dx`, `dy` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_detect",
+      "type": "function",
+      "name": "_detect",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        88,
+        99
+      ],
+      "summary": "Thực hiện phép xử lý `_detect` từ `landmarker`, `mp`, `image` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_pose_from_matrix",
+      "type": "function",
+      "name": "_pose_from_matrix",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        102,
+        125
+      ],
+      "summary": "Thực hiện phép xử lý `_pose_from_matrix` từ `matrix` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_score",
+      "type": "function",
+      "name": "_score",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        128,
+        136
+      ],
+      "summary": "Thực hiện phép xử lý `_score` từ `landmark`, `name`, `default` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_score_with_validity",
+      "type": "function",
+      "name": "_score_with_validity",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        139,
+        149
+      ],
+      "summary": "Thực hiện phép xử lý `_score_with_validity` từ `landmark`, `name`, `default` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_jitter_offsets",
+      "type": "function",
+      "name": "_jitter_offsets",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        152,
+        158
+      ],
+      "summary": "Thực hiện phép xử lý `_jitter_offsets` từ `repeats`, `pixels`, `rng` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "augmentation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_feature_jitter_from_observations",
+      "type": "function",
+      "name": "_feature_jitter_from_observations",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        161,
+        215
+      ],
+      "summary": "Thực hiện phép xử lý `_feature_jitter_from_observations` từ `observations`, `landmarks`, `image_size` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "augmentation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_build_artifact",
+      "type": "function",
+      "name": "_build_artifact",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        218,
+        348
+      ],
+      "summary": "Thực hiện phép xử lý `_build_artifact` từ `image`, `image_path`, `landmarker`, `mp`, `jitter_repeats`, `jitter_pixels`, `rng` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "serialization"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_file_sha256",
+      "type": "function",
+      "name": "_file_sha256",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        351,
+        356
+      ],
+      "summary": "Thực hiện phép xử lý `_file_sha256` từ `path` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_portable_artifact_reference",
+      "type": "function",
+      "name": "_portable_artifact_reference",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        359,
+        364
+      ],
+      "summary": "Thực hiện phép xử lý `_portable_artifact_reference` từ `target`, `manifest` trong miền anatomy và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "anatomy",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        367,
+        438
+      ],
+      "summary": "Điều phối entry point cho tạo anatomy artifact từ ảnh bằng mediapipe face landmarker, kèm pose, visibility/presence và ước lượng bất định qua jitter, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả.",
+      "tags": [
+        "function",
+        "anatomy",
+        "entry-point"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:_loader",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:_loader",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_processor_stage1_stage2_cpu_smoke",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_processor_stage1_stage2_cpu_smoke",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage2_gradient_accumulation_controls_optimizer_steps",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage2_gradient_accumulation_controls_optimizer_steps",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage2_defers_corruption_ranking_until_after_warmup",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage2_defers_corruption_ranking_until_after_warmup",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage2_nonfinite_loss_fails_before_optimizer_step",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage2_nonfinite_loss_fails_before_optimizer_step",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage2_nonfinite_parameter_after_optimizer_step_fails_closed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage2_early_stopping_uses_validation_patience",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage2_early_stopping_uses_validation_patience",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_small_learning_rates_use_scientific_log_format",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_small_learning_rates_use_scientific_log_format",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage1_validation_writes_and_selects_prompt_checkpoint",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage1_validation_writes_and_selects_prompt_checkpoint",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage1b_fails_closed_when_geometry_statistics_are_missing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_stage1b_fails_closed_when_geometry_statistics_are_missing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_fixed_epoch_training_skips_model_selection_and_test_is_explicit",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_checkpoint_schema_preserves_current_derived_prompt_buffers",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_checkpoint_schema_preserves_current_derived_prompt_buffers",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_checkpoint_rejects_stage1_or_incomplete_anatomy_for_inference",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_corruption_invalidates_occluded_anatomy_evidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "function:tests/test_emotion_processor_smoke.py:test_corruption_invalidates_occluded_anatomy_evidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "class:tests/test_emotion_processor_smoke.py:TinyEmotionModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "class:tests/test_emotion_processor_smoke.py:TinyEmotionModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "class:tests/test_emotion_processor_smoke.py:_CheckpointPrompt",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "class:tests/test_emotion_processor_smoke.py:_CheckpointPrompt",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "class:tests/test_emotion_processor_smoke.py:_CheckpointModel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "class:tests/test_emotion_processor_smoke.py:_CheckpointModel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "function:tests/test_run_artifacts.py:test_run_directory_is_immutable_and_records_provenance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "function:tests/test_run_artifacts.py:test_run_directory_is_immutable_and_records_provenance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "function:tests/test_run_artifacts.py:test_artifact_lookup_requires_explicit_run_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "function:tests/test_run_artifacts.py:test_artifact_lookup_requires_explicit_run_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "file:utils/run_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_accepts_two_cuda_indices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_accepts_two_cuda_indices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_production_training_rejects_single_process_multi_gpu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_production_training_rejects_single_process_multi_gpu",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_rejects_invalid_lists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_rejects_invalid_lists",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_multi_gpu_construction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_multi_gpu_construction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_model_output_invariant_rejects_impossible_confidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_model_output_invariant_rejects_impossible_confidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_shared_text_features_are_built_from_unwrapped_model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_shared_text_features_are_built_from_unwrapped_model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "file:train_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_parse_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_parse_args",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_landmark_valid",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_landmark_valid",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_signal_to_jitter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_signal_to_jitter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_parse_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_parse_args",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_load_mediapipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_load_mediapipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_resolve_image_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_resolve_image_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_artifact_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_artifact_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_shift_image",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_shift_image",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_detect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_detect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_pose_from_matrix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_pose_from_matrix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_score",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_score",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_score_with_validity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_score_with_validity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_jitter_offsets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_jitter_offsets",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_feature_jitter_from_observations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_feature_jitter_from_observations",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_build_artifact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_build_artifact",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_file_sha256",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_file_sha256",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_portable_artifact_reference",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_portable_artifact_reference",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ]
+}

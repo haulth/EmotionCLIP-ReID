@@ -1,0 +1,83 @@
+{
+  "nodes": [
+    {
+      "id": "table:outputs/report_w4/emotionclip_outputs_summary.csv:emotionclip_outputs_summary",
+      "type": "table",
+      "name": "emotionclip_outputs_summary.csv",
+      "filePath": "outputs/report_w4/emotionclip_outputs_summary.csv",
+      "summary": "Bảng đối chiếu gọn kết quả FER2013 và RAF-DB cho báo cáo W4, gồm best epoch, accuracy, balanced accuracy, Macro-F1, ECE, uncertainty-risk AUC và số mẫu.",
+      "tags": [
+        "report-data",
+        "benchmark-summary",
+        "fer",
+        "experiment-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:outputs/report_w4/emotionclip_outputs_summary.json",
+      "type": "config",
+      "name": "emotionclip_outputs_summary.json",
+      "filePath": "outputs/report_w4/emotionclip_outputs_summary.json",
+      "summary": "Tổng hợp có cấu trúc kết quả FER2013 và RAF-DB cho báo cáo W4, bao gồm best epoch theo nhiều tiêu chí, per-class F1 và metric calibration/uncertainty.",
+      "tags": [
+        "report-data",
+        "metric-summary",
+        "fer",
+        "calibration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:outputs/report_w4/rafdb_training_history_extracted.csv:rafdb_training_history_extracted",
+      "type": "table",
+      "name": "rafdb_training_history_extracted.csv",
+      "filePath": "outputs/report_w4/rafdb_training_history_extracted.csv",
+      "summary": "Bảng lịch sử loss và thời gian huấn luyện RAF-DB theo stage/epoch được trích cho báo cáo W4.",
+      "tags": [
+        "training-history",
+        "raf-db",
+        "loss",
+        "report-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:outputs/report_w4/rafdb_validation_history_extracted.csv:rafdb_validation_history_extracted",
+      "type": "table",
+      "name": "rafdb_validation_history_extracted.csv",
+      "filePath": "outputs/report_w4/rafdb_validation_history_extracted.csv",
+      "summary": "Bảng lịch sử validation RAF-DB theo epoch với accuracy, balanced accuracy, Macro-F1 và ECE được trích cho báo cáo W4.",
+      "tags": [
+        "validation-history",
+        "raf-db",
+        "calibration",
+        "report-data"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:outputs/report_w4/emotionclip_outputs_summary.json",
+      "target": "table:outputs/report_w4/emotionclip_outputs_summary.csv:emotionclip_outputs_summary",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/report_w4/emotionclip_outputs_summary.json",
+      "target": "table:outputs/report_w4/rafdb_training_history_extracted.csv:rafdb_training_history_extracted",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/report_w4/emotionclip_outputs_summary.json",
+      "target": "table:outputs/report_w4/rafdb_validation_history_extracted.csv:rafdb_validation_history_extracted",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

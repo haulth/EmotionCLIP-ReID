@@ -1,0 +1,101 @@
+[
+  {
+    "order": 1,
+    "title": "Tổng quan dự án",
+    "description": "Bắt đầu từ README để nắm mục tiêu của baseline CLIP-ReID và phần mở rộng EmotionCLIP-ReID cho Facial Expression Recognition (FER). Tài liệu này đặt toàn bộ tour vào đúng bối cảnh: dữ liệu, landmark artifacts, huấn luyện hai giai đoạn, inference, kiểm thử và tái lập.",
+    "nodeIds": [
+      "document:README.md"
+    ]
+  },
+  {
+    "order": 2,
+    "title": "Nhánh ReID kế thừa",
+    "description": "Trước khi đi vào FER, hãy nhận diện nhánh CLIP-ReID gốc: entry point điều phối hai stage, model factory tạo learned text descriptors, còn hai processor lần lượt căn chỉnh prompt và tối ưu visual ReID. Mốc này giúp tránh nhầm pipeline person/vehicle re-identification kế thừa với công trình EmotionCLIP-ReID hiện đang phát triển.",
+    "nodeIds": [
+      "file:train_clipreid.py",
+      "file:model/make_model_clipreid.py",
+      "file:processor/processor_clipreid_stage1.py",
+      "file:processor/processor_clipreid_stage2.py"
+    ]
+  },
+  {
+    "order": 3,
+    "title": "Khởi chạy EmotionCLIP",
+    "description": "Từ ranh giới ở bước 2, entry point FER hợp nhất cấu hình, cố định seed, dựng dữ liệu và mô hình, rồi điều phối Stage 1, Stage 2 và sealed test trong một immutable run. Preset ViT-B/16 cho thấy các lựa chọn thực nghiệm chủ đạo như anatomy bắt buộc, hybrid routing, geometry residual, branch fusion và decoupled uncertainty.",
+    "nodeIds": [
+      "file:train_emotionclip.py",
+      "file:config/emotion_defaults.py",
+      "config:configs/emotion/vit_b16_emotionclip.yml"
+    ],
+    "languageLesson": "YAML preset giữ tham số thực nghiệm tách khỏi Python; lớp cấu hình mặc định merge rồi kiểm tra constraint theo kiểu fail-closed để cấu hình anatomy hoặc uncertainty không hợp lệ dừng sớm."
+  },
+  {
+    "order": 4,
+    "title": "Dữ liệu và giải phẫu",
+    "description": "Manifest JSONL định nghĩa hợp đồng bảy lớp FER, tách train/validation/test và kiểm tra leakage cùng anatomy coverage. Trên hợp đồng đó, anatomy module chuẩn hóa landmark về ba vùng, descriptor fixed-width, validity và uncertainty; công cụ offline tạo artifact MediaPipe có version, pose, quality và đường dẫn portable.",
+    "nodeIds": [
+      "file:datasets/emotion_manifest.py",
+      "file:datasets/anatomy.py",
+      "file:tools/build_face_landmark_artifacts.py"
+    ],
+    "languageLesson": "JSONL lưu mỗi mẫu trên một dòng JSON, thuận tiện stream và kiểm tra schema; versioned artifact giúp thay detector mà vẫn giữ một runtime contract ổn định."
+  },
+  {
+    "order": 5,
+    "title": "Kiến trúc biểu diễn",
+    "description": "CLIP implementation cung cấp Vision Transformer và text Transformer làm nền biểu diễn chung. EmotionCLIPModel mở rộng nền đó bằng learnable emotion prompts, zero-initialized expression adapters, anatomy-aware patch routing, geometry residual fusion, calibrated branch fusion và reliability/Dirichlet uncertainty tách khỏi logits phân lớp.",
+    "nodeIds": [
+      "file:model/clip/model.py",
+      "file:model/emotionclip_model.py"
+    ],
+    "languageLesson": "Trong PyTorch, ghép các `nn.Module` nhỏ thành một mô hình phân cấp giúp mỗi khối prompt, adapter, router, fusion và reliability có thể được freeze, kiểm thử và ablate độc lập."
+  },
+  {
+    "order": 6,
+    "title": "Huấn luyện hai giai đoạn",
+    "description": "Sau khi hiểu biểu diễn, processor cho thấy cách chuyển phase, áp corruption cho reliability, chọn checkpoint và bảo vệ vòng lặp trước giá trị non-finite. Loss Stage 2 kết hợp classification/alignment với evidential learning, correctness/ranking của reliability và regularization cho gate, temperature cùng routing, biến các đầu ra ở bước 5 thành mục tiêu tối ưu cụ thể.",
+    "nodeIds": [
+      "file:processor/processor_emotionclip.py",
+      "file:loss/emotion_losses.py"
+    ]
+  },
+  {
+    "order": 7,
+    "title": "Suy luận và đánh giá",
+    "description": "CLI inference dựng lại mô hình từ cấu hình và checkpoint, có thể nạp landmark artifact trước khi xuất prediction, confidence và uncertainty cho một ảnh. Bộ FER metrics mở rộng accuracy bằng per-class F1, balanced accuracy, calibration, NLL/Brier, selective risk và OOD ranking, nhờ đó đánh giá đồng thời độ chính xác và độ tin cậy.",
+    "nodeIds": [
+      "file:infer_emotionclip.py",
+      "file:utils/fer_metrics.py"
+    ]
+  },
+  {
+    "order": 8,
+    "title": "Tái lập và kiểm chứng",
+    "description": "Run artifacts ghi hash của manifest/split, git state, dependency, phần cứng và cấu hình vào thư mục thí nghiệm immutable. Unit tests kiểm tra invariant của prompt, adapter, fusion, router và uncertainty, còn smoke tests bao phủ Stage 1–2, gradient accumulation, checkpoint contract, sealed test và corruption anatomy trên CPU.",
+    "nodeIds": [
+      "file:utils/run_artifacts.py",
+      "file:tests/test_emotion_model_units.py",
+      "file:tests/test_emotion_processor_smoke.py"
+    ]
+  },
+  {
+    "order": 9,
+    "title": "Đọc artifact kết quả",
+    "description": "Các artifact không phải source code cho thấy cách kết quả cũ được lưu theo epoch và tổng hợp: FER2013 có snapshot tốt nhất theo Macro-F1 cùng bảng validation 30 epoch, còn RAF-DB có metric, confusion matrix và uncertainty-risk ở epoch 28. Đọc chúng sau bước 7–8 giúp phân biệt số đo thực nghiệm đã có với năng lực được cài đặt trong kiến trúc hiện tại.",
+    "nodeIds": [
+      "config:outputs/fer2013/best_metrics_summary.json",
+      "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "config:outputs/RAF-DB/metrics_epoch_28.json"
+    ],
+    "languageLesson": "JSON phù hợp cho một snapshot có cấu trúc, còn CSV phù hợp cho chuỗi metric theo epoch và phân tích bảng; provenance phải được đọc kèm để tránh so sánh các protocol khác nhau như thể cùng một thí nghiệm."
+  },
+  {
+    "order": 10,
+    "title": "Khoảng trống nghiên cứu",
+    "description": "Kết thúc tour bằng báo cáo audit để nối kiến trúc, protocol, log và novelty với các gap như leakage, provenance và uncertainty, đồng thời theo dõi phần protocol đã được sửa. Pipeline related-work mã hóa danh sách 32 paper và tạo workbook, báo cáo cùng gap map, cung cấp nền tảng để đối chiếu đóng góp dự kiến trước khi tuyên bố publication-ready.",
+    "nodeIds": [
+      "document:docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "file:docs/research_review/build_research_review.py"
+    ]
+  }
+]

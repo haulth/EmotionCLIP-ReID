@@ -1,0 +1,1108 @@
+{
+  "nodes": [
+    {
+      "id": "file:train_emotionclip.py",
+      "type": "file",
+      "name": "train_emotionclip.py",
+      "filePath": "train_emotionclip.py",
+      "summary": "Entry point huấn luyện EmotionCLIP: hợp nhất cấu hình, thiết lập seed/device/logging, dựng dữ liệu và mô hình, sau đó chạy Stage 1/Stage 2 cùng đánh giá sealed test. Tệp lưu cấu hình hiệu lực và provenance của run để tái lập kết quả.",
+      "tags": [
+        "entry-point",
+        "training",
+        "configuration",
+        "reproducibility",
+        "gpu"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Mô-đun Python có nhiều hàm cấp mô-đun; các bất biến và cấu hình được truyền rõ ràng qua tham số thay vì dựa vào trạng thái ẩn."
+    },
+    {
+      "id": "function:train_emotionclip.py:set_seed",
+      "type": "function",
+      "name": "set_seed",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        29,
+        34
+      ],
+      "summary": "Thực hiện phép xử lý `set_seed` từ `seed` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "training",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:setup_logging",
+      "type": "function",
+      "name": "setup_logging",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        37,
+        46
+      ],
+      "summary": "Thực hiện phép xử lý `setup_logging` từ `output_dir` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "training",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:_flatten_config",
+      "type": "function",
+      "name": "_flatten_config",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        49,
+        55
+      ],
+      "summary": "Thực hiện phép xử lý `_flatten_config` từ `prefix`, `value` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "training",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:_csv_value",
+      "type": "function",
+      "name": "_csv_value",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        58,
+        63
+      ],
+      "summary": "Thực hiện phép xử lý `_csv_value` từ `value` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "training",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:save_train_config_csv",
+      "type": "function",
+      "name": "save_train_config_csv",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        66,
+        91
+      ],
+      "summary": "Thực hiện phép xử lý `save_train_config_csv` từ `cfg`, `config_file`, `opts` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "training",
+        "optimization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:save_effective_config",
+      "type": "function",
+      "name": "save_effective_config",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        94,
+        103
+      ],
+      "summary": "Thực hiện phép xử lý `save_effective_config` từ `cfg`, `config_sources` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "training",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:trainable_parameters",
+      "type": "function",
+      "name": "trainable_parameters",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        106,
+        107
+      ],
+      "summary": "Thực hiện phép xử lý `trainable_parameters` từ `model` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "training",
+        "optimization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:parse_gpu_ids",
+      "type": "function",
+      "name": "parse_gpu_ids",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        110,
+        121
+      ],
+      "summary": "Thực hiện phép xử lý `parse_gpu_ids` từ `gpus` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "training",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:validate_gpu_topology",
+      "type": "function",
+      "name": "validate_gpu_topology",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        124,
+        137
+      ],
+      "summary": "Thực hiện phép xử lý `validate_gpu_topology` từ `gpu_ids` trong miền training và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "training",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:configure_device",
+      "type": "function",
+      "name": "configure_device",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        140,
+        168
+      ],
+      "summary": "Xác thực yêu cầu GPU và chọn thiết bị CUDA/CPU phù hợp với cấu hình runtime.",
+      "tags": [
+        "function",
+        "training",
+        "configuration"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:train_emotionclip.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "train_emotionclip.py",
+      "lineRange": [
+        171,
+        422
+      ],
+      "summary": "Điều phối entry point cho entry point huấn luyện emotionclip: hợp nhất cấu hình, thiết lập seed/device/logging, dựng dữ liệu và mô hình, sau đó chạy stage 1/stage 2 cùng đánh giá sealed test, bao gồm xử lý tham số, thực thi luồng chính và ghi kết quả.",
+      "tags": [
+        "function",
+        "training",
+        "entry-point"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:utils/fer_metrics.py",
+      "type": "file",
+      "name": "fer_metrics.py",
+      "filePath": "utils/fer_metrics.py",
+      "summary": "Tính bộ metric FER và uncertainty gồm confusion matrix, macro/per-class F1, balanced accuracy, calibration, selective risk và OOD ranking.",
+      "tags": [
+        "metrics",
+        "evaluation",
+        "calibration",
+        "uncertainty"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:_safe_div",
+      "type": "function",
+      "name": "_safe_div",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        6,
+        7
+      ],
+      "summary": "Thực hiện phép xử lý `_safe_div` từ `numerator`, `denominator` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:confusion_matrix",
+      "type": "function",
+      "name": "confusion_matrix",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        10,
+        14
+      ],
+      "summary": "Thực hiện phép xử lý `confusion_matrix` từ `labels`, `predictions`, `num_classes` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:per_class_f1",
+      "type": "function",
+      "name": "per_class_f1",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        17,
+        26
+      ],
+      "summary": "Thực hiện phép xử lý `per_class_f1` từ `matrix` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:balanced_accuracy",
+      "type": "function",
+      "name": "balanced_accuracy",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        29,
+        34
+      ],
+      "summary": "Thực hiện phép xử lý `balanced_accuracy` từ `matrix` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "evaluation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:expected_calibration_error",
+      "type": "function",
+      "name": "expected_calibration_error",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        37,
+        54
+      ],
+      "summary": "Thực hiện phép xử lý `expected_calibration_error` từ `labels`, `probabilities`, `n_bins` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:adaptive_calibration_error",
+      "type": "function",
+      "name": "adaptive_calibration_error",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        57,
+        70
+      ],
+      "summary": "Thực hiện phép xử lý `adaptive_calibration_error` từ `labels`, `probabilities`, `n_bins` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:classwise_calibration_error",
+      "type": "function",
+      "name": "classwise_calibration_error",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        73,
+        87
+      ],
+      "summary": "Thực hiện phép xử lý `classwise_calibration_error` từ `labels`, `probabilities`, `n_bins` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "validation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:negative_log_likelihood",
+      "type": "function",
+      "name": "negative_log_likelihood",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        90,
+        94
+      ],
+      "summary": "Thực hiện phép xử lý `negative_log_likelihood` từ `labels`, `probabilities` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:brier_score",
+      "type": "function",
+      "name": "brier_score",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        97,
+        101
+      ],
+      "summary": "Thực hiện phép xử lý `brier_score` từ `labels`, `probabilities` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:uncertainty_risk_auc",
+      "type": "function",
+      "name": "uncertainty_risk_auc",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        104,
+        111
+      ],
+      "summary": "Thực hiện phép xử lý `uncertainty_risk_auc` từ `labels`, `probabilities`, `uncertainty` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:excess_aurc",
+      "type": "function",
+      "name": "excess_aurc",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        114,
+        122
+      ],
+      "summary": "Thực hiện phép xử lý `excess_aurc` từ `labels`, `probabilities`, `uncertainty` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:risk_at_coverage",
+      "type": "function",
+      "name": "risk_at_coverage",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        125,
+        131
+      ],
+      "summary": "Thực hiện phép xử lý `risk_at_coverage` từ `labels`, `probabilities`, `uncertainty`, `coverage` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:_binary_ranking_metrics",
+      "type": "function",
+      "name": "_binary_ranking_metrics",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        134,
+        156
+      ],
+      "summary": "Thực hiện phép xử lý `_binary_ranking_metrics` từ `targets`, `scores` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "evaluation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:ood_detection_metrics",
+      "type": "function",
+      "name": "ood_detection_metrics",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        159,
+        180
+      ],
+      "summary": "Thực hiện phép xử lý `ood_detection_metrics` từ `in_distribution_uncertainty`, `ood_uncertainty` trong miền metrics và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "metrics",
+        "evaluation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/fer_metrics.py:compute_fer_metrics",
+      "type": "function",
+      "name": "compute_fer_metrics",
+      "filePath": "utils/fer_metrics.py",
+      "lineRange": [
+        183,
+        227
+      ],
+      "summary": "Tổng hợp metric FER, calibration, uncertainty-risk và thống kê theo lớp từ nhãn, xác suất và uncertainty.",
+      "tags": [
+        "function",
+        "metrics",
+        "evaluation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/run_artifacts.py",
+      "type": "file",
+      "name": "run_artifacts.py",
+      "filePath": "utils/run_artifacts.py",
+      "summary": "Khởi tạo thư mục run bất biến và ghi provenance về Git, manifest, dependency cùng phần cứng; đồng thời phân giải artifact theo run ID rõ ràng.",
+      "tags": [
+        "artifacts",
+        "provenance",
+        "reproducibility",
+        "utility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:_sha256_bytes",
+      "type": "function",
+      "name": "_sha256_bytes",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        21,
+        22
+      ],
+      "summary": "Thực hiện phép xử lý `_sha256_bytes` từ `value` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "provenance",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:_git",
+      "type": "function",
+      "name": "_git",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        25,
+        29
+      ],
+      "summary": "Thực hiện phép xử lý `_git` từ `args` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "provenance",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:_manifest_hashes",
+      "type": "function",
+      "name": "_manifest_hashes",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        32,
+        53
+      ],
+      "summary": "Thực hiện phép xử lý `_manifest_hashes` từ `path` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "provenance",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:_dependency_versions",
+      "type": "function",
+      "name": "_dependency_versions",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        56,
+        64
+      ],
+      "summary": "Thực hiện phép xử lý `_dependency_versions` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "provenance",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:_hardware",
+      "type": "function",
+      "name": "_hardware",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        67,
+        81
+      ],
+      "summary": "Thực hiện phép xử lý `_hardware` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "provenance",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:initialize_immutable_run",
+      "type": "function",
+      "name": "initialize_immutable_run",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        84,
+        123
+      ],
+      "summary": "Tạo run directory không ghi đè và lưu cấu hình cùng provenance dữ liệu, mã nguồn, dependency và phần cứng.",
+      "tags": [
+        "function",
+        "provenance",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/run_artifacts.py:artifact_dir",
+      "type": "function",
+      "name": "artifact_dir",
+      "filePath": "utils/run_artifacts.py",
+      "lineRange": [
+        126,
+        133
+      ],
+      "summary": "Thực hiện phép xử lý `artifact_dir` từ `output_root`, `run_id` trong miền provenance và cung cấp kết quả cho các bước kế tiếp của pipeline.",
+      "tags": [
+        "function",
+        "provenance",
+        "serialization"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:set_seed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:set_seed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:setup_logging",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:setup_logging",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_flatten_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_flatten_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_csv_value",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:_csv_value",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:save_train_config_csv",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:save_train_config_csv",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:save_effective_config",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:save_effective_config",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:trainable_parameters",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:trainable_parameters",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:parse_gpu_ids",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:parse_gpu_ids",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:validate_gpu_topology",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:validate_gpu_topology",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:configure_device",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:configure_device",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "function:train_emotionclip.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:config/emotion_defaults.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:utils/run_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:_safe_div",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:_safe_div",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:confusion_matrix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:confusion_matrix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:per_class_f1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:per_class_f1",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:balanced_accuracy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:balanced_accuracy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:expected_calibration_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:expected_calibration_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:adaptive_calibration_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:adaptive_calibration_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:classwise_calibration_error",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:classwise_calibration_error",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:negative_log_likelihood",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:negative_log_likelihood",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:brier_score",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:brier_score",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:uncertainty_risk_auc",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:uncertainty_risk_auc",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:excess_aurc",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:excess_aurc",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:risk_at_coverage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:risk_at_coverage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:_binary_ranking_metrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:_binary_ranking_metrics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:ood_detection_metrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:ood_detection_metrics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:compute_fer_metrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "function:utils/fer_metrics.py:compute_fer_metrics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_sha256_bytes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_sha256_bytes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_git",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_git",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_manifest_hashes",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_manifest_hashes",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_dependency_versions",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_dependency_versions",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_hardware",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:_hardware",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:initialize_immutable_run",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:initialize_immutable_run",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:artifact_dir",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "function:utils/run_artifacts.py:artifact_dir",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

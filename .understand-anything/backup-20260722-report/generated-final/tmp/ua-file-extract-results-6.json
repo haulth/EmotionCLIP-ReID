@@ -1,0 +1,168 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 270,
+      "nonEmptyLines": 200,
+      "sections": [
+        {
+          "heading": "Pipeline",
+          "level": 3,
+          "line": 4
+        },
+        {
+          "heading": "Installation",
+          "level": 3,
+          "line": 8
+        },
+        {
+          "heading": "Prepare Dataset",
+          "level": 3,
+          "line": 22
+        },
+        {
+          "heading": "Training",
+          "level": 3,
+          "line": 26
+        },
+        {
+          "heading": "EmotionCLIP-ReID for FER",
+          "level": 3,
+          "line": 28
+        },
+        {
+          "heading": "Evaluation",
+          "level": 3,
+          "line": 231
+        },
+        {
+          "heading": "Acknowledgement",
+          "level": 3,
+          "line": 239
+        },
+        {
+          "heading": "Trained models and test logs",
+          "level": 3,
+          "line": 245
+        },
+        {
+          "heading": "Citation",
+          "level": 3,
+          "line": 258
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "path": "environment_emotionclip_cuda.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 21,
+      "nonEmptyLines": 21,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "channels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "dependencies",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "note_edit.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 350,
+      "nonEmptyLines": 255,
+      "sections": [
+        {
+          "heading": "Temperature — 3 scalar",
+          "level": 3,
+          "line": 104
+        },
+        {
+          "heading": "Tại sao phân bố này gây vấn đề?",
+          "level": 3,
+          "line": 136
+        },
+        {
+          "heading": "“Ảnh nhiễu/che vùng” là gì?",
+          "level": 3,
+          "line": 162
+        },
+        {
+          "heading": "Mục đích của hai bản ảnh",
+          "level": 3,
+          "line": 201
+        },
+        {
+          "heading": "Thiết kế Stage 2 đề xuất",
+          "level": 2,
+          "line": 214
+        },
+        {
+          "heading": "Stage 2A — Head calibration, 3–5 epoch",
+          "level": 3,
+          "line": 228
+        },
+        {
+          "heading": "Stage 2B — Anatomy bootstrap, 3–5 epoch",
+          "level": 3,
+          "line": 257
+        },
+        {
+          "heading": "Stage 2C — Gradual adapter fine-tuning",
+          "level": 3,
+          "line": 290
+        },
+        {
+          "heading": "Stage 2D — Classifier re-balancing",
+          "level": 3,
+          "line": 320
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 9
+      }
+    },
+    {
+      "path": "pytest.ini",
+      "language": "config",
+      "fileCategory": "config",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "metrics": {}
+    }
+  ]
+}

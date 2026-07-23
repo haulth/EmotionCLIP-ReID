@@ -1,0 +1,84 @@
+{
+  "nodes": [
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip.yml",
+      "summary": "Preset đầy đủ cho ViT-B/16 EmotionCLIP-ReID với anatomy bắt buộc, hybrid routing, gated geometry residual, decoupled uncertainty, calibrated branch fusion và loss/corruption cho Stage 1–2.",
+      "tags": [
+        "cấu-hình",
+        "yaml",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML phân cấp tách MODEL, INPUT, DATASETS, SOLVER, TEST và TRAIN để CLI override theo dotted key."
+    },
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip_fer2013_quick.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+      "summary": "Preset FER2013 từ manifest nội bộ, chạy 200 epoch hai giai đoạn với anatomy quality, hybrid routing và geometry fusion để thử nghiệm nhanh có checkpoint mỗi epoch.",
+      "tags": [
+        "cấu-hình",
+        "yaml",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "summary": "Preset cho bản FER2013 tải từ Hugging Face, dùng cùng hợp đồng anatomy và lịch Stage 1 base+geometry rồi Stage 2 của pipeline quick.",
+      "tags": [
+        "cấu-hình",
+        "yaml",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip_rafdb_quick.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+      "summary": "Preset RAF-DB có AMP, gradient accumulation, clipping/non-finite guard và early stopping; vẫn yêu cầu anatomy coverage và tách validation/test nghiêm ngặt.",
+      "tags": [
+        "cấu-hình",
+        "yaml",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+      "target": "config:configs/emotion/vit_b16_emotionclip.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "target": "config:configs/emotion/vit_b16_emotionclip.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+      "target": "config:configs/emotion/vit_b16_emotionclip.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

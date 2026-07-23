@@ -1,0 +1,244 @@
+{
+    "projectRoot":  "E:\\Source\\EmotionCLIP-ReID",
+    "batchFiles":  [
+                       {
+                           "path":  "config/__init__.py",
+                           "language":  "python",
+                           "sizeLines":  17,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/center_loss.py",
+                           "language":  "python",
+                           "sizeLines":  67,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/make_loss.py",
+                           "language":  "python",
+                           "sizeLines":  89,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/softmax_loss.py",
+                           "language":  "python",
+                           "sizeLines":  56,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/supcontrast.py",
+                           "language":  "python",
+                           "sizeLines":  29,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "loss/triplet_loss.py",
+                           "language":  "python",
+                           "sizeLines":  136,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "processor/processor.py",
+                           "language":  "python",
+                           "sizeLines":  207,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "processor/processor_clipreid_stage1.py",
+                           "language":  "python",
+                           "sizeLines":  106,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "processor/processor_clipreid_stage2.py",
+                           "language":  "python",
+                           "sizeLines":  230,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "solver/cosine_lr.py",
+                           "language":  "python",
+                           "sizeLines":  115,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "solver/lr_scheduler.py",
+                           "language":  "python",
+                           "sizeLines":  56,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "solver/make_optimizer.py",
+                           "language":  "python",
+                           "sizeLines":  27,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "solver/make_optimizer_prompt.py",
+                           "language":  "python",
+                           "sizeLines":  55,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "solver/scheduler.py",
+                           "language":  "python",
+                           "sizeLines":  105,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "solver/scheduler_factory.py",
+                           "language":  "python",
+                           "sizeLines":  25,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "test.py",
+                           "language":  "python",
+                           "sizeLines":  70,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "test_clipreid.py",
+                           "language":  "python",
+                           "sizeLines":  70,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "train.py",
+                           "language":  "python",
+                           "sizeLines":  87,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "train_clipreid.py",
+                           "language":  "python",
+                           "sizeLines":  99,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "utils/logger.py",
+                           "language":  "python",
+                           "sizeLines":  25,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "utils/meter.py",
+                           "language":  "python",
+                           "sizeLines":  19,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "utils/metrics.py",
+                           "language":  "python",
+                           "sizeLines":  136,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "utils/reranking.py",
+                           "language":  "python",
+                           "sizeLines":  101,
+                           "fileCategory":  "code"
+                       }
+                   ],
+    "batchImportData":  {
+                            "config/__init__.py":  [
+
+                                                   ],
+                            "loss/center_loss.py":  [
+
+                                                    ],
+                            "loss/make_loss.py":  [
+                                                      "loss/center_loss.py",
+                                                      "loss/softmax_loss.py",
+                                                      "loss/triplet_loss.py"
+                                                  ],
+                            "loss/softmax_loss.py":  [
+
+                                                     ],
+                            "loss/supcontrast.py":  [
+
+                                                    ],
+                            "loss/triplet_loss.py":  [
+
+                                                     ],
+                            "processor/processor.py":  [
+                                                           "utils/meter.py",
+                                                           "utils/metrics.py"
+                                                       ],
+                            "processor/processor_clipreid_stage1.py":  [
+                                                                           "loss/supcontrast.py",
+                                                                           "utils/meter.py"
+                                                                       ],
+                            "processor/processor_clipreid_stage2.py":  [
+                                                                           "loss/supcontrast.py",
+                                                                           "utils/meter.py",
+                                                                           "utils/metrics.py"
+                                                                       ],
+                            "solver/cosine_lr.py":  [
+                                                        "solver/scheduler.py"
+                                                    ],
+                            "solver/lr_scheduler.py":  [
+
+                                                       ],
+                            "solver/make_optimizer.py":  [
+
+                                                         ],
+                            "solver/make_optimizer_prompt.py":  [
+
+                                                                ],
+                            "solver/scheduler.py":  [
+
+                                                    ],
+                            "solver/scheduler_factory.py":  [
+                                                                "solver/cosine_lr.py"
+                                                            ],
+                            "test.py":  [
+                                            "config/__init__.py",
+                                            "datasets/make_dataloader.py",
+                                            "model/make_model.py",
+                                            "processor/processor.py",
+                                            "utils/logger.py"
+                                        ],
+                            "test_clipreid.py":  [
+                                                     "config/__init__.py",
+                                                     "datasets/make_dataloader_clipreid.py",
+                                                     "model/make_model_clipreid.py",
+                                                     "processor/processor_clipreid_stage2.py",
+                                                     "utils/logger.py"
+                                                 ],
+                            "train.py":  [
+                                             "config/__init__.py",
+                                             "datasets/make_dataloader.py",
+                                             "loss/make_loss.py",
+                                             "model/make_model.py",
+                                             "processor/processor.py",
+                                             "solver/lr_scheduler.py",
+                                             "solver/make_optimizer.py",
+                                             "utils/logger.py"
+                                         ],
+                            "train_clipreid.py":  [
+                                                      "config/__init__.py",
+                                                      "datasets/make_dataloader_clipreid.py",
+                                                      "loss/make_loss.py",
+                                                      "model/make_model_clipreid.py",
+                                                      "processor/processor_clipreid_stage1.py",
+                                                      "processor/processor_clipreid_stage2.py",
+                                                      "solver/lr_scheduler.py",
+                                                      "solver/make_optimizer_prompt.py",
+                                                      "solver/scheduler_factory.py",
+                                                      "utils/logger.py"
+                                                  ],
+                            "utils/logger.py":  [
+
+                                                ],
+                            "utils/meter.py":  [
+
+                                               ],
+                            "utils/metrics.py":  [
+                                                     "utils/reranking.py"
+                                                 ],
+                            "utils/reranking.py":  [
+
+                                                   ]
+                        }
+}

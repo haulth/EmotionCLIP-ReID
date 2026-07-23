@@ -1,0 +1,97 @@
+{
+    "projectRoot":  "E:\\Source\\EmotionCLIP-ReID",
+    "batchFiles":  [
+                       {
+                           "path":  "outputs/fer2013/README_training_logs.md",
+                           "language":  "markdown",
+                           "sizeLines":  30,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "outputs/fer2013/accuracy_uce_summary.json",
+                           "language":  "json",
+                           "sizeLines":  44,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/fer2013/best_metrics_summary.json",
+                           "language":  "json",
+                           "sizeLines":  82,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/fer2013/inference_sample_uncertainty.json",
+                           "language":  "json",
+                           "sizeLines":  23,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/fer2013/training_epoch_losses.csv",
+                           "language":  "csv",
+                           "sizeLines":  51,
+                           "fileCategory":  "data"
+                       },
+                       {
+                           "path":  "outputs/fer2013/training_step_losses.csv",
+                           "language":  "csv",
+                           "sizeLines":  1761,
+                           "fileCategory":  "data"
+                       },
+                       {
+                           "path":  "outputs/fer2013/uncertainty_summary.json",
+                           "language":  "json",
+                           "sizeLines":  14,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/fer2013/validation_accuracy.csv",
+                           "language":  "csv",
+                           "sizeLines":  31,
+                           "fileCategory":  "data"
+                       },
+                       {
+                           "path":  "outputs/fer2013/validation_metrics.csv",
+                           "language":  "csv",
+                           "sizeLines":  31,
+                           "fileCategory":  "data"
+                       },
+                       {
+                           "path":  "outputs/fer2013/validation_uncertainty.csv",
+                           "language":  "csv",
+                           "sizeLines":  2,
+                           "fileCategory":  "data"
+                       }
+                   ],
+    "batchImportData":  {
+                            "outputs/fer2013/README_training_logs.md":  [
+
+                                                                        ],
+                            "outputs/fer2013/accuracy_uce_summary.json":  [
+
+                                                                          ],
+                            "outputs/fer2013/best_metrics_summary.json":  [
+
+                                                                          ],
+                            "outputs/fer2013/inference_sample_uncertainty.json":  [
+
+                                                                                  ],
+                            "outputs/fer2013/training_epoch_losses.csv":  [
+
+                                                                          ],
+                            "outputs/fer2013/training_step_losses.csv":  [
+
+                                                                         ],
+                            "outputs/fer2013/uncertainty_summary.json":  [
+
+                                                                         ],
+                            "outputs/fer2013/validation_accuracy.csv":  [
+
+                                                                        ],
+                            "outputs/fer2013/validation_metrics.csv":  [
+
+                                                                       ],
+                            "outputs/fer2013/validation_uncertainty.csv":  [
+
+                                                                           ]
+                        }
+}

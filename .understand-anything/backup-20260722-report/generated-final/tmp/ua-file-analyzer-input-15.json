@@ -1,0 +1,43 @@
+{
+    "projectRoot":  "E:\\Source\\EmotionCLIP-ReID",
+    "batchFiles":  [
+                       {
+                           "path":  "outputs/report_w4/emotionclip_outputs_summary.csv",
+                           "language":  "csv",
+                           "sizeLines":  3,
+                           "fileCategory":  "data"
+                       },
+                       {
+                           "path":  "outputs/report_w4/emotionclip_outputs_summary.json",
+                           "language":  "json",
+                           "sizeLines":  82,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "outputs/report_w4/rafdb_training_history_extracted.csv",
+                           "language":  "csv",
+                           "sizeLines":  51,
+                           "fileCategory":  "data"
+                       },
+                       {
+                           "path":  "outputs/report_w4/rafdb_validation_history_extracted.csv",
+                           "language":  "csv",
+                           "sizeLines":  31,
+                           "fileCategory":  "data"
+                       }
+                   ],
+    "batchImportData":  {
+                            "outputs/report_w4/emotionclip_outputs_summary.csv":  [
+
+                                                                                  ],
+                            "outputs/report_w4/emotionclip_outputs_summary.json":  [
+
+                                                                                   ],
+                            "outputs/report_w4/rafdb_training_history_extracted.csv":  [
+
+                                                                                       ],
+                            "outputs/report_w4/rafdb_validation_history_extracted.csv":  [
+
+                                                                                         ]
+                        }
+}

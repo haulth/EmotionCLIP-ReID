@@ -1,0 +1,732 @@
+{
+  "nodes": [
+    {
+      "id": "file:outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_w4_uncertainty_detail.drawio",
+      "filePath": "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+      "summary": "Sơ đồ chi tiết nhánh uncertainty W4 từ fused logits qua decoupled Dirichlet strength đến probability, uncertainty, EDL objective, ECE và uncertainty-risk AUC.",
+      "tags": [
+        "python",
+        "module",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:processor/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "processor/__init__.py",
+      "summary": "Đánh dấu processor là Python package; các vòng lặp huấn luyện cụ thể được đặt trong các module processor chuyên biệt.",
+      "tags": [
+        "huấn-luyện",
+        "đánh-giá",
+        "checkpoint",
+        "pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "solver/__init__.py",
+      "summary": "Đánh dấu solver là Python package cho optimizer và learning-rate scheduler của dự án.",
+      "tags": [
+        "python",
+        "module",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "utils/__init__.py",
+      "summary": "Đánh dấu utils là Python package tập hợp metric, logging, notebook helper và artifact reproducibility.",
+      "tags": [
+        "python",
+        "module",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/notebook_metrics.py",
+      "type": "file",
+      "name": "notebook_metrics.py",
+      "filePath": "utils/notebook_metrics.py",
+      "summary": "Các helper notebook dò metric từ JSON/CSV/log, hợp nhất lịch sử validation/training và vẽ curve, confusion matrix, per-class F1 với lựa chọn best epoch.",
+      "tags": [
+        "đánh-giá",
+        "calibration",
+        "fer",
+        "trực-quan-hóa"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Helper ưu tiên artifact JSON mới nhưng duy trì fallback CSV/log cho các run lịch sử."
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:metric_epoch",
+      "type": "function",
+      "name": "metric_epoch",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        18,
+        20
+      ],
+      "summary": "Triển khai thao tác metric epoch trong notebook_metrics.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:unique_paths",
+      "type": "function",
+      "name": "unique_paths",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        23,
+        38
+      ],
+      "summary": "Triển khai thao tác unique paths trong notebook_metrics.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_to_float",
+      "type": "function",
+      "name": "_to_float",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        41,
+        52
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý to float trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_read_json",
+      "type": "function",
+      "name": "_read_json",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        55,
+        56
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý read json trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_first_existing",
+      "type": "function",
+      "name": "_first_existing",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        59,
+        63
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý first existing trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_best_epoch_from_uncertainty",
+      "type": "function",
+      "name": "_best_epoch_from_uncertainty",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        66,
+        75
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý best epoch from uncertainty trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_finalize_metric_bundle",
+      "type": "function",
+      "name": "_finalize_metric_bundle",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        78,
+        109
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý finalize metric bundle trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_load_json_metrics",
+      "type": "function",
+      "name": "_load_json_metrics",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        112,
+        138
+      ],
+      "summary": "Nạp và chuẩn hóa json metrics cho luồng xử lý của notebook_metrics.py.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_load_csv_metrics",
+      "type": "function",
+      "name": "_load_csv_metrics",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        141,
+        191
+      ],
+      "summary": "Nạp và chuẩn hóa csv metrics cho luồng xử lý của notebook_metrics.py.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:load_validation_metrics",
+      "type": "function",
+      "name": "load_validation_metrics",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        194,
+        204
+      ],
+      "summary": "Ưu tiên nạp metric validation từ JSON theo epoch rồi fallback sang các CSV/summary cũ.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:print_validation_summary",
+      "type": "function",
+      "name": "print_validation_summary",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        207,
+        240
+      ],
+      "summary": "Triển khai thao tác print validation summary trong notebook_metrics.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_finite_xy",
+      "type": "function",
+      "name": "_finite_xy",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        243,
+        252
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý finite xy trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_format_epoch_axis",
+      "type": "function",
+      "name": "_format_epoch_axis",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        255,
+        262
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý format epoch axis trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_plot_metric_lines",
+      "type": "function",
+      "name": "_plot_metric_lines",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        265,
+        300
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý plot metric lines trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_pick_payload",
+      "type": "function",
+      "name": "_pick_payload",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        303,
+        314
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý pick payload trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:plot_validation_metric_curves",
+      "type": "function",
+      "name": "plot_validation_metric_curves",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        317,
+        405
+      ],
+      "summary": "Vẽ các đường accuracy, F1, calibration và uncertainty theo epoch, đánh dấu best checkpoint.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_parse_log_training_history",
+      "type": "function",
+      "name": "_parse_log_training_history",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        408,
+        422
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý parse log training history trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:_parse_csv_training_history",
+      "type": "function",
+      "name": "_parse_csv_training_history",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        425,
+        443
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý parse csv training history trong notebook_metrics.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:load_training_history",
+      "type": "function",
+      "name": "load_training_history",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        446,
+        475
+      ],
+      "summary": "Tìm và parse lịch sử training từ log có cấu trúc hoặc CSV tương thích ngược.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:plot_training_metric_curves",
+      "type": "function",
+      "name": "plot_training_metric_curves",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        478,
+        547
+      ],
+      "summary": "Vẽ loss/learning-rate/diagnostic của Stage 1–2 và lưu hình vào result directory.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils/notebook_metrics.py:plot_confusion_matrix_and_f1",
+      "type": "function",
+      "name": "plot_confusion_matrix_and_f1",
+      "filePath": "utils/notebook_metrics.py",
+      "lineRange": [
+        550,
+        610
+      ],
+      "summary": "Vẽ confusion matrix cùng per-class F1 từ metric bundle đã hợp nhất.",
+      "tags": [
+        "hàm",
+        "đánh-giá",
+        "python"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:metric_epoch",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:metric_epoch",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:unique_paths",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:unique_paths",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_to_float",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_to_float",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_read_json",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_read_json",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_first_existing",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_first_existing",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_best_epoch_from_uncertainty",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_best_epoch_from_uncertainty",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_finalize_metric_bundle",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_finalize_metric_bundle",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_load_json_metrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_load_json_metrics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_load_csv_metrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_load_csv_metrics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:load_validation_metrics",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:load_validation_metrics",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:print_validation_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:print_validation_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_finite_xy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_finite_xy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_format_epoch_axis",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_format_epoch_axis",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_plot_metric_lines",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_plot_metric_lines",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_pick_payload",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_pick_payload",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:plot_validation_metric_curves",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:plot_validation_metric_curves",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_parse_log_training_history",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_parse_log_training_history",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_parse_csv_training_history",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:_parse_csv_training_history",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:load_training_history",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:load_training_history",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:plot_training_metric_curves",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:plot_training_metric_curves",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:plot_confusion_matrix_and_f1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/notebook_metrics.py",
+      "target": "function:utils/notebook_metrics.py:plot_confusion_matrix_and_f1",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+      "target": "file:utils/notebook_metrics.py",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

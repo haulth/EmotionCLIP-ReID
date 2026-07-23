@@ -1,0 +1,305 @@
+{
+  "nodes": [
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_1.json",
+      "type": "config",
+      "name": "metrics_epoch_1.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_1.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 1, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_10.json",
+      "type": "config",
+      "name": "metrics_epoch_10.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_10.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 10, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_11.json",
+      "type": "config",
+      "name": "metrics_epoch_11.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_11.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 11, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_12.json",
+      "type": "config",
+      "name": "metrics_epoch_12.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_12.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 12, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_13.json",
+      "type": "config",
+      "name": "metrics_epoch_13.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_13.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 13, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_14.json",
+      "type": "config",
+      "name": "metrics_epoch_14.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_14.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 14, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_15.json",
+      "type": "config",
+      "name": "metrics_epoch_15.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_15.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 15, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_16.json",
+      "type": "config",
+      "name": "metrics_epoch_16.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_16.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 16, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_17.json",
+      "type": "config",
+      "name": "metrics_epoch_17.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_17.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 17, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_18.json",
+      "type": "config",
+      "name": "metrics_epoch_18.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_18.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 18, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_19.json",
+      "type": "config",
+      "name": "metrics_epoch_19.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_19.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 19, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_2.json",
+      "type": "config",
+      "name": "metrics_epoch_2.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_2.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 2, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_20.json",
+      "type": "config",
+      "name": "metrics_epoch_20.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_20.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 20, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_21.json",
+      "type": "config",
+      "name": "metrics_epoch_21.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_21.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 21, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_22.json",
+      "type": "config",
+      "name": "metrics_epoch_22.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_22.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 22, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_23.json",
+      "type": "config",
+      "name": "metrics_epoch_23.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_23.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 23, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_24.json",
+      "type": "config",
+      "name": "metrics_epoch_24.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_24.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 24, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_25.json",
+      "type": "config",
+      "name": "metrics_epoch_25.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_25.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 25, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_26.json",
+      "type": "config",
+      "name": "metrics_epoch_26.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_26.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 26, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_27.json",
+      "type": "config",
+      "name": "metrics_epoch_27.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_27.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 27, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    }
+  ],
+  "edges": []
+}

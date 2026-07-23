@@ -1,0 +1,292 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 10,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "outputs/fer2013/README_training_logs.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 30,
+      "nonEmptyLines": 28,
+      "sections": [
+        {
+          "heading": "FER2013 training logs extracted from notebook",
+          "level": 1,
+          "line": 1
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "outputs/fer2013/accuracy_uce_summary.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 44,
+      "nonEmptyLines": 44,
+      "sections": [
+        {
+          "heading": "source",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "metric_note",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "best_accuracy",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "best_balanced_acc",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "best_macro_f1",
+          "level": 1,
+          "line": 20
+        },
+        {
+          "heading": "lowest_ece",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "lowest_uce",
+          "level": 1,
+          "line": 36
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "path": "outputs/fer2013/best_metrics_summary.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 82,
+      "nonEmptyLines": 82,
+      "sections": [
+        {
+          "heading": "accuracy",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "balanced_accuracy",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "confusion_matrix",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "ece",
+          "level": 1,
+          "line": 69
+        },
+        {
+          "heading": "macro_f1",
+          "level": 1,
+          "line": 70
+        },
+        {
+          "heading": "num_samples",
+          "level": 1,
+          "line": 71
+        },
+        {
+          "heading": "per_class_f1",
+          "level": 1,
+          "line": 72
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 81
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "outputs/fer2013/inference_sample_uncertainty.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 23,
+      "nonEmptyLines": 23,
+      "sections": [
+        {
+          "heading": "emotion",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "emotion_id",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "probabilities",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "uncertainty",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "descriptor_similarity",
+          "level": 1,
+          "line": 14
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "outputs/fer2013/training_epoch_losses.csv",
+      "language": "csv",
+      "fileCategory": "data",
+      "totalLines": 51,
+      "nonEmptyLines": 51,
+      "metrics": {}
+    },
+    {
+      "path": "outputs/fer2013/training_step_losses.csv",
+      "language": "csv",
+      "fileCategory": "data",
+      "totalLines": 1761,
+      "nonEmptyLines": 1761,
+      "metrics": {}
+    },
+    {
+      "path": "outputs/fer2013/uncertainty_summary.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 14,
+      "nonEmptyLines": 14,
+      "sections": [
+        {
+          "heading": "source_notebook",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "note",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "best_checkpoint_epoch",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "best_checkpoint_ts",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "validation_accuracy",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "validation_balanced_accuracy",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "validation_macro_f1",
+          "level": 1,
+          "line": 8
+        },
+        {
+          "heading": "validation_ece",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "uncertainty_risk_auc",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "inference_sample_uncertainty",
+          "level": 1,
+          "line": 11
+        },
+        {
+          "heading": "inference_sample_emotion",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "inference_sample_emotion_id",
+          "level": 1,
+          "line": 13
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 12
+      }
+    },
+    {
+      "path": "outputs/fer2013/validation_accuracy.csv",
+      "language": "csv",
+      "fileCategory": "data",
+      "totalLines": 31,
+      "nonEmptyLines": 31,
+      "metrics": {}
+    },
+    {
+      "path": "outputs/fer2013/validation_metrics.csv",
+      "language": "csv",
+      "fileCategory": "data",
+      "totalLines": 31,
+      "nonEmptyLines": 31,
+      "metrics": {}
+    },
+    {
+      "path": "outputs/fer2013/validation_uncertainty.csv",
+      "language": "csv",
+      "fileCategory": "data",
+      "totalLines": 2,
+      "nonEmptyLines": 2,
+      "metrics": {}
+    }
+  ]
+}

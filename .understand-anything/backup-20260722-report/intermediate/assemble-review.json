@@ -1,0 +1,14 @@
+{
+  "fixedSectionOk": true,
+  "nodesRecovered": 0,
+  "edgesRestored": 0,
+  "crossBatchEdgesAdded": 0,
+  "typesRemapped": 0,
+  "complexityRemapped": 0,
+  "notes": [
+    "Mục Fixed chỉ báo 393 node ID trùng bị loại (41,3% trên 951 node đầu vào); tỷ lệ vượt 30% nhưng phù hợp với cơ chế cập nhật incremental khi batch-0 giữ graph cũ và các batch phân tích lại cùng được đưa vào merge. Nên tránh đưa đồng thời các batch cũ không đổi vào lần merge sau để giảm nhiễu upstream.",
+    "Không có mục Could not fix: không có node thiếu ID, kiểu node lạ, độ phức tạp lạ hoặc cạnh dangling trong graph đã hợp nhất.",
+    "Đã đối chiếu toàn bộ 125 quan hệ import nội bộ trong importMap; tất cả đều có đủ hai file node và cạnh imports tương ứng, nên không cần bổ sung cạnh cross-batch.",
+    "Graph sau review giữ nguyên 558 node và 968 cạnh; không cần sửa assembled-graph.json."
+  ]
+}

@@ -1,0 +1,1673 @@
+{
+  "nodes": [
+    {
+      "id": "file:config/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "config/__init__.py",
+      "summary": "Khởi tạo giao diện cấu hình dùng chung cho các entry point ReID, xuất ba biến thể cấu hình YACS cho huấn luyện chuẩn, kiểm thử và baseline. Mô-đun suy giảm an toàn về `None` khi môi trường chỉ thiếu riêng gói `yacs`.",
+      "tags": [
+        "configuration",
+        "entry-point",
+        "python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Import có điều kiện chỉ nuốt ModuleNotFoundError khi dependency thiếu chính xác là `yacs`; các lỗi import khác vẫn được ném lại."
+    },
+    {
+      "id": "file:loss/center_loss.py",
+      "type": "file",
+      "name": "center_loss.py",
+      "filePath": "loss/center_loss.py",
+      "summary": "Cài đặt Center Loss để kéo embedding của từng mẫu về tâm lớp tương ứng, hỗ trợ cả CPU và GPU. Thành phần này được factory loss khởi tạo như một criterion phụ cho metric learning.",
+      "tags": [
+        "loss-function",
+        "metric-learning",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:loss/center_loss.py:CenterLoss",
+      "type": "class",
+      "name": "CenterLoss",
+      "filePath": "loss/center_loss.py",
+      "lineRange": [
+        7,
+        54
+      ],
+      "summary": "Tính bình phương khoảng cách giữa embedding và tâm lớp tương ứng rồi lấy trung bình theo batch.",
+      "tags": [
+        "class",
+        "loss-function",
+        "metric-learning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:loss/make_loss.py",
+      "type": "file",
+      "name": "make_loss.py",
+      "filePath": "loss/make_loss.py",
+      "summary": "Factory ghép classification loss, Triplet Loss và tùy chọn image-to-text loss theo cấu hình sampler. Hàm trả về closure tính loss cùng Center Loss để processor dùng trong huấn luyện ReID.",
+      "tags": [
+        "factory",
+        "loss-function",
+        "metric-learning",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:loss/make_loss.py:make_loss",
+      "type": "function",
+      "name": "make_loss",
+      "filePath": "loss/make_loss.py",
+      "lineRange": [
+        13,
+        87
+      ],
+      "summary": "Đọc cấu hình để ghép classification, triplet và image-to-text loss, đồng thời khởi tạo Center Loss.",
+      "tags": [
+        "function",
+        "loss-function",
+        "metric-learning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:loss/softmax_loss.py",
+      "type": "file",
+      "name": "softmax_loss.py",
+      "filePath": "loss/softmax_loss.py",
+      "summary": "Cung cấp hai biến thể cross-entropy có label smoothing cho logits nhận dạng. Các criterion PyTorch này giảm overconfidence khi tối ưu phân loại identity.",
+      "tags": [
+        "loss-function",
+        "metric-learning",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:loss/softmax_loss.py:CrossEntropyLabelSmooth",
+      "type": "class",
+      "name": "CrossEntropyLabelSmooth",
+      "filePath": "loss/softmax_loss.py",
+      "lineRange": [
+        5,
+        35
+      ],
+      "summary": "Tính cross-entropy với target one-hot đã được làm mượt theo epsilon và số lớp.",
+      "tags": [
+        "class",
+        "loss-function",
+        "metric-learning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:loss/softmax_loss.py:LabelSmoothingCrossEntropy",
+      "type": "class",
+      "name": "LabelSmoothingCrossEntropy",
+      "filePath": "loss/softmax_loss.py",
+      "lineRange": [
+        37,
+        57
+      ],
+      "summary": "Biến thể label-smoothed cross-entropy kết hợp negative log-likelihood với trung bình log-probability.",
+      "tags": [
+        "class",
+        "loss-function",
+        "metric-learning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:loss/supcontrast.py",
+      "type": "file",
+      "name": "supcontrast.py",
+      "filePath": "loss/supcontrast.py",
+      "summary": "Cài đặt supervised contrastive loss trên ma trận tương đồng giữa hai tập đặc trưng. Loss được dùng trong Stage 1 CLIP-ReID để căn chỉnh image embedding và text prompt embedding theo identity.",
+      "tags": [
+        "loss-function",
+        "contrastive-learning",
+        "clip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:loss/supcontrast.py:SupConLoss",
+      "type": "class",
+      "name": "SupConLoss",
+      "filePath": "loss/supcontrast.py",
+      "lineRange": [
+        10,
+        30
+      ],
+      "summary": "Tính supervised contrastive objective hai chiều từ similarity logits và mask nhãn dương.",
+      "tags": [
+        "class",
+        "loss-function",
+        "contrastive-learning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:loss/triplet_loss.py",
+      "type": "file",
+      "name": "triplet_loss.py",
+      "filePath": "loss/triplet_loss.py",
+      "summary": "Tập hợp phép chuẩn hóa, khoảng cách Euclidean/cosine, hard-example mining và Triplet Loss cho metric learning. Đây là lõi tối ưu độ phân tách identity trong baseline và Stage 2.",
+      "tags": [
+        "loss-function",
+        "metric-learning",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:loss/triplet_loss.py:normalize",
+      "type": "function",
+      "name": "normalize",
+      "filePath": "loss/triplet_loss.py",
+      "lineRange": [
+        5,
+        13
+      ],
+      "summary": "Chuẩn hóa tensor theo L2 norm trên trục được chỉ định.",
+      "tags": [
+        "function",
+        "loss-function",
+        "metric-learning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:loss/triplet_loss.py:euclidean_dist",
+      "type": "function",
+      "name": "euclidean_dist",
+      "filePath": "loss/triplet_loss.py",
+      "lineRange": [
+        16,
+        31
+      ],
+      "summary": "Tạo ma trận khoảng cách Euclidean đôi một giữa hai tập embedding.",
+      "tags": [
+        "function",
+        "loss-function",
+        "metric-learning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:loss/triplet_loss.py:cosine_dist",
+      "type": "function",
+      "name": "cosine_dist",
+      "filePath": "loss/triplet_loss.py",
+      "lineRange": [
+        34,
+        48
+      ],
+      "summary": "Tạo ma trận cosine distance đôi một sau khi chuẩn hóa embedding.",
+      "tags": [
+        "function",
+        "loss-function",
+        "metric-learning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:loss/triplet_loss.py:hard_example_mining",
+      "type": "function",
+      "name": "hard_example_mining",
+      "filePath": "loss/triplet_loss.py",
+      "lineRange": [
+        51,
+        103
+      ],
+      "summary": "Chọn positive khó nhất và negative khó nhất trong ma trận khoảng cách theo nhãn identity.",
+      "tags": [
+        "function",
+        "loss-function",
+        "metric-learning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:loss/triplet_loss.py:TripletLoss",
+      "type": "class",
+      "name": "TripletLoss",
+      "filePath": "loss/triplet_loss.py",
+      "lineRange": [
+        106,
+        134
+      ],
+      "summary": "Bao gói hard-example mining và MarginRankingLoss hoặc soft-margin loss cho embedding ReID.",
+      "tags": [
+        "class",
+        "loss-function",
+        "metric-learning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:processor/processor.py",
+      "type": "file",
+      "name": "processor.py",
+      "filePath": "processor/processor.py",
+      "summary": "Điều phối vòng lặp train/inference baseline với AMP, checkpoint định kỳ và đánh giá CMC/mAP. Processor hỗ trợ DataParallel, tùy chọn center-loss optimizer và nhãn camera/view cho SIE.",
+      "tags": [
+        "training-loop",
+        "evaluation",
+        "mixed-precision",
+        "reid"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "PyTorch AMP dùng GradScaler/autocast; DataParallel và nhánh distributed checkpoint được xử lý trong cùng processor."
+    },
+    {
+      "id": "function:processor/processor.py:do_train",
+      "type": "function",
+      "name": "do_train",
+      "filePath": "processor/processor.py",
+      "lineRange": [
+        11,
+        164
+      ],
+      "summary": "Chạy toàn bộ epoch train baseline với AMP, cập nhật optimizer, checkpoint và đánh giá định kỳ.",
+      "tags": [
+        "function",
+        "training-loop",
+        "mixed-precision"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:processor/processor.py:do_inference",
+      "type": "function",
+      "name": "do_inference",
+      "filePath": "processor/processor.py",
+      "lineRange": [
+        166,
+        208
+      ],
+      "summary": "Trích xuất feature query/gallery và trả metric xếp hạng từ evaluator CMC/mAP.",
+      "tags": [
+        "function",
+        "training-loop",
+        "evaluation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:processor/processor_clipreid_stage1.py",
+      "type": "file",
+      "name": "processor_clipreid_stage1.py",
+      "filePath": "processor/processor_clipreid_stage1.py",
+      "summary": "Thực thi Stage 1 của CLIP-ReID: cache image features, sau đó tối ưu text prompt bằng supervised contrastive loss hai chiều image-to-text và text-to-image. Vòng lặp dùng AMP, cosine scheduler và checkpoint riêng cho Stage 1.",
+      "tags": [
+        "training-loop",
+        "evaluation",
+        "mixed-precision",
+        "clip-reid"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Image features được tính một lần dưới `torch.no_grad()`, nên gradient Stage 1 chỉ đi qua text/prompt branch."
+    },
+    {
+      "id": "function:processor/processor_clipreid_stage1.py:do_train_stage1",
+      "type": "function",
+      "name": "do_train_stage1",
+      "filePath": "processor/processor_clipreid_stage1.py",
+      "lineRange": [
+        12,
+        106
+      ],
+      "summary": "Cache image embedding rồi tối ưu prompt bằng contrastive loss image-to-text và text-to-image.",
+      "tags": [
+        "function",
+        "training-loop",
+        "mixed-precision"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:processor/processor_clipreid_stage2.py",
+      "type": "file",
+      "name": "processor_clipreid_stage2.py",
+      "filePath": "processor/processor_clipreid_stage2.py",
+      "summary": "Thực thi Stage 2 của CLIP-ReID bằng cách cache toàn bộ text features theo lớp rồi huấn luyện visual ReID với classification, triplet và image-to-text logits. Mô-đun đồng thời đánh giá CMC/mAP, lưu checkpoint và cung cấp inference.",
+      "tags": [
+        "training-loop",
+        "evaluation",
+        "mixed-precision",
+        "clip-reid"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Text features theo toàn bộ class được cache trước epoch loop để làm classifier prototype cố định trong Stage 2."
+    },
+    {
+      "id": "function:processor/processor_clipreid_stage2.py:do_train_stage2",
+      "type": "function",
+      "name": "do_train_stage2",
+      "filePath": "processor/processor_clipreid_stage2.py",
+      "lineRange": [
+        13,
+        187
+      ],
+      "summary": "Cache text prototype theo lớp và huấn luyện visual ReID bằng loss tổng hợp cùng logits image-to-text.",
+      "tags": [
+        "function",
+        "training-loop",
+        "mixed-precision"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:processor/processor_clipreid_stage2.py:do_inference",
+      "type": "function",
+      "name": "do_inference",
+      "filePath": "processor/processor_clipreid_stage2.py",
+      "lineRange": [
+        189,
+        231
+      ],
+      "summary": "Chạy inference CLIP-ReID, tích lũy feature và trả Rank-1/Rank-5 từ CMC/mAP evaluator.",
+      "tags": [
+        "function",
+        "training-loop",
+        "evaluation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/cosine_lr.py",
+      "type": "file",
+      "name": "cosine_lr.py",
+      "filePath": "solver/cosine_lr.py",
+      "summary": "Cài đặt cosine learning-rate scheduler có warmup, chu kỳ/restart, decay và giới hạn số chu kỳ. Lớp mở rộng scheduler nền và được dùng để tối ưu prompt ở Stage 1.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "scheduler"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Implementation kế thừa scheduler kiểu timm và dẫn chiếu SGDR/cosine annealing with warm restarts."
+    },
+    {
+      "id": "class:solver/cosine_lr.py:CosineLRScheduler",
+      "type": "class",
+      "name": "CosineLRScheduler",
+      "filePath": "solver/cosine_lr.py",
+      "lineRange": [
+        17,
+        115
+      ],
+      "summary": "Sinh learning rate cosine có warmup, restart, decay theo chu kỳ và tùy chọn noise.",
+      "tags": [
+        "class",
+        "optimization",
+        "scheduler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:solver/lr_scheduler.py",
+      "type": "file",
+      "name": "lr_scheduler.py",
+      "filePath": "solver/lr_scheduler.py",
+      "summary": "Cài đặt WarmupMultiStepLR với warmup constant hoặc linear trước các mốc giảm learning rate. Scheduler này phục vụ huấn luyện baseline và Stage 2.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "scheduler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:solver/lr_scheduler.py:WarmupMultiStepLR",
+      "type": "class",
+      "name": "WarmupMultiStepLR",
+      "filePath": "solver/lr_scheduler.py",
+      "lineRange": [
+        14,
+        56
+      ],
+      "summary": "Warmup learning rate rồi giảm theo gamma tại các milestone đã cấu hình.",
+      "tags": [
+        "class",
+        "optimization",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/make_optimizer.py",
+      "type": "file",
+      "name": "make_optimizer.py",
+      "filePath": "solver/make_optimizer.py",
+      "summary": "Factory tạo optimizer cho toàn bộ model và optimizer SGD riêng cho Center Loss. Nó áp dụng learning-rate/weight-decay riêng cho bias và tùy chọn learning rate lớn ở classifier.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:solver/make_optimizer.py:make_optimizer",
+      "type": "function",
+      "name": "make_optimizer",
+      "filePath": "solver/make_optimizer.py",
+      "lineRange": [
+        3,
+        28
+      ],
+      "summary": "Tạo optimizer model theo từng parameter group và optimizer riêng cho Center Loss.",
+      "tags": [
+        "function",
+        "optimization",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/make_optimizer_prompt.py",
+      "type": "file",
+      "name": "make_optimizer_prompt.py",
+      "filePath": "solver/make_optimizer_prompt.py",
+      "summary": "Tạo optimizer tách biệt cho hai giai đoạn CLIP-ReID: Stage 1 chỉ cập nhật prompt learner, Stage 2 cập nhật các tham số còn lại cùng Center Loss. Learning rate và weight decay được lấy từ từng nhánh cấu hình STAGE1/STAGE2.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:solver/make_optimizer_prompt.py:make_optimizer_1stage",
+      "type": "function",
+      "name": "make_optimizer_1stage",
+      "filePath": "solver/make_optimizer_prompt.py",
+      "lineRange": [
+        4,
+        19
+      ],
+      "summary": "Chỉ đưa tham số prompt learner vào optimizer Stage 1 với hyperparameter riêng.",
+      "tags": [
+        "function",
+        "optimization",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:solver/make_optimizer_prompt.py:make_optimizer_2stage",
+      "type": "function",
+      "name": "make_optimizer_2stage",
+      "filePath": "solver/make_optimizer_prompt.py",
+      "lineRange": [
+        23,
+        55
+      ],
+      "summary": "Tạo optimizer Stage 2 cho model trừ prompt learner và optimizer riêng cho Center Loss.",
+      "tags": [
+        "function",
+        "optimization",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/scheduler.py",
+      "type": "file",
+      "name": "scheduler.py",
+      "filePath": "solver/scheduler.py",
+      "summary": "Lớp nền quản lý learning-rate state, cập nhật param groups theo epoch/update và chèn noise có kiểm soát. Nó cung cấp protocol chung để các scheduler cụ thể như cosine decay kế thừa.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "scheduler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:solver/scheduler.py:Scheduler",
+      "type": "class",
+      "name": "Scheduler",
+      "filePath": "solver/scheduler.py",
+      "lineRange": [
+        6,
+        105
+      ],
+      "summary": "Cung cấp state/update protocol chung và cơ chế noise cho các learning-rate scheduler.",
+      "tags": [
+        "class",
+        "optimization",
+        "scheduler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:solver/scheduler_factory.py",
+      "type": "file",
+      "name": "scheduler_factory.py",
+      "filePath": "solver/scheduler_factory.py",
+      "summary": "Factory cấu hình CosineLRScheduler cho Stage 1 từ số epoch, warmup, learning-rate tối thiểu và noise range. Hàm trả scheduler chạy theo epoch.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "scheduler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:solver/scheduler_factory.py:create_scheduler",
+      "type": "function",
+      "name": "create_scheduler",
+      "filePath": "solver/scheduler_factory.py",
+      "lineRange": [
+        7,
+        25
+      ],
+      "summary": "Khởi tạo cosine scheduler theo epoch với warmup và learning-rate tối thiểu.",
+      "tags": [
+        "function",
+        "optimization",
+        "scheduler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:test.py",
+      "type": "file",
+      "name": "test.py",
+      "filePath": "test.py",
+      "summary": "Entry point inference cho baseline ReID: nạp YAML/CLI, dựng dataloader và model, tải checkpoint rồi báo Rank-1/Rank-5 cùng mAP. Script dùng chung logger và processor đánh giá chuẩn.",
+      "tags": [
+        "entry-point",
+        "inference",
+        "evaluation",
+        "reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:test_clipreid.py",
+      "type": "file",
+      "name": "test_clipreid.py",
+      "filePath": "test_clipreid.py",
+      "summary": "Entry point inference cho mô hình CLIP-ReID hai giai đoạn, từ cấu hình đến dựng model và tải trọng số kiểm thử. Kết quả được tính bằng processor Stage 2 với CMC/mAP.",
+      "tags": [
+        "entry-point",
+        "inference",
+        "evaluation",
+        "clip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:train.py",
+      "type": "file",
+      "name": "train.py",
+      "filePath": "train.py",
+      "summary": "Entry point huấn luyện baseline ReID, chịu trách nhiệm merge cấu hình, đặt seed, khởi tạo distributed runtime, dữ liệu, model, loss, optimizer và scheduler. Sau đó script chuyển toàn bộ thành phần vào processor huấn luyện chuẩn.",
+      "tags": [
+        "entry-point",
+        "training",
+        "reid",
+        "reproducibility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:train.py:set_seed",
+      "type": "function",
+      "name": "set_seed",
+      "filePath": "train.py",
+      "lineRange": [
+        15,
+        22
+      ],
+      "summary": "Đồng bộ seed của Python, NumPy và PyTorch/CUDA, đồng thời cấu hình cuDNN cho lần chạy.",
+      "tags": [
+        "function",
+        "reproducibility",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:train_clipreid.py",
+      "type": "file",
+      "name": "train_clipreid.py",
+      "filePath": "train_clipreid.py",
+      "summary": "Entry point huấn luyện CLIP-ReID hai giai đoạn: Stage 1 căn chỉnh prompt/text-image rồi Stage 2 tối ưu ReID với text prototypes đã học. Script điều phối cấu hình, seed, distributed runtime, dataloader, model, loss, optimizer và scheduler riêng cho từng stage.",
+      "tags": [
+        "entry-point",
+        "training",
+        "clip-reid",
+        "two-stage"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:train_clipreid.py:set_seed",
+      "type": "function",
+      "name": "set_seed",
+      "filePath": "train_clipreid.py",
+      "lineRange": [
+        17,
+        24
+      ],
+      "summary": "Đồng bộ seed của Python, NumPy và PyTorch/CUDA, đồng thời cấu hình cuDNN cho lần chạy.",
+      "tags": [
+        "function",
+        "reproducibility",
+        "entry-point"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/logger.py",
+      "type": "file",
+      "name": "logger.py",
+      "filePath": "utils/logger.py",
+      "summary": "Tạo logger thống nhất cho console và file, tránh gắn handler trùng lặp giữa các lần khởi tạo. Tiện ích ghi log train/test vào thư mục output của experiment.",
+      "tags": [
+        "utility",
+        "logging",
+        "experiment-management"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/logger.py:setup_logger",
+      "type": "function",
+      "name": "setup_logger",
+      "filePath": "utils/logger.py",
+      "lineRange": [
+        5,
+        26
+      ],
+      "summary": "Cấu hình logger console/file và ngăn nhân đôi handler.",
+      "tags": [
+        "function",
+        "logging",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/meter.py",
+      "type": "file",
+      "name": "meter.py",
+      "filePath": "utils/meter.py",
+      "summary": "Cung cấp bộ tích lũy AverageMeter cho giá trị hiện tại, tổng, số mẫu và trung bình chạy. Processor dùng nó để theo dõi loss và accuracy theo mini-batch.",
+      "tags": [
+        "utility",
+        "metrics",
+        "training-loop"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:utils/meter.py:AverageMeter",
+      "type": "class",
+      "name": "AverageMeter",
+      "filePath": "utils/meter.py",
+      "lineRange": [
+        1,
+        20
+      ],
+      "summary": "Theo dõi giá trị hiện tại, tổng, số mẫu và trung bình chạy của một metric.",
+      "tags": [
+        "class",
+        "metrics",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/metrics.py",
+      "type": "file",
+      "name": "metrics.py",
+      "filePath": "utils/metrics.py",
+      "summary": "Tính ma trận khoảng cách và metric đánh giá ReID theo giao thức Market1501, gồm CMC và mAP sau khi loại cặp cùng identity/camera. Lớp evaluator tích lũy feature theo batch, tùy chọn chuẩn hóa và k-reciprocal re-ranking.",
+      "tags": [
+        "evaluation",
+        "reid-metrics",
+        "cmc",
+        "map"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:utils/metrics.py:euclidean_distance",
+      "type": "function",
+      "name": "euclidean_distance",
+      "filePath": "utils/metrics.py",
+      "lineRange": [
+        7,
+        13
+      ],
+      "summary": "Tính ma trận squared Euclidean distance giữa query và gallery features.",
+      "tags": [
+        "function",
+        "evaluation",
+        "reid-metrics"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/metrics.py:cosine_similarity",
+      "type": "function",
+      "name": "cosine_similarity",
+      "filePath": "utils/metrics.py",
+      "lineRange": [
+        15,
+        25
+      ],
+      "summary": "Biến cosine similarity thành angular distance ổn định số bằng clipping.",
+      "tags": [
+        "function",
+        "evaluation",
+        "reid-metrics"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:utils/metrics.py:eval_func",
+      "type": "function",
+      "name": "eval_func",
+      "filePath": "utils/metrics.py",
+      "lineRange": [
+        28,
+        87
+      ],
+      "summary": "Tính CMC và mean Average Precision theo protocol Market1501 sau khi loại same-camera matches.",
+      "tags": [
+        "function",
+        "evaluation",
+        "reid-metrics"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:utils/metrics.py:R1_mAP_eval",
+      "type": "class",
+      "name": "R1_mAP_eval",
+      "filePath": "utils/metrics.py",
+      "lineRange": [
+        90,
+        133
+      ],
+      "summary": "Tích lũy features theo batch rồi tính CMC/mAP, có normalization và re-ranking tùy chọn.",
+      "tags": [
+        "class",
+        "evaluation",
+        "reid-metrics"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/reranking.py",
+      "type": "file",
+      "name": "reranking.py",
+      "filePath": "utils/reranking.py",
+      "summary": "Cài đặt k-reciprocal encoding re-ranking kết hợp Jaccard distance với khoảng cách gốc cho bài toán person ReID. Thuật toán theo công trình CVPR 2017 của Zhong và cộng sự nhằm cải thiện thứ hạng query-gallery.",
+      "tags": [
+        "re-ranking",
+        "metric-learning",
+        "retrieval"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Implementation theo k-reciprocal encoding re-ranking của Zhong et al., CVPR 2017."
+    },
+    {
+      "id": "function:utils/reranking.py:re_ranking",
+      "type": "function",
+      "name": "re_ranking",
+      "filePath": "utils/reranking.py",
+      "lineRange": [
+        29,
+        100
+      ],
+      "summary": "Tái xếp hạng query-gallery bằng k-reciprocal expansion, local query expansion và Jaccard distance.",
+      "tags": [
+        "function",
+        "re-ranking",
+        "retrieval"
+      ],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:loss/center_loss.py",
+      "target": "class:loss/center_loss.py:CenterLoss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/center_loss.py",
+      "target": "class:loss/center_loss.py:CenterLoss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "function:loss/make_loss.py:make_loss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "function:loss/make_loss.py:make_loss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/center_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/softmax_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/triplet_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/softmax_loss.py",
+      "target": "class:loss/softmax_loss.py:CrossEntropyLabelSmooth",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/softmax_loss.py",
+      "target": "class:loss/softmax_loss.py:CrossEntropyLabelSmooth",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/softmax_loss.py",
+      "target": "class:loss/softmax_loss.py:LabelSmoothingCrossEntropy",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/softmax_loss.py",
+      "target": "class:loss/softmax_loss.py:LabelSmoothingCrossEntropy",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/supcontrast.py",
+      "target": "class:loss/supcontrast.py:SupConLoss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/supcontrast.py",
+      "target": "class:loss/supcontrast.py:SupConLoss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:normalize",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:normalize",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:euclidean_dist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:euclidean_dist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:cosine_dist",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:cosine_dist",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:hard_example_mining",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "function:loss/triplet_loss.py:hard_example_mining",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "class:loss/triplet_loss.py:TripletLoss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/triplet_loss.py",
+      "target": "class:loss/triplet_loss.py:TripletLoss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "function:processor/processor.py:do_train",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "function:processor/processor.py:do_train",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "function:processor/processor.py:do_inference",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "function:processor/processor.py:do_inference",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "file:utils/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "function:processor/processor_clipreid_stage1.py:do_train_stage1",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "function:processor/processor_clipreid_stage1.py:do_train_stage1",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "file:loss/supcontrast.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "function:processor/processor_clipreid_stage2.py:do_train_stage2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "function:processor/processor_clipreid_stage2.py:do_train_stage2",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "function:processor/processor_clipreid_stage2.py:do_inference",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "function:processor/processor_clipreid_stage2.py:do_inference",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:loss/supcontrast.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:utils/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:solver/cosine_lr.py",
+      "target": "class:solver/cosine_lr.py:CosineLRScheduler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/cosine_lr.py",
+      "target": "class:solver/cosine_lr.py:CosineLRScheduler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/cosine_lr.py",
+      "target": "file:solver/scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:solver/lr_scheduler.py",
+      "target": "class:solver/lr_scheduler.py:WarmupMultiStepLR",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/lr_scheduler.py",
+      "target": "class:solver/lr_scheduler.py:WarmupMultiStepLR",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/make_optimizer.py",
+      "target": "function:solver/make_optimizer.py:make_optimizer",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/make_optimizer.py",
+      "target": "function:solver/make_optimizer.py:make_optimizer",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/make_optimizer_prompt.py",
+      "target": "function:solver/make_optimizer_prompt.py:make_optimizer_1stage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/make_optimizer_prompt.py",
+      "target": "function:solver/make_optimizer_prompt.py:make_optimizer_1stage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/make_optimizer_prompt.py",
+      "target": "function:solver/make_optimizer_prompt.py:make_optimizer_2stage",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/make_optimizer_prompt.py",
+      "target": "function:solver/make_optimizer_prompt.py:make_optimizer_2stage",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/scheduler.py",
+      "target": "class:solver/scheduler.py:Scheduler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/scheduler.py",
+      "target": "class:solver/scheduler.py:Scheduler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/scheduler_factory.py",
+      "target": "function:solver/scheduler_factory.py:create_scheduler",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:solver/scheduler_factory.py",
+      "target": "function:solver/scheduler_factory.py:create_scheduler",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:solver/scheduler_factory.py",
+      "target": "file:solver/cosine_lr.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:datasets/make_dataloader.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:model/make_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:processor/processor.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:datasets/make_dataloader_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:model/make_model_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage2.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "function:train.py:set_seed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train.py",
+      "target": "function:train.py:set_seed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:datasets/make_dataloader.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:loss/make_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:model/make_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:processor/processor.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:solver/lr_scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:solver/make_optimizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "function:train_clipreid.py:set_seed",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "function:train_clipreid.py:set_seed",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:datasets/make_dataloader_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:loss/make_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:model/make_model_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage1.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage2.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/lr_scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/make_optimizer_prompt.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/scheduler_factory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/logger.py",
+      "target": "function:utils/logger.py:setup_logger",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/logger.py",
+      "target": "function:utils/logger.py:setup_logger",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/meter.py",
+      "target": "class:utils/meter.py:AverageMeter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/meter.py",
+      "target": "class:utils/meter.py:AverageMeter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:euclidean_distance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:euclidean_distance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:cosine_similarity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:cosine_similarity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:eval_func",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "function:utils/metrics.py:eval_func",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "class:utils/metrics.py:R1_mAP_eval",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "class:utils/metrics.py:R1_mAP_eval",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "file:utils/reranking.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/reranking.py",
+      "target": "function:utils/reranking.py:re_ranking",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:utils/reranking.py",
+      "target": "function:utils/reranking.py:re_ranking",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:solver/cosine_lr.py:CosineLRScheduler",
+      "target": "class:solver/scheduler.py:Scheduler",
+      "type": "inherits",
+      "direction": "forward",
+      "weight": 0.9
+    },
+    {
+      "source": "function:loss/make_loss.py:make_loss",
+      "target": "class:loss/center_loss.py:CenterLoss",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:loss/make_loss.py:make_loss",
+      "target": "class:loss/triplet_loss.py:TripletLoss",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:loss/make_loss.py:make_loss",
+      "target": "class:loss/softmax_loss.py:CrossEntropyLabelSmooth",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:processor/processor.py:do_train",
+      "target": "class:utils/meter.py:AverageMeter",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:processor/processor.py:do_train",
+      "target": "class:utils/metrics.py:R1_mAP_eval",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:processor/processor.py:do_inference",
+      "target": "class:utils/metrics.py:R1_mAP_eval",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:processor/processor_clipreid_stage1.py:do_train_stage1",
+      "target": "class:loss/supcontrast.py:SupConLoss",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:processor/processor_clipreid_stage1.py:do_train_stage1",
+      "target": "class:utils/meter.py:AverageMeter",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:processor/processor_clipreid_stage2.py:do_train_stage2",
+      "target": "class:loss/supcontrast.py:SupConLoss",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:processor/processor_clipreid_stage2.py:do_train_stage2",
+      "target": "class:utils/metrics.py:R1_mAP_eval",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "function:solver/scheduler_factory.py:create_scheduler",
+      "target": "class:solver/cosine_lr.py:CosineLRScheduler",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:utils/metrics.py:R1_mAP_eval",
+      "target": "function:utils/metrics.py:eval_func",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:utils/metrics.py:R1_mAP_eval",
+      "target": "function:utils/metrics.py:euclidean_distance",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "class:utils/metrics.py:R1_mAP_eval",
+      "target": "function:utils/reranking.py:re_ranking",
+      "type": "calls",
+      "direction": "forward",
+      "weight": 0.8
+    }
+  ]
+}

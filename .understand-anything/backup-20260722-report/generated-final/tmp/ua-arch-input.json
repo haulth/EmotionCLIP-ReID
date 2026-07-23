@@ -1,0 +1,4977 @@
+{
+  "fileNodes": [
+    {
+      "id": "file:config/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "config/__init__.py",
+      "summary": "Khởi tạo giao diện cấu hình dùng chung cho các entry point ReID, xuất ba biến thể cấu hình YACS cho huấn luyện chuẩn, kiểm thử và baseline. Mô-đun suy giảm an toàn về `None` khi môi trường chỉ thiếu riêng gói `yacs`.",
+      "tags": [
+        "configuration",
+        "entry-point",
+        "python"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Import có điều kiện chỉ nuốt ModuleNotFoundError khi dependency thiếu chính xác là `yacs`; các lỗi import khác vẫn được ném lại."
+    },
+    {
+      "id": "file:loss/center_loss.py",
+      "type": "file",
+      "name": "center_loss.py",
+      "filePath": "loss/center_loss.py",
+      "summary": "Cài đặt Center Loss để kéo embedding của từng mẫu về tâm lớp tương ứng, hỗ trợ cả CPU và GPU. Thành phần này được factory loss khởi tạo như một criterion phụ cho metric learning.",
+      "tags": [
+        "loss-function",
+        "metric-learning",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:loss/make_loss.py",
+      "type": "file",
+      "name": "make_loss.py",
+      "filePath": "loss/make_loss.py",
+      "summary": "Factory ghép classification loss, Triplet Loss và tùy chọn image-to-text loss theo cấu hình sampler. Hàm trả về closure tính loss cùng Center Loss để processor dùng trong huấn luyện ReID.",
+      "tags": [
+        "factory",
+        "loss-function",
+        "metric-learning",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:loss/softmax_loss.py",
+      "type": "file",
+      "name": "softmax_loss.py",
+      "filePath": "loss/softmax_loss.py",
+      "summary": "Cung cấp hai biến thể cross-entropy có label smoothing cho logits nhận dạng. Các criterion PyTorch này giảm overconfidence khi tối ưu phân loại identity.",
+      "tags": [
+        "loss-function",
+        "metric-learning",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:loss/supcontrast.py",
+      "type": "file",
+      "name": "supcontrast.py",
+      "filePath": "loss/supcontrast.py",
+      "summary": "Cài đặt supervised contrastive loss trên ma trận tương đồng giữa hai tập đặc trưng. Loss được dùng trong Stage 1 CLIP-ReID để căn chỉnh image embedding và text prompt embedding theo identity.",
+      "tags": [
+        "loss-function",
+        "contrastive-learning",
+        "clip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:loss/triplet_loss.py",
+      "type": "file",
+      "name": "triplet_loss.py",
+      "filePath": "loss/triplet_loss.py",
+      "summary": "Tập hợp phép chuẩn hóa, khoảng cách Euclidean/cosine, hard-example mining và Triplet Loss cho metric learning. Đây là lõi tối ưu độ phân tách identity trong baseline và Stage 2.",
+      "tags": [
+        "loss-function",
+        "metric-learning",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:processor/processor.py",
+      "type": "file",
+      "name": "processor.py",
+      "filePath": "processor/processor.py",
+      "summary": "Điều phối vòng lặp train/inference baseline với AMP, checkpoint định kỳ và đánh giá CMC/mAP. Processor hỗ trợ DataParallel, tùy chọn center-loss optimizer và nhãn camera/view cho SIE.",
+      "tags": [
+        "training-loop",
+        "evaluation",
+        "mixed-precision",
+        "reid"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "PyTorch AMP dùng GradScaler/autocast; DataParallel và nhánh distributed checkpoint được xử lý trong cùng processor."
+    },
+    {
+      "id": "file:processor/processor_clipreid_stage1.py",
+      "type": "file",
+      "name": "processor_clipreid_stage1.py",
+      "filePath": "processor/processor_clipreid_stage1.py",
+      "summary": "Thực thi Stage 1 của CLIP-ReID: cache image features, sau đó tối ưu text prompt bằng supervised contrastive loss hai chiều image-to-text và text-to-image. Vòng lặp dùng AMP, cosine scheduler và checkpoint riêng cho Stage 1.",
+      "tags": [
+        "training-loop",
+        "evaluation",
+        "mixed-precision",
+        "clip-reid"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Image features được tính một lần dưới `torch.no_grad()`, nên gradient Stage 1 chỉ đi qua text/prompt branch."
+    },
+    {
+      "id": "file:processor/processor_clipreid_stage2.py",
+      "type": "file",
+      "name": "processor_clipreid_stage2.py",
+      "filePath": "processor/processor_clipreid_stage2.py",
+      "summary": "Thực thi Stage 2 của CLIP-ReID bằng cách cache toàn bộ text features theo lớp rồi huấn luyện visual ReID với classification, triplet và image-to-text logits. Mô-đun đồng thời đánh giá CMC/mAP, lưu checkpoint và cung cấp inference.",
+      "tags": [
+        "training-loop",
+        "evaluation",
+        "mixed-precision",
+        "clip-reid"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Text features theo toàn bộ class được cache trước epoch loop để làm classifier prototype cố định trong Stage 2."
+    },
+    {
+      "id": "file:solver/cosine_lr.py",
+      "type": "file",
+      "name": "cosine_lr.py",
+      "filePath": "solver/cosine_lr.py",
+      "summary": "Cài đặt cosine learning-rate scheduler có warmup, chu kỳ/restart, decay và giới hạn số chu kỳ. Lớp mở rộng scheduler nền và được dùng để tối ưu prompt ở Stage 1.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "scheduler"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Implementation kế thừa scheduler kiểu timm và dẫn chiếu SGDR/cosine annealing with warm restarts."
+    },
+    {
+      "id": "file:solver/lr_scheduler.py",
+      "type": "file",
+      "name": "lr_scheduler.py",
+      "filePath": "solver/lr_scheduler.py",
+      "summary": "Cài đặt WarmupMultiStepLR với warmup constant hoặc linear trước các mốc giảm learning rate. Scheduler này phục vụ huấn luyện baseline và Stage 2.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "scheduler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:solver/make_optimizer.py",
+      "type": "file",
+      "name": "make_optimizer.py",
+      "filePath": "solver/make_optimizer.py",
+      "summary": "Factory tạo optimizer cho toàn bộ model và optimizer SGD riêng cho Center Loss. Nó áp dụng learning-rate/weight-decay riêng cho bias và tùy chọn learning rate lớn ở classifier.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/make_optimizer_prompt.py",
+      "type": "file",
+      "name": "make_optimizer_prompt.py",
+      "filePath": "solver/make_optimizer_prompt.py",
+      "summary": "Tạo optimizer tách biệt cho hai giai đoạn CLIP-ReID: Stage 1 chỉ cập nhật prompt learner, Stage 2 cập nhật các tham số còn lại cùng Center Loss. Learning rate và weight decay được lấy từ từng nhánh cấu hình STAGE1/STAGE2.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "factory"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/scheduler.py",
+      "type": "file",
+      "name": "scheduler.py",
+      "filePath": "solver/scheduler.py",
+      "summary": "Lớp nền quản lý learning-rate state, cập nhật param groups theo epoch/update và chèn noise có kiểm soát. Nó cung cấp protocol chung để các scheduler cụ thể như cosine decay kế thừa.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "scheduler"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:solver/scheduler_factory.py",
+      "type": "file",
+      "name": "scheduler_factory.py",
+      "filePath": "solver/scheduler_factory.py",
+      "summary": "Factory cấu hình CosineLRScheduler cho Stage 1 từ số epoch, warmup, learning-rate tối thiểu và noise range. Hàm trả scheduler chạy theo epoch.",
+      "tags": [
+        "optimization",
+        "learning-rate",
+        "scheduler"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:test.py",
+      "type": "file",
+      "name": "test.py",
+      "filePath": "test.py",
+      "summary": "Entry point inference cho baseline ReID: nạp YAML/CLI, dựng dataloader và model, tải checkpoint rồi báo Rank-1/Rank-5 cùng mAP. Script dùng chung logger và processor đánh giá chuẩn.",
+      "tags": [
+        "entry-point",
+        "inference",
+        "evaluation",
+        "reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:test_clipreid.py",
+      "type": "file",
+      "name": "test_clipreid.py",
+      "filePath": "test_clipreid.py",
+      "summary": "Entry point inference cho mô hình CLIP-ReID hai giai đoạn, từ cấu hình đến dựng model và tải trọng số kiểm thử. Kết quả được tính bằng processor Stage 2 với CMC/mAP.",
+      "tags": [
+        "entry-point",
+        "inference",
+        "evaluation",
+        "clip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:train.py",
+      "type": "file",
+      "name": "train.py",
+      "filePath": "train.py",
+      "summary": "Entry point huấn luyện baseline ReID, chịu trách nhiệm merge cấu hình, đặt seed, khởi tạo distributed runtime, dữ liệu, model, loss, optimizer và scheduler. Sau đó script chuyển toàn bộ thành phần vào processor huấn luyện chuẩn.",
+      "tags": [
+        "entry-point",
+        "training",
+        "reid",
+        "reproducibility"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:train_clipreid.py",
+      "type": "file",
+      "name": "train_clipreid.py",
+      "filePath": "train_clipreid.py",
+      "summary": "Entry point huấn luyện CLIP-ReID hai giai đoạn: Stage 1 căn chỉnh prompt/text-image rồi Stage 2 tối ưu ReID với text prototypes đã học. Script điều phối cấu hình, seed, distributed runtime, dataloader, model, loss, optimizer và scheduler riêng cho từng stage.",
+      "tags": [
+        "entry-point",
+        "training",
+        "clip-reid",
+        "two-stage"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:utils/logger.py",
+      "type": "file",
+      "name": "logger.py",
+      "filePath": "utils/logger.py",
+      "summary": "Tạo logger thống nhất cho console và file, tránh gắn handler trùng lặp giữa các lần khởi tạo. Tiện ích ghi log train/test vào thư mục output của experiment.",
+      "tags": [
+        "utility",
+        "logging",
+        "experiment-management"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/meter.py",
+      "type": "file",
+      "name": "meter.py",
+      "filePath": "utils/meter.py",
+      "summary": "Cung cấp bộ tích lũy AverageMeter cho giá trị hiện tại, tổng, số mẫu và trung bình chạy. Processor dùng nó để theo dõi loss và accuracy theo mini-batch.",
+      "tags": [
+        "utility",
+        "metrics",
+        "training-loop"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/metrics.py",
+      "type": "file",
+      "name": "metrics.py",
+      "filePath": "utils/metrics.py",
+      "summary": "Tính ma trận khoảng cách và metric đánh giá ReID theo giao thức Market1501, gồm CMC và mAP sau khi loại cặp cùng identity/camera. Lớp evaluator tích lũy feature theo batch, tùy chọn chuẩn hóa và k-reciprocal re-ranking.",
+      "tags": [
+        "evaluation",
+        "reid-metrics",
+        "cmc",
+        "map"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:utils/reranking.py",
+      "type": "file",
+      "name": "reranking.py",
+      "filePath": "utils/reranking.py",
+      "summary": "Cài đặt k-reciprocal encoding re-ranking kết hợp Jaccard distance với khoảng cách gốc cho bài toán person ReID. Thuật toán theo công trình CVPR 2017 của Zhong và cộng sự nhằm cải thiện thứ hạng query-gallery.",
+      "tags": [
+        "re-ranking",
+        "metric-learning",
+        "retrieval"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Implementation theo k-reciprocal encoding re-ranking của Zhong et al., CVPR 2017."
+    },
+    {
+      "id": "file:config/emotion_defaults.py",
+      "type": "file",
+      "name": "emotion_defaults.py",
+      "filePath": "config/emotion_defaults.py",
+      "summary": "Định nghĩa cấu hình mặc định, cơ chế merge/override và các ràng buộc fail-closed cho toàn bộ pipeline EmotionCLIP-ReID, bao gồm anatomy routing, geometry fusion, uncertainty và hai giai đoạn huấn luyện.",
+      "tags": [
+        "python",
+        "module",
+        "emotionclip-reid",
+        "tested"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:datasets/anatomy.py",
+      "type": "file",
+      "name": "anatomy.py",
+      "filePath": "datasets/anatomy.py",
+      "summary": "Chuẩn hóa artifact landmark độc lập detector thành ba vùng giải phẫu, descriptor hình học fixed-width cùng mask validity/uncertainty. Module xử lý biến đổi crop/flip và ước lượng thống kê hình học theo lớp mà không nội suy điểm thiếu.",
+      "tags": [
+        "anatomy",
+        "landmark",
+        "hình-học-khuôn-mặt",
+        "uncertainty",
+        "tested"
+      ],
+      "complexity": "complex",
+      "languageNotes": "NumPy xử lý artifact/geometry trước khi chuyển sang tensor PyTorch; mọi feature đều đi cùng validity và uncertainty mask."
+    },
+    {
+      "id": "file:datasets/emotion_manifest.py",
+      "type": "file",
+      "name": "emotion_manifest.py",
+      "filePath": "datasets/emotion_manifest.py",
+      "summary": "Cài đặt hợp đồng manifest JSONL cho bảy lớp FER, kiểm tra leakage/coverage anatomy, phép biến đổi ảnh an toàn với landmark và các DataLoader tách biệt train/validation/test.",
+      "tags": [
+        "dữ-liệu",
+        "manifest",
+        "fer",
+        "validation",
+        "tested"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Dataclass bất biến và custom collate duy trì metadata/anatomy lồng nhau qua DataLoader."
+    },
+    {
+      "id": "file:infer_emotionclip.py",
+      "type": "file",
+      "name": "infer_emotionclip.py",
+      "filePath": "infer_emotionclip.py",
+      "summary": "CLI suy luận EmotionCLIP-ReID cho một ảnh, dựng mô hình từ cấu hình, nạp checkpoint và tùy chọn artifact landmark trước khi xuất dự đoán, confidence và uncertainty.",
+      "tags": [
+        "entry-point",
+        "pipeline",
+        "fer",
+        "cli"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:loss/emotion_losses.py",
+      "type": "file",
+      "name": "emotion_losses.py",
+      "filePath": "loss/emotion_losses.py",
+      "summary": "Tập hợp objective Stage 2 gồm classification/alignment, Evidential Deep Learning, reliability correctness/ranking và regularization cho gate, temperature và routing.",
+      "tags": [
+        "hàm-mất-mát",
+        "uncertainty",
+        "tối-ưu",
+        "pytorch",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:processor/processor_emotionclip.py",
+      "type": "file",
+      "name": "processor_emotionclip.py",
+      "filePath": "processor/processor_emotionclip.py",
+      "summary": "Bộ điều phối huấn luyện và đánh giá hai giai đoạn: quản lý stage/phase, corruption reliability, checkpoint có version, fail-fast khi non-finite, model selection, sealed test và ghi metric/artifact.",
+      "tags": [
+        "huấn-luyện",
+        "đánh-giá",
+        "checkpoint",
+        "pipeline",
+        "tested"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Module dùng AMP/GradScaler, gradient accumulation và checkpoint schema versioned; DataParallel chỉ được hỗ trợ qua wrapper có invariant rõ ràng."
+    },
+    {
+      "id": "file:tests/test_anatomy_audit.py",
+      "type": "file",
+      "name": "test_anatomy_audit.py",
+      "filePath": "tests/test_anatomy_audit.py",
+      "summary": "Kiểm thử đơn vị cho pipeline audit geometry, đặc biệt việc truyền jitter landmark sang uncertainty theo đúng đơn vị của geometry feature.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "xác-minh",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_emotion_losses_metrics.py",
+      "type": "file",
+      "name": "test_emotion_losses_metrics.py",
+      "filePath": "tests/test_emotion_losses_metrics.py",
+      "summary": "Kiểm thử toán học cho decoupled Dirichlet, gradient của loss Stage 2, FER/calibration metrics và khả năng tách clean–corrupted bằng uncertainty.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "xác-minh",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_emotion_manifest.py",
+      "type": "file",
+      "name": "test_emotion_manifest.py",
+      "filePath": "tests/test_emotion_manifest.py",
+      "summary": "Kiểm thử chuẩn hóa nhãn, chống split leakage, converter FER2013/RAF-DB, biến đổi landmark theo crop/flip và fallback anatomy có quality bằng không.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "xác-minh",
+        "emotionclip-reid"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tests/test_emotion_processor_smoke.py",
+      "type": "file",
+      "name": "test_emotion_processor_smoke.py",
+      "filePath": "tests/test_emotion_processor_smoke.py",
+      "summary": "Smoke/integration tests trên CPU cho Stage 1–2, gradient accumulation, non-finite guard, early stopping, checkpoint contract, sealed test và corruption anatomy.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "xác-minh",
+        "emotionclip-reid"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tests/test_run_artifacts.py",
+      "type": "file",
+      "name": "test_run_artifacts.py",
+      "filePath": "tests/test_run_artifacts.py",
+      "summary": "Kiểm thử tính bất biến của thư mục run, metadata provenance và yêu cầu run ID tường minh khi tra artifact.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "xác-minh",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_train_emotionclip_parallel.py",
+      "type": "file",
+      "name": "test_train_emotionclip_parallel.py",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "summary": "Kiểm thử parse GPU, chính sách topology, unwrap model và các invariant của EmotionDataParallel đối với output dùng chung.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "xác-minh",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/audit_anatomy_geometry.py",
+      "type": "file",
+      "name": "audit_anatomy_geometry.py",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "summary": "CLI audit coverage và signal-to-jitter của artifact anatomy để phát hiện descriptor hình học yếu hoặc không ổn định trước huấn luyện.",
+      "tags": [
+        "anatomy",
+        "landmark",
+        "hình-học-khuôn-mặt",
+        "uncertainty",
+        "tested"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tools/build_face_landmark_artifacts.py",
+      "type": "file",
+      "name": "build_face_landmark_artifacts.py",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "summary": "Xây artifact landmark MediaPipe có version, pose/quality, jitter-derived uncertainty và đường dẫn portable cho manifest FER.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý",
+        "tested"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tools/convert_affwild2_to_emotion_jsonl.py",
+      "type": "file",
+      "name": "convert_affwild2_to_emotion_jsonl.py",
+      "filePath": "tools/convert_affwild2_to_emotion_jsonl.py",
+      "summary": "Chuyển nhãn Aff-Wild2 thành manifest JSONL EmotionCLIP-ReID, bảo toàn split và metadata khung hình/video.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "type": "file",
+      "name": "convert_fer2013_to_emotion_jsonl.py",
+      "filePath": "tools/convert_fer2013_to_emotion_jsonl.py",
+      "summary": "Chuyển FER2013 từ CSV pixel hoặc cây thư mục ảnh thành ảnh chuẩn và manifest JSONL với ánh xạ split/nhãn chính thức.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý",
+        "tested"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tools/convert_raf_au_to_emotion_jsonl.py",
+      "type": "file",
+      "name": "convert_raf_au_to_emotion_jsonl.py",
+      "filePath": "tools/convert_raf_au_to_emotion_jsonl.py",
+      "summary": "Bổ sung nhãn Action Unit của RAF vào bản ghi manifest để phục vụ nhánh anatomy/AU và phân tích vi mô.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "type": "file",
+      "name": "convert_rafdb_to_emotion_jsonl.py",
+      "filePath": "tools/convert_rafdb_to_emotion_jsonl.py",
+      "summary": "Giải nén, tìm nhãn và chuyển RAF-DB thành manifest; hỗ trợ official train/test cùng validation stratified xác định bởi seed.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý",
+        "tested"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tools/download_hf_emotion_dataset.py",
+      "type": "file",
+      "name": "download_hf_emotion_dataset.py",
+      "filePath": "tools/download_hf_emotion_dataset.py",
+      "summary": "Tải dataset cảm xúc từ Hugging Face, chuẩn hóa nhãn/split, lưu ảnh cục bộ và tạo manifest JSONL có giới hạn mẫu tùy chọn.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:train_emotionclip.py",
+      "type": "file",
+      "name": "train_emotionclip.py",
+      "filePath": "train_emotionclip.py",
+      "summary": "Entry point huấn luyện EmotionCLIP-ReID: hợp nhất cấu hình, cố định seed, thiết lập GPU an toàn, dựng dữ liệu/mô hình và điều phối Stage 1, Stage 2 cùng sealed test và immutable run.",
+      "tags": [
+        "entry-point",
+        "pipeline",
+        "fer",
+        "cli",
+        "tested"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:utils/fer_metrics.py",
+      "type": "file",
+      "name": "fer_metrics.py",
+      "filePath": "utils/fer_metrics.py",
+      "summary": "Tính bộ metric FER và uncertainty toàn diện: confusion matrix, per-class F1, balanced accuracy, ECE/ACE/classwise calibration, NLL/Brier, selective risk và OOD ranking.",
+      "tags": [
+        "đánh-giá",
+        "calibration",
+        "fer",
+        "trực-quan-hóa",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:utils/run_artifacts.py",
+      "type": "file",
+      "name": "run_artifacts.py",
+      "filePath": "utils/run_artifacts.py",
+      "summary": "Tạo thư mục thí nghiệm immutable và ghi provenance gồm hash manifest/split, git state, dependency, phần cứng và cấu hình để tái lập kết quả.",
+      "tags": [
+        "reproducibility",
+        "provenance",
+        "artifact",
+        "thí-nghiệm",
+        "tested"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/bases.py",
+      "type": "file",
+      "name": "bases.py",
+      "filePath": "datasets/bases.py",
+      "summary": "Định nghĩa abstraction chung cho image ReID dataset, thống kê identity/camera/view và adapter PyTorch Dataset để đọc ảnh, áp transform. Hàm đọc ảnh thử lại khi gặp lỗi I/O và cho phép ảnh bị cắt ngắn.",
+      "tags": [
+        "data-model",
+        "dataset",
+        "image-loading",
+        "reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/dukemtmcreid.py",
+      "type": "file",
+      "name": "dukemtmcreid.py",
+      "filePath": "datasets/dukemtmcreid.py",
+      "summary": "Parser cho DukeMTMC-reID, kiểm tra cấu trúc thư mục và chuyển tên ảnh thành các tuple đường dẫn, person ID, camera ID và view ID. Lớp công bố train/query/gallery cùng thống kê dataset.",
+      "tags": [
+        "dataset",
+        "data-parser",
+        "person-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/make_dataloader.py",
+      "type": "file",
+      "name": "make_dataloader.py",
+      "filePath": "datasets/make_dataloader.py",
+      "summary": "Factory dataloader baseline cho các bộ person/vehicle ReID, kết hợp augmentation, identity sampler hoặc softmax sampling và collate riêng cho train/validation. Hàm trả loader cùng số query, lớp, camera và view để dựng model.",
+      "tags": [
+        "factory",
+        "data-pipeline",
+        "augmentation",
+        "reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/make_dataloader_clipreid.py",
+      "type": "file",
+      "name": "make_dataloader_clipreid.py",
+      "filePath": "datasets/make_dataloader_clipreid.py",
+      "summary": "Factory dữ liệu CLIP-ReID tạo riêng Stage 1 loader không augmentation mạnh, Stage 2 identity-sampled loader và validation loader. Nó hỗ trợ các dataset person/vehicle cùng DistributedDataParallel sampler.",
+      "tags": [
+        "factory",
+        "data-pipeline",
+        "augmentation",
+        "clip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/market1501.py",
+      "type": "file",
+      "name": "market1501.py",
+      "filePath": "datasets/market1501.py",
+      "summary": "Parser Market1501 đọc train/query/gallery từ quy ước tên ảnh, loại junk identity và relabel tập train. Kết quả chuẩn hóa thành tuple dùng chung cho pipeline ReID.",
+      "tags": [
+        "dataset",
+        "data-parser",
+        "person-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/msmt17.py",
+      "type": "file",
+      "name": "msmt17.py",
+      "filePath": "datasets/msmt17.py",
+      "summary": "Parser MSMT17 đọc các danh sách train/val/query/gallery, relabel identity huấn luyện và chuẩn hóa camera/view metadata. Lớp cung cấp các split và thống kê cho dataloader factory.",
+      "tags": [
+        "dataset",
+        "data-parser",
+        "person-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/occ_duke.py",
+      "type": "file",
+      "name": "occ_duke.py",
+      "filePath": "datasets/occ_duke.py",
+      "summary": "Parser cho Occluded-DukeMTMC, tải/kiểm tra dữ liệu và dựng các split train, occluded query và gallery theo quy ước filename. Đây là biến thể đánh giá ReID dưới che khuất.",
+      "tags": [
+        "dataset",
+        "data-parser",
+        "person-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/sampler.py",
+      "type": "file",
+      "name": "sampler.py",
+      "filePath": "datasets/sampler.py",
+      "summary": "Cài đặt RandomIdentitySampler theo chiến lược P identities × K instances để tạo mini-batch phù hợp Triplet Loss. Sampler bù mẫu khi identity có ít ảnh và ước lượng độ dài epoch.",
+      "tags": [
+        "data-pipeline",
+        "identity-sampling",
+        "metric-learning"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/sampler_ddp.py",
+      "type": "file",
+      "name": "sampler_ddp.py",
+      "filePath": "datasets/sampler_ddp.py",
+      "summary": "Mở rộng identity-balanced sampling cho DistributedDataParallel, đồng bộ seed giữa ranks và chia các block mini-batch theo worker. Mô-đun có tiện ích all-gather đối tượng Python qua tensor được padding.",
+      "tags": [
+        "data-pipeline",
+        "distributed-training",
+        "identity-sampling"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Đối tượng Python được pickle thành byte tensor, padding đồng kích thước rồi all-gather qua Gloo/NCCL."
+    },
+    {
+      "id": "file:datasets/vehicleid.py",
+      "type": "file",
+      "name": "vehicleid.py",
+      "filePath": "datasets/vehicleid.py",
+      "summary": "Parser VehicleID với các protocol test 800/1600/2400 identities, relabel tập train và chọn ngẫu nhiên một ảnh gallery cho mỗi vehicle test. Camera giả lập khác nhau được gán cho query/gallery để tương thích evaluator ReID.",
+      "tags": [
+        "dataset",
+        "data-parser",
+        "vehicle-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:datasets/veri.py",
+      "type": "file",
+      "name": "veri.py",
+      "filePath": "datasets/veri.py",
+      "summary": "Parser VeRi-776 kết hợp person/vehicle ID và camera từ filename với viewpoint annotation ngoài. Các ảnh thiếu viewpoint bị loại trước khi tạo train/query/gallery.",
+      "tags": [
+        "dataset",
+        "data-parser",
+        "vehicle-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:utils/iotools.py",
+      "type": "file",
+      "name": "iotools.py",
+      "filePath": "utils/iotools.py",
+      "summary": "Cung cấp helper filesystem và JSON gồm tạo thư mục, kiểm tra file, đọc và ghi JSON. Các tiện ích này hỗ trợ quản lý dữ liệu/checkpoint của pipeline ReID.",
+      "tags": [
+        "utility",
+        "filesystem",
+        "serialization"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:model/clip/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "model/clip/__init__.py",
+      "summary": "Package entry point tái xuất API tải mô hình và tokenize của backbone CLIP nội bộ.",
+      "tags": [
+        "mô-hình",
+        "clip",
+        "vision-language",
+        "pytorch"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:model/clip/clip.py",
+      "type": "file",
+      "name": "clip.py",
+      "filePath": "model/clip/clip.py",
+      "summary": "Tiện ích quản lý model registry, tải weight, preprocessing, JIT và tokenize cho implementation CLIP được nhúng trong dự án.",
+      "tags": [
+        "mô-hình",
+        "clip",
+        "vision-language",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:model/clip/model.py",
+      "type": "file",
+      "name": "model.py",
+      "filePath": "model/clip/model.py",
+      "summary": "Implementation PyTorch của CLIP gồm Modified ResNet/Vision Transformer, text Transformer, attention pooling và logic dựng model từ state dict với resize positional embedding.",
+      "tags": [
+        "mô-hình",
+        "clip",
+        "vision-language",
+        "pytorch",
+        "tested"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Implementation PyTorch theo OpenAI CLIP, có nội suy positional embedding để phù hợp stride và kích thước ảnh ReID/FER."
+    },
+    {
+      "id": "file:model/clip/simple_tokenizer.py",
+      "type": "file",
+      "name": "simple_tokenizer.py",
+      "filePath": "model/clip/simple_tokenizer.py",
+      "summary": "Tokenizer byte-pair encoding tương thích OpenAI CLIP, bao gồm ánh xạ byte Unicode, làm sạch văn bản, encode và decode.",
+      "tags": [
+        "mô-hình",
+        "clip",
+        "vision-language",
+        "pytorch"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:model/emotionclip_model.py",
+      "type": "file",
+      "name": "emotionclip_model.py",
+      "filePath": "model/emotionclip_model.py",
+      "summary": "Kiến trúc lõi EmotionCLIP-ReID mở rộng CLIP bằng learnable emotion prompts, zero-initialized expression adapters, anatomy-aware patch routing, geometry residual fusion, branch calibration và decoupled reliability/Dirichlet uncertainty.",
+      "tags": [
+        "mô-hình",
+        "emotionclip",
+        "anatomy",
+        "uncertainty",
+        "tested"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Các nhánh mới dùng zero-initialized residual/gate để khởi đầu gần baseline; reliability strength được tách khỏi thang/offset logits phân lớp."
+    },
+    {
+      "id": "file:model/make_model.py",
+      "type": "file",
+      "name": "make_model.py",
+      "filePath": "model/make_model.py",
+      "summary": "Factory baseline ReID dùng CLIP visual backbone với classifier và bottleneck cho nhận dạng người/xe, giữ đường nạp checkpoint của codebase gốc.",
+      "tags": [
+        "mô-hình",
+        "clip-reid",
+        "pytorch",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:model/make_model_clipreid.py",
+      "type": "file",
+      "name": "make_model_clipreid.py",
+      "filePath": "model/make_model_clipreid.py",
+      "summary": "Factory CLIP-ReID baseline với PromptLearner, TextEncoder và transformer visual để học text descriptor hai giai đoạn cho re-identification.",
+      "tags": [
+        "mô-hình",
+        "clip-reid",
+        "pytorch",
+        "factory"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tests/test_emotion_model_units.py",
+      "type": "file",
+      "name": "test_emotion_model_units.py",
+      "filePath": "tests/test_emotion_model_units.py",
+      "summary": "Kiểm thử cấu trúc và invariant của EmotionCLIPModel: prompt/adapters, fusion simplex/temperature, stage freezing, anatomy router, geometry fallback, uncertainty và forward tích hợp.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "xác-minh",
+        "emotionclip-reid"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:tests/test_notebook_helpers.py",
+      "type": "file",
+      "name": "test_notebook_helpers.py",
+      "filePath": "tests/test_notebook_helpers.py",
+      "summary": "Kiểm thử regression cho notebook FER: run ID, publish artifact, progress renderer, cache landmark, precedence cấu hình và các invariant anatomy/geometry mặc định. Suite cũng kiểm tra notebook FER2013/RAF-DB thực sự chuyển các điều khiển GPU, Stage 1/2 và uncertainty xuống CLI.",
+      "tags": [
+        "test",
+        "notebook",
+        "reproducibility",
+        "anatomy"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:utils/notebook_landmarks.py",
+      "type": "file",
+      "name": "notebook_landmarks.py",
+      "filePath": "utils/notebook_landmarks.py",
+      "summary": "Quản lý download-once và cache landmark artifacts cho notebook bằng SHA-256, schema version và chữ ký tham số tiền xử lý. Mô-đun xác minh manifest có tính di động, gọi builder một cách tái lập và ghi metadata/log cache.",
+      "tags": [
+        "artifact-cache",
+        "preprocessing",
+        "anatomy",
+        "reproducibility",
+        "tested"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Cache key kết hợp schema version, SHA-256 input/model và toàn bộ tham số jitter để phát hiện thay đổi có ảnh hưởng kết quả."
+    },
+    {
+      "id": "file:utils/notebook_progress.py",
+      "type": "file",
+      "name": "notebook_progress.py",
+      "filePath": "utils/notebook_progress.py",
+      "summary": "Chuyển output subprocess của các phase Stage1-base, Stage1-geometry và Stage2 thành progress bar HTML an toàn trong notebook, đồng thời stream log văn bản. Bộ đệm xử lý cả carriage-return của tqdm lẫn newline thông thường.",
+      "tags": [
+        "notebook",
+        "progress-streaming",
+        "subprocess",
+        "logging",
+        "tested"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Đọc stdout từng ký tự để bảo toàn ngữ nghĩa carriage-return của tqdm trong môi trường Jupyter."
+    },
+    {
+      "id": "file:utils/notebook_run.py",
+      "type": "file",
+      "name": "notebook_run.py",
+      "filePath": "utils/notebook_run.py",
+      "summary": "Quản lý vòng đời artifact của notebook bằng run ID có timezone, staging directory riêng và chỉ publish sau khi provenance đã được khởi tạo. Visual, console log và metadata được gom vào đúng immutable run directory.",
+      "tags": [
+        "notebook",
+        "artifact-management",
+        "provenance",
+        "reproducibility",
+        "tested"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cổng `provenance.json` ngăn notebook ghi artifact vào output chưa được entry point khởi tạo."
+    },
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Tài liệu vào dự án mô tả baseline CLIP-ReID và phần mở rộng EmotionCLIP-ReID cho FER, từ cài đặt/dữ liệu đến landmark artifacts, huấn luyện hai giai đoạn, inference, kiểm thử và tái lập.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "hướng-dẫn",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:environment_emotionclip_cuda.yml",
+      "type": "config",
+      "name": "environment_emotionclip_cuda.yml",
+      "filePath": "environment_emotionclip_cuda.yml",
+      "summary": "Môi trường Conda cho EmotionCLIP-ReID trên Python 3.10 và CUDA 12.1, kèm PyTorch, MediaPipe, Hugging Face datasets, pytest và các dependency tiền xử lý.",
+      "tags": [
+        "cấu-hình",
+        "yaml",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:note_edit.md",
+      "type": "document",
+      "name": "note_edit.md",
+      "filePath": "note_edit.md",
+      "summary": "Ghi chú thiết kế và chẩn đoán Stage 2, phân tích temperature, mất cân bằng, corruption clean/shifted và lộ trình calibration–anatomy bootstrap–adapter fine-tuning–rebalancing.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "hướng-dẫn",
+        "emotionclip-reid"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:pytest.ini",
+      "type": "config",
+      "name": "pytest.ini",
+      "filePath": "pytest.ini",
+      "summary": "Cấu hình pytest giới hạn discovery vào thư mục tests để bộ kiểm thử dự án chạy nhất quán.",
+      "tags": [
+        "cấu-hình",
+        "test-config",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:configs/VehicleID/cnn_base.yml",
+      "type": "config",
+      "name": "cnn_base.yml",
+      "filePath": "configs/VehicleID/cnn_base.yml",
+      "summary": "Cấu hình baseline VehicleID với backbone RN50, softmax-triplet sampling và augmentation chuẩn ReID. File đặt loss weights, batch size, optimizer, warmup/milestones và protocol CMC/mAP.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "rn50",
+        "baseline"
+      ],
+      "complexity": "simple",
+      "languageNotes": "YAML được merge vào cấu hình YACS; các trường DATASETS/OUTPUT_DIR được để dạng gợi ý để người chạy ghi đè."
+    },
+    {
+      "id": "config:configs/VehicleID/cnn_clipreid.yml",
+      "type": "config",
+      "name": "cnn_clipreid.yml",
+      "filePath": "configs/VehicleID/cnn_clipreid.yml",
+      "summary": "Cấu hình VehicleID cho RN50 theo quy trình CLIP-ReID hai giai đoạn: học prompt/text alignment ở Stage 1 rồi tối ưu ReID ở Stage 2. File đặt kích thước ảnh, identity sampler, loss weights, optimizer, warmup, lịch giảm learning rate và protocol đánh giá.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "rn50",
+        "clip-reid",
+        "two-stage"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML phân cấp SOLVER.STAGE1/STAGE2 để hai giai đoạn dùng batch size, learning rate và scheduler độc lập."
+    },
+    {
+      "id": "config:configs/VehicleID/vit_base.yml",
+      "type": "config",
+      "name": "vit_base.yml",
+      "filePath": "configs/VehicleID/vit_base.yml",
+      "summary": "Cấu hình baseline VehicleID với backbone ViT-B/16, softmax-triplet sampling và augmentation chuẩn ReID. File đặt loss weights, batch size, optimizer, warmup/milestones và protocol CMC/mAP.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "vit-b16",
+        "baseline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML được merge vào cấu hình YACS; các trường DATASETS/OUTPUT_DIR được để dạng gợi ý để người chạy ghi đè."
+    },
+    {
+      "id": "config:configs/VehicleID/vit_clipreid.yml",
+      "type": "config",
+      "name": "vit_clipreid.yml",
+      "filePath": "configs/VehicleID/vit_clipreid.yml",
+      "summary": "Cấu hình VehicleID cho ViT-B/16 theo quy trình CLIP-ReID hai giai đoạn: học prompt/text alignment ở Stage 1 rồi tối ưu ReID ở Stage 2. File đặt kích thước ảnh, identity sampler, loss weights, optimizer, warmup, lịch giảm learning rate và protocol đánh giá.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "vit-b16",
+        "clip-reid",
+        "two-stage"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML phân cấp SOLVER.STAGE1/STAGE2 để hai giai đoạn dùng batch size, learning rate và scheduler độc lập."
+    },
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip.yml",
+      "summary": "Preset đầy đủ cho ViT-B/16 EmotionCLIP-ReID với anatomy bắt buộc, hybrid routing, gated geometry residual, decoupled uncertainty, calibrated branch fusion và loss/corruption cho Stage 1–2.",
+      "tags": [
+        "cấu-hình",
+        "yaml",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML phân cấp tách MODEL, INPUT, DATASETS, SOLVER, TEST và TRAIN để CLI override theo dotted key."
+    },
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip_fer2013_quick.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+      "summary": "Preset FER2013 từ manifest nội bộ, chạy 200 epoch hai giai đoạn với anatomy quality, hybrid routing và geometry fusion để thử nghiệm nhanh có checkpoint mỗi epoch.",
+      "tags": [
+        "cấu-hình",
+        "yaml",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "summary": "Preset cho bản FER2013 tải từ Hugging Face, dùng cùng hợp đồng anatomy và lịch Stage 1 base+geometry rồi Stage 2 của pipeline quick.",
+      "tags": [
+        "cấu-hình",
+        "yaml",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+      "type": "config",
+      "name": "vit_b16_emotionclip_rafdb_quick.yml",
+      "filePath": "configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+      "summary": "Preset RAF-DB có AMP, gradient accumulation, clipping/non-finite guard và early stopping; vẫn yêu cầu anatomy coverage và tách validation/test nghiêm ngặt.",
+      "tags": [
+        "cấu-hình",
+        "yaml",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:configs/person/cnn_base.yml",
+      "type": "config",
+      "name": "cnn_base.yml",
+      "filePath": "configs/person/cnn_base.yml",
+      "summary": "Cấu hình baseline person ReID (Market1501/DukeMTMC/MSMT17/Occluded-Duke) với backbone RN50, softmax-triplet sampling và augmentation chuẩn ReID. File đặt loss weights, batch size, optimizer, warmup/milestones và protocol CMC/mAP.",
+      "tags": [
+        "configuration",
+        "person-reid",
+        "rn50",
+        "baseline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML được merge vào cấu hình YACS; các trường DATASETS/OUTPUT_DIR được để dạng gợi ý để người chạy ghi đè."
+    },
+    {
+      "id": "config:configs/person/cnn_clipreid.yml",
+      "type": "config",
+      "name": "cnn_clipreid.yml",
+      "filePath": "configs/person/cnn_clipreid.yml",
+      "summary": "Cấu hình person ReID (Market1501/DukeMTMC/MSMT17/Occluded-Duke) cho RN50 theo quy trình CLIP-ReID hai giai đoạn: học prompt/text alignment ở Stage 1 rồi tối ưu ReID ở Stage 2. File đặt kích thước ảnh, identity sampler, loss weights, optimizer, warmup, lịch giảm learning rate và protocol đánh giá.",
+      "tags": [
+        "configuration",
+        "person-reid",
+        "rn50",
+        "clip-reid",
+        "two-stage"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML phân cấp SOLVER.STAGE1/STAGE2 để hai giai đoạn dùng batch size, learning rate và scheduler độc lập."
+    },
+    {
+      "id": "config:configs/person/vit_base.yml",
+      "type": "config",
+      "name": "vit_base.yml",
+      "filePath": "configs/person/vit_base.yml",
+      "summary": "Cấu hình baseline person ReID (Market1501/DukeMTMC/MSMT17/Occluded-Duke) với backbone ViT-B/16, softmax-triplet sampling và augmentation chuẩn ReID. File đặt loss weights, batch size, optimizer, warmup/milestones và protocol CMC/mAP.",
+      "tags": [
+        "configuration",
+        "person-reid",
+        "vit-b16",
+        "baseline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML được merge vào cấu hình YACS; các trường DATASETS/OUTPUT_DIR được để dạng gợi ý để người chạy ghi đè."
+    },
+    {
+      "id": "config:configs/person/vit_clipreid.yml",
+      "type": "config",
+      "name": "vit_clipreid.yml",
+      "filePath": "configs/person/vit_clipreid.yml",
+      "summary": "Cấu hình person ReID (Market1501/DukeMTMC/MSMT17/Occluded-Duke) cho ViT-B/16 theo quy trình CLIP-ReID hai giai đoạn: học prompt/text alignment ở Stage 1 rồi tối ưu ReID ở Stage 2. File đặt kích thước ảnh, identity sampler, loss weights, optimizer, warmup, lịch giảm learning rate và protocol đánh giá.",
+      "tags": [
+        "configuration",
+        "person-reid",
+        "vit-b16",
+        "clip-reid",
+        "two-stage"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML phân cấp SOLVER.STAGE1/STAGE2 để hai giai đoạn dùng batch size, learning rate và scheduler độc lập."
+    },
+    {
+      "id": "config:configs/veri/cnn_base.yml",
+      "type": "config",
+      "name": "cnn_base.yml",
+      "filePath": "configs/veri/cnn_base.yml",
+      "summary": "Cấu hình baseline VeRi-776 với backbone RN50, softmax-triplet sampling và augmentation chuẩn ReID. File đặt loss weights, batch size, optimizer, warmup/milestones và protocol CMC/mAP.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "rn50",
+        "baseline"
+      ],
+      "complexity": "simple",
+      "languageNotes": "YAML được merge vào cấu hình YACS; các trường DATASETS/OUTPUT_DIR được để dạng gợi ý để người chạy ghi đè."
+    },
+    {
+      "id": "config:configs/veri/cnn_prom.yml",
+      "type": "config",
+      "name": "cnn_prom.yml",
+      "filePath": "configs/veri/cnn_prom.yml",
+      "summary": "Cấu hình VeRi-776 cho RN50 theo quy trình CLIP-ReID hai giai đoạn: học prompt/text alignment ở Stage 1 rồi tối ưu ReID ở Stage 2. File đặt kích thước ảnh, identity sampler, loss weights, optimizer, warmup, lịch giảm learning rate và protocol đánh giá.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "rn50",
+        "clip-reid",
+        "two-stage"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML phân cấp SOLVER.STAGE1/STAGE2 để hai giai đoạn dùng batch size, learning rate và scheduler độc lập."
+    },
+    {
+      "id": "config:configs/veri/vit_base.yml",
+      "type": "config",
+      "name": "vit_base.yml",
+      "filePath": "configs/veri/vit_base.yml",
+      "summary": "Cấu hình baseline VeRi-776 với backbone ViT-B/16, softmax-triplet sampling và augmentation chuẩn ReID. File đặt loss weights, batch size, optimizer, warmup/milestones và protocol CMC/mAP.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "vit-b16",
+        "baseline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML được merge vào cấu hình YACS; các trường DATASETS/OUTPUT_DIR được để dạng gợi ý để người chạy ghi đè."
+    },
+    {
+      "id": "config:configs/veri/vit_prom.yml",
+      "type": "config",
+      "name": "vit_prom.yml",
+      "filePath": "configs/veri/vit_prom.yml",
+      "summary": "Cấu hình VeRi-776 cho ViT-B/16 theo quy trình CLIP-ReID hai giai đoạn: học prompt/text alignment ở Stage 1 rồi tối ưu ReID ở Stage 2. File đặt kích thước ảnh, identity sampler, loss weights, optimizer, warmup, lịch giảm learning rate và protocol đánh giá.",
+      "tags": [
+        "configuration",
+        "vehicle-reid",
+        "vit-b16",
+        "clip-reid",
+        "two-stage"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "YAML phân cấp SOLVER.STAGE1/STAGE2 để hai giai đoạn dùng batch size, learning rate và scheduler độc lập."
+    },
+    {
+      "id": "document:docs/report/emotionclip_reid_feasibility_analysis.md",
+      "type": "document",
+      "name": "emotionclip_reid_feasibility_analysis.md",
+      "filePath": "docs/report/emotionclip_reid_feasibility_analysis.md",
+      "summary": "Phân tích khả thi toàn diện từ CLIP-ReID sang FER, đối chiếu nguồn tham khảo, hiện trạng code, nhánh AU/anatomy, dataset, rủi ro leakage, lộ trình triển khai và tiêu chí chấp nhận.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "báo-cáo",
+        "emotionclip-reid"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:docs/report/emotionclip_reid_model_proposal_report.md",
+      "type": "document",
+      "name": "emotionclip_reid_model_proposal_report.md",
+      "filePath": "docs/report/emotionclip_reid_model_proposal_report.md",
+      "summary": "Báo cáo đề xuất mô hình hai giai đoạn, nêu phần kế thừa từ CLIP-ReID, MER-CLIP, EA-CLIP và UA-FER, kiến trúc semantic anchoring, kế hoạch ablation và giới hạn claim.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "báo-cáo",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/report/emotionclip_reid_pipeline_diagram_script.md",
+      "type": "document",
+      "name": "emotionclip_reid_pipeline_diagram_script.md",
+      "filePath": "docs/report/emotionclip_reid_pipeline_diagram_script.md",
+      "summary": "Kịch bản thuyết minh sơ đồ pipeline, giải thích từng khối và luồng tensor của Stage 1 prompt/emotion anchor và Stage 2 visual adaptation, anatomy fusion, prediction và uncertainty.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "báo-cáo",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/report/emotionclip_reid_presentation_script.md",
+      "type": "document",
+      "name": "emotionclip_reid_presentation_script.md",
+      "filePath": "docs/report/emotionclip_reid_presentation_script.md",
+      "summary": "Kịch bản trình bày theo slide về bài toán, related work, research gap, phần đã triển khai, kiến trúc, kết quả, lỗi theo lớp và các cảnh báo tránh claim quá mức.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "báo-cáo",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "document:docs/report/emotionclip_reid_research_gap_proposal_brief.md",
+      "type": "document",
+      "name": "emotionclip_reid_research_gap_proposal_brief.md",
+      "filePath": "docs/report/emotionclip_reid_research_gap_proposal_brief.md",
+      "summary": "Bản tóm tắt luận điểm nghiên cứu, các khoảng trống về local facial evidence, uncertainty và explainability, cùng hướng đề xuất two-stage EmotionCLIP-ReID.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "báo-cáo",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_1.json",
+      "type": "config",
+      "name": "metrics_epoch_1.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_1.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 1, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_10.json",
+      "type": "config",
+      "name": "metrics_epoch_10.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_10.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 10, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_11.json",
+      "type": "config",
+      "name": "metrics_epoch_11.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_11.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 11, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_12.json",
+      "type": "config",
+      "name": "metrics_epoch_12.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_12.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 12, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_13.json",
+      "type": "config",
+      "name": "metrics_epoch_13.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_13.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 13, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_14.json",
+      "type": "config",
+      "name": "metrics_epoch_14.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_14.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 14, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_15.json",
+      "type": "config",
+      "name": "metrics_epoch_15.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_15.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 15, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_16.json",
+      "type": "config",
+      "name": "metrics_epoch_16.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_16.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 16, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_17.json",
+      "type": "config",
+      "name": "metrics_epoch_17.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_17.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 17, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_18.json",
+      "type": "config",
+      "name": "metrics_epoch_18.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_18.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 18, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_19.json",
+      "type": "config",
+      "name": "metrics_epoch_19.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_19.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 19, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_2.json",
+      "type": "config",
+      "name": "metrics_epoch_2.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_2.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 2, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_20.json",
+      "type": "config",
+      "name": "metrics_epoch_20.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_20.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 20, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_21.json",
+      "type": "config",
+      "name": "metrics_epoch_21.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_21.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 21, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_22.json",
+      "type": "config",
+      "name": "metrics_epoch_22.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_22.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 22, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_23.json",
+      "type": "config",
+      "name": "metrics_epoch_23.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_23.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 23, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_24.json",
+      "type": "config",
+      "name": "metrics_epoch_24.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_24.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 24, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_25.json",
+      "type": "config",
+      "name": "metrics_epoch_25.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_25.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 25, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_26.json",
+      "type": "config",
+      "name": "metrics_epoch_26.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_26.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 26, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_27.json",
+      "type": "config",
+      "name": "metrics_epoch_27.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_27.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 27, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_28.json",
+      "type": "config",
+      "name": "metrics_epoch_28.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_28.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 28, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_29.json",
+      "type": "config",
+      "name": "metrics_epoch_29.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_29.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 29, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_3.json",
+      "type": "config",
+      "name": "metrics_epoch_3.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_3.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 3, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_30.json",
+      "type": "config",
+      "name": "metrics_epoch_30.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_30.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 30, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_4.json",
+      "type": "config",
+      "name": "metrics_epoch_4.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_4.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 4, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_5.json",
+      "type": "config",
+      "name": "metrics_epoch_5.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_5.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 5, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_6.json",
+      "type": "config",
+      "name": "metrics_epoch_6.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_6.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 6, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_7.json",
+      "type": "config",
+      "name": "metrics_epoch_7.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_7.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 7, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_8.json",
+      "type": "config",
+      "name": "metrics_epoch_8.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_8.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 8, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "config:outputs/RAF-DB/metrics_epoch_9.json",
+      "type": "config",
+      "name": "metrics_epoch_9.json",
+      "filePath": "outputs/RAF-DB/metrics_epoch_9.json",
+      "summary": "Artifact đánh giá RAF-DB tại epoch 9, lưu accuracy, balanced accuracy, Macro-F1, per-class F1, confusion matrix, ECE, uncertainty-risk AUC và dự đoán/uncertainty theo 3.068 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "raf-db",
+        "validation-output",
+        "uncertainty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JSON giữ cả metric tổng hợp lẫn mảng cấp mẫu, vì vậy có quy mô lớn hơn một summary thông thường."
+    },
+    {
+      "id": "document:outputs/fer2013/README_training_logs.md",
+      "type": "document",
+      "name": "README_training_logs.md",
+      "filePath": "outputs/fer2013/README_training_logs.md",
+      "summary": "Tài liệu truy vết quá trình trích xuất log FER2013 từ notebook, liệt kê quy mô log, số dòng theo step/epoch/validation và các metric tốt nhất của run ngắn.",
+      "tags": [
+        "documentation",
+        "training-log",
+        "fer2013",
+        "provenance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:outputs/fer2013/accuracy_uce_summary.json",
+      "type": "config",
+      "name": "accuracy_uce_summary.json",
+      "filePath": "outputs/fer2013/accuracy_uce_summary.json",
+      "summary": "Tóm tắt các epoch tốt nhất của FER2013 theo accuracy, balanced accuracy, Macro-F1 và ECE; trường UCE được ghi rõ chỉ là alias của ECE vì run không log UCE riêng.",
+      "tags": [
+        "metric-summary",
+        "calibration",
+        "fer2013",
+        "experiment-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:outputs/fer2013/best_metrics_summary.json",
+      "type": "config",
+      "name": "best_metrics_summary.json",
+      "filePath": "outputs/fer2013/best_metrics_summary.json",
+      "summary": "Lưu snapshot đánh giá FER2013 tại checkpoint tốt nhất theo Macro-F1: accuracy 0,7059, balanced accuracy 0,6832, Macro-F1 0,6864, ECE 0,3746 cùng confusion matrix và per-class F1 trên 7.178 mẫu.",
+      "tags": [
+        "metric-artifact",
+        "fer2013",
+        "classification",
+        "calibration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:outputs/fer2013/inference_sample_uncertainty.json",
+      "type": "config",
+      "name": "inference_sample_uncertainty.json",
+      "filePath": "outputs/fer2013/inference_sample_uncertainty.json",
+      "summary": "Lưu một kết quả suy luận FER2013 cấp mẫu với nhãn neutral, phân bố xác suất bảy lớp, uncertainty 0,5080 và similarity theo từng emotion descriptor.",
+      "tags": [
+        "inference-output",
+        "uncertainty",
+        "fer2013",
+        "semantic-similarity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:outputs/fer2013/training_epoch_losses.csv:training_epoch_losses",
+      "type": "table",
+      "name": "training_epoch_losses.csv",
+      "filePath": "outputs/fer2013/training_epoch_losses.csv",
+      "summary": "Bảng loss và thời gian huấn luyện FER2013 theo stage và epoch, gồm 50 bản ghi cho hai giai đoạn.",
+      "tags": [
+        "training-history",
+        "loss",
+        "fer2013",
+        "experiment-output"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:outputs/fer2013/training_step_losses.csv:training_step_losses",
+      "type": "table",
+      "name": "training_step_losses.csv",
+      "filePath": "outputs/fer2013/training_step_losses.csv",
+      "summary": "Bảng chi tiết loss FER2013 theo stage, epoch và step, gồm 1.760 bản ghi dùng để phân tích đường học trong từng epoch.",
+      "tags": [
+        "training-history",
+        "step-metrics",
+        "loss",
+        "fer2013"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:outputs/fer2013/uncertainty_summary.json",
+      "type": "config",
+      "name": "uncertainty_summary.json",
+      "filePath": "outputs/fer2013/uncertainty_summary.json",
+      "summary": "Tổng hợp evidence uncertainty có sẵn của FER2013 tại checkpoint epoch 24, bao gồm risk AUC 0,2255, ECE 0,3746 và uncertainty của một mẫu; file cũng nêu rõ không có avg uncertainty theo epoch.",
+      "tags": [
+        "uncertainty",
+        "metric-summary",
+        "fer2013",
+        "limitation-note"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:outputs/fer2013/validation_accuracy.csv:validation_accuracy",
+      "type": "table",
+      "name": "validation_accuracy.csv",
+      "filePath": "outputs/fer2013/validation_accuracy.csv",
+      "summary": "Bảng accuracy, balanced accuracy và Macro-F1 của FER2013 theo 30 epoch validation, tách riêng khỏi metric calibration.",
+      "tags": [
+        "validation-history",
+        "fer2013",
+        "classification",
+        "experiment-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "type": "table",
+      "name": "validation_metrics.csv",
+      "filePath": "outputs/fer2013/validation_metrics.csv",
+      "summary": "Bảng validation FER2013 theo 30 epoch với accuracy, balanced accuracy, Macro-F1 và ECE, là nguồn của các bản tóm tắt best/lowest metric.",
+      "tags": [
+        "validation-history",
+        "calibration",
+        "fer2013",
+        "experiment-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:outputs/fer2013/validation_uncertainty.csv:validation_uncertainty",
+      "type": "table",
+      "name": "validation_uncertainty.csv",
+      "filePath": "outputs/fer2013/validation_uncertainty.csv",
+      "summary": "Bảng một dòng ghi uncertainty-risk AUC và các metric của checkpoint FER2013 epoch 24; ghi chú xác nhận notebook không có uncertainty trung bình theo epoch.",
+      "tags": [
+        "validation-output",
+        "uncertainty",
+        "fer2013",
+        "provenance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "table:outputs/report_w4/emotionclip_outputs_summary.csv:emotionclip_outputs_summary",
+      "type": "table",
+      "name": "emotionclip_outputs_summary.csv",
+      "filePath": "outputs/report_w4/emotionclip_outputs_summary.csv",
+      "summary": "Bảng đối chiếu gọn kết quả FER2013 và RAF-DB cho báo cáo W4, gồm best epoch, accuracy, balanced accuracy, Macro-F1, ECE, uncertainty-risk AUC và số mẫu.",
+      "tags": [
+        "report-data",
+        "benchmark-summary",
+        "fer",
+        "experiment-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:outputs/report_w4/emotionclip_outputs_summary.json",
+      "type": "config",
+      "name": "emotionclip_outputs_summary.json",
+      "filePath": "outputs/report_w4/emotionclip_outputs_summary.json",
+      "summary": "Tổng hợp có cấu trúc kết quả FER2013 và RAF-DB cho báo cáo W4, bao gồm best epoch theo nhiều tiêu chí, per-class F1 và metric calibration/uncertainty.",
+      "tags": [
+        "report-data",
+        "metric-summary",
+        "fer",
+        "calibration"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:outputs/report_w4/rafdb_training_history_extracted.csv:rafdb_training_history_extracted",
+      "type": "table",
+      "name": "rafdb_training_history_extracted.csv",
+      "filePath": "outputs/report_w4/rafdb_training_history_extracted.csv",
+      "summary": "Bảng lịch sử loss và thời gian huấn luyện RAF-DB theo stage/epoch được trích cho báo cáo W4.",
+      "tags": [
+        "training-history",
+        "raf-db",
+        "loss",
+        "report-data"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "table:outputs/report_w4/rafdb_validation_history_extracted.csv:rafdb_validation_history_extracted",
+      "type": "table",
+      "name": "rafdb_validation_history_extracted.csv",
+      "filePath": "outputs/report_w4/rafdb_validation_history_extracted.csv",
+      "summary": "Bảng lịch sử validation RAF-DB theo epoch với accuracy, balanced accuracy, Macro-F1 và ECE được trích cho báo cáo W4.",
+      "tags": [
+        "validation-history",
+        "raf-db",
+        "calibration",
+        "report-data"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.codex/tmp/019f8a29-798f-7c12-a8ee-fdf1d43a6942/edit_paper.mjs",
+      "type": "file",
+      "name": "edit_paper.mjs",
+      "filePath": ".codex/tmp/019f8a29-798f-7c12-a8ee-fdf1d43a6942/edit_paper.mjs",
+      "summary": "Script thao tác workbook nghiên cứu: inspect/render các sheet, chèn paper số 89 về ULMFiT sau kiểm tra trùng lặp, cập nhật Research Log, export và xác minh workbook đầu ra.",
+      "tags": [
+        "spreadsheet-automation",
+        "literature-review",
+        "validation",
+        "artifact-generation"
+      ],
+      "complexity": "complex",
+      "languageNotes": "JavaScript dùng top-level await và @oai/artifact-tool để đọc, render, chỉnh sửa rồi tái nhập XLSX nhằm kiểm tra hậu điều kiện."
+    },
+    {
+      "id": "file:config/defaults_base.py",
+      "type": "file",
+      "name": "defaults_base.py",
+      "filePath": "config/defaults_base.py",
+      "summary": "Định nghĩa cấu hình YACS nền cho pipeline ReID một-solver, gồm backbone, input augmentation, dataset, dataloader, optimizer, scheduler và chế độ test.",
+      "tags": [
+        "configuration",
+        "reid",
+        "yacs",
+        "training"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Cấu hình được xây bằng cây CfgNode và gán giá trị mặc định theo namespace MODEL/INPUT/DATASETS/DATALOADER/SOLVER/TEST."
+    },
+    {
+      "id": "file:config/defaults.py",
+      "type": "file",
+      "name": "defaults.py",
+      "filePath": "config/defaults.py",
+      "summary": "Định nghĩa cấu hình YACS chính của CLIP-ReID với solver tách STAGE1/STAGE2, các tham số model/input/dataset và thiết lập đánh giá.",
+      "tags": [
+        "configuration",
+        "two-stage-training",
+        "clip-reid",
+        "yacs"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Hai CfgNode STAGE1 và STAGE2 mã hóa lịch tối ưu độc lập trong cùng cây cấu hình."
+    },
+    {
+      "id": "file:datasets/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "datasets/__init__.py",
+      "summary": "File khởi tạo package datasets hiện để trống và không re-export thành phần nào.",
+      "tags": [
+        "entry-point",
+        "package",
+        "datasets"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:datasets/keypoint_test.txt",
+      "type": "document",
+      "name": "keypoint_test.txt",
+      "filePath": "datasets/keypoint_test.txt",
+      "summary": "Danh sách keypoint cho ảnh test VeRi: mỗi dòng chứa đường dẫn ảnh, các cặp tọa độ với -1 biểu thị điểm thiếu và một nhãn số ở cuối.",
+      "tags": [
+        "keypoint-data",
+        "veri",
+        "test-split",
+        "landmark"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "document:datasets/keypoint_train.txt",
+      "type": "document",
+      "name": "keypoint_train.txt",
+      "filePath": "datasets/keypoint_train.txt",
+      "summary": "Danh sách keypoint cho ảnh train VeRi: mỗi dòng ánh xạ đường dẫn ảnh sang các cặp tọa độ, giá trị -1 cho điểm thiếu và một nhãn số cuối dòng.",
+      "tags": [
+        "keypoint-data",
+        "veri",
+        "train-split",
+        "landmark"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:datasets/preprocessing.py",
+      "type": "file",
+      "name": "preprocessing.py",
+      "filePath": "datasets/preprocessing.py",
+      "summary": "Cung cấp augmentation Random Erasing áp trực tiếp lên tensor ảnh, lấy mẫu diện tích/tỷ lệ ngẫu nhiên và tô vùng chữ nhật theo mean từng kênh.",
+      "tags": [
+        "data-augmentation",
+        "random-erasing",
+        "preprocessing",
+        "vision"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Implementation lặp tối đa 100 lần để tìm hình chữ nhật hợp lệ và hỗ trợ tensor một hoặc ba kênh."
+    },
+    {
+      "id": "file:docs/Docs_ref/EmotionCLIP-ReID_Data_Reference.docx",
+      "type": "file",
+      "name": "EmotionCLIP-ReID_Data_Reference.docx",
+      "filePath": "docs/Docs_ref/EmotionCLIP-ReID_Data_Reference.docx",
+      "summary": "Artifact báo cáo Word nhị phân EmotionCLIP-ReID_Data_Reference.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:docs/emotionclip_reid_proposed_emotionclip_reid_model.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_proposed_emotionclip_reid_model.drawio",
+      "filePath": "docs/emotionclip_reid_proposed_emotionclip_reid_model.drawio",
+      "summary": "Sơ đồ mô hình đề xuất nối face-safe preprocessing, CLIP ViT-B/16, expression-aware adapters và nhánh emotion/AU semantic descriptor cho huấn luyện và suy luận FER.",
+      "tags": [
+        "architecture-diagram",
+        "emotionclip-reid",
+        "semantic-descriptor",
+        "adapter"
+      ],
+      "complexity": "complex",
+      "languageNotes": "draw.io lưu đồ thị bằng mxGraph XML với nhãn HTML trong thuộc tính value."
+    },
+    {
+      "id": "file:docs/original_scientific_model_diagram.drawio",
+      "type": "file",
+      "name": "original_scientific_model_diagram.drawio",
+      "filePath": "docs/original_scientific_model_diagram.drawio",
+      "summary": "Sơ đồ học thuật của CLIP-ReID gốc, mô tả Stage I tối ưu prompt định danh bằng contrastive image-text và Stage II fine-tune ReID với text anchors.",
+      "tags": [
+        "architecture-diagram",
+        "clip-reid",
+        "two-stage-training",
+        "baseline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io dùng mxGraph XML để biểu diễn node, edge và công thức trong nhãn HTML."
+    },
+    {
+      "id": "file:docs/original_system_architecture.drawio",
+      "type": "file",
+      "name": "original_system_architecture.drawio",
+      "filePath": "docs/original_system_architecture.drawio",
+      "summary": "Sơ đồ kiến trúc hệ thống CLIP-ReID nguyên bản theo entrypoint, cấu hình/dữ liệu ReID, dual encoder/loss và training/inference; đồng thời đánh dấu chưa có AU-specific pipeline.",
+      "tags": [
+        "system-diagram",
+        "clip-reid",
+        "legacy-reid",
+        "baseline"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io dùng mxGraph XML và các mxCell có nhãn mô tả từng tầng hệ thống."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_gvhd_research_gap_proposal_slides.pptx",
+      "type": "file",
+      "name": "emotionclip_reid_gvhd_research_gap_proposal_slides.pptx",
+      "filePath": "docs/report/emotionclip_reid_gvhd_research_gap_proposal_slides.pptx",
+      "summary": "Artifact slide PowerPoint nhị phân emotionclip_reid_gvhd_research_gap_proposal_slides.pptx; structural extraction chỉ xác nhận tệp và quy mô, không cung cấp nội dung slide đủ tin cậy để phân tích sâu.",
+      "tags": [
+        "office-artifact",
+        "presentation",
+        "report",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "PPTX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc slide."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_model_proposal_report.docx",
+      "type": "file",
+      "name": "emotionclip_reid_model_proposal_report.docx",
+      "filePath": "docs/report/emotionclip_reid_model_proposal_report.docx",
+      "summary": "Artifact báo cáo Word nhị phân emotionclip_reid_model_proposal_report.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_model_proposal_slides.pptx",
+      "type": "file",
+      "name": "emotionclip_reid_model_proposal_slides.pptx",
+      "filePath": "docs/report/emotionclip_reid_model_proposal_slides.pptx",
+      "summary": "Artifact slide PowerPoint nhị phân emotionclip_reid_model_proposal_slides.pptx; structural extraction chỉ xác nhận tệp và quy mô, không cung cấp nội dung slide đủ tin cậy để phân tích sâu.",
+      "tags": [
+        "office-artifact",
+        "presentation",
+        "report",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "PPTX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc slide."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_report_w2.docx",
+      "type": "file",
+      "name": "emotionclip_reid_report_w2.docx",
+      "filePath": "docs/report/emotionclip_reid_report_w2.docx",
+      "summary": "Artifact báo cáo Word nhị phân emotionclip_reid_report_w2.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_report_w3.docx",
+      "type": "file",
+      "name": "emotionclip_reid_report_w3.docx",
+      "filePath": "docs/report/emotionclip_reid_report_w3.docx",
+      "summary": "Artifact báo cáo Word nhị phân emotionclip_reid_report_w3.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid_report_w4.docx",
+      "type": "file",
+      "name": "emotionclip_reid_report_w4.docx",
+      "filePath": "docs/report/emotionclip_reid_report_w4.docx",
+      "summary": "Artifact báo cáo Word nhị phân emotionclip_reid_report_w4.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:docs/report/emotionclip_reid.pptx",
+      "type": "file",
+      "name": "emotionclip_reid.pptx",
+      "filePath": "docs/report/emotionclip_reid.pptx",
+      "summary": "Artifact slide PowerPoint nhị phân emotionclip_reid.pptx; structural extraction chỉ xác nhận tệp và quy mô, không cung cấp nội dung slide đủ tin cậy để phân tích sâu.",
+      "tags": [
+        "office-artifact",
+        "presentation",
+        "report",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "PPTX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc slide."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_context_gap_hub_map.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_context_gap_hub_map.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_context_gap_hub_map.drawio",
+      "summary": "Bản đồ research gap quy tụ VLM adaptation, language-guided ReID, AU/FACS, CLIP-FER, uncertainty và multimodal MER quanh bài toán emotion/AU semantic anchors.",
+      "tags": [
+        "research-gap",
+        "related-work",
+        "semantic-anchor",
+        "diagram"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Sơ đồ draw.io mã hóa một hub-and-spoke research map bằng mxGraph XML."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_current_system.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_current_system.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_current_system.drawio",
+      "summary": "Sơ đồ hệ thống EmotionCLIP-ReID hiện tại, phân biệt khối tái sử dụng/frozen, đã triển khai, trainable, loss/metric và optional từ CLIP–CoOp–CLIP-ReID sang FER.",
+      "tags": [
+        "current-architecture",
+        "emotionclip-reid",
+        "two-stage-training",
+        "diagram"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Sơ đồ draw.io dùng màu/nhãn để phân loại trạng thái các khối kiến trúc."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_proposal_pipeline.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_proposal_pipeline.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_proposal_pipeline.drawio",
+      "summary": "Sơ đồ giả thuyết đề xuất: Stage 1 học candidate emotion descriptors, Stage 2 dùng descriptor cố định để kiểm tra semantic anchoring qua adapter, alignment và calibration.",
+      "tags": [
+        "proposal",
+        "semantic-descriptor",
+        "ablation",
+        "diagram"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io biểu diễn pipeline và các claim cần metric/ablation bằng mxGraph XML."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_publication_pipeline_update.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_publication_pipeline_update.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_publication_pipeline_update.drawio",
+      "summary": "Sơ đồ publication pipeline v1 thực dụng, chỉ rõ Stage 1 học class-specific latent prompt tokens và Stage 2 dùng fixed emotion anchors, không diễn giải token như eye/mouth/AU descriptor.",
+      "tags": [
+        "publication-figure",
+        "prompt-learning",
+        "two-stage-training",
+        "fer"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Nhãn mxGraph làm rõ ranh giới giữa latent prompt token và anatomy descriptor."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_publication_pipeline.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_publication_pipeline.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_publication_pipeline.drawio",
+      "summary": "Sơ đồ pipeline học thuật tối giản cho Stage 1 semantic prompt optimization và dòng truyền fixed text descriptor sang Stage 2.",
+      "tags": [
+        "publication-figure",
+        "semantic-prompt",
+        "two-stage-training",
+        "objective"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io lưu node/edge và ký hiệu objective trong mxGraph XML."
+    },
+    {
+      "id": "file:docs/report/fig/emotionclip_reid_two_stage_structure.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_two_stage_structure.drawio",
+      "filePath": "docs/report/fig/emotionclip_reid_two_stage_structure.drawio",
+      "summary": "Sơ đồ kiến trúc anatomy-enabled hai giai đoạn: class-conditioned semantic prototypes, hybrid regional routing/geometry residual và reliability diagnostics tách biệt dưới protocol sealed test.",
+      "tags": [
+        "architecture-diagram",
+        "anatomy-routing",
+        "geometry-fusion",
+        "reliability"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Sơ đồ mxGraph dùng nhiều lớp chú giải cho frozen/trainable, feature/prototype, anatomy/quality và objective/reliability."
+    },
+    {
+      "id": "file:docs/report/fig/v1/emotionclip_reid_publication_pipeline_update.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_publication_pipeline_update.drawio",
+      "filePath": "docs/report/fig/v1/emotionclip_reid_publication_pipeline_update.drawio",
+      "summary": "Bản v1 của publication pipeline cập nhật, bổ sung anatomy artifact transform-aware, class geometry statistics và gated geometry residual ở Stage 1B trước Stage 2 adaptation.",
+      "tags": [
+        "publication-figure",
+        "anatomy",
+        "geometry-residual",
+        "two-stage-training"
+      ],
+      "complexity": "complex",
+      "languageNotes": "draw.io dùng mxGraph XML để biểu diễn shared contract và hai stage."
+    },
+    {
+      "id": "file:docs/report/fig/v1/emotionclip_reid_publication_pipeline.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_publication_pipeline.drawio",
+      "filePath": "docs/report/fig/v1/emotionclip_reid_publication_pipeline.drawio",
+      "summary": "Bản v1 của sơ đồ semantic prompt optimization: image embedding, class prompt, label supervision và objective Stage 1 trước khi chuyển anchor sang giai đoạn sau.",
+      "tags": [
+        "publication-figure",
+        "semantic-prompt",
+        "stage-one",
+        "objective"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io dùng mxGraph XML cho luồng input, frozen/trainable và objective."
+    },
+    {
+      "id": "file:docs/report/fig/v1/emotionclip_reid_two_stage_structure.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_two_stage_structure.drawio",
+      "filePath": "docs/report/fig/v1/emotionclip_reid_two_stage_structure.drawio",
+      "summary": "Sơ đồ đề xuất ban đầu chuyển CLIP-ReID từ ID anchoring sang emotion descriptor learning, adapter fine-tuning và AU prior tùy chọn.",
+      "tags": [
+        "proposal-diagram",
+        "emotion-descriptor",
+        "adapter",
+        "au-prior"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Sơ đồ mxGraph mô tả hai stage và các thành phần optional AU/pseudo-AU."
+    },
+    {
+      "id": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "type": "file",
+      "name": "build_emotionclip_anatomy_gap_map.py",
+      "filePath": "docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "summary": "Script sinh sơ đồ draw.io cho kế hoạch anatomy/geometry cuối: shared geometry contract, dual-stream Stage 2, geometry-conditioned Stage 1 và output ambiguity/reliability tách biệt.",
+      "tags": [
+        "diagram-generator",
+        "research-gap",
+        "anatomy",
+        "geometry"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Python xây mxGraph XML bằng ElementTree rồi pretty-print qua minidom."
+    },
+    {
+      "id": "file:docs/research_review/build_research_review.py",
+      "type": "file",
+      "name": "build_research_review.py",
+      "filePath": "docs/research_review/build_research_review.py",
+      "summary": "Pipeline tạo bộ related-work từ danh sách 32 paper nhúng trong source: xuất workbook nhiều sheet, báo cáo DOCX, sơ đồ gap map và kiểm tra render DOCX sang PDF/PNG.",
+      "tags": [
+        "literature-review",
+        "artifact-generation",
+        "spreadsheet",
+        "document-automation"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Python kết hợp openpyxl, python-docx, OOXML và mxGraph XML; bước QA gọi LibreOffice cùng pdftoppm."
+    },
+    {
+      "id": "config:docs/research_review/build_summary.json",
+      "type": "config",
+      "name": "build_summary.json",
+      "filePath": "docs/research_review/build_summary.json",
+      "summary": "Manifest kết quả của pipeline related-work, ghi đường dẫn XLSX/DOCX/draw.io, paper_count 32 và xác nhận DOCX đã render thành công.",
+      "tags": [
+        "build-manifest",
+        "literature-review",
+        "render-verification",
+        "artifact-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:docs/research_review/emotionclip_anatomy_research_gap_map.drawio",
+      "type": "file",
+      "name": "emotionclip_anatomy_research_gap_map.drawio",
+      "filePath": "docs/research_review/emotionclip_anatomy_research_gap_map.drawio",
+      "summary": "Sơ đồ research gap anatomy phiên bản chốt: reliability-gated geometry dùng chung cho Stage 1/2, visual fallback khi landmark kém và roadmap kiểm chứng theo ablation.",
+      "tags": [
+        "research-gap",
+        "anatomy-routing",
+        "reliability-gate",
+        "diagram"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "mxGraph XML chứa trực tiếp công thức, tiêu chí go/no-go và đối chiếu nhóm paper R1–R11."
+    },
+    {
+      "id": "document:docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "type": "document",
+      "name": "emotionclip_reid_gap_analysis_2026-07-14.md",
+      "filePath": "docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "summary": "Báo cáo audit toàn diện code, protocol, log và novelty: nhận diện leakage/provenance/uncertainty gaps, ghi nhận protocol sealed-test đã sửa, tổng hợp kết quả FER2013/RAF-DB và đề xuất roadmap publication-ready.",
+      "tags": [
+        "documentation",
+        "code-audit",
+        "research-gap",
+        "experimental-protocol",
+        "novelty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Markdown kết hợp bảng evidence, Mermaid architecture, mức Verified/Inferred/Proposed và checklist go/no-go."
+    },
+    {
+      "id": "file:docs/research_review/emotionclip_reid_papers.backup_20260620.xlsx",
+      "type": "file",
+      "name": "emotionclip_reid_papers.backup_20260620.xlsx",
+      "filePath": "docs/research_review/emotionclip_reid_papers.backup_20260620.xlsx",
+      "summary": "Workbook XLSX nhị phân emotionclip_reid_papers.backup_20260620.xlsx dùng làm artifact tổng hợp tài liệu; structural extraction không cung cấp dữ liệu cell đủ tin cậy để mô tả chi tiết.",
+      "tags": [
+        "office-artifact",
+        "spreadsheet",
+        "literature-review",
+        "binary-document"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "XLSX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất sheet/cell."
+    },
+    {
+      "id": "file:docs/research_review/emotionclip_reid_papers.xlsx",
+      "type": "file",
+      "name": "emotionclip_reid_papers.xlsx",
+      "filePath": "docs/research_review/emotionclip_reid_papers.xlsx",
+      "summary": "Workbook XLSX nhị phân emotionclip_reid_papers.xlsx dùng làm artifact tổng hợp tài liệu; structural extraction không cung cấp dữ liệu cell đủ tin cậy để mô tả chi tiết.",
+      "tags": [
+        "office-artifact",
+        "spreadsheet",
+        "literature-review",
+        "binary-document"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "XLSX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất sheet/cell."
+    },
+    {
+      "id": "file:docs/research_review/emotionclip_reid_related_work_gap_map.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_related_work_gap_map.drawio",
+      "filePath": "docs/research_review/emotionclip_reid_related_work_gap_map.drawio",
+      "summary": "Sơ đồ lập luận related-work từ VLM/prompt, language-guided ReID, CLIP-FER, AU/FACS, uncertainty và multimodal đến gap emotion/AU semantic anchors.",
+      "tags": [
+        "related-work",
+        "research-gap",
+        "semantic-anchor",
+        "diagram"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Sơ đồ được sinh bằng mxGraph XML từ build_research_review.py."
+    },
+    {
+      "id": "file:docs/research_review/related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx",
+      "type": "file",
+      "name": "related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx",
+      "filePath": "docs/research_review/related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx",
+      "summary": "Artifact báo cáo Word nhị phân related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "document:docs/SOTA/disfa_sota_benchmark.md",
+      "type": "document",
+      "name": "disfa_sota_benchmark.md",
+      "filePath": "docs/SOTA/disfa_sota_benchmark.md",
+      "summary": "Tổng hợp protocol và benchmark DISFA cho AU detection/intensity, xếp hạng các phương pháp gần đây, nêu caveat so sánh và gợi ý năm dataset AU tương tự.",
+      "tags": [
+        "documentation",
+        "sota-benchmark",
+        "disfa",
+        "action-unit",
+        "evaluation-protocol"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Bảng Markdown tách rõ AU detection bằng Avg F1 với AU intensity bằng ICC/MSE/MAE."
+    },
+    {
+      "id": "file:docs/Tài liệu tham khảo/EmotionCLIP-ReID_Data_Reference.docx",
+      "type": "file",
+      "name": "EmotionCLIP-ReID_Data_Reference.docx",
+      "filePath": "docs/Tài liệu tham khảo/EmotionCLIP-ReID_Data_Reference.docx",
+      "summary": "Artifact báo cáo Word nhị phân EmotionCLIP-ReID_Data_Reference.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:fig/emotionclip_reid_current_system.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_current_system.drawio",
+      "filePath": "fig/emotionclip_reid_current_system.drawio",
+      "summary": "Bản sao sơ đồ hệ thống EmotionCLIP-ReID hiện tại, mô tả phần kế thừa CLIP/CoOp/CLIP-ReID và các khối FER đã triển khai hoặc optional.",
+      "tags": [
+        "current-architecture",
+        "emotionclip-reid",
+        "baseline",
+        "diagram"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io dùng mxGraph XML và chú giải trạng thái khối."
+    },
+    {
+      "id": "file:fig/emotionclip_reid_publication_pipeline.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_publication_pipeline.drawio",
+      "filePath": "fig/emotionclip_reid_publication_pipeline.drawio",
+      "summary": "Sơ đồ publication pipeline chính cho hai-stage EmotionCLIP-ReID, từ image/label supervision ở Stage 1 đến visual adaptation và prediction ở Stage 2.",
+      "tags": [
+        "publication-figure",
+        "two-stage-training",
+        "semantic-anchor",
+        "fer"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io mã hóa luồng dữ liệu và objective trong mxGraph XML."
+    },
+    {
+      "id": "file:loss/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "loss/__init__.py",
+      "summary": "Điểm vào package loss, wildcard-import toàn bộ lớp margin-based từ loss/arcface.py.",
+      "tags": [
+        "entry-point",
+        "package",
+        "loss",
+        "barrel"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:loss/arcface.py",
+      "type": "file",
+      "name": "arcface.py",
+      "filePath": "loss/arcface.py",
+      "summary": "Cài đặt hai classification head margin-based ArcFace và CircleLoss trên cosine similarity chuẩn hóa cho embedding learning.",
+      "tags": [
+        "metric-learning",
+        "arcface",
+        "circle-loss",
+        "classification-head"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "PyTorch nn.Module chuẩn hóa feature và class weight trước khi áp angular/circle margin; one-hot tensor hiện được tạo trực tiếp trên CUDA."
+    },
+    {
+      "id": "file:loss/metric_learning.py",
+      "type": "file",
+      "name": "metric_learning.py",
+      "filePath": "loss/metric_learning.py",
+      "summary": "Tập hợp objective/head metric learning gồm pairwise ContrastiveLoss, CircleLoss, Arcface, Cosface và AMSoftmax cho bài toán phân biệt embedding.",
+      "tags": [
+        "metric-learning",
+        "contrastive-loss",
+        "margin-softmax",
+        "classification-head"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Các head PyTorch dùng normalized cosine logits và additive/angular margins; nhiều implementation tạo tensor nhãn phụ trên CUDA."
+    },
+    {
+      "id": "file:notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+      "type": "file",
+      "name": "emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+      "filePath": "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+      "summary": "Runbook độc lập để tạo và cache anatomy/landmark artifact cho FER2013 và RAF-DB, audit coverage/jitter, vẽ failure dashboard và bàn giao manifest_anatomy.jsonl cho notebook train.",
+      "tags": [
+        "notebook",
+        "landmark-pipeline",
+        "anatomy-artifact",
+        "data-audit"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Notebook kết hợp Markdown và code; cache key phụ thuộc manifest, model, schema và jitter, còn mỗi build có LANDMARK_RUN_ID riêng."
+    },
+    {
+      "id": "file:notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "type": "file",
+      "name": "emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "filePath": "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "summary": "Runbook JupyterHub cho FER2013 bảy lớp: chuẩn bị dataset/manifest, dùng landmark offline, khóa run ID, train hai stage và giữ PrivateTest làm sealed test.",
+      "tags": [
+        "notebook",
+        "fer2013",
+        "two-stage-training",
+        "sealed-test",
+        "reproducibility"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Notebook mô tả DataParallel hai GPU T4, output immutable theo RUN_ID và separation Training/PublicTest/PrivateTest."
+    },
+    {
+      "id": "file:notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "type": "file",
+      "name": "emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "filePath": "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "summary": "Runbook JupyterHub cho RAF-DB Basic: kiểm tra manifest/anatomy, tạo validation xác định từ official train, giữ official test sealed và train EmotionCLIP-ReID theo cấu hình hai stage.",
+      "tags": [
+        "notebook",
+        "raf-db",
+        "two-stage-training",
+        "sealed-test",
+        "reproducibility"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Notebook tách staging visual khỏi output immutable và yêu cầu manifest_anatomy/anatomy_v3 được build trước."
+    },
+    {
+      "id": "file:outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx",
+      "type": "file",
+      "name": "emotionclip_reid_papers.xlsx",
+      "filePath": "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx",
+      "summary": "Workbook XLSX nhị phân emotionclip_reid_papers.xlsx dùng làm artifact tổng hợp tài liệu; structural extraction không cung cấp dữ liệu cell đủ tin cậy để mô tả chi tiết.",
+      "tags": [
+        "office-artifact",
+        "spreadsheet",
+        "literature-review",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "XLSX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất sheet/cell."
+    },
+    {
+      "id": "file:outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_w4_functional_change_map.drawio",
+      "filePath": "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio",
+      "summary": "Sơ đồ thay đổi chức năng W4, đánh dấu các khối dataset/manifest, emotion descriptors, expression adapters, global-local alignment, evidential uncertainty và evidence artifacts.",
+      "tags": [
+        "change-map",
+        "week-four",
+        "emotionclip-reid",
+        "diagram"
+      ],
+      "complexity": "simple",
+      "languageNotes": "mxGraph XML phân biệt khối mới W4 với khối sửa từ W3."
+    },
+    {
+      "id": "file:outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_w4_model_architecture.drawio",
+      "filePath": "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio",
+      "summary": "Sơ đồ kiến trúc W4 phân nhóm visual feature, semantic descriptor và decision/uncertainty/evaluation, đồng thời đánh dấu NEW, MODIFIED và REUSED/FROZEN.",
+      "tags": [
+        "architecture-diagram",
+        "week-four",
+        "adapter",
+        "uncertainty"
+      ],
+      "complexity": "simple",
+      "languageNotes": "draw.io lưu chú giải đóng góp W4 trong mxGraph XML."
+    },
+    {
+      "id": "file:outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_w4_two_stage_training.drawio",
+      "filePath": "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio",
+      "summary": "Sơ đồ huấn luyện W4: Stage 1 học fixed emotion descriptors với CLIP frozen; Stage 2 kết hợp classifier, global/local alignment và uncertainty term.",
+      "tags": [
+        "training-diagram",
+        "week-four",
+        "two-stage-training",
+        "uncertainty"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "mxGraph XML chứa công thức fusion logits và objective tổng của Stage 2."
+    },
+    {
+      "id": "file:outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_w4_uncertainty_detail.drawio",
+      "filePath": "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+      "summary": "Sơ đồ chi tiết nhánh uncertainty W4 từ fused logits qua decoupled Dirichlet strength đến probability, uncertainty, EDL objective, ECE và uncertainty-risk AUC.",
+      "tags": [
+        "python",
+        "module",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:processor/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "processor/__init__.py",
+      "summary": "Đánh dấu processor là Python package; các vòng lặp huấn luyện cụ thể được đặt trong các module processor chuyên biệt.",
+      "tags": [
+        "huấn-luyện",
+        "đánh-giá",
+        "checkpoint",
+        "pipeline"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:solver/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "solver/__init__.py",
+      "summary": "Đánh dấu solver là Python package cho optimizer và learning-rate scheduler của dự án.",
+      "tags": [
+        "python",
+        "module",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "utils/__init__.py",
+      "summary": "Đánh dấu utils là Python package tập hợp metric, logging, notebook helper và artifact reproducibility.",
+      "tags": [
+        "python",
+        "module",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:utils/notebook_metrics.py",
+      "type": "file",
+      "name": "notebook_metrics.py",
+      "filePath": "utils/notebook_metrics.py",
+      "summary": "Các helper notebook dò metric từ JSON/CSV/log, hợp nhất lịch sử validation/training và vẽ curve, confusion matrix, per-class F1 với lựa chọn best epoch.",
+      "tags": [
+        "đánh-giá",
+        "calibration",
+        "fer",
+        "trực-quan-hóa"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Helper ưu tiên artifact JSON mới nhưng duy trì fallback CSV/log cho các run lịch sử."
+    }
+  ],
+  "importEdges": [
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/center_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/softmax_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/triplet_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "file:utils/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "file:loss/supcontrast.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:loss/supcontrast.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:utils/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:solver/cosine_lr.py",
+      "target": "file:solver/scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:solver/scheduler_factory.py",
+      "target": "file:solver/cosine_lr.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:datasets/make_dataloader.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:model/make_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:processor/processor.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:datasets/make_dataloader_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:model/make_model_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage2.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:datasets/make_dataloader.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:loss/make_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:model/make_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:processor/processor.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:solver/lr_scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:solver/make_optimizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:datasets/make_dataloader_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:loss/make_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:model/make_model_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage1.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage2.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/lr_scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/make_optimizer_prompt.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/scheduler_factory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "file:utils/reranking.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/emotion_manifest.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:infer_emotionclip.py",
+      "target": "file:config/emotion_defaults.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:infer_emotionclip.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:infer_emotionclip.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:infer_emotionclip.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:infer_emotionclip.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:loss/emotion_losses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:utils/fer_metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "file:tools/audit_anatomy_geometry.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "file:tools/build_face_landmark_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:loss/emotion_losses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:utils/fer_metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:tools/download_hf_emotion_dataset.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "file:utils/run_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "file:train_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/convert_affwild2_to_emotion_jsonl.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/convert_raf_au_to_emotion_jsonl.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:config/emotion_defaults.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:utils/run_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/dukemtmcreid.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/dukemtmcreid.py",
+      "target": "file:utils/iotools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/dukemtmcreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/market1501.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/msmt17.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/occ_duke.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/sampler_ddp.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/sampler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/vehicleid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/veri.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/dukemtmcreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/market1501.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/msmt17.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/occ_duke.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/sampler_ddp.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/sampler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/vehicleid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/veri.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/market1501.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/msmt17.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/occ_duke.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/occ_duke.py",
+      "target": "file:utils/iotools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/vehicleid.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/veri.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/__init__.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "file:model/clip/model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:model/clip/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "file:model/clip/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "file:model/clip/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:model/clip/model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:config/emotion_defaults.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:utils/notebook_landmarks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:utils/notebook_progress.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:utils/notebook_run.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/__init__.py",
+      "target": "file:loss/arcface.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    }
+  ],
+  "allEdges": [
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/center_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/softmax_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/make_loss.py",
+      "target": "file:loss/triplet_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor.py",
+      "target": "file:utils/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "file:loss/supcontrast.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage1.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:loss/supcontrast.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:utils/meter.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_clipreid_stage2.py",
+      "target": "file:utils/metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:solver/cosine_lr.py",
+      "target": "file:solver/scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:solver/scheduler_factory.py",
+      "target": "file:solver/cosine_lr.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:datasets/make_dataloader.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:model/make_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:processor/processor.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:datasets/make_dataloader_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:model/make_model_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage2.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:test_clipreid.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:datasets/make_dataloader.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:loss/make_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:model/make_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:processor/processor.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:solver/lr_scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:solver/make_optimizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:config/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:datasets/make_dataloader_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:loss/make_loss.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:model/make_model_clipreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage1.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:processor/processor_clipreid_stage2.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/lr_scheduler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/make_optimizer_prompt.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:solver/scheduler_factory.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_clipreid.py",
+      "target": "file:utils/logger.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/metrics.py",
+      "target": "file:utils/reranking.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/emotion_manifest.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:infer_emotionclip.py",
+      "target": "file:config/emotion_defaults.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:infer_emotionclip.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:infer_emotionclip.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:infer_emotionclip.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:infer_emotionclip.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/anatomy.py",
+      "target": "file:tests/test_anatomy_audit.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:datasets/emotion_manifest.py",
+      "target": "file:tests/test_emotion_losses_metrics.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:loss/emotion_losses.py",
+      "target": "file:tests/test_emotion_losses_metrics.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:datasets/emotion_manifest.py",
+      "target": "file:tests/test_emotion_manifest.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:datasets/anatomy.py",
+      "target": "file:tests/test_emotion_processor_smoke.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:loss/emotion_losses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:utils/fer_metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "file:tools/audit_anatomy_geometry.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_anatomy_audit.py",
+      "target": "file:tools/build_face_landmark_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:loss/emotion_losses.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_losses_metrics.py",
+      "target": "file:utils/fer_metrics.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_manifest.py",
+      "target": "file:tools/download_hf_emotion_dataset.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_processor_smoke.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:tests/test_emotion_processor_smoke.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:processor/processor_emotionclip.py",
+      "target": "file:tests/test_train_emotionclip_parallel.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "file:utils/run_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "file:train_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/convert_affwild2_to_emotion_jsonl.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "file:tests/test_anatomy_audit.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "file:tests/test_anatomy_audit.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tools/convert_raf_au_to_emotion_jsonl.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:config/emotion_defaults.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:utils/run_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/convert_fer2013_to_emotion_jsonl.py",
+      "target": "file:tests/test_emotion_manifest.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tools/convert_rafdb_to_emotion_jsonl.py",
+      "target": "file:tests/test_emotion_manifest.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tools/download_hf_emotion_dataset.py",
+      "target": "file:tests/test_emotion_manifest.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:train_emotionclip.py",
+      "target": "file:tests/test_train_emotionclip_parallel.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:utils/fer_metrics.py",
+      "target": "file:tests/test_emotion_losses_metrics.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:utils/run_artifacts.py",
+      "target": "file:tests/test_run_artifacts.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:datasets/dukemtmcreid.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/dukemtmcreid.py",
+      "target": "file:utils/iotools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/dukemtmcreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/market1501.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/msmt17.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/occ_duke.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/sampler_ddp.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/sampler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/vehicleid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader.py",
+      "target": "file:datasets/veri.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/dukemtmcreid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/market1501.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/msmt17.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/occ_duke.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/sampler_ddp.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/sampler.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/vehicleid.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/make_dataloader_clipreid.py",
+      "target": "file:datasets/veri.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/market1501.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/msmt17.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/occ_duke.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/occ_duke.py",
+      "target": "file:utils/iotools.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/vehicleid.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:datasets/veri.py",
+      "target": "file:datasets/bases.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/__init__.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "file:model/clip/model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/clip.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/clip/model.py",
+      "target": "file:tests/test_emotion_model_units.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:model/clip/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "file:model/clip/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "file:model/clip/__init__.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "file:model/clip/clip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/make_model_clipreid.py",
+      "target": "file:model/clip/simple_tokenizer.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:model/clip/model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_emotion_model_units.py",
+      "target": "file:model/emotionclip_model.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:model/emotionclip_model.py",
+      "target": "file:tests/test_emotion_model_units.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:config/emotion_defaults.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:utils/notebook_landmarks.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:utils/notebook_progress.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_notebook_helpers.py",
+      "target": "file:utils/notebook_run.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:utils/notebook_progress.py",
+      "target": "file:tests/test_notebook_helpers.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:utils/notebook_run.py",
+      "target": "file:tests/test_notebook_helpers.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:utils/notebook_landmarks.py",
+      "target": "file:tests/test_notebook_helpers.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:config/emotion_defaults.py",
+      "target": "file:tests/test_notebook_helpers.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:note_edit.md",
+      "target": "document:README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "config:environment_emotionclip_cuda.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:pytest.ini",
+      "target": "document:README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/VehicleID/cnn_base.yml",
+      "target": "config:configs/VehicleID/cnn_clipreid.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/VehicleID/vit_base.yml",
+      "target": "config:configs/VehicleID/vit_clipreid.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/emotion/vit_b16_emotionclip_fer2013_quick.yml",
+      "target": "config:configs/emotion/vit_b16_emotionclip.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/emotion/vit_b16_emotionclip_hf_fer2013_quick.yml",
+      "target": "config:configs/emotion/vit_b16_emotionclip.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/emotion/vit_b16_emotionclip_rafdb_quick.yml",
+      "target": "config:configs/emotion/vit_b16_emotionclip.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/person/cnn_base.yml",
+      "target": "config:configs/person/cnn_clipreid.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/person/vit_base.yml",
+      "target": "config:configs/person/vit_clipreid.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/veri/cnn_base.yml",
+      "target": "config:configs/veri/cnn_prom.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:configs/veri/vit_base.yml",
+      "target": "config:configs/veri/vit_prom.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/report/emotionclip_reid_model_proposal_report.md",
+      "target": "document:docs/report/emotionclip_reid_feasibility_analysis.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/report/emotionclip_reid_pipeline_diagram_script.md",
+      "target": "document:docs/report/emotionclip_reid_model_proposal_report.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/report/emotionclip_reid_presentation_script.md",
+      "target": "document:docs/report/emotionclip_reid_model_proposal_report.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/report/emotionclip_reid_research_gap_proposal_brief.md",
+      "target": "document:docs/report/emotionclip_reid_feasibility_analysis.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:outputs/fer2013/README_training_logs.md",
+      "target": "table:outputs/fer2013/training_epoch_losses.csv:training_epoch_losses",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:outputs/fer2013/README_training_logs.md",
+      "target": "table:outputs/fer2013/training_step_losses.csv:training_step_losses",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:outputs/fer2013/README_training_logs.md",
+      "target": "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:outputs/fer2013/README_training_logs.md",
+      "target": "config:outputs/fer2013/best_metrics_summary.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:outputs/fer2013/README_training_logs.md",
+      "target": "config:outputs/fer2013/uncertainty_summary.json",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/fer2013/accuracy_uce_summary.json",
+      "target": "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/fer2013/best_metrics_summary.json",
+      "target": "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/fer2013/inference_sample_uncertainty.json",
+      "target": "config:outputs/fer2013/uncertainty_summary.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/fer2013/uncertainty_summary.json",
+      "target": "config:outputs/fer2013/best_metrics_summary.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "table:outputs/fer2013/validation_accuracy.csv:validation_accuracy",
+      "target": "table:outputs/fer2013/validation_metrics.csv:validation_metrics",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "table:outputs/fer2013/validation_uncertainty.csv:validation_uncertainty",
+      "target": "config:outputs/fer2013/uncertainty_summary.json",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/report_w4/emotionclip_outputs_summary.json",
+      "target": "table:outputs/report_w4/emotionclip_outputs_summary.csv:emotionclip_outputs_summary",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/report_w4/emotionclip_outputs_summary.json",
+      "target": "table:outputs/report_w4/rafdb_training_history_extracted.csv:rafdb_training_history_extracted",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:outputs/report_w4/emotionclip_outputs_summary.json",
+      "target": "table:outputs/report_w4/rafdb_validation_history_extracted.csv:rafdb_validation_history_extracted",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:datasets/keypoint_train.txt",
+      "target": "document:datasets/keypoint_test.txt",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:loss/__init__.py",
+      "target": "file:loss/arcface.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "config:docs/research_review/build_summary.json",
+      "target": "file:docs/research_review/build_research_review.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "target": "file:notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "target": "file:notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/SOTA/disfa_sota_benchmark.md",
+      "target": "document:docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+      "target": "file:utils/notebook_metrics.py",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

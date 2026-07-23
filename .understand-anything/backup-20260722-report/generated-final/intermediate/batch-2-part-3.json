@@ -1,0 +1,1162 @@
+{
+  "nodes": [
+    {
+      "id": "file:tests/test_run_artifacts.py",
+      "type": "file",
+      "name": "test_run_artifacts.py",
+      "filePath": "tests/test_run_artifacts.py",
+      "summary": "Kiểm thử tính bất biến của thư mục run, metadata provenance và yêu cầu run ID tường minh khi tra artifact.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "xác-minh",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_run_artifacts.py:test_run_directory_is_immutable_and_records_provenance",
+      "type": "function",
+      "name": "test_run_directory_is_immutable_and_records_provenance",
+      "filePath": "tests/test_run_artifacts.py",
+      "lineRange": [
+        8,
+        33
+      ],
+      "summary": "Kiểm thử hành vi “run directory is immutable and records provenance” để bảo vệ contract được mô tả bởi test_run_artifacts.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_run_artifacts.py:test_artifact_lookup_requires_explicit_run_id",
+      "type": "function",
+      "name": "test_artifact_lookup_requires_explicit_run_id",
+      "filePath": "tests/test_run_artifacts.py",
+      "lineRange": [
+        36,
+        38
+      ],
+      "summary": "Kiểm thử hành vi “artifact lookup requires explicit run id” để bảo vệ contract được mô tả bởi test_run_artifacts.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tests/test_train_emotionclip_parallel.py",
+      "type": "file",
+      "name": "test_train_emotionclip_parallel.py",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "summary": "Kiểm thử parse GPU, chính sách topology, unwrap model và các invariant của EmotionDataParallel đối với output dùng chung.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "xác-minh",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_accepts_two_cuda_indices",
+      "type": "function",
+      "name": "test_parse_gpu_ids_accepts_two_cuda_indices",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        13,
+        15
+      ],
+      "summary": "Kiểm thử hành vi “parse gpu ids accepts two cuda indices” để bảo vệ contract được mô tả bởi test_train_emotionclip_parallel.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_production_training_rejects_single_process_multi_gpu",
+      "type": "function",
+      "name": "test_production_training_rejects_single_process_multi_gpu",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        18,
+        21
+      ],
+      "summary": "Kiểm thử hành vi “production training rejects single process multi gpu” để bảo vệ contract được mô tả bởi test_train_emotionclip_parallel.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_rejects_invalid_lists",
+      "type": "function",
+      "name": "test_parse_gpu_ids_rejects_invalid_lists",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        25,
+        27
+      ],
+      "summary": "Kiểm thử hành vi “parse gpu ids rejects invalid lists” để bảo vệ contract được mô tả bởi test_train_emotionclip_parallel.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+      "type": "function",
+      "name": "test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        30,
+        33
+      ],
+      "summary": "Kiểm thử hành vi “unwrap model preserves plain model and unwraps data parallel” để bảo vệ contract được mô tả bởi test_train_emotionclip_parallel.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+      "type": "function",
+      "name": "test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        36,
+        58
+      ],
+      "summary": "Kiểm thử hành vi “emotion data parallel gathers batch and shared outputs correctly” để bảo vệ contract được mô tả bởi test_train_emotionclip_parallel.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+      "type": "function",
+      "name": "test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        61,
+        69
+      ],
+      "summary": "Kiểm thử hành vi “emotion data parallel rejects divergent shared temperatures” để bảo vệ contract được mô tả bởi test_train_emotionclip_parallel.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_multi_gpu_construction",
+      "type": "function",
+      "name": "test_emotion_data_parallel_rejects_multi_gpu_construction",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        72,
+        74
+      ],
+      "summary": "Kiểm thử hành vi “emotion data parallel rejects multi gpu construction” để bảo vệ contract được mô tả bởi test_train_emotionclip_parallel.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_model_output_invariant_rejects_impossible_confidence",
+      "type": "function",
+      "name": "test_model_output_invariant_rejects_impossible_confidence",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        77,
+        88
+      ],
+      "summary": "Kiểm thử hành vi “model output invariant rejects impossible confidence” để bảo vệ contract được mô tả bởi test_train_emotionclip_parallel.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tests/test_train_emotionclip_parallel.py:test_shared_text_features_are_built_from_unwrapped_model",
+      "type": "function",
+      "name": "test_shared_text_features_are_built_from_unwrapped_model",
+      "filePath": "tests/test_train_emotionclip_parallel.py",
+      "lineRange": [
+        91,
+        106
+      ],
+      "summary": "Kiểm thử hành vi “shared text features are built from unwrapped model” để bảo vệ contract được mô tả bởi test_train_emotionclip_parallel.py.",
+      "tags": [
+        "kiểm-thử",
+        "pytest",
+        "kiểm-thử"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:tools/audit_anatomy_geometry.py",
+      "type": "file",
+      "name": "audit_anatomy_geometry.py",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "summary": "CLI audit coverage và signal-to-jitter của artifact anatomy để phát hiện descriptor hình học yếu hoặc không ổn định trước huấn luyện.",
+      "tags": [
+        "anatomy",
+        "landmark",
+        "hình-học-khuôn-mặt",
+        "uncertainty"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tools/audit_anatomy_geometry.py:_parse_args",
+      "type": "function",
+      "name": "_parse_args",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "lineRange": [
+        29,
+        38
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý parse args trong audit_anatomy_geometry.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "anatomy",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/audit_anatomy_geometry.py:_summary",
+      "type": "function",
+      "name": "_summary",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "lineRange": [
+        41,
+        53
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý summary trong audit_anatomy_geometry.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "anatomy",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/audit_anatomy_geometry.py:_landmark_valid",
+      "type": "function",
+      "name": "_landmark_valid",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "lineRange": [
+        56,
+        62
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý landmark valid trong audit_anatomy_geometry.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "anatomy",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/audit_anatomy_geometry.py:_signal_to_jitter",
+      "type": "function",
+      "name": "_signal_to_jitter",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "lineRange": [
+        65,
+        121
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý signal to jitter trong audit_anatomy_geometry.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "anatomy",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/audit_anatomy_geometry.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/audit_anatomy_geometry.py",
+      "lineRange": [
+        124,
+        264
+      ],
+      "summary": "Điểm vào CLI điều phối cLI audit coverage và signal-to-jitter của artifact anatomy để phát hiện descriptor hình học yếu hoặc không ổn định trước huấn luyện.",
+      "tags": [
+        "hàm",
+        "anatomy",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/build_face_landmark_artifacts.py",
+      "type": "file",
+      "name": "build_face_landmark_artifacts.py",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "summary": "Xây artifact landmark MediaPipe có version, pose/quality, jitter-derived uncertainty và đường dẫn portable cho manifest FER.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_parse_args",
+      "type": "function",
+      "name": "_parse_args",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        34,
+        48
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý parse args trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_load_mediapipe",
+      "type": "function",
+      "name": "_load_mediapipe",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        51,
+        61
+      ],
+      "summary": "Nạp và chuẩn hóa mediapipe cho luồng xử lý của build_face_landmark_artifacts.py.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_resolve_image_path",
+      "type": "function",
+      "name": "_resolve_image_path",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        64,
+        69
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý resolve image path trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_artifact_path",
+      "type": "function",
+      "name": "_artifact_path",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        72,
+        75
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý artifact path trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_shift_image",
+      "type": "function",
+      "name": "_shift_image",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        78,
+        85
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý shift image trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_detect",
+      "type": "function",
+      "name": "_detect",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        88,
+        99
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý detect trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_pose_from_matrix",
+      "type": "function",
+      "name": "_pose_from_matrix",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        102,
+        125
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý pose from matrix trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_score",
+      "type": "function",
+      "name": "_score",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        128,
+        136
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý score trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_score_with_validity",
+      "type": "function",
+      "name": "_score_with_validity",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        139,
+        149
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý score with validity trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_jitter_offsets",
+      "type": "function",
+      "name": "_jitter_offsets",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        152,
+        158
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý jitter offsets trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_feature_jitter_from_observations",
+      "type": "function",
+      "name": "_feature_jitter_from_observations",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        161,
+        215
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý feature jitter from observations trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_build_artifact",
+      "type": "function",
+      "name": "_build_artifact",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        218,
+        348
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý build artifact trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_file_sha256",
+      "type": "function",
+      "name": "_file_sha256",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        351,
+        356
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý file sha256 trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:_portable_artifact_reference",
+      "type": "function",
+      "name": "_portable_artifact_reference",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        359,
+        364
+      ],
+      "summary": "Hàm hỗ trợ nội bộ xử lý portable artifact reference trong build_face_landmark_artifacts.py, giữ logic chính tách biệt và có thể kiểm thử.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/build_face_landmark_artifacts.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/build_face_landmark_artifacts.py",
+      "lineRange": [
+        367,
+        438
+      ],
+      "summary": "Điểm vào CLI điều phối xây artifact landmark MediaPipe có version, pose/quality, jitter-derived uncertainty và đường dẫn portable cho manifest FER.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:tools/convert_affwild2_to_emotion_jsonl.py",
+      "type": "file",
+      "name": "convert_affwild2_to_emotion_jsonl.py",
+      "filePath": "tools/convert_affwild2_to_emotion_jsonl.py",
+      "summary": "Chuyển nhãn Aff-Wild2 thành manifest JSONL EmotionCLIP-ReID, bảo toàn split và metadata khung hình/video.",
+      "tags": [
+        "công-cụ",
+        "data-pipeline",
+        "cli",
+        "tiền-xử-lý"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:tools/convert_affwild2_to_emotion_jsonl.py:iter_label_file",
+      "type": "function",
+      "name": "iter_label_file",
+      "filePath": "tools/convert_affwild2_to_emotion_jsonl.py",
+      "lineRange": [
+        23,
+        38
+      ],
+      "summary": "Triển khai thao tác iter label file trong convert_affwild2_to_emotion_jsonl.py theo contract của pipeline EmotionCLIP-ReID.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:tools/convert_affwild2_to_emotion_jsonl.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "tools/convert_affwild2_to_emotion_jsonl.py",
+      "lineRange": [
+        41,
+        82
+      ],
+      "summary": "Điểm vào CLI điều phối chuyển nhãn Aff-Wild2 thành manifest JSONL EmotionCLIP-ReID, bảo toàn split và metadata khung hình/video.",
+      "tags": [
+        "hàm",
+        "data-pipeline",
+        "python"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "function:tests/test_run_artifacts.py:test_run_directory_is_immutable_and_records_provenance",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "function:tests/test_run_artifacts.py:test_run_directory_is_immutable_and_records_provenance",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "function:tests/test_run_artifacts.py:test_artifact_lookup_requires_explicit_run_id",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "function:tests/test_run_artifacts.py:test_artifact_lookup_requires_explicit_run_id",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_accepts_two_cuda_indices",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_accepts_two_cuda_indices",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_production_training_rejects_single_process_multi_gpu",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_production_training_rejects_single_process_multi_gpu",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_rejects_invalid_lists",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_parse_gpu_ids_rejects_invalid_lists",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_unwrap_model_preserves_plain_model_and_unwraps_data_parallel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_gathers_batch_and_shared_outputs_correctly",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_divergent_shared_temperatures",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_multi_gpu_construction",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_emotion_data_parallel_rejects_multi_gpu_construction",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_model_output_invariant_rejects_impossible_confidence",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_model_output_invariant_rejects_impossible_confidence",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_shared_text_features_are_built_from_unwrapped_model",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "function:tests/test_train_emotionclip_parallel.py:test_shared_text_features_are_built_from_unwrapped_model",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_parse_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_parse_args",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_summary",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_summary",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_landmark_valid",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_landmark_valid",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_signal_to_jitter",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:_signal_to_jitter",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "function:tools/audit_anatomy_geometry.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_parse_args",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_parse_args",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_load_mediapipe",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_load_mediapipe",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_resolve_image_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_resolve_image_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_artifact_path",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_artifact_path",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_shift_image",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_shift_image",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_detect",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_detect",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_pose_from_matrix",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_pose_from_matrix",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_score",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_score",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_score_with_validity",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_score_with_validity",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_jitter_offsets",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_jitter_offsets",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_feature_jitter_from_observations",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_feature_jitter_from_observations",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_build_artifact",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_build_artifact",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_file_sha256",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_file_sha256",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_portable_artifact_reference",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:_portable_artifact_reference",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "function:tools/build_face_landmark_artifacts.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_affwild2_to_emotion_jsonl.py",
+      "target": "function:tools/convert_affwild2_to_emotion_jsonl.py:iter_label_file",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_affwild2_to_emotion_jsonl.py",
+      "target": "function:tools/convert_affwild2_to_emotion_jsonl.py:iter_label_file",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tools/convert_affwild2_to_emotion_jsonl.py",
+      "target": "function:tools/convert_affwild2_to_emotion_jsonl.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:tools/convert_affwild2_to_emotion_jsonl.py",
+      "target": "function:tools/convert_affwild2_to_emotion_jsonl.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:tests/test_run_artifacts.py",
+      "target": "file:utils/run_artifacts.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "file:processor/processor_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tests/test_train_emotionclip_parallel.py",
+      "target": "file:train_emotionclip.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "file:datasets/anatomy.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/convert_affwild2_to_emotion_jsonl.py",
+      "target": "file:datasets/emotion_manifest.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:tools/audit_anatomy_geometry.py",
+      "target": "file:tests/test_anatomy_audit.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "file:tools/build_face_landmark_artifacts.py",
+      "target": "file:tests/test_anatomy_audit.py",
+      "type": "tested_by",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

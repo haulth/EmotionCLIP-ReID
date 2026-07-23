@@ -1,0 +1,1778 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "outputs/report_w4/emotionclip_reid_w4_uncertainty_detail.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "metrics": {}
+    },
+    {
+      "path": "processor/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "solver/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "utils/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "utils/notebook_metrics.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 610,
+      "nonEmptyLines": 534,
+      "functions": [
+        {
+          "name": "metric_epoch",
+          "startLine": 18,
+          "endLine": 20,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "unique_paths",
+          "startLine": 23,
+          "endLine": 38,
+          "params": []
+        },
+        {
+          "name": "_to_float",
+          "startLine": 41,
+          "endLine": 52,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "_read_json",
+          "startLine": 55,
+          "endLine": 56,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "_first_existing",
+          "startLine": 59,
+          "endLine": 63,
+          "params": [
+            "paths"
+          ]
+        },
+        {
+          "name": "_best_epoch_from_uncertainty",
+          "startLine": 66,
+          "endLine": 75,
+          "params": [
+            "paths"
+          ]
+        },
+        {
+          "name": "_finalize_metric_bundle",
+          "startLine": 78,
+          "endLine": 109,
+          "params": [
+            "result_dir",
+            "metric_files",
+            "metric_history",
+            "metrics_by_epoch",
+            "source",
+            "source_kind"
+          ]
+        },
+        {
+          "name": "_load_json_metrics",
+          "startLine": 112,
+          "endLine": 138,
+          "params": [
+            "candidate_output_dirs"
+          ]
+        },
+        {
+          "name": "_load_csv_metrics",
+          "startLine": 141,
+          "endLine": 191,
+          "params": [
+            "candidate_output_dirs",
+            "csv_candidates",
+            "summary_candidates",
+            "uncertainty_candidates"
+          ]
+        },
+        {
+          "name": "load_validation_metrics",
+          "startLine": 194,
+          "endLine": 204,
+          "params": [
+            "candidate_output_dirs",
+            "csv_candidates",
+            "summary_candidates",
+            "uncertainty_candidates"
+          ]
+        },
+        {
+          "name": "print_validation_summary",
+          "startLine": 207,
+          "endLine": 240,
+          "params": [
+            "bundle"
+          ]
+        },
+        {
+          "name": "_finite_xy",
+          "startLine": 243,
+          "endLine": 252,
+          "params": [
+            "metric_history",
+            "key"
+          ]
+        },
+        {
+          "name": "_format_epoch_axis",
+          "startLine": 255,
+          "endLine": 262,
+          "params": [
+            "ax",
+            "epochs"
+          ]
+        },
+        {
+          "name": "_plot_metric_lines",
+          "startLine": 265,
+          "endLine": 300,
+          "params": [
+            "ax",
+            "metric_history",
+            "series",
+            "title",
+            "ylabel",
+            "epochs",
+            "ylim",
+            "best_epoch",
+            "best_label",
+            "empty_text"
+          ]
+        },
+        {
+          "name": "_pick_payload",
+          "startLine": 303,
+          "endLine": 314,
+          "params": [
+            "bundle"
+          ]
+        },
+        {
+          "name": "plot_validation_metric_curves",
+          "startLine": 317,
+          "endLine": 405,
+          "params": [
+            "bundle",
+            "dataset_name",
+            "file_prefix",
+            "show"
+          ]
+        },
+        {
+          "name": "_parse_log_training_history",
+          "startLine": 408,
+          "endLine": 422,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "_parse_csv_training_history",
+          "startLine": 425,
+          "endLine": 443,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "load_training_history",
+          "startLine": 446,
+          "endLine": 475,
+          "params": [
+            "candidate_dirs",
+            "log_names",
+            "csv_candidates"
+          ]
+        },
+        {
+          "name": "plot_training_metric_curves",
+          "startLine": 478,
+          "endLine": 547,
+          "params": [
+            "training_history",
+            "training_source",
+            "result_dir",
+            "file_prefix",
+            "show"
+          ]
+        },
+        {
+          "name": "plot_confusion_matrix_and_f1",
+          "startLine": 550,
+          "endLine": 610,
+          "params": [
+            "bundle",
+            "dataset_name",
+            "file_prefix",
+            "show"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "metric_epoch",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "unique_paths",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "_to_float",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "_read_json",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "_first_existing",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "_best_epoch_from_uncertainty",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "_finalize_metric_bundle",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "_load_json_metrics",
+          "line": 112,
+          "isDefault": false
+        },
+        {
+          "name": "_load_csv_metrics",
+          "line": 141,
+          "isDefault": false
+        },
+        {
+          "name": "load_validation_metrics",
+          "line": 194,
+          "isDefault": false
+        },
+        {
+          "name": "print_validation_summary",
+          "line": 207,
+          "isDefault": false
+        },
+        {
+          "name": "_finite_xy",
+          "line": 243,
+          "isDefault": false
+        },
+        {
+          "name": "_format_epoch_axis",
+          "line": 255,
+          "isDefault": false
+        },
+        {
+          "name": "_plot_metric_lines",
+          "line": 265,
+          "isDefault": false
+        },
+        {
+          "name": "_pick_payload",
+          "line": 303,
+          "isDefault": false
+        },
+        {
+          "name": "plot_validation_metric_curves",
+          "line": 317,
+          "isDefault": false
+        },
+        {
+          "name": "_parse_log_training_history",
+          "line": 408,
+          "isDefault": false
+        },
+        {
+          "name": "_parse_csv_training_history",
+          "line": 425,
+          "isDefault": false
+        },
+        {
+          "name": "load_training_history",
+          "line": 446,
+          "isDefault": false
+        },
+        {
+          "name": "plot_training_metric_curves",
+          "line": 478,
+          "isDefault": false
+        },
+        {
+          "name": "plot_confusion_matrix_and_f1",
+          "line": 550,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "metric_epoch",
+          "callee": "re.search",
+          "lineNumber": 19
+        },
+        {
+          "caller": "metric_epoch",
+          "callee": "Path",
+          "lineNumber": 19
+        },
+        {
+          "caller": "metric_epoch",
+          "callee": "int",
+          "lineNumber": 20
+        },
+        {
+          "caller": "metric_epoch",
+          "callee": "match.group",
+          "lineNumber": 20
+        },
+        {
+          "caller": "unique_paths",
+          "callee": "set",
+          "lineNumber": 24
+        },
+        {
+          "caller": "unique_paths",
+          "callee": "Path(raw_path).expanduser",
+          "lineNumber": 29
+        },
+        {
+          "caller": "unique_paths",
+          "callee": "Path",
+          "lineNumber": 29
+        },
+        {
+          "caller": "unique_paths",
+          "callee": "str",
+          "lineNumber": 31
+        },
+        {
+          "caller": "unique_paths",
+          "callee": "path.resolve",
+          "lineNumber": 31
+        },
+        {
+          "caller": "unique_paths",
+          "callee": "path.exists",
+          "lineNumber": 31
+        },
+        {
+          "caller": "unique_paths",
+          "callee": "str",
+          "lineNumber": 31
+        },
+        {
+          "caller": "unique_paths",
+          "callee": "str",
+          "lineNumber": 33
+        },
+        {
+          "caller": "unique_paths",
+          "callee": "seen.add",
+          "lineNumber": 36
+        },
+        {
+          "caller": "unique_paths",
+          "callee": "result.append",
+          "lineNumber": 37
+        },
+        {
+          "caller": "_to_float",
+          "callee": "str(value).strip().rstrip",
+          "lineNumber": 44
+        },
+        {
+          "caller": "_to_float",
+          "callee": "str(value).strip",
+          "lineNumber": 44
+        },
+        {
+          "caller": "_to_float",
+          "callee": "str",
+          "lineNumber": 44
+        },
+        {
+          "caller": "_to_float",
+          "callee": "text.lower",
+          "lineNumber": 45
+        },
+        {
+          "caller": "_to_float",
+          "callee": "text.endswith",
+          "lineNumber": 47
+        },
+        {
+          "caller": "_to_float",
+          "callee": "float",
+          "lineNumber": 50
+        },
+        {
+          "caller": "_read_json",
+          "callee": "json.loads",
+          "lineNumber": 56
+        },
+        {
+          "caller": "_read_json",
+          "callee": "path.read_text",
+          "lineNumber": 56
+        },
+        {
+          "caller": "_first_existing",
+          "callee": "unique_paths",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_first_existing",
+          "callee": "path.exists",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_best_epoch_from_uncertainty",
+          "callee": "_first_existing",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_best_epoch_from_uncertainty",
+          "callee": "_read_json",
+          "lineNumber": 71
+        },
+        {
+          "caller": "_best_epoch_from_uncertainty",
+          "callee": "payload.get",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_best_epoch_from_uncertainty",
+          "callee": "int",
+          "lineNumber": 75
+        },
+        {
+          "caller": "_finalize_metric_bundle",
+          "callee": "metric_history.sort",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_finalize_metric_bundle",
+          "callee": "int",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_finalize_metric_bundle",
+          "callee": "int",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_finalize_metric_bundle",
+          "callee": "max",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_finalize_metric_bundle",
+          "callee": "row.get",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_finalize_metric_bundle",
+          "callee": "metrics_by_epoch.get",
+          "lineNumber": 90
+        },
+        {
+          "caller": "_finalize_metric_bundle",
+          "callee": "metrics_by_epoch.get",
+          "lineNumber": 91
+        },
+        {
+          "caller": "_finalize_metric_bundle",
+          "callee": "int",
+          "lineNumber": 91
+        },
+        {
+          "caller": "_finalize_metric_bundle",
+          "callee": "list",
+          "lineNumber": 100
+        },
+        {
+          "caller": "_load_json_metrics",
+          "callee": "unique_paths",
+          "lineNumber": 113
+        },
+        {
+          "caller": "_load_json_metrics",
+          "callee": "sorted",
+          "lineNumber": 114
+        },
+        {
+          "caller": "_load_json_metrics",
+          "callee": "candidate.glob",
+          "lineNumber": 114
+        },
+        {
+          "caller": "_load_json_metrics",
+          "callee": "candidate.exists",
+          "lineNumber": 114
+        },
+        {
+          "caller": "_load_json_metrics",
+          "callee": "metric_epoch",
+          "lineNumber": 120
+        },
+        {
+          "caller": "_load_json_metrics",
+          "callee": "_read_json",
+          "lineNumber": 121
+        },
+        {
+          "caller": "_load_json_metrics",
+          "callee": "payload.get",
+          "lineNumber": 135
+        },
+        {
+          "caller": "_load_json_metrics",
+          "callee": "metric_history.append",
+          "lineNumber": 136
+        },
+        {
+          "caller": "_load_json_metrics",
+          "callee": "_finalize_metric_bundle",
+          "lineNumber": 137
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "_first_existing",
+          "lineNumber": 147
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "csv_path.open",
+          "lineNumber": 152
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "csv.DictReader",
+          "lineNumber": 153
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "raw_row.get",
+          "lineNumber": 154
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "int",
+          "lineNumber": 157
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "float",
+          "lineNumber": 157
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "metrics_by_epoch.setdefault",
+          "lineNumber": 158
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "_to_float",
+          "lineNumber": 170
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "raw_row.get",
+          "lineNumber": 170
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "sorted",
+          "lineNumber": 173
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "_first_existing",
+          "lineNumber": 175
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "_read_json",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "_best_epoch_from_uncertainty",
+          "lineNumber": 181
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "int",
+          "lineNumber": 183
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "max",
+          "lineNumber": 183
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "row.get",
+          "lineNumber": 183
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "metrics_by_epoch.setdefault",
+          "lineNumber": 185
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "row.update",
+          "lineNumber": 186
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "metric_history.append",
+          "lineNumber": 188
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "unique_paths",
+          "lineNumber": 190
+        },
+        {
+          "caller": "_load_csv_metrics",
+          "callee": "_finalize_metric_bundle",
+          "lineNumber": 191
+        },
+        {
+          "caller": "load_validation_metrics",
+          "callee": "_load_json_metrics",
+          "lineNumber": 201
+        },
+        {
+          "caller": "load_validation_metrics",
+          "callee": "_load_csv_metrics",
+          "lineNumber": 204
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "print",
+          "lineNumber": 208
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "print",
+          "lineNumber": 209
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "bundle.get",
+          "lineNumber": 209
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "bundle.get",
+          "lineNumber": 209
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "bundle.get",
+          "lineNumber": 210
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "print",
+          "lineNumber": 212
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "bundle.get",
+          "lineNumber": 214
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "print",
+          "lineNumber": 216
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "bundle.get",
+          "lineNumber": 219
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "bundle.get",
+          "lineNumber": 220
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "bundle.get",
+          "lineNumber": 221
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "bundle.get",
+          "lineNumber": 222
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "print",
+          "lineNumber": 223
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "print",
+          "lineNumber": 235
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "metrics_latest.get",
+          "lineNumber": 235
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "print",
+          "lineNumber": 237
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "best_metric.get",
+          "lineNumber": 237
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "_pick_payload",
+          "lineNumber": 238
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "print",
+          "lineNumber": 240
+        },
+        {
+          "caller": "print_validation_summary",
+          "callee": "per_class_payload.get",
+          "lineNumber": 240
+        },
+        {
+          "caller": "_finite_xy",
+          "callee": "_to_float",
+          "lineNumber": 247
+        },
+        {
+          "caller": "_finite_xy",
+          "callee": "row.get",
+          "lineNumber": 247
+        },
+        {
+          "caller": "_finite_xy",
+          "callee": "np.isfinite",
+          "lineNumber": 248
+        },
+        {
+          "caller": "_finite_xy",
+          "callee": "xs.append",
+          "lineNumber": 250
+        },
+        {
+          "caller": "_finite_xy",
+          "callee": "float",
+          "lineNumber": 250
+        },
+        {
+          "caller": "_finite_xy",
+          "callee": "ys.append",
+          "lineNumber": 251
+        },
+        {
+          "caller": "_format_epoch_axis",
+          "callee": "len",
+          "lineNumber": 258
+        },
+        {
+          "caller": "_format_epoch_axis",
+          "callee": "ax.set_xlim",
+          "lineNumber": 259
+        },
+        {
+          "caller": "_format_epoch_axis",
+          "callee": "float",
+          "lineNumber": 259
+        },
+        {
+          "caller": "_format_epoch_axis",
+          "callee": "float",
+          "lineNumber": 259
+        },
+        {
+          "caller": "_format_epoch_axis",
+          "callee": "len",
+          "lineNumber": 260
+        },
+        {
+          "caller": "_format_epoch_axis",
+          "callee": "ax.margins",
+          "lineNumber": 261
+        },
+        {
+          "caller": "_format_epoch_axis",
+          "callee": "ax.xaxis.set_major_locator",
+          "lineNumber": 262
+        },
+        {
+          "caller": "_format_epoch_axis",
+          "callee": "MaxNLocator",
+          "lineNumber": 262
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "_finite_xy",
+          "lineNumber": 279
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "ax.plot",
+          "lineNumber": 285
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "ax.axvline",
+          "lineNumber": 289
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "ax.text",
+          "lineNumber": 291
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "ax.set_title",
+          "lineNumber": 292
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "ax.set_xlabel",
+          "lineNumber": 293
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "ax.set_ylabel",
+          "lineNumber": 294
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "ax.set_ylim",
+          "lineNumber": 296
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "_format_epoch_axis",
+          "lineNumber": 297
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "ax.grid",
+          "lineNumber": 298
+        },
+        {
+          "caller": "_plot_metric_lines",
+          "callee": "ax.legend",
+          "lineNumber": 300
+        },
+        {
+          "caller": "_pick_payload",
+          "callee": "bundle.get",
+          "lineNumber": 305
+        },
+        {
+          "caller": "_pick_payload",
+          "callee": "bundle.get",
+          "lineNumber": 306
+        },
+        {
+          "caller": "_pick_payload",
+          "callee": "bundle.get",
+          "lineNumber": 308
+        },
+        {
+          "caller": "_pick_payload",
+          "callee": "sorted",
+          "lineNumber": 309
+        },
+        {
+          "caller": "_pick_payload",
+          "callee": "candidates.append",
+          "lineNumber": 310
+        },
+        {
+          "caller": "_pick_payload",
+          "callee": "all",
+          "lineNumber": 312
+        },
+        {
+          "caller": "_pick_payload",
+          "callee": "payload.get",
+          "lineNumber": 312
+        },
+        {
+          "caller": "_pick_payload",
+          "callee": "dict",
+          "lineNumber": 313
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "bundle.get",
+          "lineNumber": 325
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "print",
+          "lineNumber": 327
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "np.array",
+          "lineNumber": 330
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "bundle.get",
+          "lineNumber": 331
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "int",
+          "lineNumber": 332
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "plt.subplots",
+          "lineNumber": 334
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "_plot_metric_lines",
+          "lineNumber": 335
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "_plot_metric_lines",
+          "lineNumber": 350
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "_plot_metric_lines",
+          "lineNumber": 363
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "_pick_payload",
+          "lineNumber": 377
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "f1_payload.get",
+          "lineNumber": 378
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "list",
+          "lineNumber": 381
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "latest_f1.keys",
+          "lineNumber": 381
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "float",
+          "lineNumber": 382
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "np.arange",
+          "lineNumber": 383
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "len",
+          "lineNumber": 383
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "ax.barh",
+          "lineNumber": 384
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "ax.set_yticks",
+          "lineNumber": 385
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "ax.set_xlim",
+          "lineNumber": 386
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "ax.invert_yaxis",
+          "lineNumber": 387
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "ax.set_xlabel",
+          "lineNumber": 388
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "f1_payload.get",
+          "lineNumber": 389
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "bundle.get",
+          "lineNumber": 389
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "ax.set_title",
+          "lineNumber": 390
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "ax.grid",
+          "lineNumber": 391
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "enumerate",
+          "lineNumber": 392
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "ax.text",
+          "lineNumber": 393
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "min",
+          "lineNumber": 393
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "ax.axis",
+          "lineNumber": 395
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "ax.text",
+          "lineNumber": 396
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "plt.tight_layout",
+          "lineNumber": 398
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "Path",
+          "lineNumber": 399
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "out_path.parent.mkdir",
+          "lineNumber": 400
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "fig.savefig",
+          "lineNumber": 401
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "print",
+          "lineNumber": 402
+        },
+        {
+          "caller": "plot_validation_metric_curves",
+          "callee": "plt.show",
+          "lineNumber": 404
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "path.read_text(encoding=\"utf-8\", errors=\"ignore\").splitlines",
+          "lineNumber": 410
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "path.read_text",
+          "lineNumber": 410
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "re.search",
+          "lineNumber": 411
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "dict",
+          "lineNumber": 414
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "re.findall",
+          "lineNumber": 414
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "int",
+          "lineNumber": 415
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "match.group",
+          "lineNumber": 415
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "int",
+          "lineNumber": 415
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "match.group",
+          "lineNumber": 415
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "_to_float",
+          "lineNumber": 417
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "fields.get",
+          "lineNumber": 417
+        },
+        {
+          "caller": "_parse_log_training_history",
+          "callee": "rows.append",
+          "lineNumber": 421
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "path.open",
+          "lineNumber": 427
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "csv.DictReader",
+          "lineNumber": 428
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "raw_row.get",
+          "lineNumber": 429
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "raw_row.get",
+          "lineNumber": 429
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "int",
+          "lineNumber": 432
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "float",
+          "lineNumber": 432
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "int",
+          "lineNumber": 433
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "float",
+          "lineNumber": 433
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "_to_float",
+          "lineNumber": 436
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "raw_row.get",
+          "lineNumber": 436
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "_to_float",
+          "lineNumber": 439
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "raw_row.get",
+          "lineNumber": 439
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "raw_row.get",
+          "lineNumber": 439
+        },
+        {
+          "caller": "_parse_csv_training_history",
+          "callee": "rows.append",
+          "lineNumber": 442
+        },
+        {
+          "caller": "load_training_history",
+          "callee": "unique_paths",
+          "lineNumber": 458
+        },
+        {
+          "caller": "load_training_history",
+          "callee": "log_candidates.extend",
+          "lineNumber": 459
+        },
+        {
+          "caller": "load_training_history",
+          "callee": "unique_paths",
+          "lineNumber": 461
+        },
+        {
+          "caller": "load_training_history",
+          "callee": "path.exists",
+          "lineNumber": 462
+        },
+        {
+          "caller": "load_training_history",
+          "callee": "_parse_log_training_history",
+          "lineNumber": 464
+        },
+        {
+          "caller": "load_training_history",
+          "callee": "sorted",
+          "lineNumber": 466
+        },
+        {
+          "caller": "load_training_history",
+          "callee": "unique_paths",
+          "lineNumber": 468
+        },
+        {
+          "caller": "load_training_history",
+          "callee": "path.exists",
+          "lineNumber": 469
+        },
+        {
+          "caller": "load_training_history",
+          "callee": "_parse_csv_training_history",
+          "lineNumber": 471
+        },
+        {
+          "caller": "load_training_history",
+          "callee": "sorted",
+          "lineNumber": 473
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "print",
+          "lineNumber": 489
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "print",
+          "lineNumber": 492
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "dict",
+          "lineNumber": 493
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "sorted",
+          "lineNumber": 496
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "int",
+          "lineNumber": 496
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "max",
+          "lineNumber": 499
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "int",
+          "lineNumber": 499
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "int",
+          "lineNumber": 499
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "int",
+          "lineNumber": 501
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "int",
+          "lineNumber": 501
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "any",
+          "lineNumber": 513
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "print",
+          "lineNumber": 515
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "int",
+          "lineNumber": 519
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "np.ceil",
+          "lineNumber": 519
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "len",
+          "lineNumber": 519
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "plt.subplots",
+          "lineNumber": 520
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "axes.ravel",
+          "lineNumber": 521
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "zip",
+          "lineNumber": 523
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "int",
+          "lineNumber": 525
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "ax.plot",
+          "lineNumber": 530
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "ax.set_title",
+          "lineNumber": 531
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "ax.set_xlabel",
+          "lineNumber": 532
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "ax.xaxis.set_major_locator",
+          "lineNumber": 533
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "MaxNLocator",
+          "lineNumber": 533
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "ax.grid",
+          "lineNumber": 534
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "ax.legend",
+          "lineNumber": 535
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "len",
+          "lineNumber": 537
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "ax.axis",
+          "lineNumber": 538
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "plt.tight_layout",
+          "lineNumber": 540
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "Path",
+          "lineNumber": 541
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "out_path.parent.mkdir",
+          "lineNumber": 542
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "fig.savefig",
+          "lineNumber": 543
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "print",
+          "lineNumber": 544
+        },
+        {
+          "caller": "plot_training_metric_curves",
+          "callee": "plt.show",
+          "lineNumber": 546
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "_pick_payload",
+          "lineNumber": 558
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "print",
+          "lineNumber": 560
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "np.asarray",
+          "lineNumber": 563
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "payload.get",
+          "lineNumber": 563
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "list",
+          "lineNumber": 564
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "(payload.get(\"per_class_f1\") or {}).keys",
+          "lineNumber": 564
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "payload.get",
+          "lineNumber": 564
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "print",
+          "lineNumber": 566
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "len",
+          "lineNumber": 568
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "str",
+          "lineNumber": 569
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "range",
+          "lineNumber": 569
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "matrix.sum",
+          "lineNumber": 571
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "np.divide",
+          "lineNumber": 572
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "np.zeros_like",
+          "lineNumber": 572
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "plt.subplots",
+          "lineNumber": 574
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[0].imshow",
+          "lineNumber": 575
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[0].set_xticks",
+          "lineNumber": 576
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "np.arange",
+          "lineNumber": 576
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "len",
+          "lineNumber": 576
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[0].set_yticks",
+          "lineNumber": 577
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "np.arange",
+          "lineNumber": 577
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "len",
+          "lineNumber": 577
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[0].set_xlabel",
+          "lineNumber": 578
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[0].set_ylabel",
+          "lineNumber": 579
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "payload.get",
+          "lineNumber": 580
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "bundle.get",
+          "lineNumber": 580
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[0].set_title",
+          "lineNumber": 581
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "range",
+          "lineNumber": 582
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "range",
+          "lineNumber": 583
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "int",
+          "lineNumber": 585
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[0].text",
+          "lineNumber": 587
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "fig.colorbar",
+          "lineNumber": 588
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "payload.get",
+          "lineNumber": 590
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "float",
+          "lineNumber": 591
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "np.arange",
+          "lineNumber": 592
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "len",
+          "lineNumber": 592
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[1].barh",
+          "lineNumber": 593
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[1].set_yticks",
+          "lineNumber": 594
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[1].invert_yaxis",
+          "lineNumber": 595
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[1].set_xlim",
+          "lineNumber": 596
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[1].set_xlabel",
+          "lineNumber": 597
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[1].set_title",
+          "lineNumber": 598
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[1].grid",
+          "lineNumber": 599
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "enumerate",
+          "lineNumber": 600
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "axes[1].text",
+          "lineNumber": 601
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "min",
+          "lineNumber": 601
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "plt.tight_layout",
+          "lineNumber": 603
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "Path",
+          "lineNumber": 604
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "out_path.parent.mkdir",
+          "lineNumber": 605
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "fig.savefig",
+          "lineNumber": 606
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "print",
+          "lineNumber": 607
+        },
+        {
+          "caller": "plot_confusion_matrix_and_f1",
+          "callee": "plt.show",
+          "lineNumber": 609
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 21,
+        "functionCount": 21,
+        "classCount": 0
+      }
+    }
+  ]
+}

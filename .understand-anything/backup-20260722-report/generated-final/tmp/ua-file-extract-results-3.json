@@ -1,0 +1,3356 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 12,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "datasets/bases.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 85,
+      "nonEmptyLines": 68,
+      "functions": [
+        {
+          "name": "read_image",
+          "startLine": 10,
+          "endLine": 23,
+          "params": [
+            "img_path"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "BaseDataset",
+          "startLine": 26,
+          "endLine": 47,
+          "methods": [
+            "get_imagedata_info",
+            "print_dataset_statistics"
+          ],
+          "properties": []
+        },
+        {
+          "name": "BaseImageDataset",
+          "startLine": 50,
+          "endLine": 67,
+          "methods": [
+            "print_dataset_statistics"
+          ],
+          "properties": []
+        },
+        {
+          "name": "ImageDataset",
+          "startLine": 70,
+          "endLine": 85,
+          "methods": [
+            "__init__",
+            "__len__",
+            "__getitem__"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "read_image",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "BaseDataset",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "BaseImageDataset",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "ImageDataset",
+          "line": 70,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "read_image",
+          "callee": "osp.exists",
+          "lineNumber": 14
+        },
+        {
+          "caller": "read_image",
+          "callee": "IOError",
+          "lineNumber": 15
+        },
+        {
+          "caller": "read_image",
+          "callee": "\"{} does not exist\".format",
+          "lineNumber": 15
+        },
+        {
+          "caller": "read_image",
+          "callee": "Image.open(img_path).convert",
+          "lineNumber": 18
+        },
+        {
+          "caller": "read_image",
+          "callee": "Image.open",
+          "lineNumber": 18
+        },
+        {
+          "caller": "read_image",
+          "callee": "print",
+          "lineNumber": 21
+        },
+        {
+          "caller": "read_image",
+          "callee": "\"IOError incurred when reading '{}'. Will redo. Don't worry. Just chill.\".format",
+          "lineNumber": 21
+        },
+        {
+          "caller": "get_imagedata_info",
+          "callee": "set",
+          "lineNumber": 37
+        },
+        {
+          "caller": "get_imagedata_info",
+          "callee": "set",
+          "lineNumber": 38
+        },
+        {
+          "caller": "get_imagedata_info",
+          "callee": "set",
+          "lineNumber": 39
+        },
+        {
+          "caller": "get_imagedata_info",
+          "callee": "len",
+          "lineNumber": 40
+        },
+        {
+          "caller": "get_imagedata_info",
+          "callee": "len",
+          "lineNumber": 41
+        },
+        {
+          "caller": "get_imagedata_info",
+          "callee": "len",
+          "lineNumber": 42
+        },
+        {
+          "caller": "get_imagedata_info",
+          "callee": "len",
+          "lineNumber": 43
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 56
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 57
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 58
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "print",
+          "lineNumber": 60
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "print",
+          "lineNumber": 61
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "print",
+          "lineNumber": 62
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "print",
+          "lineNumber": 63
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "print",
+          "lineNumber": 64
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "\"  train    | {:5d} | {:8d} | {:9d}\".format",
+          "lineNumber": 64
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "print",
+          "lineNumber": 65
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "\"  query    | {:5d} | {:8d} | {:9d}\".format",
+          "lineNumber": 65
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "print",
+          "lineNumber": 66
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "\"  gallery  | {:5d} | {:8d} | {:9d}\".format",
+          "lineNumber": 66
+        },
+        {
+          "caller": "print_dataset_statistics",
+          "callee": "print",
+          "lineNumber": 67
+        },
+        {
+          "caller": "__len__",
+          "callee": "len",
+          "lineNumber": 76
+        },
+        {
+          "caller": "__getitem__",
+          "callee": "read_image",
+          "lineNumber": 80
+        },
+        {
+          "caller": "__getitem__",
+          "callee": "self.transform",
+          "lineNumber": 83
+        },
+        {
+          "caller": "__getitem__",
+          "callee": "img_path.split",
+          "lineNumber": 85
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 1,
+        "classCount": 3
+      }
+    },
+    {
+      "path": "datasets/dukemtmcreid.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 108,
+      "nonEmptyLines": 89,
+      "classes": [
+        {
+          "name": "DukeMTMCreID",
+          "startLine": 18,
+          "endLine": 108,
+          "methods": [
+            "__init__",
+            "_download_data",
+            "_check_before_run",
+            "_process_dir"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "DukeMTMCreID",
+          "line": 18,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super(DukeMTMCreID, self).__init__",
+          "lineNumber": 34
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 34
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 35
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 37
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 38
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 39
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._download_data",
+          "lineNumber": 41
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._check_before_run",
+          "lineNumber": 42
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 44
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 45
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 46
+        },
+        {
+          "caller": "__init__",
+          "callee": "print",
+          "lineNumber": 49
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.print_dataset_statistics",
+          "lineNumber": 50
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 56
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 57
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_download_data",
+          "callee": "osp.exists",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_download_data",
+          "callee": "print",
+          "lineNumber": 62
+        },
+        {
+          "caller": "_download_data",
+          "callee": "print",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_download_data",
+          "callee": "\"Creating directory {}\".format",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_download_data",
+          "callee": "mkdir_if_missing",
+          "lineNumber": 66
+        },
+        {
+          "caller": "_download_data",
+          "callee": "osp.join",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_download_data",
+          "callee": "osp.basename",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_download_data",
+          "callee": "print",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_download_data",
+          "callee": "urllib.request.urlretrieve",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_download_data",
+          "callee": "print",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_download_data",
+          "callee": "zipfile.ZipFile",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_download_data",
+          "callee": "zip_ref.extractall",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_download_data",
+          "callee": "zip_ref.close",
+          "lineNumber": 75
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 79
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 80
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 80
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 81
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 83
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 85
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "glob.glob",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "osp.join",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "re.compile",
+          "lineNumber": 90
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "set",
+          "lineNumber": 92
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "map",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search(img_path).groups",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pid_container.add",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "enumerate",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "set",
+          "lineNumber": 99
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "map",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search(img_path).groups",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "dataset.append",
+          "lineNumber": 105
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "cam_container.add",
+          "lineNumber": 106
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "print",
+          "lineNumber": 107
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "datasets/make_dataloader.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 108,
+      "nonEmptyLines": 96,
+      "functions": [
+        {
+          "name": "train_collate_fn",
+          "startLine": 26,
+          "endLine": 34,
+          "params": [
+            "batch"
+          ]
+        },
+        {
+          "name": "val_collate_fn",
+          "startLine": 36,
+          "endLine": 40,
+          "params": [
+            "batch"
+          ]
+        },
+        {
+          "name": "make_dataloader",
+          "startLine": 42,
+          "endLine": 108,
+          "params": [
+            "cfg"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "train_collate_fn",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "val_collate_fn",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "make_dataloader",
+          "line": 42,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "train_collate_fn",
+          "callee": "zip",
+          "lineNumber": 30
+        },
+        {
+          "caller": "train_collate_fn",
+          "callee": "torch.tensor",
+          "lineNumber": 31
+        },
+        {
+          "caller": "train_collate_fn",
+          "callee": "torch.tensor",
+          "lineNumber": 32
+        },
+        {
+          "caller": "train_collate_fn",
+          "callee": "torch.tensor",
+          "lineNumber": 33
+        },
+        {
+          "caller": "train_collate_fn",
+          "callee": "torch.stack",
+          "lineNumber": 34
+        },
+        {
+          "caller": "val_collate_fn",
+          "callee": "zip",
+          "lineNumber": 37
+        },
+        {
+          "caller": "val_collate_fn",
+          "callee": "torch.tensor",
+          "lineNumber": 38
+        },
+        {
+          "caller": "val_collate_fn",
+          "callee": "torch.tensor",
+          "lineNumber": 39
+        },
+        {
+          "caller": "val_collate_fn",
+          "callee": "torch.stack",
+          "lineNumber": 40
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Compose",
+          "lineNumber": 43
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Resize",
+          "lineNumber": 44
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.RandomHorizontalFlip",
+          "lineNumber": 45
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Pad",
+          "lineNumber": 46
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.RandomCrop",
+          "lineNumber": 47
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.ToTensor",
+          "lineNumber": 48
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Normalize",
+          "lineNumber": 49
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "RandomErasing",
+          "lineNumber": 50
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Compose",
+          "lineNumber": 54
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Resize",
+          "lineNumber": 55
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.ToTensor",
+          "lineNumber": 56
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Normalize",
+          "lineNumber": 57
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "ImageDataset",
+          "lineNumber": 64
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "ImageDataset",
+          "lineNumber": 65
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "print",
+          "lineNumber": 72
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "dist.get_world_size",
+          "lineNumber": 73
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "RandomIdentitySampler_DDP",
+          "lineNumber": 74
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "torch.utils.data.sampler.BatchSampler",
+          "lineNumber": 75
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "torch.utils.data.DataLoader",
+          "lineNumber": 76
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "DataLoader",
+          "lineNumber": 84
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "RandomIdentitySampler",
+          "lineNumber": 86
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "print",
+          "lineNumber": 90
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "DataLoader",
+          "lineNumber": 91
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "print",
+          "lineNumber": 96
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "'unsupported sampler! expected softmax or triplet but got {}'.format",
+          "lineNumber": 96
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "ImageDataset",
+          "lineNumber": 98
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "DataLoader",
+          "lineNumber": 100
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "DataLoader",
+          "lineNumber": 104
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "len",
+          "lineNumber": 108
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "datasets/make_dataloader_clipreid.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 108,
+      "nonEmptyLines": 96,
+      "functions": [
+        {
+          "name": "train_collate_fn",
+          "startLine": 26,
+          "endLine": 34,
+          "params": [
+            "batch"
+          ]
+        },
+        {
+          "name": "val_collate_fn",
+          "startLine": 36,
+          "endLine": 40,
+          "params": [
+            "batch"
+          ]
+        },
+        {
+          "name": "make_dataloader",
+          "startLine": 42,
+          "endLine": 108,
+          "params": [
+            "cfg"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "train_collate_fn",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "val_collate_fn",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "make_dataloader",
+          "line": 42,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "train_collate_fn",
+          "callee": "zip",
+          "lineNumber": 30
+        },
+        {
+          "caller": "train_collate_fn",
+          "callee": "torch.tensor",
+          "lineNumber": 31
+        },
+        {
+          "caller": "train_collate_fn",
+          "callee": "torch.tensor",
+          "lineNumber": 32
+        },
+        {
+          "caller": "train_collate_fn",
+          "callee": "torch.tensor",
+          "lineNumber": 33
+        },
+        {
+          "caller": "train_collate_fn",
+          "callee": "torch.stack",
+          "lineNumber": 34
+        },
+        {
+          "caller": "val_collate_fn",
+          "callee": "zip",
+          "lineNumber": 37
+        },
+        {
+          "caller": "val_collate_fn",
+          "callee": "torch.tensor",
+          "lineNumber": 38
+        },
+        {
+          "caller": "val_collate_fn",
+          "callee": "torch.tensor",
+          "lineNumber": 39
+        },
+        {
+          "caller": "val_collate_fn",
+          "callee": "torch.stack",
+          "lineNumber": 40
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Compose",
+          "lineNumber": 43
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Resize",
+          "lineNumber": 44
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.RandomHorizontalFlip",
+          "lineNumber": 45
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Pad",
+          "lineNumber": 46
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.RandomCrop",
+          "lineNumber": 47
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.ToTensor",
+          "lineNumber": 48
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Normalize",
+          "lineNumber": 49
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "RandomErasing",
+          "lineNumber": 50
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Compose",
+          "lineNumber": 54
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Resize",
+          "lineNumber": 55
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.ToTensor",
+          "lineNumber": 56
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "T.Normalize",
+          "lineNumber": 57
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "ImageDataset",
+          "lineNumber": 64
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "ImageDataset",
+          "lineNumber": 65
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "print",
+          "lineNumber": 72
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "dist.get_world_size",
+          "lineNumber": 73
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "RandomIdentitySampler_DDP",
+          "lineNumber": 74
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "torch.utils.data.sampler.BatchSampler",
+          "lineNumber": 75
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "torch.utils.data.DataLoader",
+          "lineNumber": 76
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "DataLoader",
+          "lineNumber": 84
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "RandomIdentitySampler",
+          "lineNumber": 86
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "print",
+          "lineNumber": 90
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "DataLoader",
+          "lineNumber": 91
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "print",
+          "lineNumber": 96
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "'unsupported sampler! expected softmax or triplet but got {}'.format",
+          "lineNumber": 96
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "ImageDataset",
+          "lineNumber": 98
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "DataLoader",
+          "lineNumber": 100
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "DataLoader",
+          "lineNumber": 104
+        },
+        {
+          "caller": "make_dataloader",
+          "callee": "len",
+          "lineNumber": 108
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "datasets/market1501.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 84,
+      "nonEmptyLines": 71,
+      "classes": [
+        {
+          "name": "Market1501",
+          "startLine": 15,
+          "endLine": 84,
+          "methods": [
+            "__init__",
+            "_check_before_run",
+            "_process_dir"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Market1501",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super(Market1501, self).__init__",
+          "lineNumber": 29
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 29
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 30
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 31
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 32
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 33
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._check_before_run",
+          "lineNumber": 35
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 37
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 38
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 39
+        },
+        {
+          "caller": "__init__",
+          "callee": "print",
+          "lineNumber": 42
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.print_dataset_statistics",
+          "lineNumber": 43
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 49
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 50
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 51
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 55
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 56
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 56
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 57
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 59
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 62
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 62
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "glob.glob",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "osp.join",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "re.compile",
+          "lineNumber": 66
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "set",
+          "lineNumber": 68
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "sorted",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "map",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search(img_path).groups",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pid_container.add",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "enumerate",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "sorted",
+          "lineNumber": 75
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "map",
+          "lineNumber": 76
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search(img_path).groups",
+          "lineNumber": 76
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search",
+          "lineNumber": 76
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "dataset.append",
+          "lineNumber": 83
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "datasets/msmt17.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 81,
+      "nonEmptyLines": 68,
+      "classes": [
+        {
+          "name": "MSMT17",
+          "startLine": 10,
+          "endLine": 81,
+          "methods": [
+            "__init__",
+            "_check_before_run",
+            "_process_dir"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "MSMT17",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super(MSMT17, self).__init__",
+          "lineNumber": 27
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 27
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 29
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 30
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 31
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 32
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 33
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 34
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 35
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._check_before_run",
+          "lineNumber": 37
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 38
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 39
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 41
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 42
+        },
+        {
+          "caller": "__init__",
+          "callee": "print",
+          "lineNumber": 44
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.print_dataset_statistics",
+          "lineNumber": 45
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 51
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 52
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 56
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 57
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 57
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 59
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 59
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "open",
+          "lineNumber": 64
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "txt.readlines",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "set",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "set",
+          "lineNumber": 68
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "enumerate",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "img_info.split",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "int",
+          "lineNumber": 71
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "int",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "img_path.split",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "osp.join",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "dataset.append",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pid_container.add",
+          "lineNumber": 75
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "cam_container.add",
+          "lineNumber": 76
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "print",
+          "lineNumber": 77
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "enumerate",
+          "lineNumber": 79
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "datasets/occ_duke.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 108,
+      "nonEmptyLines": 89,
+      "classes": [
+        {
+          "name": "OCC_DukeMTMCreID",
+          "startLine": 18,
+          "endLine": 108,
+          "methods": [
+            "__init__",
+            "_download_data",
+            "_check_before_run",
+            "_process_dir"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "OCC_DukeMTMCreID",
+          "line": 18,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super(OCC_DukeMTMCreID, self).__init__",
+          "lineNumber": 34
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 34
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 35
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 37
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 38
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 39
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._download_data",
+          "lineNumber": 41
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._check_before_run",
+          "lineNumber": 42
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 44
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 45
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 46
+        },
+        {
+          "caller": "__init__",
+          "callee": "print",
+          "lineNumber": 49
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.print_dataset_statistics",
+          "lineNumber": 50
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 56
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 57
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_download_data",
+          "callee": "osp.exists",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_download_data",
+          "callee": "print",
+          "lineNumber": 62
+        },
+        {
+          "caller": "_download_data",
+          "callee": "print",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_download_data",
+          "callee": "\"Creating directory {}\".format",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_download_data",
+          "callee": "mkdir_if_missing",
+          "lineNumber": 66
+        },
+        {
+          "caller": "_download_data",
+          "callee": "osp.join",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_download_data",
+          "callee": "osp.basename",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_download_data",
+          "callee": "print",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_download_data",
+          "callee": "urllib.request.urlretrieve",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_download_data",
+          "callee": "print",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_download_data",
+          "callee": "zipfile.ZipFile",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_download_data",
+          "callee": "zip_ref.extractall",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_download_data",
+          "callee": "zip_ref.close",
+          "lineNumber": 75
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 79
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 80
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 80
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 81
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 83
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 85
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 86
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "glob.glob",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "osp.join",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "re.compile",
+          "lineNumber": 90
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "set",
+          "lineNumber": 92
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "map",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search(img_path).groups",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pid_container.add",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "enumerate",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "set",
+          "lineNumber": 99
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "map",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search(img_path).groups",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "dataset.append",
+          "lineNumber": 105
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "cam_container.add",
+          "lineNumber": 106
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "print",
+          "lineNumber": 107
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "datasets/sampler.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 67,
+      "nonEmptyLines": 57,
+      "classes": [
+        {
+          "name": "RandomIdentitySampler",
+          "startLine": 7,
+          "endLine": 66,
+          "methods": [
+            "__init__",
+            "__iter__",
+            "__len__"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "RandomIdentitySampler",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "defaultdict",
+          "lineNumber": 22
+        },
+        {
+          "caller": "__init__",
+          "callee": "enumerate",
+          "lineNumber": 24
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.index_dic[pid].append",
+          "lineNumber": 25
+        },
+        {
+          "caller": "__init__",
+          "callee": "list",
+          "lineNumber": 26
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.index_dic.keys",
+          "lineNumber": 26
+        },
+        {
+          "caller": "__init__",
+          "callee": "len",
+          "lineNumber": 32
+        },
+        {
+          "caller": "__iter__",
+          "callee": "defaultdict",
+          "lineNumber": 38
+        },
+        {
+          "caller": "__iter__",
+          "callee": "copy.deepcopy",
+          "lineNumber": 41
+        },
+        {
+          "caller": "__iter__",
+          "callee": "len",
+          "lineNumber": 42
+        },
+        {
+          "caller": "__iter__",
+          "callee": "np.random.choice",
+          "lineNumber": 43
+        },
+        {
+          "caller": "__iter__",
+          "callee": "random.shuffle",
+          "lineNumber": 44
+        },
+        {
+          "caller": "__iter__",
+          "callee": "batch_idxs.append",
+          "lineNumber": 47
+        },
+        {
+          "caller": "__iter__",
+          "callee": "len",
+          "lineNumber": 48
+        },
+        {
+          "caller": "__iter__",
+          "callee": "batch_idxs_dict[pid].append",
+          "lineNumber": 49
+        },
+        {
+          "caller": "__iter__",
+          "callee": "copy.deepcopy",
+          "lineNumber": 52
+        },
+        {
+          "caller": "__iter__",
+          "callee": "len",
+          "lineNumber": 55
+        },
+        {
+          "caller": "__iter__",
+          "callee": "random.sample",
+          "lineNumber": 56
+        },
+        {
+          "caller": "__iter__",
+          "callee": "batch_idxs_dict[pid].pop",
+          "lineNumber": 58
+        },
+        {
+          "caller": "__iter__",
+          "callee": "final_idxs.extend",
+          "lineNumber": 59
+        },
+        {
+          "caller": "__iter__",
+          "callee": "len",
+          "lineNumber": 60
+        },
+        {
+          "caller": "__iter__",
+          "callee": "avai_pids.remove",
+          "lineNumber": 61
+        },
+        {
+          "caller": "__iter__",
+          "callee": "iter",
+          "lineNumber": 63
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "datasets/sampler_ddp.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 196,
+      "nonEmptyLines": 168,
+      "functions": [
+        {
+          "name": "_get_global_gloo_group",
+          "startLine": 12,
+          "endLine": 20,
+          "params": []
+        },
+        {
+          "name": "_serialize_to_tensor",
+          "startLine": 22,
+          "endLine": 36,
+          "params": [
+            "data",
+            "group"
+          ]
+        },
+        {
+          "name": "_pad_to_largest_tensor",
+          "startLine": 38,
+          "endLine": 62,
+          "params": [
+            "tensor",
+            "group"
+          ]
+        },
+        {
+          "name": "all_gather",
+          "startLine": 64,
+          "endLine": 97,
+          "params": [
+            "data",
+            "group"
+          ]
+        },
+        {
+          "name": "shared_random_seed",
+          "startLine": 99,
+          "endLine": 109,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "RandomIdentitySampler_DDP",
+          "startLine": 111,
+          "endLine": 196,
+          "methods": [
+            "__init__",
+            "__iter__",
+            "__fetch_current_node_idxs",
+            "sample_list",
+            "__len__"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "_get_global_gloo_group",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "_serialize_to_tensor",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "_pad_to_largest_tensor",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "all_gather",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "shared_random_seed",
+          "line": 99,
+          "isDefault": false
+        },
+        {
+          "name": "RandomIdentitySampler_DDP",
+          "line": 111,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_get_global_gloo_group",
+          "callee": "dist.get_backend",
+          "lineNumber": 17
+        },
+        {
+          "caller": "_get_global_gloo_group",
+          "callee": "dist.new_group",
+          "lineNumber": 18
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "dist.get_backend",
+          "lineNumber": 23
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "torch.device",
+          "lineNumber": 25
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "pickle.dumps",
+          "lineNumber": 27
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "len",
+          "lineNumber": 28
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "print",
+          "lineNumber": 29
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "\"Rank {} trying to all-gather {:.2f} GB of data on device {}\".format",
+          "lineNumber": 30
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "dist.get_rank",
+          "lineNumber": 31
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "len",
+          "lineNumber": 31
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "torch.ByteStorage.from_buffer",
+          "lineNumber": 34
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "torch.ByteTensor(storage).to",
+          "lineNumber": 35
+        },
+        {
+          "caller": "_serialize_to_tensor",
+          "callee": "torch.ByteTensor",
+          "lineNumber": 35
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "dist.get_world_size",
+          "lineNumber": 44
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "torch.tensor",
+          "lineNumber": 48
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "tensor.numel",
+          "lineNumber": 48
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "torch.zeros",
+          "lineNumber": 50
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "range",
+          "lineNumber": 50
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "dist.all_gather",
+          "lineNumber": 52
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "int",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "size.item",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "max",
+          "lineNumber": 55
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "torch.zeros",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_pad_to_largest_tensor",
+          "callee": "torch.cat",
+          "lineNumber": 61
+        },
+        {
+          "caller": "all_gather",
+          "callee": "dist.get_world_size",
+          "lineNumber": 74
+        },
+        {
+          "caller": "all_gather",
+          "callee": "_get_global_gloo_group",
+          "lineNumber": 77
+        },
+        {
+          "caller": "all_gather",
+          "callee": "dist.get_world_size",
+          "lineNumber": 78
+        },
+        {
+          "caller": "all_gather",
+          "callee": "_serialize_to_tensor",
+          "lineNumber": 81
+        },
+        {
+          "caller": "all_gather",
+          "callee": "_pad_to_largest_tensor",
+          "lineNumber": 83
+        },
+        {
+          "caller": "all_gather",
+          "callee": "max",
+          "lineNumber": 84
+        },
+        {
+          "caller": "all_gather",
+          "callee": "torch.empty",
+          "lineNumber": 88
+        },
+        {
+          "caller": "all_gather",
+          "callee": "dist.all_gather",
+          "lineNumber": 90
+        },
+        {
+          "caller": "all_gather",
+          "callee": "zip",
+          "lineNumber": 93
+        },
+        {
+          "caller": "all_gather",
+          "callee": "tensor.cpu().numpy().tobytes",
+          "lineNumber": 94
+        },
+        {
+          "caller": "all_gather",
+          "callee": "tensor.cpu().numpy",
+          "lineNumber": 94
+        },
+        {
+          "caller": "all_gather",
+          "callee": "tensor.cpu",
+          "lineNumber": 94
+        },
+        {
+          "caller": "all_gather",
+          "callee": "data_list.append",
+          "lineNumber": 95
+        },
+        {
+          "caller": "all_gather",
+          "callee": "pickle.loads",
+          "lineNumber": 95
+        },
+        {
+          "caller": "shared_random_seed",
+          "callee": "np.random.randint",
+          "lineNumber": 107
+        },
+        {
+          "caller": "shared_random_seed",
+          "callee": "all_gather",
+          "lineNumber": 108
+        },
+        {
+          "caller": "__init__",
+          "callee": "dist.get_world_size",
+          "lineNumber": 124
+        },
+        {
+          "caller": "__init__",
+          "callee": "defaultdict",
+          "lineNumber": 128
+        },
+        {
+          "caller": "__init__",
+          "callee": "enumerate",
+          "lineNumber": 130
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.index_dic[pid].append",
+          "lineNumber": 131
+        },
+        {
+          "caller": "__init__",
+          "callee": "list",
+          "lineNumber": 132
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.index_dic.keys",
+          "lineNumber": 132
+        },
+        {
+          "caller": "__init__",
+          "callee": "len",
+          "lineNumber": 138
+        },
+        {
+          "caller": "__init__",
+          "callee": "dist.get_rank",
+          "lineNumber": 143
+        },
+        {
+          "caller": "__iter__",
+          "callee": "shared_random_seed",
+          "lineNumber": 148
+        },
+        {
+          "caller": "__iter__",
+          "callee": "np.random.seed",
+          "lineNumber": 149
+        },
+        {
+          "caller": "__iter__",
+          "callee": "int",
+          "lineNumber": 150
+        },
+        {
+          "caller": "__iter__",
+          "callee": "self.sample_list",
+          "lineNumber": 151
+        },
+        {
+          "caller": "__iter__",
+          "callee": "int",
+          "lineNumber": 152
+        },
+        {
+          "caller": "__iter__",
+          "callee": "math.ceil",
+          "lineNumber": 152
+        },
+        {
+          "caller": "__iter__",
+          "callee": "len",
+          "lineNumber": 152
+        },
+        {
+          "caller": "__iter__",
+          "callee": "self.__fetch_current_node_idxs",
+          "lineNumber": 154
+        },
+        {
+          "caller": "__iter__",
+          "callee": "len",
+          "lineNumber": 155
+        },
+        {
+          "caller": "__iter__",
+          "callee": "iter",
+          "lineNumber": 156
+        },
+        {
+          "caller": "__fetch_current_node_idxs",
+          "callee": "len",
+          "lineNumber": 160
+        },
+        {
+          "caller": "__fetch_current_node_idxs",
+          "callee": "range",
+          "lineNumber": 163
+        },
+        {
+          "caller": "__fetch_current_node_idxs",
+          "callee": "range",
+          "lineNumber": 164
+        },
+        {
+          "caller": "__fetch_current_node_idxs",
+          "callee": "min",
+          "lineNumber": 164
+        },
+        {
+          "caller": "__fetch_current_node_idxs",
+          "callee": "index_target.extend",
+          "lineNumber": 165
+        },
+        {
+          "caller": "__fetch_current_node_idxs",
+          "callee": "np.array",
+          "lineNumber": 166
+        },
+        {
+          "caller": "__fetch_current_node_idxs",
+          "callee": "list",
+          "lineNumber": 167
+        },
+        {
+          "caller": "__fetch_current_node_idxs",
+          "callee": "np.array",
+          "lineNumber": 167
+        },
+        {
+          "caller": "sample_list",
+          "callee": "copy.deepcopy",
+          "lineNumber": 173
+        },
+        {
+          "caller": "sample_list",
+          "callee": "len",
+          "lineNumber": 177
+        },
+        {
+          "caller": "sample_list",
+          "callee": "np.random.choice(avai_pids, self.num_pids_per_batch, replace=False).tolist",
+          "lineNumber": 178
+        },
+        {
+          "caller": "sample_list",
+          "callee": "np.random.choice",
+          "lineNumber": 178
+        },
+        {
+          "caller": "sample_list",
+          "callee": "copy.deepcopy",
+          "lineNumber": 181
+        },
+        {
+          "caller": "sample_list",
+          "callee": "len",
+          "lineNumber": 182
+        },
+        {
+          "caller": "sample_list",
+          "callee": "np.random.choice(idxs, size=self.num_instances, replace=True).tolist",
+          "lineNumber": 183
+        },
+        {
+          "caller": "sample_list",
+          "callee": "np.random.choice",
+          "lineNumber": 183
+        },
+        {
+          "caller": "sample_list",
+          "callee": "np.random.shuffle",
+          "lineNumber": 184
+        },
+        {
+          "caller": "sample_list",
+          "callee": "range",
+          "lineNumber": 188
+        },
+        {
+          "caller": "sample_list",
+          "callee": "batch_indices.append",
+          "lineNumber": 189
+        },
+        {
+          "caller": "sample_list",
+          "callee": "avai_idxs.pop",
+          "lineNumber": 189
+        },
+        {
+          "caller": "sample_list",
+          "callee": "len",
+          "lineNumber": 191
+        },
+        {
+          "caller": "sample_list",
+          "callee": "avai_pids.remove",
+          "lineNumber": 191
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "datasets/vehicleid.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 156,
+      "nonEmptyLines": 135,
+      "classes": [
+        {
+          "name": "VehicleID",
+          "startLine": 10,
+          "endLine": 156,
+          "methods": [
+            "__init__",
+            "check_before_run",
+            "get_pid2label",
+            "parse_img_pids",
+            "process_split"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "VehicleID",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super(VehicleID, self).__init__",
+          "lineNumber": 28
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 28
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 29
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 30
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 31
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 32
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 36
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 38
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 40
+        },
+        {
+          "caller": "__init__",
+          "callee": "print",
+          "lineNumber": 42
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.check_before_run",
+          "lineNumber": 44
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.process_split",
+          "lineNumber": 46
+        },
+        {
+          "caller": "__init__",
+          "callee": "print",
+          "lineNumber": 52
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.print_dataset_statistics",
+          "lineNumber": 53
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 55
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 57
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 59
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 64
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 65
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "'\"{}\" is not available'.format",
+          "lineNumber": 65
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 66
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 67
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "'\"{}\" is not available'.format",
+          "lineNumber": 67
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 68
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 69
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "'\"{}\" is not available'.format",
+          "lineNumber": 69
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 71
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "'\"{}\" is not available'.format",
+          "lineNumber": 71
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 72
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 73
+        },
+        {
+          "caller": "check_before_run",
+          "callee": "'\"{}\" is not available'.format",
+          "lineNumber": 73
+        },
+        {
+          "caller": "get_pid2label",
+          "callee": "set",
+          "lineNumber": 76
+        },
+        {
+          "caller": "get_pid2label",
+          "callee": "enumerate",
+          "lineNumber": 77
+        },
+        {
+          "caller": "parse_img_pids",
+          "callee": "osp.join",
+          "lineNumber": 90
+        },
+        {
+          "caller": "parse_img_pids",
+          "callee": "output.append",
+          "lineNumber": 92
+        },
+        {
+          "caller": "process_split",
+          "callee": "defaultdict",
+          "lineNumber": 97
+        },
+        {
+          "caller": "process_split",
+          "callee": "open",
+          "lineNumber": 102
+        },
+        {
+          "caller": "process_split",
+          "callee": "f_train.readlines",
+          "lineNumber": 103
+        },
+        {
+          "caller": "process_split",
+          "callee": "data.strip().split",
+          "lineNumber": 105
+        },
+        {
+          "caller": "process_split",
+          "callee": "data.strip",
+          "lineNumber": 105
+        },
+        {
+          "caller": "process_split",
+          "callee": "int",
+          "lineNumber": 107
+        },
+        {
+          "caller": "process_split",
+          "callee": "train_pid_dict[pid].append",
+          "lineNumber": 108
+        },
+        {
+          "caller": "process_split",
+          "callee": "list",
+          "lineNumber": 109
+        },
+        {
+          "caller": "process_split",
+          "callee": "train_pid_dict.keys",
+          "lineNumber": 109
+        },
+        {
+          "caller": "process_split",
+          "callee": "len",
+          "lineNumber": 110
+        },
+        {
+          "caller": "process_split",
+          "callee": "'There should be 13164 vehicles for training,' \\\r\n                                        ' but but got {}, please check the data'\\\r\n                                        .format",
+          "lineNumber": 111
+        },
+        {
+          "caller": "process_split",
+          "callee": "defaultdict",
+          "lineNumber": 115
+        },
+        {
+          "caller": "process_split",
+          "callee": "open",
+          "lineNumber": 116
+        },
+        {
+          "caller": "process_split",
+          "callee": "f_test.readlines",
+          "lineNumber": 117
+        },
+        {
+          "caller": "process_split",
+          "callee": "data.split",
+          "lineNumber": 119
+        },
+        {
+          "caller": "process_split",
+          "callee": "int",
+          "lineNumber": 120
+        },
+        {
+          "caller": "process_split",
+          "callee": "test_pid_dict[pid].append",
+          "lineNumber": 121
+        },
+        {
+          "caller": "process_split",
+          "callee": "list",
+          "lineNumber": 122
+        },
+        {
+          "caller": "process_split",
+          "callee": "test_pid_dict.keys",
+          "lineNumber": 122
+        },
+        {
+          "caller": "process_split",
+          "callee": "len",
+          "lineNumber": 123
+        },
+        {
+          "caller": "process_split",
+          "callee": "'There should be {} vehicles for testing,' \\\r\n                                                ' but but got {}, please check the data'\\\r\n                                                .format",
+          "lineNumber": 124
+        },
+        {
+          "caller": "process_split",
+          "callee": "sorted",
+          "lineNumber": 131
+        },
+        {
+          "caller": "process_split",
+          "callee": "train_data.extend",
+          "lineNumber": 135
+        },
+        {
+          "caller": "process_split",
+          "callee": "random.choice",
+          "lineNumber": 141
+        },
+        {
+          "caller": "process_split",
+          "callee": "imginfo.remove",
+          "lineNumber": 142
+        },
+        {
+          "caller": "process_split",
+          "callee": "query_data.extend",
+          "lineNumber": 143
+        },
+        {
+          "caller": "process_split",
+          "callee": "gallery_data.append",
+          "lineNumber": 144
+        },
+        {
+          "caller": "process_split",
+          "callee": "self.get_pid2label",
+          "lineNumber": 147
+        },
+        {
+          "caller": "process_split",
+          "callee": "self.parse_img_pids",
+          "lineNumber": 151
+        },
+        {
+          "caller": "process_split",
+          "callee": "self.parse_img_pids",
+          "lineNumber": 152
+        },
+        {
+          "caller": "process_split",
+          "callee": "self.parse_img_pids",
+          "lineNumber": 153
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "datasets/veri.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 116,
+      "nonEmptyLines": 97,
+      "classes": [
+        {
+          "name": "VeRi",
+          "startLine": 8,
+          "endLine": 116,
+          "methods": [
+            "__init__",
+            "_check_before_run",
+            "_process_dir"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "VeRi",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super(VeRi, self).__init__",
+          "lineNumber": 25
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 25
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 26
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 27
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 28
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.join",
+          "lineNumber": 29
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._check_before_run",
+          "lineNumber": 31
+        },
+        {
+          "caller": "__init__",
+          "callee": "open",
+          "lineNumber": 34
+        },
+        {
+          "caller": "__init__",
+          "callee": "txt.readlines",
+          "lineNumber": 35
+        },
+        {
+          "caller": "__init__",
+          "callee": "enumerate",
+          "lineNumber": 37
+        },
+        {
+          "caller": "__init__",
+          "callee": "img_info.split",
+          "lineNumber": 38
+        },
+        {
+          "caller": "__init__",
+          "callee": "int",
+          "lineNumber": 39
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.basename",
+          "lineNumber": 40
+        },
+        {
+          "caller": "__init__",
+          "callee": "open",
+          "lineNumber": 43
+        },
+        {
+          "caller": "__init__",
+          "callee": "txt.readlines",
+          "lineNumber": 44
+        },
+        {
+          "caller": "__init__",
+          "callee": "enumerate",
+          "lineNumber": 46
+        },
+        {
+          "caller": "__init__",
+          "callee": "img_info.split",
+          "lineNumber": 47
+        },
+        {
+          "caller": "__init__",
+          "callee": "int",
+          "lineNumber": 48
+        },
+        {
+          "caller": "__init__",
+          "callee": "osp.basename",
+          "lineNumber": 49
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 51
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 52
+        },
+        {
+          "caller": "__init__",
+          "callee": "self._process_dir",
+          "lineNumber": 53
+        },
+        {
+          "caller": "__init__",
+          "callee": "print",
+          "lineNumber": 56
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.print_dataset_statistics",
+          "lineNumber": 57
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 63
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 65
+        },
+        {
+          "caller": "__init__",
+          "callee": "self.get_imagedata_info",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 74
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 75
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 75
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 76
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 77
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 77
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "osp.exists",
+          "lineNumber": 78
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "RuntimeError",
+          "lineNumber": 79
+        },
+        {
+          "caller": "_check_before_run",
+          "callee": "\"'{}' is not available\".format",
+          "lineNumber": 79
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "glob.glob",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "osp.join",
+          "lineNumber": 82
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "re.compile",
+          "lineNumber": 83
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "set",
+          "lineNumber": 85
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "map",
+          "lineNumber": 87
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search(img_path).groups",
+          "lineNumber": 87
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search",
+          "lineNumber": 87
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pid_container.add",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "enumerate",
+          "lineNumber": 90
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "set",
+          "lineNumber": 92
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "map",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search(img_path).groups",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "pattern.search",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "osp.basename",
+          "lineNumber": 103
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "self.image_map_view_train.keys",
+          "lineNumber": 103
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "osp.basename",
+          "lineNumber": 105
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "osp.basename",
+          "lineNumber": 111
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "view_container.add",
+          "lineNumber": 112
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "dataset.append",
+          "lineNumber": 113
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "print",
+          "lineNumber": 114
+        },
+        {
+          "caller": "_process_dir",
+          "callee": "print",
+          "lineNumber": 115
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "utils/iotools.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 39,
+      "nonEmptyLines": 29,
+      "functions": [
+        {
+          "name": "mkdir_if_missing",
+          "startLine": 14,
+          "endLine": 20,
+          "params": [
+            "directory"
+          ]
+        },
+        {
+          "name": "check_isfile",
+          "startLine": 23,
+          "endLine": 27,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "read_json",
+          "startLine": 30,
+          "endLine": 33,
+          "params": [
+            "fpath"
+          ]
+        },
+        {
+          "name": "write_json",
+          "startLine": 36,
+          "endLine": 39,
+          "params": [
+            "obj",
+            "fpath"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "mkdir_if_missing",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "check_isfile",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "read_json",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "write_json",
+          "line": 36,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "mkdir_if_missing",
+          "callee": "osp.exists",
+          "lineNumber": 15
+        },
+        {
+          "caller": "mkdir_if_missing",
+          "callee": "os.makedirs",
+          "lineNumber": 17
+        },
+        {
+          "caller": "check_isfile",
+          "callee": "osp.isfile",
+          "lineNumber": 24
+        },
+        {
+          "caller": "check_isfile",
+          "callee": "print",
+          "lineNumber": 26
+        },
+        {
+          "caller": "check_isfile",
+          "callee": "\"=> Warning: no file found at '{}' (ignored)\".format",
+          "lineNumber": 26
+        },
+        {
+          "caller": "read_json",
+          "callee": "open",
+          "lineNumber": 31
+        },
+        {
+          "caller": "read_json",
+          "callee": "json.load",
+          "lineNumber": 32
+        },
+        {
+          "caller": "write_json",
+          "callee": "mkdir_if_missing",
+          "lineNumber": 37
+        },
+        {
+          "caller": "write_json",
+          "callee": "osp.dirname",
+          "lineNumber": 37
+        },
+        {
+          "caller": "write_json",
+          "callee": "open",
+          "lineNumber": 38
+        },
+        {
+          "caller": "write_json",
+          "callee": "json.dump",
+          "lineNumber": 39
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    }
+  ]
+}

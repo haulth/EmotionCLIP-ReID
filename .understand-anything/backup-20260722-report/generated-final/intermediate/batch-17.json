@@ -1,0 +1,1162 @@
+{
+  "nodes": [
+    {
+      "id": "file:docs/report/fig/v1/emotionclip_reid_publication_pipeline.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_publication_pipeline.drawio",
+      "filePath": "docs/report/fig/v1/emotionclip_reid_publication_pipeline.drawio",
+      "summary": "Bản v1 của sơ đồ semantic prompt optimization: image embedding, class prompt, label supervision và objective Stage 1 trước khi chuyển anchor sang giai đoạn sau.",
+      "tags": [
+        "publication-figure",
+        "semantic-prompt",
+        "stage-one",
+        "objective"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io dùng mxGraph XML cho luồng input, frozen/trainable và objective."
+    },
+    {
+      "id": "file:docs/report/fig/v1/emotionclip_reid_two_stage_structure.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_two_stage_structure.drawio",
+      "filePath": "docs/report/fig/v1/emotionclip_reid_two_stage_structure.drawio",
+      "summary": "Sơ đồ đề xuất ban đầu chuyển CLIP-ReID từ ID anchoring sang emotion descriptor learning, adapter fine-tuning và AU prior tùy chọn.",
+      "tags": [
+        "proposal-diagram",
+        "emotion-descriptor",
+        "adapter",
+        "au-prior"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Sơ đồ mxGraph mô tả hai stage và các thành phần optional AU/pseudo-AU."
+    },
+    {
+      "id": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "type": "file",
+      "name": "build_emotionclip_anatomy_gap_map.py",
+      "filePath": "docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "summary": "Script sinh sơ đồ draw.io cho kế hoạch anatomy/geometry cuối: shared geometry contract, dual-stream Stage 2, geometry-conditioned Stage 1 và output ambiguity/reliability tách biệt.",
+      "tags": [
+        "diagram-generator",
+        "research-gap",
+        "anatomy",
+        "geometry"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Python xây mxGraph XML bằng ElementTree rồi pretty-print qua minidom."
+    },
+    {
+      "id": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:box",
+      "type": "function",
+      "name": "box",
+      "filePath": "docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "lineRange": [
+        30,
+        37
+      ],
+      "summary": "Tạo chuỗi style mxGraph cho hộp bo góc với màu, cỡ chữ, căn lề và dashed tùy chọn.",
+      "tags": [
+        "diagram-style",
+        "utility",
+        "mxgraph"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:text_style",
+      "type": "function",
+      "name": "text_style",
+      "filePath": "docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "lineRange": [
+        40,
+        46
+      ],
+      "summary": "Tạo style mxGraph cho nhãn văn bản không viền/nền với font, màu, bold và căn lề tùy chọn.",
+      "tags": [
+        "diagram-style",
+        "text-formatting",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:edge_style",
+      "type": "function",
+      "name": "edge_style",
+      "filePath": "docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "lineRange": [
+        49,
+        55
+      ],
+      "summary": "Tạo style edge trực giao có mũi tên, màu và dashed tùy chọn cho sơ đồ gap map.",
+      "tags": [
+        "diagram-style",
+        "edge",
+        "mxgraph"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:vertex",
+      "type": "function",
+      "name": "vertex",
+      "filePath": "docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "lineRange": [
+        86,
+        96
+      ],
+      "summary": "Chèn một mxCell vertex cùng mxGeometry vào graph root tại vị trí và kích thước chỉ định.",
+      "tags": [
+        "diagram-builder",
+        "vertex",
+        "xml"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:edge",
+      "type": "function",
+      "name": "edge",
+      "filePath": "docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "lineRange": [
+        99,
+        113
+      ],
+      "summary": "Chèn một mxCell edge nối source-target, tái sử dụng edge_style và thêm geometry tương đối.",
+      "tags": [
+        "diagram-builder",
+        "edge",
+        "xml"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:docs/research_review/build_research_review.py",
+      "type": "file",
+      "name": "build_research_review.py",
+      "filePath": "docs/research_review/build_research_review.py",
+      "summary": "Pipeline tạo bộ related-work từ danh sách 32 paper nhúng trong source: xuất workbook nhiều sheet, báo cáo DOCX, sơ đồ gap map và kiểm tra render DOCX sang PDF/PNG.",
+      "tags": [
+        "literature-review",
+        "artifact-generation",
+        "spreadsheet",
+        "document-automation"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Python kết hợp openpyxl, python-docx, OOXML và mxGraph XML; bước QA gọi LibreOffice cùng pdftoppm."
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:set_cell_shading",
+      "type": "function",
+      "name": "set_cell_shading",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        609,
+        613
+      ],
+      "summary": "Gắn phần tử OOXML w:shd vào Word table cell để đặt màu nền.",
+      "tags": [
+        "docx-formatting",
+        "ooxml",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:set_cell_text",
+      "type": "function",
+      "name": "set_cell_text",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        616,
+        624
+      ],
+      "summary": "Ghi text và định dạng bold/màu/cỡ chữ vào Word table cell, đồng thời căn giữa theo chiều dọc.",
+      "tags": [
+        "docx-formatting",
+        "table-cell",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:build_excel",
+      "type": "function",
+      "name": "build_excel",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        627,
+        790
+      ],
+      "summary": "Tạo workbook review 32 paper với các sheet Papers, Synthesis Matrix, Thesis Focus, Self-Critique và Research Gap, áp style/table rồi lưu XLSX.",
+      "tags": [
+        "spreadsheet-builder",
+        "literature-review",
+        "artifact-generation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:add_hyperlink",
+      "type": "function",
+      "name": "add_hyperlink",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        793,
+        811
+      ],
+      "summary": "Tạo hyperlink ngoài trong paragraph DOCX bằng relationship và các phần tử OOXML có màu xanh, gạch chân.",
+      "tags": [
+        "docx-formatting",
+        "hyperlink",
+        "ooxml"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:add_heading",
+      "type": "function",
+      "name": "add_heading",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        814,
+        819
+      ],
+      "summary": "Thêm heading vào DOCX và chuẩn hóa font Arial cùng màu chủ đề xanh.",
+      "tags": [
+        "docx-formatting",
+        "heading",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:add_body",
+      "type": "function",
+      "name": "add_body",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        822,
+        829
+      ],
+      "summary": "Thêm đoạn body vào DOCX với spacing, line height, font Arial và cỡ chữ thống nhất.",
+      "tags": [
+        "docx-formatting",
+        "paragraph",
+        "utility"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:build_docx",
+      "type": "function",
+      "name": "build_docx",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        832,
+        988
+      ],
+      "summary": "Dựng báo cáo related-work tiếng Việt từ luận điểm, sáu nhóm paper, self-critique, synthesis và danh mục nguồn rồi lưu DOCX.",
+      "tags": [
+        "document-builder",
+        "literature-review",
+        "artifact-generation"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:mx_cell",
+      "type": "function",
+      "name": "mx_cell",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        991,
+        993
+      ],
+      "summary": "Trả về XML fragment cho một mxCell bo góc sau khi escape nội dung và chuyển newline thành HTML break.",
+      "tags": [
+        "diagram-builder",
+        "mxgraph",
+        "xml"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:mx_edge",
+      "type": "function",
+      "name": "mx_edge",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        996,
+        998
+      ],
+      "summary": "Trả về XML fragment cho edge trực giao giữa hai mxCell, kèm label đã escape.",
+      "tags": [
+        "diagram-builder",
+        "edge",
+        "xml"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:build_drawio",
+      "type": "function",
+      "name": "build_drawio",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        1001,
+        1035
+      ],
+      "summary": "Lắp các node/edge related-work thành mxGraph XML và lưu sơ đồ research-gap draw.io.",
+      "tags": [
+        "diagram-builder",
+        "research-gap",
+        "artifact-generation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:verify_docx_render",
+      "type": "function",
+      "name": "verify_docx_render",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        1038,
+        1061
+      ],
+      "summary": "Dùng LibreOffice chuyển DOCX sang PDF rồi pdftoppm render PNG, trả trạng thái thành công và thông báo QA.",
+      "tags": [
+        "render-verification",
+        "docx",
+        "quality-assurance"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:docs/research_review/build_research_review.py:main",
+      "type": "function",
+      "name": "main",
+      "filePath": "docs/research_review/build_research_review.py",
+      "lineRange": [
+        1064,
+        1078
+      ],
+      "summary": "Điều phối tạo XLSX, DOCX, draw.io, chạy render QA và ghi build_summary.json với đường dẫn cùng paper count.",
+      "tags": [
+        "entry-point",
+        "orchestration",
+        "artifact-generation"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "config:docs/research_review/build_summary.json",
+      "type": "config",
+      "name": "build_summary.json",
+      "filePath": "docs/research_review/build_summary.json",
+      "summary": "Manifest kết quả của pipeline related-work, ghi đường dẫn XLSX/DOCX/draw.io, paper_count 32 và xác nhận DOCX đã render thành công.",
+      "tags": [
+        "build-manifest",
+        "literature-review",
+        "render-verification",
+        "artifact-output"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:docs/research_review/emotionclip_anatomy_research_gap_map.drawio",
+      "type": "file",
+      "name": "emotionclip_anatomy_research_gap_map.drawio",
+      "filePath": "docs/research_review/emotionclip_anatomy_research_gap_map.drawio",
+      "summary": "Sơ đồ research gap anatomy phiên bản chốt: reliability-gated geometry dùng chung cho Stage 1/2, visual fallback khi landmark kém và roadmap kiểm chứng theo ablation.",
+      "tags": [
+        "research-gap",
+        "anatomy-routing",
+        "reliability-gate",
+        "diagram"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "mxGraph XML chứa trực tiếp công thức, tiêu chí go/no-go và đối chiếu nhóm paper R1–R11."
+    },
+    {
+      "id": "document:docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "type": "document",
+      "name": "emotionclip_reid_gap_analysis_2026-07-14.md",
+      "filePath": "docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "summary": "Báo cáo audit toàn diện code, protocol, log và novelty: nhận diện leakage/provenance/uncertainty gaps, ghi nhận protocol sealed-test đã sửa, tổng hợp kết quả FER2013/RAF-DB và đề xuất roadmap publication-ready.",
+      "tags": [
+        "documentation",
+        "code-audit",
+        "research-gap",
+        "experimental-protocol",
+        "novelty"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Markdown kết hợp bảng evidence, Mermaid architecture, mức Verified/Inferred/Proposed và checklist go/no-go."
+    },
+    {
+      "id": "file:docs/research_review/emotionclip_reid_papers.backup_20260620.xlsx",
+      "type": "file",
+      "name": "emotionclip_reid_papers.backup_20260620.xlsx",
+      "filePath": "docs/research_review/emotionclip_reid_papers.backup_20260620.xlsx",
+      "summary": "Workbook XLSX nhị phân emotionclip_reid_papers.backup_20260620.xlsx dùng làm artifact tổng hợp tài liệu; structural extraction không cung cấp dữ liệu cell đủ tin cậy để mô tả chi tiết.",
+      "tags": [
+        "office-artifact",
+        "spreadsheet",
+        "literature-review",
+        "binary-document"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "XLSX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất sheet/cell."
+    },
+    {
+      "id": "file:docs/research_review/emotionclip_reid_papers.xlsx",
+      "type": "file",
+      "name": "emotionclip_reid_papers.xlsx",
+      "filePath": "docs/research_review/emotionclip_reid_papers.xlsx",
+      "summary": "Workbook XLSX nhị phân emotionclip_reid_papers.xlsx dùng làm artifact tổng hợp tài liệu; structural extraction không cung cấp dữ liệu cell đủ tin cậy để mô tả chi tiết.",
+      "tags": [
+        "office-artifact",
+        "spreadsheet",
+        "literature-review",
+        "binary-document"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "XLSX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất sheet/cell."
+    },
+    {
+      "id": "file:docs/research_review/emotionclip_reid_related_work_gap_map.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_related_work_gap_map.drawio",
+      "filePath": "docs/research_review/emotionclip_reid_related_work_gap_map.drawio",
+      "summary": "Sơ đồ lập luận related-work từ VLM/prompt, language-guided ReID, CLIP-FER, AU/FACS, uncertainty và multimodal đến gap emotion/AU semantic anchors.",
+      "tags": [
+        "related-work",
+        "research-gap",
+        "semantic-anchor",
+        "diagram"
+      ],
+      "complexity": "simple",
+      "languageNotes": "Sơ đồ được sinh bằng mxGraph XML từ build_research_review.py."
+    },
+    {
+      "id": "file:docs/research_review/related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx",
+      "type": "file",
+      "name": "related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx",
+      "filePath": "docs/research_review/related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx",
+      "summary": "Artifact báo cáo Word nhị phân related_work_emotionclip_reid_grad_style_with_pdf_proposals.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "document:docs/SOTA/disfa_sota_benchmark.md",
+      "type": "document",
+      "name": "disfa_sota_benchmark.md",
+      "filePath": "docs/SOTA/disfa_sota_benchmark.md",
+      "summary": "Tổng hợp protocol và benchmark DISFA cho AU detection/intensity, xếp hạng các phương pháp gần đây, nêu caveat so sánh và gợi ý năm dataset AU tương tự.",
+      "tags": [
+        "documentation",
+        "sota-benchmark",
+        "disfa",
+        "action-unit",
+        "evaluation-protocol"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Bảng Markdown tách rõ AU detection bằng Avg F1 với AU intensity bằng ICC/MSE/MAE."
+    },
+    {
+      "id": "file:docs/Tài liệu tham khảo/EmotionCLIP-ReID_Data_Reference.docx",
+      "type": "file",
+      "name": "EmotionCLIP-ReID_Data_Reference.docx",
+      "filePath": "docs/Tài liệu tham khảo/EmotionCLIP-ReID_Data_Reference.docx",
+      "summary": "Artifact báo cáo Word nhị phân EmotionCLIP-ReID_Data_Reference.docx; structural extraction chỉ xác nhận tệp và quy mô, nên không suy diễn nội dung chi tiết.",
+      "tags": [
+        "office-artifact",
+        "report",
+        "documentation",
+        "binary-document"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "DOCX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất cấu trúc đoạn/bảng."
+    },
+    {
+      "id": "file:fig/emotionclip_reid_current_system.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_current_system.drawio",
+      "filePath": "fig/emotionclip_reid_current_system.drawio",
+      "summary": "Bản sao sơ đồ hệ thống EmotionCLIP-ReID hiện tại, mô tả phần kế thừa CLIP/CoOp/CLIP-ReID và các khối FER đã triển khai hoặc optional.",
+      "tags": [
+        "current-architecture",
+        "emotionclip-reid",
+        "baseline",
+        "diagram"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io dùng mxGraph XML và chú giải trạng thái khối."
+    },
+    {
+      "id": "file:fig/emotionclip_reid_publication_pipeline.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_publication_pipeline.drawio",
+      "filePath": "fig/emotionclip_reid_publication_pipeline.drawio",
+      "summary": "Sơ đồ publication pipeline chính cho hai-stage EmotionCLIP-ReID, từ image/label supervision ở Stage 1 đến visual adaptation và prediction ở Stage 2.",
+      "tags": [
+        "publication-figure",
+        "two-stage-training",
+        "semantic-anchor",
+        "fer"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "draw.io mã hóa luồng dữ liệu và objective trong mxGraph XML."
+    },
+    {
+      "id": "file:loss/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "filePath": "loss/__init__.py",
+      "summary": "Điểm vào package loss, wildcard-import toàn bộ lớp margin-based từ loss/arcface.py.",
+      "tags": [
+        "entry-point",
+        "package",
+        "loss",
+        "barrel"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:loss/arcface.py",
+      "type": "file",
+      "name": "arcface.py",
+      "filePath": "loss/arcface.py",
+      "summary": "Cài đặt hai classification head margin-based ArcFace và CircleLoss trên cosine similarity chuẩn hóa cho embedding learning.",
+      "tags": [
+        "metric-learning",
+        "arcface",
+        "circle-loss",
+        "classification-head"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "PyTorch nn.Module chuẩn hóa feature và class weight trước khi áp angular/circle margin; one-hot tensor hiện được tạo trực tiếp trên CUDA."
+    },
+    {
+      "id": "class:loss/arcface.py:ArcFace",
+      "type": "class",
+      "name": "ArcFace",
+      "filePath": "loss/arcface.py",
+      "lineRange": [
+        8,
+        50
+      ],
+      "summary": "Head ArcFace chuẩn hóa input/class weights, áp additive angular margin cho lớp đúng và scale logits trước CE.",
+      "tags": [
+        "arcface",
+        "metric-learning",
+        "classification-head"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:loss/arcface.py:CircleLoss",
+      "type": "class",
+      "name": "CircleLoss",
+      "filePath": "loss/arcface.py",
+      "lineRange": [
+        52,
+        80
+      ],
+      "summary": "Head Circle Loss sinh class logits từ cosine similarity với hệ số trọng số positive/negative phụ thuộc margin.",
+      "tags": [
+        "circle-loss",
+        "metric-learning",
+        "classification-head"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:loss/metric_learning.py",
+      "type": "file",
+      "name": "metric_learning.py",
+      "filePath": "loss/metric_learning.py",
+      "summary": "Tập hợp objective/head metric learning gồm pairwise ContrastiveLoss, CircleLoss, Arcface, Cosface và AMSoftmax cho bài toán phân biệt embedding.",
+      "tags": [
+        "metric-learning",
+        "contrastive-loss",
+        "margin-softmax",
+        "classification-head"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "Các head PyTorch dùng normalized cosine logits và additive/angular margins; nhiều implementation tạo tensor nhãn phụ trên CUDA."
+    },
+    {
+      "id": "class:loss/metric_learning.py:ContrastiveLoss",
+      "type": "class",
+      "name": "ContrastiveLoss",
+      "filePath": "loss/metric_learning.py",
+      "lineRange": [
+        9,
+        42
+      ],
+      "summary": "Loss khai thác ma trận similarity trong batch, cộng phạt positive dưới 1 và negative vượt margin theo từng mẫu.",
+      "tags": [
+        "contrastive-loss",
+        "pair-mining",
+        "metric-learning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:loss/metric_learning.py:CircleLoss",
+      "type": "class",
+      "name": "CircleLoss",
+      "filePath": "loss/metric_learning.py",
+      "lineRange": [
+        45,
+        73
+      ],
+      "summary": "Biến cosine similarity thành Circle Loss logits bằng adaptive positive/negative factors và one-hot target.",
+      "tags": [
+        "circle-loss",
+        "metric-learning",
+        "classification-head"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:loss/metric_learning.py:Arcface",
+      "type": "class",
+      "name": "Arcface",
+      "filePath": "loss/metric_learning.py",
+      "lineRange": [
+        76,
+        121
+      ],
+      "summary": "Implementation ArcFace hỗ trợ easy margin và label smoothing, tạo angular-margin logits trên normalized features/weights.",
+      "tags": [
+        "arcface",
+        "label-smoothing",
+        "metric-learning"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:loss/metric_learning.py:Cosface",
+      "type": "class",
+      "name": "Cosface",
+      "filePath": "loss/metric_learning.py",
+      "lineRange": [
+        124,
+        163
+      ],
+      "summary": "Implementation CosFace trừ cosine margin ở lớp mục tiêu và scale normalized logits, kèm biểu diễn cấu hình.",
+      "tags": [
+        "cosface",
+        "metric-learning",
+        "classification-head"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:loss/metric_learning.py:AMSoftmax",
+      "type": "class",
+      "name": "AMSoftmax",
+      "filePath": "loss/metric_learning.py",
+      "lineRange": [
+        166,
+        189
+      ],
+      "summary": "Implementation additive-margin softmax chuẩn hóa feature/weight, trừ margin theo nhãn và trả scaled class logits.",
+      "tags": [
+        "am-softmax",
+        "metric-learning",
+        "classification-head"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+      "type": "file",
+      "name": "emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+      "filePath": "notebooks/emotionclip_reid_jupyterhub_build_landmarks.ipynb",
+      "summary": "Runbook độc lập để tạo và cache anatomy/landmark artifact cho FER2013 và RAF-DB, audit coverage/jitter, vẽ failure dashboard và bàn giao manifest_anatomy.jsonl cho notebook train.",
+      "tags": [
+        "notebook",
+        "landmark-pipeline",
+        "anatomy-artifact",
+        "data-audit"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Notebook kết hợp Markdown và code; cache key phụ thuộc manifest, model, schema và jitter, còn mỗi build có LANDMARK_RUN_ID riêng."
+    },
+    {
+      "id": "file:notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "type": "file",
+      "name": "emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "filePath": "notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "summary": "Runbook JupyterHub cho FER2013 bảy lớp: chuẩn bị dataset/manifest, dùng landmark offline, khóa run ID, train hai stage và giữ PrivateTest làm sealed test.",
+      "tags": [
+        "notebook",
+        "fer2013",
+        "two-stage-training",
+        "sealed-test",
+        "reproducibility"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Notebook mô tả DataParallel hai GPU T4, output immutable theo RUN_ID và separation Training/PublicTest/PrivateTest."
+    },
+    {
+      "id": "file:notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "type": "file",
+      "name": "emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "filePath": "notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "summary": "Runbook JupyterHub cho RAF-DB Basic: kiểm tra manifest/anatomy, tạo validation xác định từ official train, giữ official test sealed và train EmotionCLIP-ReID theo cấu hình hai stage.",
+      "tags": [
+        "notebook",
+        "raf-db",
+        "two-stage-training",
+        "sealed-test",
+        "reproducibility"
+      ],
+      "complexity": "complex",
+      "languageNotes": "Notebook tách staging visual khỏi output immutable và yêu cầu manifest_anatomy/anatomy_v3 được build trước."
+    },
+    {
+      "id": "file:outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx",
+      "type": "file",
+      "name": "emotionclip_reid_papers.xlsx",
+      "filePath": "outputs/019f6089-e841-7052-847b-c9e0c4537c48/emotionclip_reid_papers.xlsx",
+      "summary": "Workbook XLSX nhị phân emotionclip_reid_papers.xlsx dùng làm artifact tổng hợp tài liệu; structural extraction không cung cấp dữ liệu cell đủ tin cậy để mô tả chi tiết.",
+      "tags": [
+        "office-artifact",
+        "spreadsheet",
+        "literature-review",
+        "binary-document"
+      ],
+      "complexity": "complex",
+      "languageNotes": "XLSX là gói Office Open XML; node được mô tả bảo thủ vì extractor không xuất sheet/cell."
+    },
+    {
+      "id": "file:outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_w4_functional_change_map.drawio",
+      "filePath": "outputs/report_w4/emotionclip_reid_w4_functional_change_map.drawio",
+      "summary": "Sơ đồ thay đổi chức năng W4, đánh dấu các khối dataset/manifest, emotion descriptors, expression adapters, global-local alignment, evidential uncertainty và evidence artifacts.",
+      "tags": [
+        "change-map",
+        "week-four",
+        "emotionclip-reid",
+        "diagram"
+      ],
+      "complexity": "simple",
+      "languageNotes": "mxGraph XML phân biệt khối mới W4 với khối sửa từ W3."
+    },
+    {
+      "id": "file:outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_w4_model_architecture.drawio",
+      "filePath": "outputs/report_w4/emotionclip_reid_w4_model_architecture.drawio",
+      "summary": "Sơ đồ kiến trúc W4 phân nhóm visual feature, semantic descriptor và decision/uncertainty/evaluation, đồng thời đánh dấu NEW, MODIFIED và REUSED/FROZEN.",
+      "tags": [
+        "architecture-diagram",
+        "week-four",
+        "adapter",
+        "uncertainty"
+      ],
+      "complexity": "simple",
+      "languageNotes": "draw.io lưu chú giải đóng góp W4 trong mxGraph XML."
+    },
+    {
+      "id": "file:outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio",
+      "type": "file",
+      "name": "emotionclip_reid_w4_two_stage_training.drawio",
+      "filePath": "outputs/report_w4/emotionclip_reid_w4_two_stage_training.drawio",
+      "summary": "Sơ đồ huấn luyện W4: Stage 1 học fixed emotion descriptors với CLIP frozen; Stage 2 kết hợp classifier, global/local alignment và uncertainty term.",
+      "tags": [
+        "training-diagram",
+        "week-four",
+        "two-stage-training",
+        "uncertainty"
+      ],
+      "complexity": "moderate",
+      "languageNotes": "mxGraph XML chứa công thức fusion logits và objective tổng của Stage 2."
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "target": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:box",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "target": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:box",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "target": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:text_style",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "target": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:text_style",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "target": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:edge_style",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "target": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:edge_style",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "target": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:vertex",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "target": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:vertex",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "target": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:edge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_emotionclip_anatomy_gap_map.py",
+      "target": "function:docs/research_review/build_emotionclip_anatomy_gap_map.py:edge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:set_cell_shading",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:set_cell_shading",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:set_cell_text",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:set_cell_text",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:build_excel",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:build_excel",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:add_hyperlink",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:add_hyperlink",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:add_heading",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:add_heading",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:add_body",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:add_body",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:build_docx",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:build_docx",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:mx_cell",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:mx_cell",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:mx_edge",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:mx_edge",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:build_drawio",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:build_drawio",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:verify_docx_render",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:verify_docx_render",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:main",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:docs/research_review/build_research_review.py",
+      "target": "function:docs/research_review/build_research_review.py:main",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/__init__.py",
+      "target": "file:loss/arcface.py",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7
+    },
+    {
+      "source": "file:loss/arcface.py",
+      "target": "class:loss/arcface.py:ArcFace",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/arcface.py",
+      "target": "class:loss/arcface.py:ArcFace",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/arcface.py",
+      "target": "class:loss/arcface.py:CircleLoss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/arcface.py",
+      "target": "class:loss/arcface.py:CircleLoss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/metric_learning.py",
+      "target": "class:loss/metric_learning.py:ContrastiveLoss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/metric_learning.py",
+      "target": "class:loss/metric_learning.py:ContrastiveLoss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/metric_learning.py",
+      "target": "class:loss/metric_learning.py:CircleLoss",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/metric_learning.py",
+      "target": "class:loss/metric_learning.py:CircleLoss",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/metric_learning.py",
+      "target": "class:loss/metric_learning.py:Arcface",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/metric_learning.py",
+      "target": "class:loss/metric_learning.py:Arcface",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/metric_learning.py",
+      "target": "class:loss/metric_learning.py:Cosface",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/metric_learning.py",
+      "target": "class:loss/metric_learning.py:Cosface",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "file:loss/metric_learning.py",
+      "target": "class:loss/metric_learning.py:AMSoftmax",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 1
+    },
+    {
+      "source": "file:loss/metric_learning.py",
+      "target": "class:loss/metric_learning.py:AMSoftmax",
+      "type": "exports",
+      "direction": "forward",
+      "weight": 0.8
+    },
+    {
+      "source": "config:docs/research_review/build_summary.json",
+      "target": "file:docs/research_review/build_research_review.py",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "target": "file:notebooks/emotionclip_reid_jupyterhub_fer2013.ipynb",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "target": "file:notebooks/emotionclip_reid_jupyterhub_rafdb.ipynb",
+      "type": "documents",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:docs/SOTA/disfa_sota_benchmark.md",
+      "target": "document:docs/research_review/emotionclip_reid_gap_analysis_2026-07-14.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}

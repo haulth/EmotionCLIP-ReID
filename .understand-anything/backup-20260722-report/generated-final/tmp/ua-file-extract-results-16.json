@@ -1,0 +1,375 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".codex/tmp/019f8a29-798f-7c12-a8ee-fdf1d43a6942/edit_paper.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 216,
+      "nonEmptyLines": 202,
+      "callGraph": [
+        {
+          "caller": "normalize",
+          "callee": "String(value ?? \"\")\n    .normalize(\"NFKD\")\n    .toLowerCase()\n    .replace(/[^a-z0-9]+/g, \" \")\n    .trim",
+          "lineNumber": 60
+        },
+        {
+          "caller": "normalize",
+          "callee": "String(value ?? \"\")\n    .normalize(\"NFKD\")\n    .toLowerCase()\n    .replace",
+          "lineNumber": 60
+        },
+        {
+          "caller": "normalize",
+          "callee": "String(value ?? \"\")\n    .normalize(\"NFKD\")\n    .toLowerCase",
+          "lineNumber": 60
+        },
+        {
+          "caller": "normalize",
+          "callee": "String(value ?? \"\")\n    .normalize",
+          "lineNumber": 60
+        },
+        {
+          "caller": "normalize",
+          "callee": "String",
+          "lineNumber": 60
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "config/defaults_base.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 188,
+      "nonEmptyLines": 165,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "config/defaults.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 237,
+      "nonEmptyLines": 204,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "datasets/__init__.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "datasets/keypoint_test.txt",
+      "language": "txt",
+      "fileCategory": "docs",
+      "totalLines": 12080,
+      "nonEmptyLines": 12080,
+      "metrics": {}
+    },
+    {
+      "path": "datasets/keypoint_train.txt",
+      "language": "txt",
+      "fileCategory": "docs",
+      "totalLines": 38632,
+      "nonEmptyLines": 38632,
+      "metrics": {}
+    },
+    {
+      "path": "datasets/preprocessing.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 50,
+      "nonEmptyLines": 39,
+      "classes": [
+        {
+          "name": "RandomErasing",
+          "startLine": 5,
+          "endLine": 49,
+          "methods": [
+            "__init__",
+            "__call__"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "RandomErasing",
+          "line": 5,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__call__",
+          "callee": "random.uniform",
+          "lineNumber": 26
+        },
+        {
+          "caller": "__call__",
+          "callee": "range",
+          "lineNumber": 29
+        },
+        {
+          "caller": "__call__",
+          "callee": "img.size",
+          "lineNumber": 30
+        },
+        {
+          "caller": "__call__",
+          "callee": "img.size",
+          "lineNumber": 30
+        },
+        {
+          "caller": "__call__",
+          "callee": "random.uniform",
+          "lineNumber": 32
+        },
+        {
+          "caller": "__call__",
+          "callee": "random.uniform",
+          "lineNumber": 33
+        },
+        {
+          "caller": "__call__",
+          "callee": "int",
+          "lineNumber": 35
+        },
+        {
+          "caller": "__call__",
+          "callee": "round",
+          "lineNumber": 35
+        },
+        {
+          "caller": "__call__",
+          "callee": "math.sqrt",
+          "lineNumber": 35
+        },
+        {
+          "caller": "__call__",
+          "callee": "int",
+          "lineNumber": 36
+        },
+        {
+          "caller": "__call__",
+          "callee": "round",
+          "lineNumber": 36
+        },
+        {
+          "caller": "__call__",
+          "callee": "math.sqrt",
+          "lineNumber": 36
+        },
+        {
+          "caller": "__call__",
+          "callee": "img.size",
+          "lineNumber": 38
+        },
+        {
+          "caller": "__call__",
+          "callee": "img.size",
+          "lineNumber": 38
+        },
+        {
+          "caller": "__call__",
+          "callee": "random.randint",
+          "lineNumber": 39
+        },
+        {
+          "caller": "__call__",
+          "callee": "img.size",
+          "lineNumber": 39
+        },
+        {
+          "caller": "__call__",
+          "callee": "random.randint",
+          "lineNumber": 40
+        },
+        {
+          "caller": "__call__",
+          "callee": "img.size",
+          "lineNumber": 40
+        },
+        {
+          "caller": "__call__",
+          "callee": "img.size",
+          "lineNumber": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "docs/Docs_ref/EmotionCLIP-ReID_Data_Reference.docx",
+      "language": "docx",
+      "fileCategory": "code",
+      "totalLines": 182,
+      "nonEmptyLines": 182,
+      "metrics": {}
+    },
+    {
+      "path": "docs/emotionclip_reid_proposed_emotionclip_reid_model.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 202,
+      "nonEmptyLines": 202,
+      "metrics": {}
+    },
+    {
+      "path": "docs/original_scientific_model_diagram.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 142,
+      "nonEmptyLines": 142,
+      "metrics": {}
+    },
+    {
+      "path": "docs/original_system_architecture.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 100,
+      "nonEmptyLines": 91,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/emotionclip_reid_gvhd_research_gap_proposal_slides.pptx",
+      "language": "pptx",
+      "fileCategory": "code",
+      "totalLines": 1429,
+      "nonEmptyLines": 1407,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/emotionclip_reid_model_proposal_report.docx",
+      "language": "docx",
+      "fileCategory": "code",
+      "totalLines": 1571,
+      "nonEmptyLines": 1504,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/emotionclip_reid_model_proposal_slides.pptx",
+      "language": "pptx",
+      "fileCategory": "code",
+      "totalLines": 1798,
+      "nonEmptyLines": 1760,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/emotionclip_reid_report_w2.docx",
+      "language": "docx",
+      "fileCategory": "code",
+      "totalLines": 1195,
+      "nonEmptyLines": 1187,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/emotionclip_reid_report_w3.docx",
+      "language": "docx",
+      "fileCategory": "code",
+      "totalLines": 1627,
+      "nonEmptyLines": 1598,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/emotionclip_reid_report_w4.docx",
+      "language": "docx",
+      "fileCategory": "code",
+      "totalLines": 2417,
+      "nonEmptyLines": 2364,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/emotionclip_reid.pptx",
+      "language": "pptx",
+      "fileCategory": "code",
+      "totalLines": 5090,
+      "nonEmptyLines": 5041,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/fig/emotionclip_reid_context_gap_hub_map.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 9,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/fig/emotionclip_reid_current_system.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 96,
+      "nonEmptyLines": 96,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/fig/emotionclip_reid_proposal_pipeline.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 109,
+      "nonEmptyLines": 109,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/fig/emotionclip_reid_publication_pipeline_update.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 331,
+      "nonEmptyLines": 331,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/fig/emotionclip_reid_publication_pipeline.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 192,
+      "nonEmptyLines": 192,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/fig/emotionclip_reid_two_stage_structure.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 317,
+      "nonEmptyLines": 317,
+      "metrics": {}
+    },
+    {
+      "path": "docs/report/fig/v1/emotionclip_reid_publication_pipeline_update.drawio",
+      "language": "drawio",
+      "fileCategory": "code",
+      "totalLines": 216,
+      "nonEmptyLines": 210,
+      "metrics": {}
+    }
+  ]
+}

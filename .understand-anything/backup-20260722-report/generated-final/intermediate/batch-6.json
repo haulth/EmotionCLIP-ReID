@@ -1,0 +1,83 @@
+{
+  "nodes": [
+    {
+      "id": "document:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Tài liệu vào dự án mô tả baseline CLIP-ReID và phần mở rộng EmotionCLIP-ReID cho FER, từ cài đặt/dữ liệu đến landmark artifacts, huấn luyện hai giai đoạn, inference, kiểm thử và tái lập.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "hướng-dẫn",
+        "emotionclip-reid"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "config:environment_emotionclip_cuda.yml",
+      "type": "config",
+      "name": "environment_emotionclip_cuda.yml",
+      "filePath": "environment_emotionclip_cuda.yml",
+      "summary": "Môi trường Conda cho EmotionCLIP-ReID trên Python 3.10 và CUDA 12.1, kèm PyTorch, MediaPipe, Hugging Face datasets, pytest và các dependency tiền xử lý.",
+      "tags": [
+        "cấu-hình",
+        "yaml",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "document:note_edit.md",
+      "type": "document",
+      "name": "note_edit.md",
+      "filePath": "note_edit.md",
+      "summary": "Ghi chú thiết kế và chẩn đoán Stage 2, phân tích temperature, mất cân bằng, corruption clean/shifted và lộ trình calibration–anatomy bootstrap–adapter fine-tuning–rebalancing.",
+      "tags": [
+        "tài-liệu",
+        "nghiên-cứu",
+        "hướng-dẫn",
+        "emotionclip-reid"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "config:pytest.ini",
+      "type": "config",
+      "name": "pytest.ini",
+      "filePath": "pytest.ini",
+      "summary": "Cấu hình pytest giới hạn discovery vào thư mục tests để bộ kiểm thử dự án chạy nhất quán.",
+      "tags": [
+        "cấu-hình",
+        "test-config",
+        "reproducibility",
+        "emotionclip-reid"
+      ],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "document:note_edit.md",
+      "target": "document:README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "document:README.md",
+      "target": "config:environment_emotionclip_cuda.yml",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    },
+    {
+      "source": "config:pytest.ini",
+      "target": "document:README.md",
+      "type": "related",
+      "direction": "forward",
+      "weight": 0.5
+    }
+  ]
+}
